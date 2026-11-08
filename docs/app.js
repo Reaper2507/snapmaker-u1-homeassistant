@@ -1,5 +1,16 @@
 const i18n = {
   en: {
+    "cap-photo-closeup": "Realistic Close-up: Detailed front perspective showing the Snapmaker U1 logo and toolhead carriage.",
+    "cap-photo-studio": "Studio-Glanz: High-end rendering of the Snapmaker U1 with 4 toolheads and ambient lighting.",
+    "btn-photo-closeup": "🔍 Realistischer Close-Up mit Logo",
+    "btn-photo-studio": "🌟 Studio Glanz (Default)",
+    "maintenance-hint": "Live Bed Leveling mesh heatmap, temperature curves, and Klipper terminal.",
+    "browser-hint": "💡 Scroll with your mouse wheel or use the buttons above to view lower sections (Bed controls, toolhead docks, and emergency stop).",
+    "btn-auto-tour": "Auto-Tour",
+    "btn-scroll-top": "Top",
+    "btn-scroll-down": "Scroll down",
+    "tab-maintenance": "Maintenance & Bed Mesh",
+    "tab-photos": "Studio & Close-up Photos",
     "header-coffee-short": "Coffee",
     "header-coffee-full": "Buy Me a Coffee via PayPal",
     "faq4-a": "<strong>Cancel Print:</strong> Standard graceful stop. Finishes current move, raises Z-axis, safely docks active toolhead, and turns off heaters.<br><strong>Emergency Stop:</strong> Immediate power cut to all motors and heaters. Use only in case of physical collision or risk of damage. Requires Klipper firmware restart afterward.",
@@ -200,6 +211,73 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetContent = document.getElementById(targetId);
       if (targetContent) {
         targetContent.classList.add('active');
+      }
+    });
+  });
+
+  // Interactive Browser Scroll Controls
+  const viewport = document.getElementById('desktop-viewport');
+  const btnScrollDown = document.getElementById('btn-scroll-down');
+  const btnScrollTop = document.getElementById('btn-scroll-top');
+  const btnAutoTour = document.getElementById('btn-auto-tour');
+
+  if (btnScrollDown && viewport) {
+    btnScrollDown.addEventListener('click', () => {
+      viewport.scrollBy({ top: 450, behavior: 'smooth' });
+    });
+  }
+
+  if (btnScrollTop && viewport) {
+    btnScrollTop.addEventListener('click', () => {
+      viewport.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  if (btnAutoTour && viewport) {
+    let isTouring = false;
+    btnAutoTour.addEventListener('click', () => {
+      if (isTouring) return;
+      isTouring = true;
+      btnAutoTour.style.opacity = '0.6';
+      viewport.scrollTo({ top: viewport.scrollHeight, behavior: 'smooth' });
+      setTimeout(() => {
+        viewport.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => {
+          isTouring = false;
+          btnAutoTour.style.opacity = '1';
+        }, 1200);
+      }, 2000);
+    });
+  }
+
+  // Interactive Photo Switcher (Studio vs Close-Up)
+  const photoBtns = document.querySelectorAll('.photo-toggle-btn');
+  const photoImg = document.getElementById('photo-display-img');
+  const photoCaption = document.getElementById('photo-display-caption');
+
+  const photoData = {
+    studio: {
+      src: 'assets/studio.png',
+      captionKey: 'cap-photo-studio'
+    },
+    closeup: {
+      src: 'assets/close-up.jpg',
+      captionKey: 'cap-photo-closeup'
+    }
+  };
+
+  photoBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      photoBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const photoKey = btn.getAttribute('data-photo');
+      if (photoData[photoKey] && photoImg) {
+        photoImg.src = photoData[photoKey].src;
+        if (photoCaption) {
+          const capKey = photoData[photoKey].captionKey;
+          photoCaption.setAttribute('data-i18n', capKey);
+          photoCaption.innerHTML = i18n[currentLang][capKey] || '';
+        }
       }
     });
   });
