@@ -21,7 +21,8 @@
   <img src="screenshots/dashboard-cutaway.jpg" alt="Snapmaker U1 Wireframe Cutaway Telemetry" width="48%">
 </div>
 <p align="center">
-  <em>Left: Photorealistic Studio Mode with live heat overlays · Right: Technical Wireframe Cutaway with live XYZ axes coordinates</em>
+  <em>Both modes offer 100% full feature parity: Live scaled XYZ axes, live temperatures, dynamic spool colors, click-to-control, and filament loading/unloading.<br>
+  <strong>Left:</strong> Photorealistic Studio Mode · <strong>Right:</strong> Technical Wireframe Cutaway Mode</em>
 </p>
 
 ---
@@ -38,13 +39,13 @@
 
 ## 🎯 Tools & Material: Telemetry & Direct Control
 
-The centerpiece of the dashboard is the interactive **Tools & Material** hero card:
-- **📐 Live 3D Axes Overlay ($X, Y, Z$):** Real-time spatial tracking of carriage and bed position (e.g. `X 227.6`, `Y 300.5`, `Z 9.9`).
-- **🌡️ Live Heat Overlays:** Nozzle temperatures for all 4 heads (T0–T3) and heated bed overlaid directly on the 3D model (target & current temps).
-- **🧲 Toolhead Docking Status:** Instant visual confirmation of active tool mounted on carriage (`T3 - Mounted`) vs. parked heads (`Docked`).
-- **🎨 Dynamic Spool Colors:** The 4 side spool holders automatically illuminate in the exact color of the loaded filament.
-- **👆 Tap-to-Control Shortcut:** Clicking or tapping directly on the 3D printer graphic instantly opens the direct control popup for axis jogging (raise/lower bed, center tool), preheating, and filament loading!
-- **🔄 Dual Visual Modes:** Choose between the high-end photorealistic **Studio Render** and the technical **Wireframe Cutaway**.
+The centerpiece of the dashboard is the interactive **Tools & Material** hero card. Both **Studio Mode** and **Wireframe Cutaway Mode** offer 100% identical live features:
+- **📐 Live Scaled 3D Axes ($X, Y, Z$):** Real-time spatial tracking of carriage and bed coordinates (e.g. `X 227.6`, `Y 300.5`, `Z 9.9`), dynamically scaled in 3D space.
+- **🌡️ Live Heat Telemetry:** Live nozzle temperatures for all 4 heads (T0–T3) and the heated bed overlaid directly on the printer model (actual & target temperatures).
+- **🎨 Dynamic Spool Colors:** The 4 side spool holders automatically adapt to the exact loaded filament color (PLA, PETG, TPU).
+- **👆 Tap-to-Control (Full Printer Control):** Clicking or tapping directly on the 3D printer graphic opens full interactive control: axis jogging (raise/lower bed, center head, home axes) and preheating.
+- **🧵 Filament Load & Unload:** Convenient one-click load/unload controls directly integrated into the toolhead management.
+- **🔄 Dual Visual Modes:** Switch between the photorealistic **Studio Render** (ambient lighting) and the technical **Wireframe Cutaway** (transparent mechanical schematic).
 
 ---
 

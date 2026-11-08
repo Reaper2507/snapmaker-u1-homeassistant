@@ -7,13 +7,13 @@ Production-ready, interactive Home Assistant dashboard tailored specifically for
 ## 📸 Overview & Features
 
 ### 🌟 Tools & Material: The Interactive Hero Card
-The core of the dashboard is the interactive **Tools & Material** card. It provides live telemetry and direct hardware control:
-- **Real-Time 3D Axes Tracking ($X, Y, Z$):** Displays live millimeter coordinates for both the toolhead carriage and print bed (e.g. `X 227.6`, `Y 300.5`, `Z 9.9`).
-- **Live Temperature Overlays:** Current and target temperatures are overlaid directly onto the corresponding toolheads (T0–T3) and the heated bed (e.g. `T3 46° / 0° (Selected)`, `Bed 25° / 0°`).
-- **Toolhead Mounting & Docking Feedback:** Instant visual state indication — shows whether a tool is actively mounted on the carriage (`T3 - Mounted`) or safely parked in the docking rail (`Docked`).
-- **Dynamic Filament Spool Colors:** The 4 spool rings (T0–T3) around the chassis illuminate dynamically matching loaded filament colors (Bambu PLA White, SUNLU Black, eSUN Apricot, etc.) and indicate remaining material.
-- **👆 Tap-to-Control Direct Shortcut:** Clicking or tapping directly on the 3D printer graphic immediately launches the interactive control popup for axis jogging (raise/lower bed, center head), preheating, and filament loading.
-- **Dual Visual Modes:** Toggle seamlessly between photorealistic **Studio Render** and technical **Wireframe Cutaway** view.
+The core of the dashboard is the interactive **Tools & Material** card. Both **Studio Mode** and **Wireframe Cutaway Mode** provide 100% identical live capabilities:
+- **📐 Live Scaled 3D Axes ($X, Y, Z$):** Real-time spatial tracking of carriage and bed position (e.g. `X 227.6`, `Y 300.5`, `Z 9.9`), dynamically scaled in 3D space.
+- **🌡️ Live Heat Overlays:** Instant nozzle temperatures for all 4 heads (T0–T3) and the heated bed overlaid directly on the 3D model (target & actual temps).
+- **🎨 Dynamic Filament Spool Colors:** The 4 spool rings (T0–T3) around the chassis adapt in real time to the loaded filament colors and material types.
+- **👆 Tap-to-Control (Full Printer Control):** Clicking or tapping directly on the 3D printer graphic immediately launches full controls: axis jogging (raise/lower bed, center head, home axes), preheating, and emergency stop.
+- **🧵 Filament Load & Unload:** Fast trigger for toolhead heating and manual hand-reeling or motorized feeding.
+- **🔄 Dual Visual Modes:** Seamlessly switch between photorealistic **Studio Render** and technical **Wireframe Cutaway** view.
 
 ### 🛡️ Safety & Controls
 - **Safety Interlocks:** Motion controls and manual toolhead docking are locked while actively printing to prevent collisions.
