@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="page-homeassistant">Dashboard and installation · Snapmaker U1</title>
   <meta name="description" content="Home Assistant dashboard, live telemetry, and automations for the Snapmaker U1 4-toolhead 3D printer.">
-  <link rel="stylesheet" href="styles.css?v=20261108_17">
+  <link rel="stylesheet" href="styles.css?v=20261108_18">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@
     <div class="container">
       <div class="pill-badge" data-i18n="ha-banner-badge">Lovelace dashboard for Snapmaker U1</div>
       <h1 data-i18n="ha-banner-title">Snapmaker U1 Dashboard</h1>
-      <p class="banner-lead" data-i18n="ha-banner-lead">The dashboard brings together the live printer card, filament management, print controls, job and camera views, and maintenance. It builds on the Snapmaker U1 integration by Ironoxx.</p>
+      <p class="banner-lead" data-i18n="ha-banner-lead">The dashboard brings together the live printer card, filament management, print controls, job and camera views, and maintenance. It builds on <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card">Ironoxx’s Snapmaker U1 integration</a>.</p>
       <div class="quick-jump-bar"><a data-i18n="ha-install-cta" href="#install" class="btn btn-primary">Install dashboard</a><a data-i18n="ha-gallery-cta" href="#showcase" class="jump-pill">Screenshots</a><a data-i18n="ha-tools-cta" href="#telemetry" class="jump-pill">Tools &amp; Material</a></div>
     </div>
   </section>
@@ -135,8 +135,9 @@
         <button type="button" class="tab-btn active" aria-pressed="true" aria-controls="tab-desktop" data-tab="tab-desktop" data-i18n="tab-desktop">Studio dashboard</button>
         <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-photos" data-tab="tab-photos" data-i18n="tab-photos">Printer images</button>
         <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-cutaway" data-tab="tab-cutaway" data-i18n="tab-cutaway">Cutaway and axes</button>
-        <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-maintenance" data-tab="tab-maintenance" data-i18n="tab-maintenance">Maintenance</button>
-        <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-minimal" data-tab="tab-minimal" data-i18n="tab-mobile">Minimal</button>
+        <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-maintenance" data-tab="tab-maintenance" data-i18n="tab-maintenance">Maintenance &amp; diagnostics</button>
+        <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-minimal" data-tab="tab-minimal" data-i18n="tab-minimal">Minimal</button>
+        <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-mobile" data-tab="tab-mobile" data-i18n="tab-mobile">Phone view</button>
       </div>
 
       <!-- Tab 1: Full Desktop Dashboard Screenshot -->
@@ -154,6 +155,10 @@
             <summary data-i18n="gallery-dash-detail">More of the dashboard: tools, files and layer view</summary>
             <a href="assets/dashboard-detail.png"><img src="assets/dashboard-detail.png" loading="lazy" alt="Lower dashboard showing filament management, print files and layer view"></a>
           </details>
+        </div>
+        <div class="gallery-related">
+          <a href="?view=maintenance#showcase" class="gallery-related-link"><img src="assets/maintenance-detail.png" loading="lazy" alt=""><span data-i18n="tab-maintenance">Maintenance &amp; diagnostics</span></a>
+          <a href="?view=mobile#showcase" class="gallery-related-link"><img src="assets/dashboard-mobile.jpg" loading="lazy" alt=""><span data-i18n="tab-mobile">Phone view</span></a>
         </div>
       </div>
 
@@ -191,25 +196,24 @@
             <span class="screenshot-hint" data-i18n="caption-maint-mesh">Bed mesh and Klipper console</span>
           </div>
           <div class="screenshot-viewport">
-            <a href="assets/dashboard-maintenance-full.jpg"><img src="assets/dashboard-maintenance-full.jpg" alt="Maintenance and Diagnostics View" class="full-dashboard-img"></a>
+            <a href="assets/maintenance-detail.png"><img src="assets/maintenance-detail.png" loading="lazy" alt="Maintenance checklist, bed mesh, temperature chart and system diagnostics" class="full-dashboard-img"></a>
           </div>
           <div class="caption" data-i18n="caption-maint">Track service intervals, run the integration’s self-test and inspect the bed mesh, temperature history and firmware status from Home Assistant.</div>
-          <details class="gallery-detail">
-            <summary data-i18n="gallery-maint-detail">See the maintenance and diagnostics details</summary>
-            <a href="assets/maintenance-detail.png"><img src="assets/maintenance-detail.png" loading="lazy" alt="Maintenance checklist, bed mesh, temperature chart and system diagnostics"></a>
-          </details>
         </div>
       </div>
 
-      <!-- Tab 5: Mobile View -->
+      <!-- Tab 5: Minimal desktop view -->
       <div class="tab-content" id="tab-minimal">
         <div class="screenshot-card">
           <div class="screenshot-viewport"><a href="assets/minimal-printing.png"><img src="assets/minimal-printing.png" alt="Minimal dashboard showing the print progress, ETA and remaining time"></a></div>
           <div class="caption" data-i18n="gallery-minimal-note">Minimal view during a print, with ETA, remaining time and layer progress.</div>
-          <details class="gallery-detail">
-            <summary data-i18n="gallery-phone-detail">See the phone layout</summary>
-            <a href="assets/dashboard-mobile.jpg"><img src="assets/dashboard-mobile.jpg" loading="lazy" alt="Dashboard arranged for a narrow mobile screen"></a>
-          </details>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-mobile">
+        <div class="screenshot-card">
+          <div class="screenshot-viewport gallery-phone"><a href="assets/dashboard-mobile.jpg"><img src="assets/dashboard-mobile.jpg" loading="lazy" alt="Phone dashboard with the printer graphic, job status, live camera and print controls"></a></div>
+          <div class="caption" data-i18n="gallery-phone-note">On a phone, the printer, job status, camera and controls are stacked vertically.</div>
         </div>
       </div>
     </div>
@@ -408,7 +412,7 @@ max_exceeded: silent
 </dialog>
   </main>
   <!-- Footer -->
-  <footer class="site-footer"><div class="container footer-content"><p>Snapmaker U1 Community Hub · <a href="credits.html" data-i18n="nav-credits">Credits</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE">MIT</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues">GitHub Issues</a></p></div></footer>
-  <script src="app.js?v=20261108_17"></script>
+  <footer class="site-footer"><div class="container footer-content"><p>Snapmaker U1 Community Hub · <a href="credits.html" data-i18n="nav-credits">Credits</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE">MIT</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues">GitHub Issues</a></p><a class="coffee-link" href="https://ko-fi.com/Reaper2507" data-i18n="coffee-maintainer">Support Reaper2507 on Ko-fi</a></div></footer>
+  <script src="app.js?v=20261108_18"></script>
 </body>
 </html>

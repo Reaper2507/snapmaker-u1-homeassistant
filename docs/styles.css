@@ -2296,7 +2296,10 @@ a { color: var(--link-muted); }
 
 .gallery-detail { margin: .75rem 1rem 1rem; }
 .gallery-detail img { display: block; width: 100%; height: auto; margin-block-start: .65rem; }
-.gallery-detail img[src$="dashboard-mobile.jpg"] { width: min(100%, 420px); margin-inline: auto; }
+.gallery-phone img { width: min(100%, 390px); margin-inline: auto; }
+.gallery-related { display: flex; flex-wrap: wrap; gap: .75rem; margin-block-start: 1rem; }
+.gallery-related-link { display: flex; flex: 1 1 13rem; align-items: center; gap: .75rem; padding: .65rem; border: 1px solid var(--border-muted); border-radius: 8px; }
+.gallery-related-link img { width: 5rem; height: 3.25rem; object-fit: contain; border-radius: 4px; }
 
 .install-downloads { margin-block: .3rem 0; }
 .install-prompt { max-width: 74ch; }
@@ -2325,6 +2328,6 @@ a { color: var(--link-muted); }
 .dashboard-view-link { display: block; text-decoration: none; }
 .dashboard-view-link h3 { margin-block-start: .75rem; text-decoration: underline; text-underline-offset: .2em; }
 .dashboard-view-link img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; border-radius: 6px; background: #0d1117; }
-.dashboard-credit { margin-block-start: 1rem; }
+.dashboard-credit { margin-block-end: 1rem; font-size: .9rem; }
 @media (max-width: 900px) { .hero-container { grid-template-areas: "intro" "preview" "features"; } }
 @media (max-width: 540px) { .hero-features { grid-template-columns: minmax(0, 1fr); } }
