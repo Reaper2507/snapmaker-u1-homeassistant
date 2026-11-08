@@ -2297,3 +2297,18 @@ a { color: var(--link-muted); }
 .gallery-detail { margin: .75rem 1rem 1rem; }
 .gallery-detail img { display: block; width: 100%; height: auto; margin-block-start: .65rem; }
 .gallery-detail img[src$="dashboard-mobile.jpg"] { width: min(100%, 420px); margin-inline: auto; }
+
+.install-downloads { margin-block: .3rem 0; }
+.install-prompt { max-width: 74ch; }
+.install-prompt pre { margin-block-start: .75rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+#quick-steps, #ai-install { scroll-margin-top: 8rem; }
+
+.controls-preview-trigger { display: block; text-align: center; text-decoration: none; }
+.controls-preview-trigger img { display: block; width: 100%; height: auto; margin-inline: auto; }
+.controls-preview-trigger .studio-hero-card { max-height: 520px; width: auto; max-width: 100%; object-fit: contain; }
+.controls-preview-label { display: inline-block; margin-block-start: .55rem; text-decoration: underline; text-underline-offset: .2em; }
+.controls-preview-dialog { margin: auto; overflow-y: auto; width: min(980px, calc(100% - 2rem)); max-height: calc(100% - 2rem); padding: 1rem; border: 1px solid var(--border-muted); border-radius: 12px; background: #171d26; color: #eff3fa; }
+.controls-preview-dialog::backdrop { background: rgb(0 0 0 / .7); }
+.controls-preview-dialog img { display: block; width: 100%; height: auto; }
+.controls-preview-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+.controls-preview-dialog p { margin-block: .6rem; }

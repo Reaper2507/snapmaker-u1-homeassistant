@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="page-install">Install the Snapmaker U1 dashboard</title>
   <meta name="description" content="Quick start for the Snapmaker U1 Home Assistant dashboard.">
-  <link rel="stylesheet" href="styles.css?v=20261108_14">
+  <link rel="stylesheet" href="styles.css?v=20261108_15">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -39,12 +39,34 @@
 <section class="page-banner"><div class="container"><h1 data-i18n="quick-title">Install the Snapmaker U1 dashboard</h1><p data-i18n="quick-intro" class="banner-lead">Start here if Home Assistant can reach your U1. Setup time depends on which dependencies you have installed.</p></div></section>
 <section class="features-section" id="quick-steps"><div class="container"><p data-i18n="hacs-note">If HACS is new to you, follow the <a href="https://hacs.xyz/docs/use/download/download/">official setup for your installation type</a>.</p><ol class="quick-steps"><li data-i18n="quick-1">Install <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=Ironoxx&amp;repository=ha-snapmaker-u1-card&amp;category=integration">Ironoxx’s integration in HACS</a>, restart HA and add Snapmaker U1 Card under Settings → Devices &amp; services.</li>
 <li data-i18n="quick-2">Install the six frontend dependencies in HACS: button-card, card-mod, slider-entity-row, vertical-stack-in-card, apexcharts-card, config-template-card.</li>
-<li data-i18n="quick-3">Copy <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/tree/main/homeassistant/www">all three assets</a> to <code>/config/www/media/snapmaker-u1/showcase/</code>. Register <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> as a JavaScript module.</li>
-<li data-i18n="quick-4">Paste the <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml">dashboard YAML</a> into the Raw configuration editor of a new dashboard. Map the sample entity IDs before using the controls.</li></ol><p><a data-i18n="quick-full" href="homeassistant.html#install" class="btn btn-primary">Detailed installation →</a> <a data-i18n="quick-repo" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/homeassistant/README.md">Troubleshooting and updates</a></p></div></section>
+<li><span data-i18n="quick-3">Copy the three files below to <code>/config/www/media/snapmaker-u1/showcase/</code>. Under Settings → Dashboards → Resources, register <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> as a JavaScript module.</span><p class="install-downloads"><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/u1-fusion-showcase.u1.js"><code>u1-fusion-showcase.u1.js</code></a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/studio.png"><code>studio.png</code></a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/close-up.png"><code>close-up.png</code></a></p></li>
+<li data-i18n="quick-4">Paste the <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml">dashboard YAML</a> into the Raw configuration editor of a new dashboard. Map the sample entity IDs before using the controls.</li></ol><p><a data-i18n="ai-install-link" href="#ai-install" class="btn btn-primary">Install with an AI assistant</a> <a data-i18n="quick-repo" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/homeassistant/README.md">Troubleshooting and updates</a></p></div></section>
 <section class="features-section" id="extras"><div class="container"><h2 data-i18n="extras-title">Optional extras</h2><ul class="extra-links"><li><a data-i18n="extra-orca" href="orcaslicer.html">OrcaSlicer profiles</a></li>
 <li><a data-i18n="extra-layer" href="orcaslicer.html#set-and-send">LayerLab Set &amp; Send</a></li>
 <li><a data-i18n="extra-tone" href="homeassistant.html#fanfare">Print completion chime and light</a></li>
 <li><a data-i18n="extra-guide" href="guide.html">Filament guide and FAQ</a></li></ul></div></section>
+  <section id="ai-install" class="features-section">
+    <div class="container">
+      <h2 data-i18n="ai-install-heading">Install with an AI assistant</h2>
+      <p data-i18n="ai-install-body">Copy the prompt into an assistant with Home Assistant admin and file access. It installs the dashboard and checks what is running.</p>
+      <p><button type="button" class="btn btn-secondary" id="btn-copy-ai-prompt" data-i18n="ai-install-copy">Copy installation prompt</button> <span id="ai-copy-status" role="status"></span></p>
+      <details class="install-prompt"><summary data-i18n="ai-install-show">Show installation prompt</summary>
+        <pre><code id="ai-install-prompt-text">Install the Snapmaker U1 Community Dashboard and its custom Lovelace card in my Home Assistant. Carry out the installation using the Home Assistant admin/API, HACS and file-access tools available to you. Reply in my language.
+
+1. Read the installation guide: https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/homeassistant/README.md
+2. Check my Home Assistant version, HACS and the Snapmaker U1 Card integration by Ironoxx. Install missing prerequisites when your tools allow it. Discover the configured Snapmaker U1 and its entities. If setup requires the printer address, authentication or an integration step you cannot perform, ask me for that exact item and continue with independent steps.
+3. Install or verify the six required Lovelace cards: button-card, card-mod, slider-entity-row, vertical-stack-in-card, apexcharts-card and config-template-card. Check their registered resources.
+4. Download these files and place all three under /config/www/media/snapmaker-u1/showcase/
+   https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/u1-fusion-showcase.u1.js
+   https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/studio.png
+   https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/close-up.png
+   Register /local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js as a JavaScript module. Verify the files are served and avoid registering a duplicate resource.
+5. Download https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml
+   Map the example entity IDs to my configured Snapmaker U1. Import the three views into a separate Snapmaker U1 dashboard. Reuse this project dashboard on a retry if you can identify it reliably. Back up a dashboard before modifying it and keep unrelated dashboards and resources intact.
+6. Read back the dashboard and resource, then verify the three views and passive telemetry (printer status, temperatures, camera and progress). Do not trigger printer motion, heating or emergency stop during this check. Leave optional extras for a separate request. Report completed steps, verification and any exact manual action still needed.</code></pre>
+      </details>
+    </div>
+  </section>
   </main>
   <!-- Footer -->
   <footer class="site-footer">
@@ -65,6 +87,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=20261108_14"></script>
+  <script src="app.js?v=20261108_15"></script>
   </body>
 </html>

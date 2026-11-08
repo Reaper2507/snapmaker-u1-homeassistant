@@ -1,10 +1,10 @@
 # Snapmaker U1 Dashboard for Home Assistant
 
-A community dashboard for the Snapmaker U1. See the four toolheads, camera, job status and temperatures in one place. Switch between Studio and Cutaway, or open the Minimal and Maintenance views.
+A community dashboard for the Snapmaker U1. See the four toolheads, camera, job status and temperatures in one place. Tap the printer graphic to open its controls. The card shows each loaded filament color at its tool position, and lets you use already loaded tools when the printer state allows it. Switch between Studio and Cutaway, or open the Minimal and Maintenance views.
 
 [View screenshots and dashboard details](https://reaper2507.github.io/snapmaker-u1-homeassistant/homeassistant.html) · [Install the dashboard](homeassistant/README.md) · [Report an issue](../../issues)
 
-![Snapmaker U1 dashboard with toolhead telemetry and camera](screenshots/dashboard-desktop.jpg)
+![Snapmaker U1 dashboard with toolhead telemetry and camera](docs/assets/studio-dashboard.png)
 
 ## Installation
 

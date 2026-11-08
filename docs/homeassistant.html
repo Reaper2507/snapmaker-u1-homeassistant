@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="page-homeassistant">Dashboard and installation · Snapmaker U1</title>
   <meta name="description" content="Home Assistant dashboard, live telemetry, and automations for the Snapmaker U1 4-toolhead 3D printer.">
-  <link rel="stylesheet" href="styles.css?v=20261108_14">
+  <link rel="stylesheet" href="styles.css?v=20261108_15">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -48,6 +48,81 @@
   </section>
 
   <!-- Dashboard Gallery & Screenshots -->
+  <section id="telemetry" class="telemetry-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag" data-i18n="telemetry-badge">Dashboard highlight</span>
+        <h2 data-i18n="telemetry-title">Tools &amp; Material</h2>
+        <p data-i18n="telemetry-subtitle">Tap the printer graphic to open the controls for the current print state. The card also shows live spool colors, temperatures and tool positions.</p>
+      </div>
+
+      <div class="telemetry-grid">
+        <!-- Interactive Card Preview -->
+        <div class="telemetry-preview-card">
+          <div class="preview-mode-switch">
+            <button type="button" class="preview-btn active" aria-pressed="true" data-mode="studio" data-i18n="btn-mode-studio">Studio</button>
+            <button type="button" class="preview-btn" aria-pressed="false" data-mode="cutaway" data-i18n="btn-mode-cutaway">Cutaway</button>
+          </div>
+          <div class="preview-image-wrapper">
+            <a href="assets/printer-controls.png" class="controls-preview-trigger" aria-haspopup="dialog"><img src="assets/studio-card.png" alt="Studio view of the Snapmaker U1 showing the four filament spool positions, tool temperatures and axes" id="telemetry-preview-img" class="telemetry-img"><span data-i18n="controls-preview-open" class="controls-preview-label">Tap the printer to see its controls</span></a>
+          </div>
+          <p data-i18n="sim-disclosure" class="path-hint">Browser simulation · sample values only. No printer or Home Assistant connection.</p>
+          <div class="sim-tool-bar" style="display:flex; gap:6px; margin:14px 0 6px; justify-content:center; flex-wrap:wrap;">
+            <button class="sim-chip" data-tool="0" aria-pressed="false"><strong>T0</strong> · Docked (24°C)</button>
+            <button class="sim-chip" data-tool="1" aria-pressed="false"><strong>T1</strong> · Docked (23°C)</button>
+            <button class="sim-chip" data-tool="2" aria-pressed="false"><strong>T2</strong> · Docked (25°C)</button>
+            <button class="sim-chip active" data-tool="3" aria-pressed="true"><strong>T3</strong> · Mounted (210°C)</button>
+          </div>
+          <div role="status" class="sim-status-banner" id="sim-status-banner" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:8px 14px; font-size:0.85rem; color:#adbac7; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <span><strong id="sim-active-tool">Toolhead 3 (Mounted)</strong>: <span id="sim-material">eSUN PETG Matte Grey · Nozzle 210°C · Bed 70°C</span></span>
+            <span style="font-family:monospace; color:#b1c9c1; font-weight:600;" id="sim-coords">X 227.6 · Y 300.5 · Z 9.9</span>
+          </div>
+          <div class="preview-caption" id="telemetry-preview-caption" data-i18n="cap-telemetry-studio">Studio view with the loaded spool colors and live labels captured during a print.</div>
+          <p class="path-hint" data-i18n="card-mode-hint">In Home Assistant, open the gear on the card. Choose Studio or Cutaway under Image. With Live spool colors on, the graphic reflects the loaded filament colors reported for each slot.</p>
+        </div>
+
+        <!-- Capability List -->
+        <div class="telemetry-features">
+          <div class="telemetry-feat-item highlight-feat">
+            <div class="feat-icon-box">👆</div>
+            <div class="feat-content">
+              <h4 data-i18n="feat-tap-title">Tap the printer to open controls</h4>
+              <p data-i18n="feat-tap-desc">Open print controls and the Filament &amp; heat tab directly from the card. Start heating, loading or unloading there when supported. Installing a new spool and feeding it to the inlet still happens at the printer.</p>
+            </div>
+          </div>
+          <div class="telemetry-feat-item">
+            <div class="feat-icon-box">🎨</div>
+            <div class="feat-content">
+              <h4 data-i18n="feat-spools-title">Loaded filament colors at T0–T3</h4>
+              <p data-i18n="feat-spools-desc">See which material is already loaded at each position and switch between loaded tools from Home Assistant when the printer allows it. T0 is top left, T1 bottom left, T2 top right and T3 bottom right.</p>
+            </div>
+          </div>
+          <div class="telemetry-feat-item">
+            <div class="feat-icon-box">📐</div>
+            <div class="feat-content">
+              <h4 data-i18n="feat-axes-title">Real-Time 3D Axes Tracking (X, Y, Z)</h4>
+              <p data-i18n="feat-axes-desc">Live scaled coordinates for print bed and carriage (e.g. X 227.6, Y 300.5, Z 9.9). See at a millimeter glance where head and bed currently reside.</p>
+            </div>
+          </div>
+          <div class="telemetry-feat-item">
+            <div class="feat-icon-box">🌡️</div>
+            <div class="feat-content">
+              <h4 data-i18n="feat-temps-title">Live Temperatures on Nozzles & Bed</h4>
+              <p data-i18n="feat-temps-desc">Target and current temperatures overlaid right on the 4 toolheads (T0–T3) and heated bed (e.g. T3 46° / 0° Selected, Bed 25° / 0°).</p>
+            </div>
+          </div>
+          <div class="telemetry-feat-item">
+            <div class="feat-icon-box">🧲</div>
+            <div class="feat-content">
+              <h4 data-i18n="feat-docking-title">Toolhead Mounting & Docking Feedback</h4>
+              <p data-i18n="feat-docking-desc">Shows the reported toolhead positions. Missing telemetry is shown as unknown.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="showcase" class="gallery-section">
     <div class="container">
       <div class="section-header">
@@ -72,7 +147,7 @@
             <span class="screenshot-hint" data-i18n="caption-size">Desktop screenshot</span>
           </div>
           <div class="screenshot-viewport">
-            <a href="assets/dashboard-desktop.jpg"><img src="assets/dashboard-desktop.jpg" alt="Snapmaker U1 Full Home Assistant Dashboard" class="full-dashboard-img"></a>
+            <a href="assets/studio-dashboard.png"><img src="assets/studio-dashboard.png" alt="Snapmaker U1 Full Home Assistant Dashboard" class="full-dashboard-img"></a>
           </div>
           <div class="caption" data-i18n="caption-desktop">Dashboard with four toolheads, camera, temperatures and job controls.</div>
           <details class="gallery-detail">
@@ -118,7 +193,7 @@
           <div class="screenshot-viewport">
             <a href="assets/dashboard-maintenance-full.jpg"><img src="assets/dashboard-maintenance-full.jpg" alt="Maintenance and Diagnostics View" class="full-dashboard-img"></a>
           </div>
-          <div class="caption" data-i18n="caption-maint">Bed mesh, temperature graphs and Klipper console.</div>
+          <div class="caption" data-i18n="caption-maint">Track service intervals, run the integration’s self-test and inspect the bed mesh, temperature history and firmware status from Home Assistant.</div>
           <details class="gallery-detail">
             <summary data-i18n="gallery-maint-detail">See the maintenance and diagnostics details</summary>
             <a href="assets/maintenance-detail.png"><img src="assets/maintenance-detail.png" loading="lazy" alt="Maintenance checklist, bed mesh, temperature chart and system diagnostics"></a>
@@ -141,250 +216,20 @@
   </section>
 
   <!-- Tools & Material Deep Dive Section -->
-  <section id="telemetry" class="telemetry-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="badge-tag" data-i18n="telemetry-badge">⚡ Live Telemetry & Direct Controls</span>
-        <h2 data-i18n="telemetry-title">Tools & Material: What the Hero Card Can Do</h2>
-        <p data-i18n="telemetry-subtitle">The installed dashboard shows reported tool positions, temperatures and filament data. The preview uses screenshots and sample data.</p>
-      </div>
 
-      <div class="telemetry-grid">
-        <!-- Interactive Card Preview -->
-        <div class="telemetry-preview-card">
-          <div class="preview-mode-switch">
-            <button type="button" class="preview-btn active" aria-pressed="true" data-mode="studio" data-i18n="btn-mode-studio">Studio</button>
-            <button type="button" class="preview-btn" aria-pressed="false" data-mode="cutaway" data-i18n="btn-mode-cutaway">Cutaway</button>
-          </div>
-          <div class="preview-image-wrapper">
-            <img id="telemetry-preview-img" src="assets/tools-material-studio.jpg" alt="Tools & Material Telemetry Card" class="telemetry-img">
-          </div>
-          <p data-i18n="sim-disclosure" class="path-hint">Browser simulation · sample values only. No printer or Home Assistant connection.</p>
-          <div class="sim-tool-bar" style="display:flex; gap:6px; margin:14px 0 6px; justify-content:center; flex-wrap:wrap;">
-            <button class="sim-chip" data-tool="0" aria-pressed="false"><strong>T0</strong> · Docked (24°C)</button>
-            <button class="sim-chip" data-tool="1" aria-pressed="false"><strong>T1</strong> · Docked (23°C)</button>
-            <button class="sim-chip" data-tool="2" aria-pressed="false"><strong>T2</strong> · Docked (25°C)</button>
-            <button class="sim-chip active" data-tool="3" aria-pressed="true"><strong>T3</strong> · Mounted (210°C)</button>
-          </div>
-          <div role="status" class="sim-status-banner" id="sim-status-banner" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:8px 14px; font-size:0.85rem; color:#adbac7; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-            <span><strong id="sim-active-tool">Toolhead 3 (Mounted)</strong>: <span id="sim-material">eSUN PETG Matte Grey · Nozzle 210°C · Bed 70°C</span></span>
-            <span style="font-family:monospace; color:#b1c9c1; font-weight:600;" id="sim-coords">X 227.6 · Y 300.5 · Z 9.9</span>
-          </div>
-          <div class="preview-caption" id="telemetry-preview-caption" data-i18n="cap-telemetry-studio">Studio screenshot with temperatures, spool colors and mounted-tool status.</div>
-        </div>
-
-        <!-- Capability List -->
-        <div class="telemetry-features">
-          <div class="telemetry-feat-item">
-            <div class="feat-icon-box">📐</div>
-            <div class="feat-content">
-              <h4 data-i18n="feat-axes-title">Real-Time 3D Axes Tracking (X, Y, Z)</h4>
-              <p data-i18n="feat-axes-desc">Live scaled coordinates for print bed and carriage (e.g. X 227.6, Y 300.5, Z 9.9). See at a millimeter glance where head and bed currently reside.</p>
-            </div>
-          </div>
-
-          <div class="telemetry-feat-item">
-            <div class="feat-icon-box">🌡️</div>
-            <div class="feat-content">
-              <h4 data-i18n="feat-temps-title">Live Temperatures on Nozzles & Bed</h4>
-              <p data-i18n="feat-temps-desc">Target and current temperatures overlaid right on the 4 toolheads (T0–T3) and heated bed (e.g. T3 46° / 0° Selected, Bed 25° / 0°).</p>
-            </div>
-          </div>
-
-          <div class="telemetry-feat-item">
-            <div class="feat-icon-box">🧲</div>
-            <div class="feat-content">
-              <h4 data-i18n="feat-docking-title">Toolhead Mounting & Docking Feedback</h4>
-              <p data-i18n="feat-docking-desc">Shows the reported toolhead positions. Missing telemetry is shown as unknown.</p>
-            </div>
-          </div>
-
-          <div class="telemetry-feat-item">
-            <div class="feat-icon-box">🎨</div>
-            <div class="feat-content">
-              <h4 data-i18n="feat-spools-title">Dynamic Spool Colors & Filament Tracking</h4>
-              <p data-i18n="feat-spools-desc">Colors and materials reflect the integration settings. Spool inventory is available with optional Spoolman setup.</p>
-            </div>
-          </div>
-
-          <div class="telemetry-feat-item highlight-feat">
-            <div class="feat-icon-box">👆</div>
-            <div class="feat-content">
-              <h4 data-i18n="feat-tap-title">Interactive Tap-to-Control Direct Shortcut</h4>
-              <p data-i18n="feat-tap-desc">Tap or click anywhere on the 3D printer graphic: Instantly opens the interactive quick-control popup for manual jogging (bed/head), preheating, and filament loading!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
 
 
 
   <!-- Step by Step Setup: HOME ASSISTANT ONLY WITH MY HOME ASSISTANT BADGES -->
-  <section id="install" class="install-section">
+    <section id="install" class="features-section">
     <div class="container">
-      <div class="section-header">
-        <span class="badge-tag" data-i18n="install-badge">Installation</span>
-        <h2 data-i18n="install-title">Home Assistant Setup Guide</h2>
-        <p data-i18n="install-subtitle">Launch in your Home Assistant instance with official 1-click badges.</p>
-      </div>
-
-      <div class="steps-container">
-
-        <!-- Step 0: Pre-Quiz / HACS Prerequisites Guide -->
-        <div class="step-card prereq-step-card">
-          <div class="step-number">0</div>
-          <div class="step-body">
-            <div class="step-header-with-badge">
-              <h3 data-i18n="step0-title">Set up HACS if needed</h3>
-              <span class="step-pill" data-i18n="step0-pill">For Beginners Only</span>
-            </div>
-            <p data-i18n="step0-desc">Follow the official HACS instructions for your Home Assistant installation type.</p>
-
-            <a data-i18n="hacs-official" href="https://hacs.xyz/docs/use/download/download/">Official HACS setup →</a>
-          </div>
-        </div>
-
-        <!-- Step 1: HACS Integration & Frontend Cards -->
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <div class="step-body">
-            <h3 data-i18n="step1-title">Snapmaker U1 Integration & Cards via HACS</h3>
-            <p data-i18n="step1-desc">Install the Snapmaker U1 Card integration, restart Home Assistant and add the integration under Settings → Devices &amp; services. Then install the frontend dependencies.</p>
-
-            <div style="margin: 16px 0;">
-              <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=Ironoxx&repository=ha-snapmaker-u1-card&category=integration" target="_blank" rel="noopener noreferrer" class="ha-my-badge" title="Open in HACS via My Home Assistant" data-i18n="my-ha-hacs">Open the integration in HACS</a>
-            </div>
-
-            <div class="collapsible-wrapper">
-              <details open>
-                <summary><b data-i18n="step1-cards-summary">🎨 How to Install Frontend Cards in HACS (Click to expand)</b></summary>
-                <div class="details-content">
-                  <p data-i18n="step1-cards-guide" style="margin:8px 0; color:#8b949e; font-size:0.88rem;">Install these six dependencies through HACS and verify their Lovelace resources.</p>
-                  <ul class="tag-list"><li><code>button-card</code></li>
-<li><code>card-mod</code></li>
-<li><code>slider-entity-row</code></li>
-<li><code>vertical-stack-in-card</code></li>
-<li><code>apexcharts-card</code></li>
-<li><code>config-template-card</code></li></ul>
-                  <p style="margin-top:8px; font-size:0.82rem; color:#f3be73;" data-i18n="step1-cards-hint">💡 Pro Tip: When Home Assistant asks 'Reload browser to load new resource?', click Reload.</p>
-                </div>
-              </details>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 2: Showcase Assets & Lovelace Resource Registration -->
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <div class="step-body">
-            <h3 data-i18n="step2-title">Showcase Assets & Lovelace Resource</h3>
-            <p data-i18n="step2-desc">Place the files from homeassistant/www/ into your Home Assistant /config/www/media/snapmaker-u1/showcase/ folder:</p>
-            <a data-i18n="ha-assets" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/tree/main/homeassistant/www">Open asset downloads →</a>
-            <div class="code-pill-list">
-              <span><code>u1-fusion-showcase.u1.js</code></span>
-              <span><code>studio.png</code></span>
-              <span><code>close-up.png</code></span>
-            </div>
-
-            <div class="collapsible-wrapper" style="margin-top:16px;">
-              <details open>
-                <summary><b data-i18n="step2-reg-summary">🔍 Where and how is the resource registered? (Step-by-step guide)</b></summary>
-                <div class="details-content">
-                  <div class="ha-path-explanation-box">
-                    <h5 data-i18n="step2-path-title">💡 Essential Home Assistant Path Knowledge:</h5>
-                    <p data-i18n="step2-path-desc">The physical folder /config/www/ on disk is served by Home Assistant's internal web server as /local/ in the browser. Therefore, /config/www/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js is loaded in the dashboard as /local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js!</p>
-                  </div>
-
-                  <h5 style="color:#f0f6fc; margin:14px 0 6px;" data-i18n="step2-steps-title">Step-by-step in the Home Assistant Settings menu:</h5>
-                  <ol class="step-guide-list">
-                    <li>
-                      <span data-i18n="step2-s1">In Home Assistant, click Settings in the bottom left.</span>
-                    </li>
-                    <li>
-                      <span data-i18n="step2-s2">Select Dashboards.</span>
-                    </li>
-                    <li>
-                      <span data-i18n="step2-s3">Click the three dots ⋮ in the top right and select Resources.</span>
-                    </li>
-                    <li>
-                      <span data-i18n="step2-s4">Click the blue + Add Resource button at the bottom right.</span>
-                    </li>
-                    <li>
-                      <span data-i18n="step2-s5">Enter the following exact values:</span>
-                      <ul style="margin: 6px 0 0 16px; color:#adbac7; font-size:0.88rem;">
-                        <li><strong>URL:</strong> <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code></li>
-                        <li><strong>Ressourcentyp:</strong> <code>JavaScript-Modul</code> (JavaScript Module)</li>
-                      </ul>
-                    </li>
-                    <li>
-                      <span data-i18n="step2-s6">Click Create. Done!</span>
-                    </li>
-                  </ol>
-
-                  <div style="margin: 16px 0 8px;">
-                    <a href="https://my.home-assistant.io/redirect/lovelace_resources/" target="_blank" rel="noopener noreferrer" class="ha-my-badge" title="Direkt zu den Lovelace Ressourcen in My Home Assistant" data-i18n="my-ha-resources">Open Dashboard Resources</a>
-                  </div>
-
-                  <div class="step-links-row" style="margin-top:12px;">
-                    <a href="https://www.home-assistant.io/dashboards/dashboards/#configuration-variables" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
-                      📖 <span data-i18n="btn-ha-res-doc">Official Home Assistant Documentation on Resources →</span>
-                    </a>
-                  </div>
-                </div>
-              </details>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 3: Lovelace Dashboard Import One-Click -->
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <div class="step-body">
-            <h3 data-i18n="step3-title">Import Dashboard YAML</h3>
-            <p data-i18n="step3-desc">Create a new dashboard and paste the YAML into its Raw configuration editor. Compare the sample entity IDs with your own before using the controls.</p>
-
-            <div style="margin: 16px 0;">
-              <a href="https://www.home-assistant.io/dashboards/dashboards/#creating-a-new-dashboard" target="_blank" rel="noopener noreferrer" class="ha-my-badge" data-i18n="my-ha-dashboards">Dashboard setup guide</a>
-            </div>
-
-            <div class="collapsible-wrapper">
-              <details>
-                <summary data-i18n="details-yaml">Click here for Dashboard YAML download & options</summary>
-                <div class="details-content">
-                  <p data-i18n="details-yaml-p">You can import the entire complete dashboard or load modular views from the views/ folder:</p>
-                  <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-                    <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="btn-view-raw">View Complete Dashboard YAML</a>
-                    <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/packages/u1_control_package.yaml" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" data-i18n="link-moonraker">Optional Moonraker control package</a>
-                  </div>
-                </div>
-              </details>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 4: AI & MCP Automation Prompt -->
-        <div class="step-card ai-step-card">
-          <div class="step-number">🤖</div>
-          <div class="step-body">
-            <h3 data-i18n="ai-step-title">Optional setup prompt</h3>
-            <p data-i18n="ai-step-desc">Copy this prompt if you use an assistant with Home Assistant access to check the installation steps.</p>
-
-            <div class="ai-prompt-box">
-              <pre><code id="ai-install-prompt-text">Review https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/homeassistant/README.md and check prerequisites. Verify the three assets and the required frontend cards. Show the proposed entity mappings before writing. Import into a separate dashboard and verify passive telemetry first. Do not operate printer controls during verification.</code></pre>
-              <button class="btn btn-primary btn-sm" id="btn-copy-ai-prompt" style="margin-top:12px;">
-                📋 <span data-i18n="btn-copy-ai-prompt">Copy Prompt for AI Agent</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <h2 data-i18n="ha-install-heading">Install the dashboard</h2>
+      <p data-i18n="ha-install-short">The installation page lists the required HACS cards and the exact files to download.</p>
+      <div class="extra-links"><a class="btn btn-primary" href="install.html#quick-steps" data-i18n="manual-install">Installation steps</a>
+      <a href="install.html#ai-install" data-i18n="ai-install-link">Install with an AI assistant</a></div>
     </div>
   </section>
-
 
 <section class="features-section" id="fanfare"><div class="container"><details><summary data-i18n="fanfare-summary">Optional: print completion chime and light</summary><p data-i18n="fanfare-note">The chamber light reverses state for 1.2 seconds on entry into the last valid layer. Confirmed completion is the fallback. The Alexa bell_02 chime attempts to play near 99.9% or at completion, depending on telemetry.</p>
 <p><a data-i18n="fanfare-setup" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/homeassistant/automations/README.md">Setup and entity mapping</a> · <a data-i18n="fanfare-file" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/automations/fertigdruck_fanfare.yaml">Open YAML</a></p><details><summary data-i18n="fanfare-show">Show YAML</summary><pre class="code-block"><code id="fanfare-yaml-code">alias: "Snapmaker U1 – Fertigdruck-Fanfare &amp; Licht (Letzter Layer &amp; Ende)"
@@ -556,9 +401,14 @@ actions:
 mode: single
 max_exceeded: silent
 </code></pre><button data-i18n="btn-copy-yaml" class="btn btn-secondary btn-sm" id="btn-copy-yaml">Copy YAML</button></details></details></div></section>
+<dialog class="controls-preview-dialog" id="controls-preview-dialog" aria-labelledby="controls-preview-title">
+  <div class="controls-preview-header"><h2 data-i18n="controls-preview-title" id="controls-preview-title">Printer controls</h2><form method="dialog"><button data-i18n="controls-preview-close" class="btn btn-secondary btn-sm">Close</button></form></div>
+  <p data-i18n="controls-preview-caption">Screenshot from Home Assistant. The controls in this preview are illustrative.</p>
+  <img src="assets/printer-controls.png" alt="Printer controls dialog showing print speed, flow and motion locked during printing" loading="lazy">
+</dialog>
   </main>
   <!-- Footer -->
   <footer class="site-footer"><div class="container footer-content"><p>Snapmaker U1 Community Hub · <a href="credits.html" data-i18n="nav-credits">Credits</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE">MIT</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues">GitHub Issues</a></p></div></footer>
-  <script src="app.js?v=20261108_14"></script>
+  <script src="app.js?v=20261108_15"></script>
 </body>
 </html>

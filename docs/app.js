@@ -7,7 +7,7 @@ const i18n = {
     "nav-credits": "Credits",
     "hero-badge": "Home Assistant",
     "hero-title-hub": "Snapmaker U1 Dashboard",
-    "hero-lead-hub": "See all four toolheads, camera, print status and temperatures in Home Assistant. Includes Studio and Cutaway modes, a Minimal view and Maintenance diagnostics.",
+    "hero-lead-hub": "Tap the printer graphic in Home Assistant to open its controls. The card shows the loaded filament colors at their T0–T3 positions, with camera, job status and temperatures alongside.",
     "ha-banner-badge": "Lovelace dashboard for Snapmaker U1",
     "ha-banner-title": "Snapmaker U1 Dashboard",
     "ha-banner-lead": "Monitor print jobs, check temperatures and open printer controls from Home Assistant. The dashboard uses Ironoxx’s Snapmaker U1 integration.",
@@ -21,9 +21,6 @@ const i18n = {
     "jump-set-and-send": "🧩 Set & Send Plugin",
     "jump-profiles": "Process profiles",
     "jump-filaments": "🧵 19 Filament Presets",
-    "ai-step-title": "Optional setup prompt",
-    "ai-step-desc": "Copy this prompt if you use an assistant with Home Assistant access to check the installation steps.",
-    "btn-copy-ai-prompt": "Copy Prompt for AI Agent",
     "credits-banner-badge": "Credits",
     "credits-banner-title": "Credits and dependencies",
     "credits-banner-lead": "Thanks to the projects and maintainers whose work this dashboard and its extras build on.",
@@ -38,24 +35,23 @@ const i18n = {
     "btn-cut-closeup": "Tools and material",
     "cap-cutaway": "Authentic Cutaway View: Technical wireframe showing live scaled XYZ axis positions, mounted toolhead (T3), and filament spools.",
     "cap-cutaway-closeup": "Tools & Material Close-Up: Live hotend nozzle temperatures, bed temperature, mounted state, and spool feed status.",
-    "telemetry-badge": "⚡ Live Telemetry & Direct Controls",
-    "telemetry-title": "Tools & Material: What the Hero Card Can Do",
-    "telemetry-subtitle": "The installed dashboard shows reported tool positions, temperatures and filament data. The preview uses screenshots and sample data.",
+    "telemetry-badge": "Dashboard highlight",
+    "telemetry-title": "Tools &amp; Material",
+    "telemetry-subtitle": "Tap the printer graphic to open the controls for the current print state. The card also shows live spool colors, temperatures and tool positions.",
     "btn-mode-cutaway": "Cutaway",
     "btn-mode-studio": "Studio",
-    "cap-telemetry-cutaway": "Cutaway screenshot with tool positions, temperatures and mounted-tool status.",
-    "cap-telemetry-studio": "Studio screenshot with temperatures, spool colors and mounted-tool status.",
+    "cap-telemetry-cutaway": "Cutaway view of the same card with the four spool positions, axes and the mounted tool.",
+    "cap-telemetry-studio": "Studio view with the loaded spool colors and live labels captured during a print.",
     "feat-axes-title": "Real-Time 3D Axes Tracking (X, Y, Z)",
     "feat-axes-desc": "Live scaled coordinates for print bed and carriage (e.g. X 227.6, Y 300.5, Z 9.9). See at a millimeter glance where head and bed currently reside.",
     "feat-temps-title": "Live Temperatures on Nozzles & Bed",
     "feat-temps-desc": "Target and current temperatures overlaid right on the 4 toolheads (T0–T3) and heated bed (e.g. T3 46° / 0° Selected, Bed 25° / 0°).",
     "feat-docking-title": "Toolhead Mounting & Docking Feedback",
     "feat-docking-desc": "Shows the reported toolhead positions. Missing telemetry is shown as unknown.",
-    "feat-spools-title": "Dynamic Spool Colors & Filament Tracking",
-    "feat-spools-desc": "Colors and materials reflect the integration settings. Spool inventory is available with optional Spoolman setup.",
-    "feat-tap-title": "Interactive Tap-to-Control Direct Shortcut",
-    "feat-tap-desc": "Tap or click anywhere on the 3D printer graphic: Instantly opens the interactive quick-control popup for manual jogging (bed/head), preheating, and filament loading!",
-    "btn-copy-code": "Copy YAML",
+    "feat-spools-title": "Loaded filament colors at T0–T3",
+    "feat-spools-desc": "See which material is already loaded at each position and switch between loaded tools from Home Assistant when the printer allows it. T0 is top left, T1 bottom left, T2 top right and T3 bottom right.",
+    "feat-tap-title": "Tap the printer to open controls",
+    "feat-tap-desc": "Open print controls and the Filament &amp; heat tab directly from the card. Start heating, loading or unloading there when supported. Installing a new spool and feeding it to the inlet still happens at the printer.",
     "cap-photo-closeup": "Close-up illustration of the toolchanger.",
     "cap-photo-studio": "Studio illustration of the Snapmaker U1.",
     "btn-photo-closeup": "Close-up",
@@ -98,35 +94,6 @@ const i18n = {
     "p3-desc": "High strength & throughput for 0.6 mm nozzles. Arachne wall generator, 1.2 mm solid ceiling, 20 mm³ tower volume.",
     "p4-desc": "Quality profile for 0.6 mm nozzles. Clean overhangs and smooth contours.",
     "p5-desc": "Turbo prototype profile for maximum volumetric flow in record time.",
-    "install-badge": "Installation",
-    "step0-title": "Set up HACS if needed",
-    "step0-pill": "For Beginners Only",
-    "step0-desc": "Follow the official HACS instructions for your Home Assistant installation type.",
-    "step1-cards-summary": "🎨 How to Install Frontend Cards in HACS (Click to expand)",
-    "step1-cards-guide": "Install these six dependencies through HACS and verify their Lovelace resources.",
-    "step1-cards-hint": "💡 Pro Tip: When Home Assistant asks 'Reload browser to load new resource?', click Reload.",
-    "step2-reg-summary": "🔍 Where and how is the resource registered? (Step-by-step guide)",
-    "step2-path-title": "💡 Essential Home Assistant Path Knowledge:",
-    "step2-path-desc": "The physical folder /config/www/ on disk is served by Home Assistant's internal web server as /local/ in the browser. Therefore, /config/www/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js is loaded in the dashboard as /local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js!",
-    "step2-steps-title": "Step-by-step in the Home Assistant Settings menu:",
-    "step2-s1": "In Home Assistant, click Settings in the bottom left.",
-    "step2-s2": "Select Dashboards.",
-    "step2-s3": "Click the three dots ⋮ in the top right and select Resources.",
-    "step2-s4": "Click the blue + Add Resource button at the bottom right.",
-    "step2-s5": "Enter the following exact values:",
-    "step2-s6": "Click Create. Done!",
-    "btn-ha-res-doc": "Official Home Assistant Documentation on Resources →",
-    "install-title": "Home Assistant Setup Guide",
-    "install-subtitle": "Launch in your Home Assistant instance with official 1-click badges.",
-    "step1-title": "Snapmaker U1 Integration & Cards via HACS",
-    "step1-desc": "Install the Snapmaker U1 Card integration, restart Home Assistant and add the integration under Settings → Devices &amp; services. Then install the frontend dependencies.",
-    "step2-title": "Showcase Assets & Lovelace Resource",
-    "step2-desc": "Place the files from homeassistant/www/ into your Home Assistant /config/www/media/snapmaker-u1/showcase/ folder:",
-    "step3-title": "Import Dashboard YAML",
-    "step3-desc": "Create a new dashboard and paste the YAML into its Raw configuration editor. Compare the sample entity IDs with your own before using the controls.",
-    "details-yaml": "Click here for Dashboard YAML download & options",
-    "details-yaml-p": "You can import the entire complete dashboard or load modular views from the views/ folder:",
-    "btn-view-raw": "View Complete Dashboard YAML",
     "support-title": "Feedback and support",
     "extras-title": "Optional extras",
     "extra-orca": "OrcaSlicer profiles",
@@ -139,23 +106,20 @@ const i18n = {
     "dash-cta": "Explore the dashboard",
     "install-cta": "Installation",
     "three-views": "Three dashboard views",
-    "views-lead": "Dashboard for daily control, Minimal for quick status, and Maintenance for diagnostics.",
+    "views-lead": "Dashboard for print controls and loaded tools, Minimal for quick status, and Maintenance for diagnostics, self-test and service intervals.",
     "gallery-cta": "View screenshot gallery →",
     "main-credit": "Built on <a href=\"https://github.com/Ironoxx/ha-snapmaker-u1-card\">Ironoxx’s Snapmaker U1 integration</a>. See the <a href=\"credits.html\">credits</a>.",
     "quick-title": "Install the Snapmaker U1 dashboard",
     "quick-intro": "Start here if Home Assistant can reach your U1. Setup time depends on which dependencies you have installed.",
     "quick-1": "Install <a href=\"https://my.home-assistant.io/redirect/hacs_repository/?owner=Ironoxx&amp;repository=ha-snapmaker-u1-card&amp;category=integration\">Ironoxx’s integration in HACS</a>, restart HA and add Snapmaker U1 Card under Settings → Devices &amp; services.",
     "quick-2": "Install the six frontend dependencies in HACS: button-card, card-mod, slider-entity-row, vertical-stack-in-card, apexcharts-card, config-template-card.",
-    "quick-3": "Copy <a href=\"https://github.com/Reaper2507/snapmaker-u1-homeassistant/tree/main/homeassistant/www\">all three assets</a> to <code>/config/www/media/snapmaker-u1/showcase/</code>. Register <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> as a JavaScript module.",
+    "quick-3": "Copy the three files below to <code>/config/www/media/snapmaker-u1/showcase/</code>. Under Settings → Dashboards → Resources, register <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> as a JavaScript module.",
     "quick-4": "Paste the <a href=\"https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml\">dashboard YAML</a> into the Raw configuration editor of a new dashboard. Map the sample entity IDs before using the controls.",
-    "quick-full": "Detailed installation →",
     "quick-repo": "Troubleshooting and updates",
     "ha-install-cta": "Install dashboard",
     "ha-gallery-cta": "Screenshots",
     "ha-tools-cta": "Tools &amp; Material",
-    "sim-disclosure": "Browser simulation · sample values only. No printer or Home Assistant connection.",
-    "hacs-official": "Official HACS setup →",
-    "ha-assets": "Open asset downloads →",
+    "sim-disclosure": "The controls image is a screenshot. The selectors below change sample values only.",
     "fanfare-summary": "Optional: print completion chime and light",
     "fanfare-note": "The chamber light reverses state for 1.2 seconds on entry into the last valid layer. Confirmed completion is the fallback. The Alexa bell_02 chime attempts to play near 99.9% or at completion, depending on telemetry.",
     "fanfare-setup": "Setup and entity mapping",
@@ -218,7 +182,6 @@ const i18n = {
     "credit-primary": "Core integration",
     "credit-plugin": "Optional slicer plugin",
     "skip-main": "Skip to content",
-    "issue-link": "GitHub Issues",
     "hacs-note": "If HACS is new to you, follow the <a href=\"https://hacs.xyz/docs/use/download/download/\">official setup for your installation type</a>.",
     "sim-privacy": "This preview changes sample values in the page only.",
     "profile-names": "Settings and baseline profiles",
@@ -234,7 +197,6 @@ const i18n = {
     "link-donkie": "❤️ Sponsor Donkie on GitHub",
     "link-layer": "LayerLab project →",
     "link-profile": "GitHub profile →",
-    "link-thomas": "☕ Support Thomas Lovén",
     "link-orca": "Sponsor SoftFever on GitHub",
     "link-button": "button-card on GitHub →",
     "caption-desktop-label": "Desktop dashboard",
@@ -242,21 +204,31 @@ const i18n = {
     "caption-desktop": "Dashboard with four toolheads, camera, temperatures and job controls.",
     "caption-maint-label": "Maintenance and diagnostics",
     "caption-maint-mesh": "Bed mesh and Klipper console",
-    "caption-maint": "Bed mesh, temperature graphs and Klipper console.",
-    "link-moonraker": "Optional Moonraker control package",
+    "caption-maint": "Track service intervals, run the integration’s self-test and inspect the bed mesh, temperature history and firmware status from Home Assistant.",
     "vendor-unknown": "High Speed Matte PETG (vendor unspecified)",
     "p7-desc": "Compact multicolor profile.",
     "coffee-ironoxx": "Coffee for Ironoxx",
     "coffee-maintainer": "Coffee for Reaper2507",
     "thomas-card": "card-mod on GitHub →",
-    "nav-label": "Main navigation",
-    "my-ha-hacs": "Open the integration in HACS",
-    "my-ha-resources": "Open Dashboard Resources",
-    "my-ha-dashboards": "Dashboard setup guide",
     "gallery-dash-detail": "More of the dashboard: tools, files and layer view",
     "gallery-maint-detail": "See the maintenance and diagnostics details",
     "gallery-minimal-note": "Minimal view during a print, with ETA, remaining time and layer progress.",
-    "gallery-phone-detail": "See the phone layout"
+    "gallery-phone-detail": "See the phone layout",
+    "ha-install-heading": "Install the dashboard",
+    "ha-install-short": "The installation page lists the required HACS cards and the exact files to download.",
+    "manual-install": "Installation steps",
+    "ai-install-link": "Install with an AI assistant",
+    "ai-install-heading": "Install with an AI assistant",
+    "ai-install-body": "Copy the prompt into an assistant with Home Assistant admin and file access. It installs the dashboard and checks what is running.",
+    "ai-install-copy": "Copy installation prompt",
+    "ai-install-show": "Show installation prompt",
+    "ai-copy-success": "Prompt copied.",
+    "ai-copy-error": "Open the prompt below and copy it manually.",
+    "controls-preview-title": "Printer controls",
+    "controls-preview-open": "Tap the printer to see its controls",
+    "controls-preview-close": "Close",
+    "controls-preview-caption": "Screenshot from Home Assistant. The controls in this preview are illustrative.",
+    "card-mode-hint": "In Home Assistant, open the gear on the card. Choose Studio or Cutaway under Image. With Live spool colors on, the graphic reflects the loaded filament colors reported for each slot."
   },
   "de": {
     "nav-home": "Übersicht",
@@ -266,7 +238,7 @@ const i18n = {
     "nav-credits": "Danksagung",
     "hero-badge": "Home Assistant",
     "hero-title-hub": "Snapmaker U1 Dashboard",
-    "hero-lead-hub": "Vier Werkzeugköpfe, Kamera, Druckstatus und Temperaturen in Home Assistant. Mit Studio- und Cutaway-Modus, Minimalansicht und Wartungsdiagnose.",
+    "hero-lead-hub": "Tippe in Home Assistant auf das Druckerbild, um die Steuerung zu öffnen. Die Karte zeigt die Farben der geladenen Filamente an ihren Positionen T0–T3. Kamera, Druckstatus und Temperaturen stehen daneben.",
     "ha-banner-badge": "Lovelace-Dashboard für den Snapmaker U1",
     "ha-banner-title": "Snapmaker U1 Dashboard",
     "ha-banner-lead": "Druckaufträge überwachen, Temperaturen prüfen und Druckersteuerung in Home Assistant öffnen. Das Dashboard verwendet Ironoxx’ Snapmaker-U1-Integration.",
@@ -280,9 +252,6 @@ const i18n = {
     "jump-set-and-send": "🧩 Set & Send Plugin",
     "jump-profiles": "Prozessprofile",
     "jump-filaments": "🧵 19 Filament-Presets",
-    "ai-step-title": "Optionaler Einrichtungsprompt",
-    "ai-step-desc": "Kopiere diesen Prompt, wenn du die Einrichtung mit einem Assistenten mit Home-Assistant-Zugriff prüfen möchtest.",
-    "btn-copy-ai-prompt": "Prompt für KI kopieren",
     "credits-banner-badge": "Danksagung",
     "credits-banner-title": "Danksagung und Abhängigkeiten",
     "credits-banner-lead": "Danke an die Projekte und Maintainer, deren Arbeit dieses Dashboard und seine Extras nutzen.",
@@ -297,24 +266,23 @@ const i18n = {
     "btn-cut-closeup": "Werkzeuge und Material",
     "cap-cutaway": "Authentische Cutaway-Ansicht: Wireframe-Drucker mit live skalierten XYZ-Achsenkoordinaten, montiertem Werkzeugkopf (T3) und Spulenfarben.",
     "cap-cutaway-closeup": "Tools & Material Detailansicht: Live-Nozzletemperaturen aller Köpfe, Heizbett-Temperatur, Montage-Status und Förderstatus.",
-    "telemetry-badge": "⚡ Live-Telemetrie & Direktsteuerung",
-    "telemetry-title": "Tools & Material: Was die Hero-Card alles kann",
-    "telemetry-subtitle": "Das installierte Dashboard zeigt gemeldete Werkzeugpositionen, Temperaturen und Filamentdaten. Die Vorschau verwendet Screenshots und Beispieldaten.",
+    "telemetry-badge": "Kernfunktion des Dashboards",
+    "telemetry-title": "Werkzeuge und Material",
+    "telemetry-subtitle": "Tippe auf das Druckerbild, um die zum Druckstatus passende Steuerung zu öffnen. Die Karte zeigt außerdem live die Spulenfarben, Temperaturen und Werkzeugpositionen.",
     "btn-mode-cutaway": "Cutaway",
     "btn-mode-studio": "Studio",
-    "cap-telemetry-cutaway": "Cutaway-Screenshot mit Werkzeugpositionen, Temperaturen und Status des montierten Werkzeugs.",
-    "cap-telemetry-studio": "Studio-Screenshot mit Temperaturen, Spulenfarben und Status des montierten Werkzeugs.",
+    "cap-telemetry-cutaway": "Cutaway-Ansicht derselben Karte mit vier Spulenpositionen, Achsen und montiertem Werkzeug.",
+    "cap-telemetry-studio": "Studio-Ansicht mit den geladenen Spulenfarben und den Live-Anzeigen während eines Drucks.",
     "feat-axes-title": "Echtzeit-Achsenüberwachung (X, Y, Z)",
     "feat-axes-desc": "Live-Koordinaten für Bett und Druckkopf (z. B. X 227.6, Y 300.5, Z 9.9). Du siehst auf den Millimeter genau, wo sich Werkzeug und Bauplatte aktuell befinden.",
     "feat-temps-title": "Live-Temperaturen direkt an Nozzle & Bett",
     "feat-temps-desc": "Sowohl Ist- als auch Solltemperatur werden für alle 4 Köpfe (T0–T3) und das Heizbett direkt am Objekt eingeblendet (z. B. T3 46° / 0° Selected, Bed 25° / 0°).",
     "feat-docking-title": "Toolhead-Status & Docking-Rückmeldung",
     "feat-docking-desc": "Zeigt die gemeldeten Positionen der Werkzeugköpfe. Fehlen die Daten, bleibt der Status unbekannt.",
-    "feat-spools-title": "Dynamische Spulenfarben",
-    "feat-spools-desc": "Farben und Materialien folgen den Einstellungen der Integration. Spulenbestand ist mit optionaler Spoolman-Anbindung verfügbar.",
-    "feat-tap-title": "Interaktive Touch- & Klick-Direktsteuerung",
-    "feat-tap-desc": "Tippe oder klicke einfach direkt auf die 3D-Druckergrafik: Sofort öffnet sich das interaktive Schnellmenü für Achsen-Jogging (Bett rauf/runter, Kopf zentrieren), Vorheizen und Filamentwechsel!",
-    "btn-copy-code": "Code kopieren",
+    "feat-spools-title": "Geladene Filamentfarben an T0–T3",
+    "feat-spools-desc": "Sieh auf einen Blick, welches Material an welcher Position geladen ist. Wenn der Druckerstatus es zulässt, kannst du in Home Assistant zwischen den bereits bestückten Werkzeugen wechseln. T0 liegt links oben, T1 links unten, T2 rechts oben und T3 rechts unten.",
+    "feat-tap-title": "Drucker antippen, Steuerung öffnen",
+    "feat-tap-desc": "Öffne die Druckersteuerung und „Filament &amp; heat“ direkt über die Karte. Dort kannst du je nach Druckerstatus heizen und Laden oder Entladen starten. Eine neue Spule setzt du am Drucker ein und führst das Filament bis zum Einlass.",
     "cap-photo-closeup": "Nahaufnahme des Werkzeugwechslers.",
     "cap-photo-studio": "Studio-Illustration des Snapmaker U1.",
     "btn-photo-closeup": "Nahaufnahme",
@@ -357,35 +325,6 @@ const i18n = {
     "p3-desc": "Maximaler Durchsatz für 0,6 mm Düsen. Arachne Wall Generator, 1,2 mm Volldecke, 20 mm³ Turmvolumen.",
     "p4-desc": "Qualitäts-Profil für 0,6 mm Düsen. Feine Rundungen und steilere Überhänge.",
     "p5-desc": "Turbo-Prototypenprofil für maximale Materialförderung in Rekordzeit.",
-    "install-badge": "Installation",
-    "step0-title": "Bei Bedarf HACS einrichten",
-    "step0-pill": "Nur für Einsteiger",
-    "step0-desc": "Folge der offiziellen HACS-Anleitung für deine Home-Assistant-Installationsart.",
-    "step1-cards-summary": "🎨 Anleitung: Frontend-Karten in HACS installieren (Hier aufklappen)",
-    "step1-cards-guide": "Installiere diese sechs Abhängigkeiten über HACS und prüfe ihre Lovelace-Ressourcen.",
-    "step1-cards-hint": "💡 Tipp: Wenn Home Assistant nach dem Download fragt „Ressource neu laden?“, klicke einfach auf Neu laden.",
-    "step2-reg-summary": "🔍 Wo und wie wird die Ressource registriert? (Detaillierte Schritt-für-Schritt-Anleitung)",
-    "step2-path-title": "💡 Wichtiges Home Assistant Pfad-Wissen:",
-    "step2-path-desc": "Der lokale Ordner /config/www/ auf deiner Festplatte wird vom integrierten Webserver von Home Assistant intern als /local/ im Browser ausgeliefert. Die Datei /config/www/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js wird im Dashboard daher als /local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js aufgerufen!",
-    "step2-steps-title": "Schritt-für-Schritt im Home Assistant Menü registrieren:",
-    "step2-s1": "Klicke in Home Assistant links unten auf Einstellungen (Settings).",
-    "step2-s2": "Wähle Dashboards.",
-    "step2-s3": "Klicke oben rechts auf das Drei-Punkte-Menü ⋮ und wähle Ressourcen (Resources).",
-    "step2-s4": "Klicke unten rechts auf den blauen Button + Ressource hinzufügen (Add Resource).",
-    "step2-s5": "Trage folgende Werte exakt ein:",
-    "step2-s6": "Klicke auf Erstellen (Create). Fertig!",
-    "btn-ha-res-doc": "Offizielle Home Assistant Dokumentation zu Ressourcen →",
-    "install-title": "Installationsanleitung",
-    "install-subtitle": "In 3 einfachen Schritten ist dein System startklar.",
-    "step1-title": "Voraussetzungen & HACS-Karten",
-    "step1-desc": "Installiere die Integration Snapmaker U1 Card, starte Home Assistant neu und füge die Integration unter Einstellungen → Geräte &amp; Dienste hinzu. Installiere anschließend die Frontend-Abhängigkeiten.",
-    "step2-title": "Showcase-Dateien ablegen",
-    "step2-desc": "Lade diese Dateien herunter und lege sie in /config/www/media/snapmaker-u1/showcase/ in Home Assistant ab:",
-    "step3-title": "Dashboard-YAML importieren",
-    "step3-desc": "Erstelle ein neues Dashboard und füge die YAML im Raw-Konfigurationseditor ein. Gleiche die Beispiel-Entitäten vor der Nutzung der Steuerung mit deiner Installation ab.",
-    "details-yaml": "Hier klicken für Details & Teil-Importe",
-    "details-yaml-p": "Du kannst auch einzelne Views importieren: views/snapmaker-u1.yaml, views/u1-minimal.yaml und views/u1-maintenance.yaml.",
-    "btn-view-raw": "Vollständige Dashboard-YAML ansehen",
     "support-title": "Feedback und Unterstützung",
     "extras-title": "Optionale Extras",
     "extra-orca": "OrcaSlicer-Profile",
@@ -398,23 +337,20 @@ const i18n = {
     "dash-cta": "Dashboard ansehen",
     "install-cta": "Installation",
     "three-views": "Drei Dashboard-Ansichten",
-    "views-lead": "Dashboard für die tägliche Bedienung, Minimal für den schnellen Status und Wartung für die Diagnose.",
+    "views-lead": "Dashboard für Drucksteuerung und geladene Werkzeuge, Minimal für den schnellen Status und Wartung für Diagnose, Selbsttest und Serviceintervalle.",
     "gallery-cta": "Zur Screenshot-Galerie →",
     "main-credit": "Baut auf <a href=\"https://github.com/Ironoxx/ha-snapmaker-u1-card\">Ironoxx’ Snapmaker-U1-Integration</a> auf. Zu den <a href=\"credits.html\">Credits</a>.",
     "quick-title": "Snapmaker-U1-Dashboard installieren",
     "quick-intro": "Starte hier, wenn Home Assistant deinen U1 im Netzwerk erreicht. Die Einrichtungszeit hängt von den bereits installierten Abhängigkeiten ab.",
     "quick-1": "Installiere <a href=\"https://my.home-assistant.io/redirect/hacs_repository/?owner=Ironoxx&amp;repository=ha-snapmaker-u1-card&amp;category=integration\">Ironoxx’ Integration in HACS</a>, starte HA neu und füge Snapmaker U1 Card unter Einstellungen → Geräte &amp; Dienste hinzu.",
     "quick-2": "Installiere die sechs Frontend-Abhängigkeiten in HACS: button-card, card-mod, slider-entity-row, vertical-stack-in-card, apexcharts-card, config-template-card.",
-    "quick-3": "Kopiere <a href=\"https://github.com/Reaper2507/snapmaker-u1-homeassistant/tree/main/homeassistant/www\">alle drei Dateien</a> nach <code>/config/www/media/snapmaker-u1/showcase/</code>. Registriere <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> als JavaScript-Modul.",
+    "quick-3": "Kopiere die drei Dateien unten nach <code>/config/www/media/snapmaker-u1/showcase/</code>. Registriere <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> unter Einstellungen → Dashboards → Ressourcen als JavaScript-Modul.",
     "quick-4": "Füge die <a href=\"https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml\">Dashboard-YAML</a> im Raw-Konfigurationseditor eines neuen Dashboards ein. Passe die Beispiel-Entitäten vor der Nutzung der Steuerung an.",
-    "quick-full": "Ausführliche Installation →",
     "quick-repo": "Fehlerhilfe und Updates",
     "ha-install-cta": "Dashboard installieren",
     "ha-gallery-cta": "Screenshots",
     "ha-tools-cta": "Werkzeuge &amp; Material",
-    "sim-disclosure": "Browser-Simulation · Beispieldaten ohne Verbindung zu Drucker oder Home Assistant.",
-    "hacs-official": "Offizielle HACS-Einrichtung →",
-    "ha-assets": "Asset-Downloads öffnen →",
+    "sim-disclosure": "Die Steuerung wird als Screenshot gezeigt. Die Auswahl darunter ändert nur Beispieldaten.",
     "fanfare-summary": "Optional: Druckende-Ton und Lichtimpuls",
     "fanfare-note": "Das Bauraumlicht wechselt beim Eintritt in die letzte gültige Schicht für 1,2 Sekunden in den Gegenstatus. Bestätigtes Druckende dient als Rückfall. Der Alexa-Ton bell_02 wird je nach Telemetrie bei etwa 99,9 % oder bei Druckende versucht.",
     "fanfare-setup": "Einrichtung und Entitäten",
@@ -477,7 +413,6 @@ const i18n = {
     "credit-primary": "Zentrale Integration",
     "credit-plugin": "Optionales Slicer-Plugin",
     "skip-main": "Zum Inhalt",
-    "issue-link": "GitHub Issues",
     "hacs-note": "Wenn du HACS noch nicht nutzt, folge der <a href=\"https://hacs.xyz/docs/use/download/download/\">offiziellen Anleitung für deine Installationsart</a>.",
     "sim-privacy": "Die Vorschau ändert ausschließlich Beispieldaten auf dieser Seite.",
     "profile-names": "Einstellungen und Ausgangsprofile",
@@ -493,7 +428,6 @@ const i18n = {
     "link-donkie": "❤️ Donkie auf GitHub unterstützen",
     "link-layer": "Zum Projekt bei LayerLab →",
     "link-profile": "GitHub-Profil →",
-    "link-thomas": "☕ Thomas Lovén unterstützen",
     "link-orca": "SoftFever auf GitHub unterstützen",
     "link-button": "button-card auf GitHub →",
     "caption-desktop-label": "Desktop-Dashboard",
@@ -501,21 +435,31 @@ const i18n = {
     "caption-desktop": "Dashboard mit vier Werkzeugköpfen, Kamera, Temperaturen und Drucksteuerung.",
     "caption-maint-label": "Wartung und Diagnose",
     "caption-maint-mesh": "Bett-Mesh und Klipper-Konsole",
-    "caption-maint": "Bett-Mesh, Temperaturverläufe und Klipper-Konsole.",
-    "link-moonraker": "Optionales Moonraker-Steuerungspaket",
+    "caption-maint": "Verfolge Wartungsintervalle, starte den Selbsttest der Integration und prüfe Bett-Mesh, Temperaturverlauf und Firmware-Status in Home Assistant.",
     "vendor-unknown": "High Speed Matt PETG (Hersteller offen)",
     "p7-desc": "Kompaktes Mehrfarbprofil.",
     "coffee-ironoxx": "Kaffee für Ironoxx",
     "coffee-maintainer": "Kaffee für Reaper2507",
     "thomas-card": "card-mod auf GitHub →",
-    "nav-label": "Hauptnavigation",
-    "my-ha-hacs": "Integration in HACS öffnen",
-    "my-ha-resources": "Dashboard-Ressourcen öffnen",
-    "my-ha-dashboards": "Anleitung zum Anlegen eines Dashboards",
     "gallery-dash-detail": "Mehr vom Dashboard: Werkzeuge, Dateien und Schichtansicht",
     "gallery-maint-detail": "Wartung und Diagnose im Detail ansehen",
     "gallery-minimal-note": "Minimalansicht während eines Drucks mit Endzeit, Restzeit und Schichtfortschritt.",
-    "gallery-phone-detail": "Handy-Ansicht ansehen"
+    "gallery-phone-detail": "Handy-Ansicht ansehen",
+    "ha-install-heading": "Dashboard installieren",
+    "ha-install-short": "Auf der Installationsseite stehen die erforderlichen HACS-Karten und die konkreten Download-Dateien.",
+    "manual-install": "Installationsschritte",
+    "ai-install-link": "Mit KI installieren",
+    "ai-install-heading": "Mit KI installieren",
+    "ai-install-body": "Kopiere den Prompt in einen Assistenten mit Home-Assistant-Admin- und Dateizugriff. Er installiert das Dashboard und prüft den laufenden Stand.",
+    "ai-install-copy": "Installationsprompt kopieren",
+    "ai-install-show": "Installationsprompt anzeigen",
+    "ai-copy-success": "Prompt kopiert.",
+    "ai-copy-error": "Klappe den Prompt unten auf und kopiere ihn manuell.",
+    "controls-preview-title": "Druckersteuerung",
+    "controls-preview-open": "Drucker antippen und Steuerung ansehen",
+    "controls-preview-close": "Schließen",
+    "controls-preview-caption": "Screenshot aus Home Assistant. Die Bedienelemente in dieser Vorschau dienen zur Ansicht.",
+    "card-mode-hint": "Öffne in Home Assistant das Zahnrad der Karte. Unter „Image“ kannst du Studio oder Cutaway wählen. Mit „Live spool colors“ zeigt die Grafik die gemeldeten Filamentfarben der geladenen Spulen je Slot."
   }
 };
 
@@ -564,24 +508,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // AI Prompt Copy Button
-  const btnCopyAi = document.getElementById('btn-copy-ai-prompt');
-  const aiPromptText = document.getElementById('ai-install-prompt-text');
-  if (btnCopyAi && aiPromptText) {
-    btnCopyAi.addEventListener('click', () => {
-      navigator.clipboard.writeText(aiPromptText.innerText).then(() => {
-        const originalText = btnCopyAi.innerHTML;
-        btnCopyAi.textContent = currentLang === 'de' ? 'Prompt kopiert' : 'Prompt copied';
-        btnCopyAi.style.background = '#238636';
-        setTimeout(() => {
-          btnCopyAi.innerHTML = originalText;
-          btnCopyAi.style.background = '';
-        }, 2500);
-      }).catch(err => {
-        console.error('Failed to copy AI prompt: ', err);
-      });
+  const btnCopyAi = document.getElementById("btn-copy-ai-prompt");
+  const aiPromptText = document.getElementById("ai-install-prompt-text");
+  const aiCopyStatus = document.getElementById("ai-copy-status");
+  if (btnCopyAi && aiPromptText && aiCopyStatus) {
+    btnCopyAi.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(aiPromptText.textContent);
+        aiCopyStatus.textContent = i18n[currentLang]["ai-copy-success"];
+      } catch {
+        aiCopyStatus.textContent = i18n[currentLang]["ai-copy-error"];
+      }
     });
   }
+
+  const controlsPreview = document.getElementById("controls-preview-dialog");
+  document.querySelectorAll(".controls-preview-trigger").forEach(trigger => {
+    trigger.addEventListener("click", event => {
+      if (typeof controlsPreview?.showModal !== "function") return;
+      event.preventDefault();
+      controlsPreview.showModal();
+    });
+  });
 
   // Tabs
   const tabBtns = document.querySelectorAll('.tab-btn');
@@ -641,7 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
       capKey: 'cap-cutaway'
     },
     closeup: {
-      src: 'assets/tools-material-cutaway.jpg',
+      src: 'assets/cutaway-card.png',
       capKey: 'cap-cutaway-closeup'
     }
   };
@@ -668,11 +616,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const telemData = {
     cutaway: {
-      src: 'assets/tools-material-cutaway.jpg',
+      src: 'assets/cutaway-card.png',
       capKey: 'cap-telemetry-cutaway'
     },
     studio: {
-      src: 'assets/tools-material-studio.jpg',
+      src: 'assets/studio-card.png',
       capKey: 'cap-telemetry-studio'
     }
   };
