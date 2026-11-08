@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="page-homeassistant">Dashboard and installation · Snapmaker U1</title>
   <meta name="description" content="Home Assistant dashboard, live telemetry, and automations for the Snapmaker U1 4-toolhead 3D printer.">
-  <link rel="stylesheet" href="styles.css?v=20261108_15">
+  <link rel="stylesheet" href="styles.css?v=20261108_17">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -42,7 +42,7 @@
     <div class="container">
       <div class="pill-badge" data-i18n="ha-banner-badge">Lovelace dashboard for Snapmaker U1</div>
       <h1 data-i18n="ha-banner-title">Snapmaker U1 Dashboard</h1>
-      <p class="banner-lead" data-i18n="ha-banner-lead">Monitor print jobs, check temperatures and open printer controls from Home Assistant. The dashboard uses Ironoxx’s Snapmaker U1 integration.</p>
+      <p class="banner-lead" data-i18n="ha-banner-lead">The dashboard brings together the live printer card, filament management, print controls, job and camera views, and maintenance. It builds on the Snapmaker U1 integration by Ironoxx.</p>
       <div class="quick-jump-bar"><a data-i18n="ha-install-cta" href="#install" class="btn btn-primary">Install dashboard</a><a data-i18n="ha-gallery-cta" href="#showcase" class="jump-pill">Screenshots</a><a data-i18n="ha-tools-cta" href="#telemetry" class="jump-pill">Tools &amp; Material</a></div>
     </div>
   </section>
@@ -87,14 +87,14 @@
             <div class="feat-icon-box">👆</div>
             <div class="feat-content">
               <h4 data-i18n="feat-tap-title">Tap the printer to open controls</h4>
-              <p data-i18n="feat-tap-desc">Open print controls and the Filament &amp; heat tab directly from the card. Start heating, loading or unloading there when supported. Installing a new spool and feeding it to the inlet still happens at the printer.</p>
+              <p data-i18n="feat-tap-desc">The printer graphic opens the controls. Use Filament &amp; heat to select a tool, preheat and start loading or unloading when supported. Fit a new spool and feed it to the inlet at the printer.</p>
             </div>
           </div>
           <div class="telemetry-feat-item">
             <div class="feat-icon-box">🎨</div>
             <div class="feat-content">
               <h4 data-i18n="feat-spools-title">Loaded filament colors at T0–T3</h4>
-              <p data-i18n="feat-spools-desc">See which material is already loaded at each position and switch between loaded tools from Home Assistant when the printer allows it. T0 is top left, T1 bottom left, T2 top right and T3 bottom right.</p>
+              <p data-i18n="feat-spools-desc">The live graphic shows each reported spool color at its actual T0–T3 position. Manage filament assignments and switch between loaded tools when the printer state allows it. Spoolman inventory is optional.</p>
             </div>
           </div>
           <div class="telemetry-feat-item">
@@ -108,7 +108,7 @@
             <div class="feat-icon-box">🌡️</div>
             <div class="feat-content">
               <h4 data-i18n="feat-temps-title">Live Temperatures on Nozzles & Bed</h4>
-              <p data-i18n="feat-temps-desc">Target and current temperatures overlaid right on the 4 toolheads (T0–T3) and heated bed (e.g. T3 46° / 0° Selected, Bed 25° / 0°).</p>
+              <p data-i18n="feat-temps-desc">See the current and target temperatures for all four nozzles and the bed. Open Filament &amp; heat to adjust supported targets for the selected tool.</p>
             </div>
           </div>
           <div class="telemetry-feat-item">
@@ -136,7 +136,7 @@
         <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-photos" data-tab="tab-photos" data-i18n="tab-photos">Printer images</button>
         <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-cutaway" data-tab="tab-cutaway" data-i18n="tab-cutaway">Cutaway and axes</button>
         <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-maintenance" data-tab="tab-maintenance" data-i18n="tab-maintenance">Maintenance</button>
-        <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-mobile" data-tab="tab-mobile" data-i18n="tab-mobile">Minimal</button>
+        <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-minimal" data-tab="tab-minimal" data-i18n="tab-mobile">Minimal</button>
       </div>
 
       <!-- Tab 1: Full Desktop Dashboard Screenshot -->
@@ -202,7 +202,7 @@
       </div>
 
       <!-- Tab 5: Mobile View -->
-      <div class="tab-content" id="tab-mobile">
+      <div class="tab-content" id="tab-minimal">
         <div class="screenshot-card">
           <div class="screenshot-viewport"><a href="assets/minimal-printing.png"><img src="assets/minimal-printing.png" alt="Minimal dashboard showing the print progress, ETA and remaining time"></a></div>
           <div class="caption" data-i18n="gallery-minimal-note">Minimal view during a print, with ETA, remaining time and layer progress.</div>
@@ -409,6 +409,6 @@ max_exceeded: silent
   </main>
   <!-- Footer -->
   <footer class="site-footer"><div class="container footer-content"><p>Snapmaker U1 Community Hub · <a href="credits.html" data-i18n="nav-credits">Credits</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE">MIT</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues">GitHub Issues</a></p></div></footer>
-  <script src="app.js?v=20261108_16"></script>
+  <script src="app.js?v=20261108_17"></script>
 </body>
 </html>

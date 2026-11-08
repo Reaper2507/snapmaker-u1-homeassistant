@@ -7,10 +7,10 @@ const i18n = {
     "nav-credits": "Credits",
     "hero-badge": "Home Assistant",
     "hero-title-hub": "Snapmaker U1 Dashboard",
-    "hero-lead-hub": "Tap the printer graphic in Home Assistant to open its controls. The card shows the loaded filament colors at their T0–T3 positions, with camera, job status and temperatures alongside.",
+    "hero-lead-hub": "Manage filament and temperatures, monitor the print and check maintenance in Home Assistant. The interactive printer card gives you a shortcut to the controls.",
     "ha-banner-badge": "Lovelace dashboard for Snapmaker U1",
     "ha-banner-title": "Snapmaker U1 Dashboard",
-    "ha-banner-lead": "Monitor print jobs, check temperatures and open printer controls from Home Assistant. The dashboard uses Ironoxx’s Snapmaker U1 integration.",
+    "ha-banner-lead": "The dashboard brings together the live printer card, filament management, print controls, job and camera views, and maintenance. It builds on the Snapmaker U1 integration by Ironoxx.",
     "slicer-banner-badge": "Optional downloads",
     "slicer-banner-title": "OrcaSlicer Profiles & Filament Presets",
     "slicer-banner-lead": "Community starting profiles for the Snapmaker U1 in OrcaSlicer 2.5. Choose the matching nozzle and verify the sliced preview before printing.",
@@ -45,13 +45,13 @@ const i18n = {
     "feat-axes-title": "Real-Time 3D Axes Tracking (X, Y, Z)",
     "feat-axes-desc": "Live scaled coordinates for print bed and carriage (e.g. X 227.6, Y 300.5, Z 9.9). See at a millimeter glance where head and bed currently reside.",
     "feat-temps-title": "Live Temperatures on Nozzles & Bed",
-    "feat-temps-desc": "Target and current temperatures overlaid right on the 4 toolheads (T0–T3) and heated bed (e.g. T3 46° / 0° Selected, Bed 25° / 0°).",
+    "feat-temps-desc": "See the current and target temperatures for all four nozzles and the bed. Open Filament &amp; heat to adjust supported targets for the selected tool.",
     "feat-docking-title": "Toolhead Mounting & Docking Feedback",
     "feat-docking-desc": "Shows the reported toolhead positions. Missing telemetry is shown as unknown.",
     "feat-spools-title": "Loaded filament colors at T0–T3",
-    "feat-spools-desc": "See which material is already loaded at each position and switch between loaded tools from Home Assistant when the printer allows it. T0 is top left, T1 bottom left, T2 top right and T3 bottom right.",
+    "feat-spools-desc": "The live graphic shows each reported spool color at its actual T0–T3 position. Manage filament assignments and switch between loaded tools when the printer state allows it. Spoolman inventory is optional.",
     "feat-tap-title": "Tap the printer to open controls",
-    "feat-tap-desc": "Open print controls and the Filament &amp; heat tab directly from the card. Start heating, loading or unloading there when supported. Installing a new spool and feeding it to the inlet still happens at the printer.",
+    "feat-tap-desc": "The printer graphic opens the controls. Use Filament &amp; heat to select a tool, preheat and start loading or unloading when supported. Fit a new spool and feed it to the inlet at the printer.",
     "cap-photo-closeup": "Close-up illustration of the toolchanger.",
     "cap-photo-studio": "Studio illustration of the Snapmaker U1.",
     "btn-photo-closeup": "Close-up",
@@ -106,8 +106,6 @@ const i18n = {
     "dash-cta": "See the full dashboard",
     "install-cta": "Installation",
     "three-views": "Three dashboard views",
-    "views-lead": "Dashboard for print controls and loaded tools, Minimal for quick status, and Maintenance for diagnostics, self-test and service intervals.",
-    "gallery-cta": "View screenshot gallery →",
     "main-credit": "Built on <a href=\"https://github.com/Ironoxx/ha-snapmaker-u1-card\">Ironoxx’s Snapmaker U1 integration</a>. See the <a href=\"credits.html\">credits</a>.",
     "quick-title": "Install the Snapmaker U1 dashboard",
     "quick-intro": "Start here if Home Assistant can reach your U1. Setup time depends on which dependencies you have installed.",
@@ -228,7 +226,22 @@ const i18n = {
     "controls-preview-open": "Tap the printer to see its controls",
     "controls-preview-close": "Close",
     "controls-preview-caption": "Screenshot from Home Assistant. The controls in this preview are illustrative.",
-    "card-mode-hint": "In Home Assistant, open the gear on the card. Choose Studio or Cutaway under Image. With Live spool colors on, the graphic reflects the loaded filament colors reported for each slot."
+    "card-mode-hint": "In Home Assistant, open the gear on the card. Choose Studio or Cutaway under Image. With Live spool colors on, the graphic reflects the loaded filament colors reported for each slot.",
+    "home-feature-filament-title": "Filament and live spool colors",
+    "home-feature-filament-desc": "See loaded colors at T0–T3, assign spools, switch between loaded tools, and start loading or unloading.",
+    "home-feature-heat-title": "Nozzles and heated bed",
+    "home-feature-heat-desc": "Read current and target temperatures and adjust supported setpoints in Filament &amp; heat.",
+    "home-feature-printing-title": "Monitor and control prints",
+    "home-feature-printing-desc": "Check camera, layer and remaining time. Pause a print or adjust speed and flow when supported.",
+    "home-feature-maintenance-title": "Maintenance and diagnostics",
+    "home-feature-maintenance-desc": "Check service intervals, temperature history, bed mesh and system status.",
+    "home-view-dashboard": "Dashboard",
+    "home-view-dashboard-desc": "Printer controls, filament management, camera and layer view.",
+    "home-view-minimal": "Minimal",
+    "home-view-minimal-desc": "A compact view of the current job, live camera and time remaining.",
+    "home-view-maintenance": "Maintenance &amp; Diagnostics",
+    "home-view-maintenance-desc": "Service checklist, temperature history, bed mesh and self-test.",
+    "ha-maintenance-cta": "Maintenance"
   },
   "de": {
     "nav-home": "Übersicht",
@@ -238,10 +251,10 @@ const i18n = {
     "nav-credits": "Danksagung",
     "hero-badge": "Home Assistant",
     "hero-title-hub": "Snapmaker U1 Dashboard",
-    "hero-lead-hub": "Tippe in Home Assistant auf das Druckerbild, um die Steuerung zu öffnen. Die Karte zeigt die Farben der geladenen Filamente an ihren Positionen T0–T3. Kamera, Druckstatus und Temperaturen stehen daneben.",
+    "hero-lead-hub": "Verwalte Filament und Temperaturen, überwache den Druck und prüfe die Wartung in Home Assistant. Über die interaktive Druckerkarte gelangst du direkt zur Steuerung.",
     "ha-banner-badge": "Lovelace-Dashboard für den Snapmaker U1",
     "ha-banner-title": "Snapmaker U1 Dashboard",
-    "ha-banner-lead": "Druckaufträge überwachen, Temperaturen prüfen und Druckersteuerung in Home Assistant öffnen. Das Dashboard verwendet Ironoxx’ Snapmaker-U1-Integration.",
+    "ha-banner-lead": "Das Dashboard vereint die Live-Druckerkarte, Filamentverwaltung, Drucksteuerung, Druckauftrag, Kamera und Wartung. Es baut auf der Snapmaker-U1-Integration von Ironoxx auf.",
     "slicer-banner-badge": "Optionale Downloads",
     "slicer-banner-title": "OrcaSlicer Profile & Filament-Presets",
     "slicer-banner-lead": "Community-Ausgangsprofile für den Snapmaker U1 in OrcaSlicer 2.5. Wähle die passende Düse und prüfe die Slicing-Vorschau vor dem Druck.",
@@ -276,13 +289,13 @@ const i18n = {
     "feat-axes-title": "Echtzeit-Achsenüberwachung (X, Y, Z)",
     "feat-axes-desc": "Live-Koordinaten für Bett und Druckkopf (z. B. X 227.6, Y 300.5, Z 9.9). Du siehst auf den Millimeter genau, wo sich Werkzeug und Bauplatte aktuell befinden.",
     "feat-temps-title": "Live-Temperaturen direkt an Nozzle & Bett",
-    "feat-temps-desc": "Sowohl Ist- als auch Solltemperatur werden für alle 4 Köpfe (T0–T3) und das Heizbett direkt am Objekt eingeblendet (z. B. T3 46° / 0° Selected, Bed 25° / 0°).",
+    "feat-temps-desc": "Sieh Ist- und Solltemperaturen für alle vier Düsen und das Heizbett. Unter „Filament &amp; heat“ kannst du unterstützte Sollwerte für den ausgewählten Kopf einstellen.",
     "feat-docking-title": "Toolhead-Status & Docking-Rückmeldung",
     "feat-docking-desc": "Zeigt die gemeldeten Positionen der Werkzeugköpfe. Fehlen die Daten, bleibt der Status unbekannt.",
     "feat-spools-title": "Geladene Filamentfarben an T0–T3",
-    "feat-spools-desc": "Sieh auf einen Blick, welches Material an welcher Position geladen ist. Wenn der Druckerstatus es zulässt, kannst du in Home Assistant zwischen den bereits bestückten Werkzeugen wechseln. T0 liegt links oben, T1 links unten, T2 rechts oben und T3 rechts unten.",
+    "feat-spools-desc": "Die Live-Grafik zeigt jede gemeldete Spulenfarbe an ihrer tatsächlichen Position T0–T3. Verwalte Filamentzuordnungen und wechsle je nach Druckerstatus zwischen bereits bestückten Werkzeugen. Der Spoolman-Bestand ist optional.",
     "feat-tap-title": "Drucker antippen, Steuerung öffnen",
-    "feat-tap-desc": "Öffne die Druckersteuerung und „Filament &amp; heat“ direkt über die Karte. Dort kannst du je nach Druckerstatus heizen und Laden oder Entladen starten. Eine neue Spule setzt du am Drucker ein und führst das Filament bis zum Einlass.",
+    "feat-tap-desc": "Das Druckerbild öffnet die Steuerung. Unter „Filament &amp; heat“ wählst du einen Kopf, heizt vor und startest je nach Druckerstatus das Laden oder Entladen. Eine neue Spule setzt du am Drucker ein und führst das Filament zum Einlass.",
     "cap-photo-closeup": "Nahaufnahme des Werkzeugwechslers.",
     "cap-photo-studio": "Studio-Illustration des Snapmaker U1.",
     "btn-photo-closeup": "Nahaufnahme",
@@ -337,8 +350,6 @@ const i18n = {
     "dash-cta": "Gesamtes Dashboard ansehen",
     "install-cta": "Installation",
     "three-views": "Drei Dashboard-Ansichten",
-    "views-lead": "Dashboard für Drucksteuerung und geladene Werkzeuge, Minimal für den schnellen Status und Wartung für Diagnose, Selbsttest und Serviceintervalle.",
-    "gallery-cta": "Zur Screenshot-Galerie →",
     "main-credit": "Baut auf <a href=\"https://github.com/Ironoxx/ha-snapmaker-u1-card\">Ironoxx’ Snapmaker-U1-Integration</a> auf. Zu den <a href=\"credits.html\">Credits</a>.",
     "quick-title": "Snapmaker-U1-Dashboard installieren",
     "quick-intro": "Starte hier, wenn Home Assistant deinen U1 im Netzwerk erreicht. Die Einrichtungszeit hängt von den bereits installierten Abhängigkeiten ab.",
@@ -459,7 +470,22 @@ const i18n = {
     "controls-preview-open": "Drucker antippen und Steuerung ansehen",
     "controls-preview-close": "Schließen",
     "controls-preview-caption": "Screenshot aus Home Assistant. Die Bedienelemente in dieser Vorschau dienen zur Ansicht.",
-    "card-mode-hint": "Öffne in Home Assistant das Zahnrad der Karte. Unter „Image“ kannst du Studio oder Cutaway wählen. Mit „Live spool colors“ zeigt die Grafik die gemeldeten Filamentfarben der geladenen Spulen je Slot."
+    "card-mode-hint": "Öffne in Home Assistant das Zahnrad der Karte. Unter „Image“ kannst du Studio oder Cutaway wählen. Mit „Live spool colors“ zeigt die Grafik die gemeldeten Filamentfarben der geladenen Spulen je Slot.",
+    "home-feature-filament-title": "Filament und Live-Spulenfarben",
+    "home-feature-filament-desc": "Geladene Farben an T0–T3 sehen, Spulen zuordnen, bestückte Werkzeuge wechseln sowie Laden und Entladen starten.",
+    "home-feature-heat-title": "Düsen und Heizbett",
+    "home-feature-heat-desc": "Ist- und Solltemperaturen ablesen und verfügbare Sollwerte unter „Filament &amp; heat“ einstellen.",
+    "home-feature-printing-title": "Druck überwachen und steuern",
+    "home-feature-printing-desc": "Kamera, Schicht und Restzeit im Blick behalten. Druck pausieren und bei Bedarf Tempo und Flow anpassen.",
+    "home-feature-maintenance-title": "Wartung und Diagnose",
+    "home-feature-maintenance-desc": "Wartungsintervalle, Temperaturverlauf, Bett-Mesh und Systemstatus prüfen.",
+    "home-view-dashboard": "Dashboard",
+    "home-view-dashboard-desc": "Drucksteuerung, Filamentverwaltung, Kamera und Schichtansicht.",
+    "home-view-minimal": "Minimal",
+    "home-view-minimal-desc": "Die kompakte Ansicht für laufenden Druck, Kamera und Restzeit.",
+    "home-view-maintenance": "Wartung &amp; Diagnose",
+    "home-view-maintenance-desc": "Wartungscheckliste, Temperaturverlauf, Bett-Mesh und Selbsttest.",
+    "ha-maintenance-cta": "Wartung"
   }
 };
 
@@ -546,6 +572,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  const requestedView = new URLSearchParams(location.search).get("view");
+  const requestedTab = Array.from(tabBtns).find(button => button.getAttribute("data-tab") === "tab-" + requestedView);
+  requestedTab?.click();
 
   // Photo Showcase Toggle (Studio vs Close-Up)
   const photoBtns = document.querySelectorAll('.photo-toggle-btn');

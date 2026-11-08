@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="page-index">Snapmaker U1 Dashboard for Home Assistant</title>
   <meta name="description" content="Home Assistant dashboard and installation guide for the Snapmaker U1.">
-  <link rel="stylesheet" href="styles.css?v=20261108_15">
+  <link rel="stylesheet" href="styles.css?v=20261108_17">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -43,17 +43,51 @@
       <div class="hero-content">
         <div class="pill-badge" data-i18n="hero-badge">Home Assistant</div>
         <h1 data-i18n="hero-title-hub">Snapmaker U1 Dashboard</h1>
-        <p class="hero-lead" data-i18n="hero-lead-hub">Tap the printer graphic in Home Assistant to open its controls. The card shows the loaded filament colors at their T0–T3 positions, with camera, job status and temperatures alongside.</p>
+        <p class="hero-lead" data-i18n="hero-lead-hub">Manage filament and temperatures, monitor the print and check maintenance in Home Assistant. The interactive printer card gives you a shortcut to the controls.</p>
         <div class="hero-actions"><a data-i18n="dash-cta" href="homeassistant.html#showcase" class="btn btn-primary">See the full dashboard</a><a data-i18n="install-cta" href="install.html" class="btn btn-secondary">Installation</a></div>
       </div>
       <div class="hero-image">
         <a href="assets/printer-controls.png" class="controls-preview-trigger" aria-haspopup="dialog"><img src="assets/studio-card.png" alt="Studio view of the Snapmaker U1 showing the four filament spool positions, tool temperatures and axes" class="preview-card studio-hero-card"><span data-i18n="controls-preview-open" class="controls-preview-label">Tap the printer to see its controls</span></a>
       </div>
+      <ul class="hero-features" aria-label="Dashboard features">
+        <li><strong data-i18n="home-feature-filament-title">Filament and live spool colors</strong> <span data-i18n="home-feature-filament-desc">See loaded colors at T0–T3, assign spools, switch between loaded tools, and start loading or unloading.</span></li>
+        <li><strong data-i18n="home-feature-heat-title">Nozzles and heated bed</strong> <span data-i18n="home-feature-heat-desc">Read current and target temperatures and adjust supported setpoints in Filament &amp; heat.</span></li>
+        <li><strong data-i18n="home-feature-printing-title">Monitor and control prints</strong> <span data-i18n="home-feature-printing-desc">Check camera, layer and remaining time. Pause a print or adjust speed and flow when supported.</span></li>
+        <li><strong data-i18n="home-feature-maintenance-title">Maintenance and diagnostics</strong> <span data-i18n="home-feature-maintenance-desc">Check service intervals, temperature history, bed mesh and system status.</span></li>
+      </ul>
     </div>
   </section>
 
 
-<section class="features-section" id="views"><div class="container"><h2 data-i18n="three-views">Three dashboard views</h2><p data-i18n="views-lead">Dashboard for print controls and loaded tools, Minimal for quick status, and Maintenance for diagnostics, self-test and service intervals.</p><a data-i18n="gallery-cta" href="homeassistant.html#showcase">View screenshot gallery →</a><p data-i18n="main-credit">Built on <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card">Ironoxx’s Snapmaker U1 integration</a>. See the <a href="credits.html">credits</a>.</p></div></section>
+  <section class="features-section" id="views">
+    <div class="container">
+      <h2 data-i18n="three-views">Three dashboard views</h2>
+      <div class="features-grid dashboard-views">
+        <article class="feature-card">
+          <a class="dashboard-view-link" href="homeassistant.html#showcase">
+            <img src="assets/studio-dashboard.png" alt="Main dashboard during printing" loading="lazy">
+            <h3 data-i18n="home-view-dashboard">Dashboard</h3>
+          </a>
+          <p data-i18n="home-view-dashboard-desc">Printer controls, filament management, camera and layer view.</p>
+        </article>
+        <article class="feature-card">
+          <a class="dashboard-view-link" href="homeassistant.html?view=minimal#showcase">
+            <img src="assets/minimal-printing.png" alt="Minimal view with print progress and remaining time" loading="lazy">
+            <h3 data-i18n="home-view-minimal">Minimal</h3>
+          </a>
+          <p data-i18n="home-view-minimal-desc">A compact view of the current job, live camera and time remaining.</p>
+        </article>
+        <article class="feature-card">
+          <a class="dashboard-view-link" href="homeassistant.html?view=maintenance#showcase">
+            <img src="assets/maintenance-detail.png" alt="Maintenance checklist, bed mesh and system diagnostics" loading="lazy">
+            <h3 data-i18n="home-view-maintenance">Maintenance &amp; Diagnostics</h3>
+          </a>
+          <p data-i18n="home-view-maintenance-desc">Service checklist, temperature history, bed mesh and self-test.</p>
+        </article>
+      </div>
+      <p class="dashboard-credit" data-i18n="main-credit">Built on <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card">Ironoxx’s Snapmaker U1 integration</a>. See the <a href="credits.html">credits</a>.</p>
+    </div>
+  </section>
 <section class="features-section" id="extras"><div class="container"><h2 data-i18n="extras-title">Optional extras</h2><ul class="extra-links"><li><a data-i18n="extra-orca" href="orcaslicer.html">OrcaSlicer profiles</a></li>
 <li><a data-i18n="extra-layer" href="orcaslicer.html#set-and-send">LayerLab Set &amp; Send</a></li>
 <li><a data-i18n="extra-tone" href="homeassistant.html#fanfare">Print completion chime and light</a></li>
@@ -69,6 +103,6 @@
   </main>
   <!-- Footer -->
   <footer class="site-footer"><div class="container footer-content"><p>Snapmaker U1 Community Hub · <a href="credits.html" data-i18n="nav-credits">Credits</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE">MIT</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues">GitHub Issues</a></p></div></footer>
-  <script src="app.js?v=20261108_16"></script>
+  <script src="app.js?v=20261108_17"></script>
 </body>
 </html>
