@@ -163,11 +163,24 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## 📜 Credits & Acknowledgements
 
-This project builds upon great work from the Home Assistant and 3D printing community:
-- **[Ironoxx (ha-snapmaker-u1-card)](https://github.com/Ironoxx/ha-snapmaker-u1-card):** Foundation for toolhead layout and camera streaming (MIT License) · [☕ Support Ironoxx on Ko-fi](https://ko-fi.com/ironoxx)
-- **Home Assistant Card Authors:** Special thanks to RomRider ([button-card](https://github.com/custom-cards/button-card)), thomasloven ([card-mod](https://github.com/thomasloven/lovelace-card-mod), [slider-entity-row](https://github.com/thomasloven/lovelace-slider-entity-row) · [☕ Support Thomas Lovén](https://www.buymeacoffee.com/thomasloven)), ofekashern ([vertical-stack-in-card](https://github.com/ofekashern/vertical-stack-in-card)), and kalkih ([mini-graph-card](https://github.com/kalkih/mini-graph-card)).
-- **[Donkie (Spoolman)](https://github.com/Donkie/Spoolman):** Leading open-source filament & spool inventory manager for Klipper · [❤️ Sponsor Donkie on GitHub](https://github.com/sponsors/Donkie)
-- **[OrcaSlicer & SoftFever](https://github.com/OrcaSlicer/OrcaSlicer):** For premier open-source slicing and toolchanger control · [☕ Support SoftFever on Ko-fi](https://ko-fi.com/SoftFever)
+Standing on the shoulders of giants: This toolkit builds directly upon outstanding open-source work. Please support these incredible creators directly:
+
+- **[LayerLab (Set & Send Plugin)](https://layerlab.store/pages/set-and-send):** Creator of the essential OrcaSlicer pre-print dialog, toolhead remapping, whole-bed mesh (11×11), and purifier fan add-on.<br>
+  [![LayerLab Tip Jar & Store](https://img.shields.io/badge/☕_Tip_Jar-LayerLab_Store-00C48C?style=flat-square)](https://layerlab.store/pages/set-and-send)
+
+- **[Ironoxx (ha-snapmaker-u1-card)](https://github.com/Ironoxx/ha-snapmaker-u1-card):** Foundation for toolhead layout, live status tracking, and camera streaming (MIT License).<br>
+  [![Support Ironoxx on Ko-fi](https://img.shields.io/badge/☕_Support-Ko--fi_Ironoxx-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/ironoxx)
+
+- **[OrcaSlicer & SoftFever](https://github.com/OrcaSlicer/OrcaSlicer):** Leading open-source slicing excellence, multi-toolchanger support, and Klipper integration.<br>
+  [![Support SoftFever on Ko-fi](https://img.shields.io/badge/☕_Support-Ko--fi_SoftFever-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/SoftFever)
+
+- **[Thomas Lovén (thomasloven)](https://github.com/thomasloven):** Pioneer of Home Assistant UI customization (`card-mod`, `slider-entity-row`, `fold-entity-row`).<br>
+  [![Buy Thomas Lovén a Coffee](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-Thomas_Lovén-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/thomasloven)
+
+- **[Donkie (Spoolman)](https://github.com/Donkie/Spoolman):** Leading self-hosted filament & spool inventory manager for Klipper and Home Assistant.<br>
+  [![Sponsor Donkie on GitHub](https://img.shields.io/badge/❤️_Sponsor-GitHub_Donkie-EA4AAA?style=flat-square&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/Donkie)
+
+- **Home Assistant Card Authors:** Special thanks to RomRider ([button-card](https://github.com/custom-cards/button-card)), ofekashern ([vertical-stack-in-card](https://github.com/ofekashern/vertical-stack-in-card)), and kalkih ([mini-graph-card](https://github.com/kalkih/mini-graph-card)).
 
 ---
 
