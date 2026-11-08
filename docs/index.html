@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Snapmaker U1 Community Hub · Home Assistant & OrcaSlicer</title>
-  <meta name="description" content="Community toolkit for Snapmaker U1 4-toolhead 3D printer: Interactive Home Assistant Dashboard and tuned OrcaSlicer profiles.">
+  <meta name="description" content="Community toolkit for Snapmaker U1 4-toolhead 3D printer: Home Assistant Dashboard, OrcaSlicer profiles, and Operator Guide.">
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,55 +14,110 @@
   <!-- Header / Navigation -->
   <header class="site-header">
     <div class="container header-container">
-      <a href="#" class="brand">
+      <a href="index.html" class="brand">
         <span class="brand-badge">U1</span>
         <span class="brand-text">Snapmaker U1 Hub</span>
       </a>
       <nav class="nav-links">
-        <a href="#dashboard" data-i18n="nav-dashboard">Dashboard</a>
-        <a href="#telemetry" data-i18n="nav-telemetry">Tools & Material</a>
-        <a href="#automations" data-i18n="nav-automations">Automatisierung</a>
-        <a href="#orcaslicer" data-i18n="nav-orcaslicer">OrcaSlicer</a>
-        <a href="#guide" data-i18n="nav-guide">Guide & FAQ</a>
-        <a href="#install" data-i18n="nav-install">Installation</a>
-        <a href="#credits" data-i18n="nav-credits">Credits</a>
+        <a href="index.html" class="nav-link active" data-i18n="nav-home">Overview</a>
+        <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Home Assistant</a>
+        <a href="orcaslicer.html" class="nav-link" data-i18n="nav-orcaslicer">OrcaSlicer</a>
+        <a href="guide.html" class="nav-link" data-i18n="nav-guide">Guide & FAQ</a>
         <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" class="github-link" title="GitHub Repo">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
-        <button id="lang-toggle" class="lang-btn" aria-label="Toggle language">🇩🇪 DE</button>
-        <a href="https://www.paypal.com/donate/?business=torsten.reise@gmail.com&no_recurring=0&item_name=Snapmaker+U1+Community+Hub&currency_code=EUR" target="_blank" class="header-coffee-btn" title="Support this project by buying me a coffee via PayPal">
-          <span class="coffee-icon">☕</span>
-          <span class="coffee-text-full" data-i18n="header-coffee-full">Buy Me a Coffee via PayPal</span>
-          <span class="coffee-text-short" data-i18n="header-coffee-short">Coffee</span>
-        </a>
+        <button id="lang-toggle" class="lang-switch-btn" title="Sprache wechseln / Switch Language">
+          <span class="lang-icon">🌐</span> <span id="current-lang-text">DE</span>
+        </button>
+        <div class="header-coffee-slot">
+          <a href="https://ko-fi.com/torstenreise" id="header-coffee-link" target="_blank" class="btn-header-coffee" title="Support this project on Ko-fi">
+            <span class="coffee-cup-icon">☕</span>
+            <span class="coffee-text-full" data-i18n="header-coffee-full">Buy Me a Coffee (Ko-fi)</span>
+            <span class="coffee-text-short" data-i18n="header-coffee-short">Coffee</span>
+          </a>
+        </div>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hub Hero Section -->
   <section class="hero-section">
     <div class="container hero-container">
       <div class="hero-content">
         <div class="pill-badge" data-i18n="hero-badge">⚡ Open Source Community Hub</div>
-        <h1 data-i18n="hero-title">Snapmaker U1<br><span class="gradient-text">Home Assistant & OrcaSlicer</span></h1>
-        <p class="hero-lead" data-i18n="hero-lead">
-          The ultimate toolkit for your Snapmaker U1 4-toolhead 3D printer. Complete interactive Lovelace dashboard with real-time toolhead tracking, camera, Klipper controls, and precision-tuned OrcaSlicer profiles.
+        <h1 data-i18n="hero-title-hub">Snapmaker U1<br><span class="gradient-text">Community Toolkit</span></h1>
+        <p class="hero-lead" data-i18n="hero-lead-hub">
+          Das modulare Toolkit für deinen Snapmaker U1 4-Kopf-Toolchanger. Wähle den passenden Bereich: Vollwertiges Home Assistant Dashboard, präzise getunte OrcaSlicer-Profile oder die kompakte Filament-Bedienhilfe.
         </p>
         <div class="hero-actions">
-          <a href="#install" class="btn btn-primary" data-i18n="btn-get-started">Quick Start Guide</a>
-          <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" class="btn btn-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub Repository
-          </a>
+          <a href="homeassistant.html" class="btn btn-primary" data-i18n="btn-hub-ha">🏠 Home Assistant Dashboard</a>
+          <a href="orcaslicer.html" class="btn btn-secondary" data-i18n="btn-hub-slicer">🔪 OrcaSlicer Profile</a>
+          <a href="guide.html" class="btn btn-outline" data-i18n="btn-hub-guide">🧵 Guide & FAQ</a>
         </div>
       </div>
       <div class="hero-image">
-        <img src="assets/dashboard-desktop.jpg" alt="Snapmaker U1 Home Assistant Dashboard" class="preview-card">
+        <a href="homeassistant.html" title="Zum Home Assistant Showcase">
+          <img src="assets/dashboard-desktop.jpg" alt="Snapmaker U1 Dashboard Preview" class="preview-card">
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Feature Highlights -->
+  <!-- Hub Navigation Cards (Separate Dedicated Areas) -->
+  <section class="hub-cards-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="hub-modules-title">Modulare Themenwelten</h2>
+        <p data-i18n="hub-modules-subtitle">Klar getrennt, ohne Überfrachtung: Direkt zum Thema, das du gerade brauchst.</p>
+      </div>
+
+      <div class="hub-modules-grid">
+        <!-- Card 1: Home Assistant -->
+        <div class="hub-module-card">
+          <div class="module-icon">🏠</div>
+          <h3 data-i18n="mod-ha-title">Home Assistant Dashboard</h3>
+          <p data-i18n="mod-ha-desc">Vollwertige Lovelace-Integration: Live-Überwachung aller 4 Köpfe (T0–T3), XYZ-Koordinaten, Studio- & Wireframe-Cutaway, Kamera, Klipper-Steuerung und Alexa Fertigdruck-Fanfare.</p>
+          <div class="module-tags">
+            <span>Live 3D-Achsen</span>
+            <span>Spulenfarben</span>
+            <span>Alexa Bing</span>
+            <span>Licht-Flackern</span>
+          </div>
+          <a href="homeassistant.html" class="btn btn-primary btn-block" data-i18n="btn-open-ha">Dashboard & Installation ansehen &rarr;</a>
+        </div>
+
+        <!-- Card 2: OrcaSlicer -->
+        <div class="hub-module-card">
+          <div class="module-icon">🔪</div>
+          <h3 data-i18n="mod-orca-title">OrcaSlicer Profile & Presets</h3>
+          <p data-i18n="mod-orca-desc">5 abgestimmte Prozessprofile für 0.4 und 0.6 mm Düsen mit Scarf Joint Seams, minimalem Turmvolumen (12–15 mm³) und 19 kalibrierten Filamenten (Bambu, SUNLU, eSUN, ELEGOO).</p>
+          <div class="module-tags">
+            <span>0.20–0.40 mm</span>
+            <span>Scarf Seams</span>
+            <span>19 Filamente</span>
+            <span>12.000 mm/s²</span>
+          </div>
+          <a href="orcaslicer.html" class="btn btn-primary btn-block" data-i18n="btn-open-orca">Profile & Presets herunterladen &rarr;</a>
+        </div>
+
+        <!-- Card 3: Operator Guide & FAQ -->
+        <div class="hub-module-card">
+          <div class="module-icon">🧵</div>
+          <h3 data-i18n="mod-guide-title">Operator Guide & FAQ</h3>
+          <p data-i18n="mod-guide-desc">Filamentwechsel in zwei Worten: Laden und Entladen mit Dashboard oder Touchscreen, Erklärung des mechanischen Widerstands, Spulenabnahme und FAQ-Problemlöser.</p>
+          <div class="module-tags">
+            <span>In zwei Worten</span>
+            <span>Spulenwechsel</span>
+            <span>At feeder only</span>
+            <span>Not-Halt</span>
+          </div>
+          <a href="guide.html" class="btn btn-primary btn-block" data-i18n="btn-open-guide">Bedienhilfe & FAQ öffnen &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Pillars Highlights -->
   <section class="features-section">
     <div class="container">
       <div class="features-grid">
@@ -90,552 +145,6 @@
     </div>
   </section>
 
-  <!-- Visual Showcase / Interactive Simulator -->
-  <section id="dashboard" class="gallery-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="gallery-title">Interactive Showcase</h2>
-        <p data-i18n="gallery-subtitle">Explore the complete dashboard, alternative photos, and diagnostics with live scrolling</p>
-      </div>
-
-      <div class="gallery-tabs">
-        <button class="tab-btn active" data-tab="tab-desktop" data-i18n="tab-desktop">Full Dashboard (Scrollable)</button>
-        <button class="tab-btn" data-tab="tab-photos" data-i18n="tab-photos">Studio & Close-up Photos</button>
-        <button class="tab-btn" data-tab="tab-cutaway" data-i18n="tab-cutaway">Cutaway & Axes</button>
-        <button class="tab-btn" data-tab="tab-maintenance" data-i18n="tab-maintenance">Maintenance & Bed Mesh</button>
-        <button class="tab-btn" data-tab="tab-mobile" data-i18n="tab-mobile">Mobile View (Scrollable)</button>
-      </div>
-
-      <!-- Tab 1: Full Scrollable Desktop Dashboard Mockup -->
-      <div class="tab-content active" id="tab-desktop">
-        <div class="browser-mockup">
-          <div class="browser-topbar">
-            <div class="browser-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="browser-address">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              <span>http://homeassistant.local:8123/3d-printer/snapmaker-u1</span>
-            </div>
-            <div class="browser-actions">
-              <button class="mockup-btn" id="btn-scroll-down" title="Scroll down">⬇ <span data-i18n="btn-scroll-down">Scroll down</span></button>
-              <button class="mockup-btn" id="btn-scroll-top" title="Scroll to top">⬆ <span data-i18n="btn-scroll-top">Top</span></button>
-              <button class="mockup-btn mockup-btn-tour" id="btn-auto-tour" title="Auto tour">▶ <span data-i18n="btn-auto-tour">Auto-Tour</span></button>
-            </div>
-          </div>
-          <div class="browser-viewport" id="desktop-viewport">
-            <img src="assets/dashboard-full-desktop.jpg" alt="Snapmaker U1 Full Home Assistant Dashboard" class="full-dashboard-img">
-          </div>
-          <div class="browser-footer">
-            <span class="hint-text" data-i18n="browser-hint">💡 Scroll with your mouse wheel or use the buttons above to view lower sections (Bed controls, toolhead docks, and emergency stop).</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 2: Studio & Alternative Close-Up Photo Toggle -->
-      <div class="tab-content" id="tab-photos">
-        <div class="photo-showcase-container">
-          <div class="photo-controls">
-            <button class="photo-toggle-btn active" data-photo="studio" data-i18n="btn-photo-studio">🌟 Studio Glanz (Default)</button>
-            <button class="photo-toggle-btn" data-photo="closeup" data-i18n="btn-photo-closeup">🔍 Realistischer Close-Up mit Logo</button>
-          </div>
-          <div class="photo-display-frame">
-            <img id="photo-display-img" src="assets/studio.png" alt="Snapmaker U1 Studio Glanz">
-            <div class="caption" id="photo-display-caption" data-i18n="cap-photo-studio">Studio-Glanz: Elegantes Rendering des Snapmaker U1 mit 4 Toolheads, LED-Beleuchtung und dezentem Kicker.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 3: Cutaway & Live Axes -->
-      <div class="tab-content" id="tab-cutaway">
-        <div class="showcase-frame">
-          <div class="cutaway-toggle-bar">
-            <button class="cutaway-toggle-btn active" data-cutview="full" data-i18n="btn-cut-full">🖥️ Dashboard Gesamtansicht (Cutaway)</button>
-            <button class="cutaway-toggle-btn" data-cutview="closeup" data-i18n="btn-cut-closeup">🔍 Tools & Material Detailansicht</button>
-          </div>
-          <img id="cutaway-display-img" src="assets/dashboard-cutaway.jpg" alt="Authentic Cutaway Telemetry View">
-          <div class="caption" id="cutaway-display-caption" data-i18n="cap-cutaway">Authentische Cutaway-Ansicht: Wireframe-Drucker mit Live-Achsenkoordinaten (X, Y, Z), Kopf-Status (T3 Mounted) und Spulenfarben.</div>
-        </div>
-      </div>
-
-      <!-- Tab 4: Maintenance & Bed Mesh (Scrollable) -->
-      <div class="tab-content" id="tab-maintenance">
-        <div class="browser-mockup">
-          <div class="browser-topbar">
-            <div class="browser-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="browser-address">
-              <span>http://homeassistant.local:8123/3d-printer/u1-maintenance</span>
-            </div>
-            <div class="browser-actions">
-              <span class="badge-tag">G-Code Console · Bed Mesh · Temps</span>
-            </div>
-          </div>
-          <div class="browser-viewport" id="maintenance-viewport">
-            <img src="assets/dashboard-maintenance-full.jpg" alt="Maintenance and Diagnostics View" class="full-dashboard-img">
-          </div>
-          <div class="browser-footer">
-            <span class="hint-text" data-i18n="maintenance-hint">Live Bed Leveling mesh heatmap, temperature curves, and Klipper terminal.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 5: Mobile View (Scrollable) -->
-      <div class="tab-content" id="tab-mobile">
-        <div class="mobile-phone-mockup">
-          <div class="mobile-phone-speaker"></div>
-          <div class="mobile-viewport">
-            <img src="assets/dashboard-mobile.jpg" alt="Mobile Dashboard View">
-          </div>
-          <div class="caption" data-i18n="cap-mobile">Compact mobile-optimized layout (390px). Touch-friendly controls, quick actions, and full status indicators.</div>
-        </div>
-      </div>
-    </div>
-  <!-- Tools & Material Deep Dive Section -->
-  <section id="telemetry" class="telemetry-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="badge-tag" data-i18n="telemetry-badge">⚡ Live-Telemetrie & Direktsteuerung</span>
-        <h2 data-i18n="telemetry-title">Tools & Material: Was die Hero-Card alles kann</h2>
-        <p data-i18n="telemetry-subtitle">Mehr als nur ein hübsches Bild: Vollwertige Echtzeit-Überwachung und Direktsteuerung aller 4 Toolheads, Achsen und Heizbett.</p>
-      </div>
-
-      <div class="telemetry-grid">
-        <!-- Interactive Card Preview -->
-        <div class="telemetry-preview-card">
-          <div class="preview-mode-switch">
-            <button class="preview-btn active" data-mode="cutaway" data-i18n="btn-mode-cutaway">📐 Wireframe Cutaway</button>
-            <button class="preview-btn" data-mode="studio" data-i18n="btn-mode-studio">🌟 Studio Glanz</button>
-          </div>
-          <div class="preview-image-wrapper">
-            <img id="telemetry-preview-img" src="assets/tools-material-cutaway.jpg" alt="Tools & Material Telemetry Card" class="telemetry-img">
-          </div>
-          <div class="preview-caption" id="telemetry-preview-caption" data-i18n="cap-telemetry-cutaway">
-            Cutaway-Modus: Technische Wireframe-Darstellung mit Live-Achsenüberlagerung (X/Y/Z) und direkt ablesbaren Nozzle-Temperaturen.
-          </div>
-        </div>
-
-        <!-- Capability List -->
-        <div class="telemetry-features">
-          <div class="telemetry-feat-item">
-            <div class="feat-icon-box">📐</div>
-            <div class="feat-content">
-              <h4 data-i18n="feat-axes-title">Echtzeit-Achsenüberwachung (X, Y, Z)</h4>
-              <p data-i18n="feat-axes-desc">Live-Koordinaten für Bett und Druckkopf (z. B. <code>X 227.6</code>, <code>Y 300.5</code>, <code>Z 9.9</code>). Du siehst auf den Millimeter genau, wo sich Werkzeug und Bauplatte aktuell befinden.</p>
-            </div>
-          </div>
-
-          <div class="telemetry-feat-item">
-            <div class="feat-icon-box">🌡️</div>
-            <div class="feat-content">
-              <h4 data-i18n="feat-temps-title">Live-Temperaturen direkt an Nozzle & Bett</h4>
-              <p data-i18n="feat-temps-desc">Sowohl Ist- als auch Solltemperatur werden für alle 4 Köpfe (T0–T3) und das Heizbett direkt am Objekt eingeblendet (z. B. <code>T3 46° / 0° (Selected)</code>, <code>Bed 25° / 0°</code>).</p>
-            </div>
-          </div>
-
-          <div class="telemetry-feat-item">
-            <div class="feat-icon-box">🧲</div>
-            <div class="feat-content">
-              <h4 data-i18n="feat-docking-title">Toolhead-Status & Docking-Rückmeldung</h4>
-              <p data-i18n="feat-docking-desc">Kein Rätselraten mehr: Das Dashboard zeigt live an, welcher Kopf auf dem Schlitten montiert ist (<code>T3 - Mounted</code>) und welche Köpfe sicher in den Halterungen geparkt sind (<code>Docked</code>).</p>
-            </div>
-          </div>
-
-          <div class="telemetry-feat-item">
-            <div class="feat-icon-box">🎨</div>
-            <div class="feat-content">
-              <h4 data-i18n="feat-spools-title">Dynamische Spulenfarben</h4>
-              <p data-i18n="feat-spools-desc">Die 4 Spulenhalter (T0–T3) rings um das Gehäuse leuchten in der exakten Farbe des geladenen Filaments und zeigen Materialtyp sowie verbleibende Restmenge an.</p>
-            </div>
-          </div>
-
-          <div class="telemetry-feat-item highlight-feat">
-            <div class="feat-icon-box">👆</div>
-            <div class="feat-content">
-              <h4 data-i18n="feat-tap-title">Interaktive Touch- & Klick-Direktsteuerung</h4>
-              <p data-i18n="feat-tap-desc">Tippe oder klicke einfach direkt auf die 3D-Druckergrafik: Sofort öffnet sich das interaktive Schnellmenü für Achsen-Jogging (Bett rauf/runter, Kopf zentrieren), Vorheizen und Filamentwechsel!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Fertigdruck-Fanfare & Licht Automation Section -->
-  <section id="automations" class="automations-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="badge-tag badge-fanfare">🔔 Smarte Benachrichtigung</span>
-        <h2 data-i18n="auto-title">Fertigdruck-Fanfare & Licht-Benachrichtigung</h2>
-        <p data-i18n="auto-subtitle">Verpasse keinen fertigen Druck mehr: Alexa Mikrowellen-"Bing" ab 99,9% und 2x kurzes Lichtflackern bei Druckende.</p>
-      </div>
-
-      <div class="fanfare-card-grid">
-        <!-- Highlights Card -->
-        <div class="fanfare-info-card">
-          <div class="fanfare-badge-row">
-            <span class="fanfare-pill">Alexa <code>bell_02</code> (Mikrowelle)</span>
-            <span class="fanfare-pill">Licht-Flackern</span>
-            <span class="fanfare-pill">100% Endpersonalisiert</span>
-          </div>
-
-          <h3 data-i18n="fanfare-h3">Wie die Automatisierung funktioniert</h3>
-          <ul class="fanfare-feature-list">
-            <li>
-              <strong>1. Vorwarnung (Early Chime):</strong>
-              <span data-i18n="fanfare-step1">Sobald der Druckfortschritt <code>99,9 %</code> erreicht, spielt Alexa sofort den kurzen, dezenten Mikrowellenton (<code>bell_02</code>). Du weißt Bescheid, bevor der Drucker überhaupt abkühlt.</span>
-            </li>
-            <li>
-              <strong>2. Bestätigtes Druckende:</strong>
-              <span data-i18n="fanfare-step2">Die Automatisierung wartet, bis der Druckstatus von <code>printing</code> offiziell auf <code>complete</code> wechselt.</span>
-            </li>
-            <li>
-              <strong>3. Bauraumlicht flackert 2x:</strong>
-              <span data-i18n="fanfare-step3">Das Gehäuselicht pulsiert 2x kurz (An → 400ms → Aus → 400ms → An). Ein unübersehbares optisches Signal im Raum!</span>
-            </li>
-          </ul>
-
-          <div class="prerequisites-box">
-            <h4 data-i18n="prereq-title">📋 Voraussetzungen (Prerequisites)</h4>
-            <div class="prereq-item">
-              <span>🔌</span>
-              <div>
-                <strong>Alexa Media Player (HACS):</strong>
-                <span data-i18n="prereq-amp">Über HACS installiert und mit deinem Amazon-Konto verbunden (für <code>media_content_id: bell_02</code>).</span>
-              </div>
-            </div>
-            <div class="prereq-item">
-              <span>🖨️</span>
-              <div>
-                <strong>Snapmaker U1 Entitäten:</strong>
-                <span><code>sensor.snapmaker_u1_card_fortschritt</code>, <code>sensor.snapmaker_u1_card_druckstatus</code>, <code>light.snapmaker_u1_card_innenraumlicht</code>.</span>
-              </div>
-            </div>
-            <div class="prereq-item">
-              <span>🛡️</span>
-              <div>
-                <strong>Vollständig Endpersonalisiert:</strong>
-                <span data-i18n="prereq-generic">Keine privaten IP-Adressen oder Namen hartcodiert. Trage einfach den Namen deines Echo-Geräts ein (z. B. <code>media_player.echo_dot_bureau</code>).</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- YAML Code Box -->
-        <div class="fanfare-yaml-card">
-          <div class="yaml-header">
-            <span><code>fertigdruck_fanfare.yaml</code></span>
-            <button class="copy-code-btn" id="btn-copy-yaml" title="Copy YAML to clipboard">
-              📋 <span data-i18n="btn-copy-code">Copy YAML</span>
-            </button>
-          </div>
-          <pre class="code-block"><code id="fanfare-yaml-code">alias: "Snapmaker U1 – Fertigdruck-Fanfare & Licht"
-description: >-
-  Spielt den Alexa-Sound 'bell_02' ab 99,9% Druckfortschritt ab und lässt das
-  Bauraumlicht bei bestätigtem Druckende (complete) kurz aufblinken.
-triggers:
-  - trigger: numeric_state
-    entity_id: sensor.snapmaker_u1_card_fortschritt
-    above: 99.89
-    id: early_chime
-  - trigger: state
-    entity_id: sensor.snapmaker_u1_card_druckstatus
-    from: printing
-    to: complete
-    id: complete
-conditions:
-  - condition: or
-    conditions:
-      - condition: trigger
-        id: complete
-      - condition: and
-        conditions:
-          - condition: trigger
-            id: early_chime
-          - condition: state
-            entity_id: sensor.snapmaker_u1_card_druckstatus
-            state: printing
-          - condition: template
-            value_template: >-
-              {{ trigger.from_state is not none and is_number(trigger.from_state.state) }}
-actions:
-  # 1. Alexa Microwave / Bell Chime abspielen
-  - action: media_player.play_media
-    target:
-      entity_id: media_player.your_alexa_echo_device # <-- Hier dein Echo eintragen
-    data:
-      media_content_type: sound
-      media_content_id: bell_02
-    continue_on_error: true
-
-  # 2. Falls Early-Chime: Warten bis Druckstatus printing/paused verlässt
-  - if:
-      - condition: trigger
-        id: early_chime
-    then:
-      - wait_template: >-
-          {{ states('sensor.snapmaker_u1_card_druckstatus') not in ['printing', 'paused'] }}
-        timeout: "00:15:00"
-        continue_on_timeout: false
-
-  # 3. Bestätigen, dass der Druck wirklich abgeschlossen ist
-  - condition: state
-    entity_id: sensor.snapmaker_u1_card_druckstatus
-    state: complete
-
-  # 4. Bauraumlicht 2x kurz flackern / pulsieren lassen
-  - action: light.turn_on
-    target:
-      entity_id: light.snapmaker_u1_card_innenraumlicht # <-- Hier dein Bauraumlicht eintragen
-  - delay:
-      milliseconds: 400
-  - action: light.turn_off
-    target:
-      entity_id: light.snapmaker_u1_card_innenraumlicht
-  - delay:
-      milliseconds: 400
-  - action: light.turn_on
-    target:
-      entity_id: light.snapmaker_u1_card_innenraumlicht
-mode: single
-max_exceeded: silent</code></pre>
-          <div class="yaml-footer">
-            <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/automations/fertigdruck_fanfare.yaml" target="_blank" class="btn btn-secondary btn-sm">
-              ⬇ <span data-i18n="btn-download-yaml">Download fertigdruck_fanfare.yaml</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- OrcaSlicer Profiles Section -->
-  <section id="orcaslicer" class="slicer-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="slicer-title">Tuned OrcaSlicer Profiles</h2>
-        <p data-i18n="slicer-subtitle">Ready-to-use JSON presets for OrcaSlicer (v2.5.0 RC and newer)</p>
-      </div>
-
-      <div class="table-responsive">
-        <table class="profile-table">
-          <thead>
-            <tr>
-              <th data-i18n="th-profile">Profile Name</th>
-              <th data-i18n="th-nozzle">Nozzle</th>
-              <th data-i18n="th-layer">Layer Height</th>
-              <th data-i18n="th-features">Key Highlights</th>
-              <th data-i18n="th-action">Download</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>0.20 Antigravity Optimized</strong></td>
-              <td>0.4 mm</td>
-              <td>0.20 mm</td>
-              <td data-i18n="p1-desc">Daily driver. 3 walls, gyroid infill, type-2 prime tower (12–15 mm³), conditional scarf seam, 12,000 mm/s² travel.</td>
-              <td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.20%20Antigravity%20Optimized.json" download class="btn-sm">JSON</a></td>
-            </tr>
-            <tr>
-              <td><strong>0.28 Antigravity Prototype</strong></td>
-              <td>0.4 mm</td>
-              <td>0.28 mm</td>
-              <td data-i18n="p2-desc">Fast functional tests. 2 walls, 10% support cubic infill (-50% material), direct travel paths.</td>
-              <td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.28%20Antigravity%20Prototype%20(0.4%20Nozzle).json" download class="btn-sm">JSON</a></td>
-            </tr>
-            <tr>
-              <td><strong>0.30 Antigravity Optimized</strong></td>
-              <td>0.6 mm</td>
-              <td>0.30 mm</td>
-              <td data-i18n="p3-desc">High strength & speed. Arachne wall generator, 1.2 mm ceiling, 20 mm³ tower volume.</td>
-              <td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.30%20Antigravity%20Optimized%20(0.6%20Nozzle).json" download class="btn-sm">JSON</a></td>
-            </tr>
-            <tr>
-              <td><strong>0.24 Antigravity Optimized</strong></td>
-              <td>0.6 mm</td>
-              <td>0.24 mm</td>
-              <td data-i18n="p4-desc">Quality preset for 0.6 mm nozzles. Clean overhangs and smooth contours.</td>
-              <td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.24%20Antigravity%20Optimized%20(0.6%20Nozzle).json" download class="btn-sm">JSON</a></td>
-            </tr>
-            <tr>
-              <td><strong>0.40 Antigravity Prototype</strong></td>
-              <td>0.6 mm</td>
-              <td>0.40 mm</td>
-              <td data-i18n="p5-desc">Maximum volumetric throughput for oversized prototypes in record time.</td>
-              <td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.40%20Antigravity%20Prototype%20(0.6%20Nozzle).json" download class="btn-sm">JSON</a></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="callout-box">
-        <h4 data-i18n="slicer-tip-title">💡 Installation in OrcaSlicer</h4>
-        <p data-i18n="slicer-tip-text">Copy the files from <code>/orcaslicer/</code> into your local OrcaSlicer user directory:</p>
-        <code>%APPDATA%\OrcaSlicer\user\default\</code>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Operator Guide & FAQ Section -->
-  <section id="guide" class="guide-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="guide-title">Operator Guide & FAQ</h2>
-        <p data-i18n="guide-subtitle">Essential cheat sheets for loading, unloading, and daily handling</p>
-      </div>
-
-      <div class="guide-grid">
-        <!-- Unload Card -->
-        <div class="guide-card">
-          <div class="guide-card-header">
-            <span style="font-size: 1.8rem;">📤</span>
-            <h3 data-i18n="unload-title">Unloading Filament</h3>
-          </div>
-          <div class="guide-punchline" data-i18n="unload-punchline">In a nutshell: Auto-heat → Hand-reel spool</div>
-          <div class="guide-steps">
-            <div class="guide-step-item">
-              <strong data-i18n="lbl-with-dash">With Dashboard:</strong>
-              <p data-i18n="unload-dash-step">Click toolhead (T0–T3) → select <strong>Unload</strong>. Hotend heats up, motor unlocks, reel filament by hand.</p>
-            </div>
-            <div class="guide-step-item">
-              <strong data-i18n="lbl-on-screen">Touchscreen:</strong>
-              <p data-i18n="unload-screen-step">Select <strong>Filament → Unload</strong> → pick toolhead. Wait for nozzle temperature prompt, then gently pull.</p>
-            </div>
-          </div>
-          <div class="guide-pro-tip">
-            <strong data-i18n="unload-tip-title">💡 Why does it have slight resistance?</strong>
-            <p data-i18n="unload-tip-text">Light tactile resistance is completely normal as the filament passes the feeder gears. Pull smoothly! To remove the spool: hold the holder arm at the chassis and pull the spool straight outward.</p>
-          </div>
-        </div>
-
-        <!-- Load Card -->
-        <div class="guide-card card-blue">
-          <div class="guide-card-header">
-            <span style="font-size: 1.8rem;">📥</span>
-            <h3 data-i18n="load-title">Loading Filament</h3>
-          </div>
-          <div class="guide-punchline" data-i18n="load-punchline">In a nutshell: 45° cut → Push to feeder → Press Load</div>
-          <div class="guide-steps">
-            <div class="guide-step-item">
-              <strong data-i18n="lbl-prep">1. Cut 45°:</strong>
-              <p data-i18n="load-cut-step">Snip filament cleanly at a 45° angle. Hang spool on the spindle.</p>
-            </div>
-            <div class="guide-step-item">
-              <strong data-i18n="lbl-insert">2. Insert:</strong>
-              <p data-i18n="load-insert-step">Push filament into the feed tube until the inlet sensor trips (Dashboard shows: <em>At feeder only</em>).</p>
-            </div>
-            <div class="guide-step-item">
-              <strong data-i18n="lbl-load">3. Trigger Load:</strong>
-              <p data-i18n="load-trigger-step">Click <strong>Load</strong> in Dashboard or Touchscreen. The printer preheats, motor feeds through the tube, and purges a test bead.</p>
-            </div>
-          </div>
-          <div class="guide-pro-tip">
-            <strong data-i18n="load-tip-title">💡 Pro Tip for smooth feeding</strong>
-            <p data-i18n="load-tip-text">Never insert bent or flattened filament tips. A sharp 45° cut ensures the filament slides effortlessly through the toolchanger dock inlet.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ Accordions -->
-      <div class="faq-container">
-        <details>
-          <summary data-i18n="faq1-q">What does 'At feeder only' mean in the dashboard?</summary>
-          <div class="details-content" data-i18n="faq1-a">
-            The filament has been inserted into the Bowden feed inlet and the inlet sensor confirmed its presence, but it has not been advanced through the long tube to the nozzle yet. Simply tap <strong>Load</strong> to let the motor feed it to the hotend.
-          </div>
-        </details>
-        <details>
-          <summary data-i18n="faq2-q">Does the motor automatically spit out the filament during unload?</summary>
-          <div class="details-content" data-i18n="faq2-a">
-            No, and that is intentional by design! The extruder motor only pulls the hot tip back out of the melt zone to prevent thick bulbs from jamming the PTFE tube. The long distance through the tube back to the spool is reeled up smoothly by hand to prevent messy tangles.
-          </div>
-        </details>
-        <details>
-          <summary data-i18n="faq3-q">Can I pull filament out when the nozzle is cold?</summary>
-          <div class="details-content" data-i18n="faq3-a">
-            <strong>Never!</strong> Solidified plastic inside the cold nozzle will tear or damage the feeder mechanism if pulled with force. Always allow the nozzle to reach at least 200°C (PLA) or 240°C (PETG) before retracting.
-          </div>
-        </details>
-        <details>
-          <summary data-i18n="faq4-q">When should I use 'Cancel Print' vs. Emergency Stop?</summary>
-          <div class="details-content" data-i18n="faq4-a">
-            <strong>Cancel Print:</strong> Standard graceful stop. Finishes current move, raises Z-axis, safely docks active toolhead, and turns off heaters.<br>
-            <strong>Emergency Stop:</strong> Immediate power cut to all motors and heaters. Use only in case of physical collision or risk of damage. Requires Klipper firmware restart afterward.
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Step by Step Setup -->
-  <section id="install" class="install-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="install-title">Installation Guide</h2>
-        <p data-i18n="install-subtitle">Follow these 3 simple steps to get your dashboard and profiles running.</p>
-      </div>
-
-      <div class="steps-container">
-        <!-- Step 1 -->
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <div class="step-body">
-            <h3 data-i18n="step1-title">Prerequisites & Custom Cards</h3>
-            <p data-i18n="step1-desc">Ensure HACS is installed. Install these required Lovelace cards from HACS:</p>
-            <ul class="tag-list">
-              <li><code>button-card</code></li>
-              <li><code>card-mod</code></li>
-              <li><code>slider-entity-row</code></li>
-              <li><code>vertical-stack-in-card</code></li>
-              <li><code>mini-graph-card</code></li>
-              <li><code>tabbed-card</code></li>
-              <li><code>fold-entity-row</code></li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <div class="step-body">
-            <h3 data-i18n="step2-title">Copy Showcase Assets</h3>
-            <p data-i18n="step2-desc">Download and place the following files in your Home Assistant <code>/config/www/snapmaker-u1/showcase/</code> directory:</p>
-            <div class="code-pill-list">
-              <span><code>u1-fusion-showcase.u1.js</code></span>
-              <span><code>studio.png</code></span>
-              <span><code>close-up.png</code></span>
-            </div>
-            <p class="sub-text" data-i18n="step2-sub">Then register the resource in Home Assistant under <strong>Settings → Dashboards → Resources</strong> as JavaScript Module with URL: <code>/local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code>.</p>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <div class="step-body">
-            <h3 data-i18n="step3-title">Import Dashboard YAML</h3>
-            <p data-i18n="step3-desc">Create a new Lovelace dashboard (or edit an existing one), open the <strong>Raw Configuration Editor</strong>, and paste the configuration from <code>homeassistant/u1_dashboard_complete.yaml</code>.</p>
-            <div class="collapsible-wrapper">
-              <details>
-                <summary data-i18n="details-yaml">Click here to view / copy quick import instructions</summary>
-                <div class="details-content">
-                  <p data-i18n="details-yaml-p">You can also import views individually: <code>views/snapmaker-u1.yaml</code>, <code>views/u1-minimal.yaml</code>, and <code>views/u1-maintenance.yaml</code>.</p>
-                  <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml" target="_blank" class="btn btn-secondary btn-sm" data-i18n="btn-view-raw">View Raw Dashboard YAML</a>
-                </div>
-              </details>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Support & Coffee Section -->
   <section class="coffee-section">
     <div class="container coffee-container">
@@ -643,31 +152,31 @@ max_exceeded: silent</code></pre>
         <div class="coffee-icon">☕</div>
         <h2 data-i18n="coffee-title">Support This Project</h2>
         <p class="coffee-lead" data-i18n="coffee-lead">
-          This community hub is 100% free and open-source. If the dashboard or OrcaSlicer profiles save you time, filament, or failed prints, you are warmly invited to buy me a coffee!
+          Dieses Community-Toolkit ist 100% kostenlos und Open-Source. Wenn dir das Dashboard oder die OrcaSlicer-Profile Zeit, Filament oder Fehlversuche ersparen, bist du herzlich eingeladen, mir einen Kaffee auf Ko-fi zu spendieren!
         </p>
         <div class="coffee-btn-group">
-          <a href="https://www.paypal.com/donate/?business=torsten.reise@gmail.com&no_recurring=0&item_name=Snapmaker+U1+Community+Hub&currency_code=EUR" target="_blank" class="btn btn-coffee-large">
-            ☕ <span data-i18n="coffee-btn">Buy Me a Coffee via PayPal</span>
+          <a href="https://ko-fi.com/torstenreise" id="body-coffee-link" target="_blank" class="btn btn-coffee-large" title="Support on Ko-fi">
+            ☕ <span data-i18n="coffee-btn">Buy Me a Coffee on Ko-fi</span>
           </a>
         </div>
         <p class="coffee-note" data-i18n="coffee-note">
-          If you share or feature this project, keeping the coffee link is appreciated, but completely optional!
+          Über Ko-fi bleibt deine und meine E-Mail-Adresse vollständig geschützt und anonym. Spenden sind vollkommen freiwillig!
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Credits & Contributing -->
+  <!-- Credits & Acknowledgements -->
   <section id="credits" class="credits-section">
     <div class="container">
       <div class="section-header">
         <h2 data-i18n="credits-title">Credits & Acknowledgements</h2>
-        <p data-i18n="credits-subtitle">Built upon great work from the Home Assistant and 3D printing community</p>
+        <p data-i18n="credits-subtitle">Aufgebaut auf herausragender Vorarbeit der Home Assistant- und 3D-Druck-Community</p>
       </div>
       <div class="credits-grid">
         <div class="credit-item">
           <h4>Ironoxx (ha-snapmaker-u1-card)</h4>
-          <p data-i18n="credit-ironoxx">Original integration basis, toolheads layout, and camera streaming elements (MIT License).</p>
+          <p data-i18n="credit-ironoxx">Grundlage für Toolheads-Layout und Kamerastreaming (MIT-Lizenz).</p>
           <div class="credit-links">
             <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card" target="_blank" class="credit-repo-link">github.com/Ironoxx/ha-snapmaker-u1-card &rarr;</a>
             <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" title="Support Ironoxx on Ko-fi">
@@ -677,7 +186,7 @@ max_exceeded: silent</code></pre>
         </div>
         <div class="credit-item">
           <h4>Home Assistant Custom Cards</h4>
-          <p data-i18n="credit-cards">Gratitude to RomRider (button-card), thomasloven (card-mod, slider-entity-row), kalkih (mini-graph-card), and ofekashern.</p>
+          <p data-i18n="credit-cards">Besonderer Dank an RomRider (button-card), thomasloven (card-mod, slider-entity-row), kalkih (mini-graph-card) und ofekashern.</p>
           <div class="credit-links">
             <a href="https://www.buymeacoffee.com/thomasloven" target="_blank" class="credit-kofi-btn" title="Support Thomas Lovén">
               <span class="kofi-icon">☕</span> Support Thomas Lovén
@@ -686,7 +195,7 @@ max_exceeded: silent</code></pre>
         </div>
         <div class="credit-item">
           <h4>OrcaSlicer & SoftFever</h4>
-          <p data-i18n="credit-orca">For open-source slicing excellence and native toolchanger firmware support.</p>
+          <p data-i18n="credit-orca">Für Open-Source-Slicing-Exzellenz und native Toolchanger-Unterstützung.</p>
           <div class="credit-links">
             <a href="https://github.com/OrcaSlicer/OrcaSlicer" target="_blank" class="credit-repo-link">github.com/OrcaSlicer &rarr;</a>
             <a href="https://ko-fi.com/SoftFever" target="_blank" class="credit-kofi-btn" title="Support SoftFever on Ko-fi">
@@ -701,8 +210,17 @@ max_exceeded: silent</code></pre>
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-content">
-      <p>© 2026 Torsten Reise & Community · Released under the <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE" target="_blank">MIT License</a>.</p>
-      <p><a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank">GitHub Repository</a> · <a href="#install" data-i18n="nav-install">Installation</a> · <a href="https://www.paypal.com/donate/?business=torsten.reise@gmail.com&no_recurring=0&item_name=Snapmaker+U1+Community+Hub&currency_code=EUR" target="_blank">Support via PayPal</a></p>
+      <div class="footer-left">
+        <p>© 2026 Torsten Reise & Community · Veröffentlicht unter der <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE" target="_blank">MIT-Lizenz</a></p>
+        <p class="footer-sub">Community-Projekt — nicht offiziell mit Snapmaker verbunden. Gebaut für 4-Toolhead-Macher.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Übersicht</a>
+        <a href="homeassistant.html">Home Assistant</a>
+        <a href="orcaslicer.html">OrcaSlicer</a>
+        <a href="guide.html">Guide & FAQ</a>
+        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank">GitHub</a>
+      </div>
     </div>
   </footer>
 
