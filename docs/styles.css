@@ -162,26 +162,43 @@ body {
   margin-left: 6px;
 }
 
+.header-kofi-badge {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  text-decoration: none;
+}
+
+.header-kofi-badge:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+
+.header-kofi-badge img {
+  display: block;
+  height: 28px;
+  width: auto;
+  border-radius: 6px;
+}
+
 .btn-header-coffee {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, #ff5e5b 0%, #d83a37 100%);
-  color: #ffffff !important;
+  background: #72A4F2;
+  color: #0d1117 !important;
   text-decoration: none;
-  padding: 7px 16px;
-  border-radius: 99px;
+  padding: 6px 14px;
+  border-radius: 6px;
   font-size: 0.88rem;
   font-weight: 700;
   white-space: nowrap !important;
-  box-shadow: 0 4px 14px rgba(255, 94, 91, 0.4);
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .btn-header-coffee:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 94, 91, 0.6);
-  background: linear-gradient(135deg, #ff716e 0%, #e04441 100%);
+  transform: translateY(-1px);
+  filter: brightness(1.08);
 }
 
 .coffee-cup-icon {
@@ -643,49 +660,45 @@ summary {
   max-width: 680px;
   margin: 0 auto;
   text-align: center;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  padding: 48px 36px;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+  background: #0d1117;
+  border: 1px solid #30363d;
+  padding: 32px 24px;
+  border-radius: var(--radius-md);
 }
 
 .coffee-icon {
-  font-size: 3rem;
-  margin-bottom: 12px;
+  display: none;
 }
 
 .coffee-card h2 {
-  font-size: 2.2rem;
-  font-weight: 800;
-  margin-bottom: 12px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #f0f6fc;
 }
 
 .coffee-lead {
-  font-size: 1.05rem;
-  color: var(--text-muted);
+  font-size: 0.95rem;
+  color: #8b949e;
   line-height: 1.6;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .btn-coffee-large {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: #0070ba;
-  color: #fff;
-  padding: 14px 28px;
-  border-radius: var(--radius-md);
-  font-size: 1.1rem;
-  font-weight: 700;
+  gap: 8px;
+  background: transparent;
+  color: #f0f6fc;
+  padding: 0;
+  border-radius: 6px;
   text-decoration: none;
-  transition: transform 0.15s, background 0.2s;
-  box-shadow: 0 4px 14px rgba(0, 112, 186, 0.4);
+  transition: transform 0.15s ease, filter 0.15s ease;
 }
 
 .btn-coffee-large:hover {
-  background: #005ea6;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  filter: brightness(1.08);
 }
 
 .coffee-note {

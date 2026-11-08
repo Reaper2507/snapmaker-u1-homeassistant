@@ -139,19 +139,14 @@ To bring the native Snapmaker pre-print popup into vanilla OrcaSlicer, we highly
 
 ---
 
-## ☕ Support this Project
+## Feedback and support
 
-This project is 100% free, independent, and open-source. If this dashboard or the profiles save you time, filament, or failed prints:
+Bugs, profile feedback, and ideas are welcome as an [issue](https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues).
 
-<div align="center">
+The project is free and open-source. A star on GitHub helps, and if you like, buy me a coffee:
 
-[![Buy Me A Coffee on Ko-fi](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-Ko--fi-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/Reaper2507)
+[![Support on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Reaper2507)
 
-*If you share, feature, or fork this project, keeping the coffee link would be greatly appreciated, but is entirely optional!*
-
-</div>
-
----
 
 ## 🤝 Contributing
 

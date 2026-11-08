@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quick & Dirty · 3-Minute Fast Install · Snapmaker U1 Hub</title>
   <meta name="description" content="Quick & Dirty 3-Minute fast install guide for Snapmaker U1 Home Assistant & OrcaSlicer. No fluff, just click and run.">
-  <link rel="stylesheet" href="styles.css?v=20261108_05">
+  <link rel="stylesheet" href="styles.css?v=20261108_06">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -32,10 +32,8 @@
           <span class="lang-icon">🌐</span> <span id="current-lang-text">DE</span>
         </button>
         <div class="header-coffee-slot">
-          <a href="https://ko-fi.com/Reaper2507" id="header-coffee-link" target="_blank" class="btn-header-coffee" title="Support Reaper2507 on Ko-fi">
-            <span class="coffee-cup-icon">☕</span>
-            <span class="coffee-text-full" data-i18n="header-coffee-full">Buy Me a Coffee (Ko-fi)</span>
-            <span class="coffee-text-short" data-i18n="header-coffee-short">Ko-fi</span>
+          <a href="https://ko-fi.com/Reaper2507" id="header-coffee-link" target="_blank" class="header-kofi-badge" title="Support Reaper2507 on Ko-fi">
+            <img src="assets/githubbutton_sm.svg" height="28" alt="Support on Ko-fi">
           </a>
         </div>
       </nav>
@@ -52,11 +50,10 @@
       </p>
 
       <!-- Prominent Ko-fi Box directly in Hero -->
-      <div class="quick-kofi-hero-box" style="margin-top:24px; display:inline-flex; align-items:center; gap:16px; background:#161b22; border:2px solid #ff5e5b; padding:14px 24px; border-radius:99px; box-shadow:0 8px 30px rgba(255, 94, 91, 0.35);">
-        <span style="font-size:1.4rem;">☕</span>
-        <span style="font-size:0.95rem; font-weight:700; color:#fff;">Sparen dir dieses Dashboard & die Profile Zeit & Filament?</span>
-        <a href="https://ko-fi.com/Reaper2507" target="_blank" class="btn-header-coffee" style="box-shadow:none; font-size:0.95rem;">
-          ❤️ Spendier Reaper2507 einen Kaffee auf Ko-fi
+      <div class="quick-kofi-hero-box" style="margin-top:16px; display:inline-flex; align-items:center; gap:12px; background:#161b22; border:1px solid #30363d; padding:6px 14px; border-radius:99px;">
+        <span style="font-size:0.88rem; color:#8b949e;">Gefällt dir das Projekt?</span>
+        <a href="https://ko-fi.com/Reaper2507" target="_blank" class="header-kofi-badge" title="Support on Ko-fi">
+          <img src="assets/githubbutton_sm.svg" height="24" alt="Support on Ko-fi">
         </a>
       </div>
     </div>
@@ -221,7 +218,7 @@
     </div>
   </footer>
 
-  <script src="app.js?v=20261108_05"></script>
+  <script src="app.js?v=20261108_06"></script>
   <script>
     const btn = document.getElementById('btn-copy-quick-prompt');
     const txt = document.getElementById('quick-ai-prompt');
