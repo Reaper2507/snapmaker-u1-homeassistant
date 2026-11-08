@@ -1,8 +1,12 @@
 # Snapmaker U1 Dashboard for Home Assistant
 
-A community dashboard by [Reaper2507](https://github.com/Reaper2507) for the Snapmaker U1. See the four toolheads, camera, job status and temperatures in one place. Tap the printer graphic to open its controls. The card shows each loaded filament color at its tool position, and lets you use already loaded tools when the printer state allows it. Switch between Studio and Cutaway, or open the Minimal and Maintenance views.
+A community dashboard by [Reaper2507](https://github.com/Reaper2507) for the Snapmaker U1.
 
-> Built on [Ironoxx’s Snapmaker U1 Card](https://github.com/Ironoxx/ha-snapmaker-u1-card). This community project provides the three-view Lovelace layout, Studio and Cutaway visuals, and installation guide. The bundled frontend adapts [Ironoxx’s v2.0.0 code](https://github.com/Ironoxx/ha-snapmaker-u1-card/tree/v2.0.0).
+## Built on Ironoxx’s Snapmaker U1 Card
+
+[Ironoxx’s Snapmaker U1 Card](https://github.com/Ironoxx/ha-snapmaker-u1-card) provides the Home Assistant integration and the original printer card, including the layer view and object exclusion. The frontend bundled here is adapted from [Ironoxx’s v2.0.0 release](https://github.com/Ironoxx/ha-snapmaker-u1-card/tree/v2.0.0) and retains the [original copyright notice and MIT license](https://github.com/Ironoxx/ha-snapmaker-u1-card/blob/v2.0.0/LICENSE).
+
+I built the Full, Minimal and Maintenance Lovelace views around that foundation. I also added the Studio and Cutaway visuals and made the printer graphic a shortcut to the dashboard’s controls.
 
 [Dashboard views](#dashboard-views) · [Features](#features) · [Install the dashboard](#installation) · [Feedback & Ko-fi](#feedback-and-support)
 
