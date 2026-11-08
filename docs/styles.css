@@ -1449,3 +1449,52 @@ summary {
     position: static;
   }
 }
+
+/* Credit Support & Ko-fi Links */
+.credit-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.credit-repo-link {
+  color: #58a6ff;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.credit-repo-link:hover {
+  color: #79c0ff;
+  text-decoration: underline;
+}
+
+.credit-kofi-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 94, 91, 0.12);
+  border: 1px solid rgba(255, 94, 91, 0.35);
+  color: #ff7b72;
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  width: fit-content;
+}
+
+.credit-kofi-btn:hover {
+  background: #ff5e5b;
+  color: #ffffff;
+  border-color: #ff5e5b;
+  box-shadow: 0 0 10px rgba(255, 94, 91, 0.4);
+  transform: translateY(-1px);
+}
+
+.kofi-icon {
+  font-size: 0.95rem;
+}
