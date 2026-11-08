@@ -997,6 +997,45 @@ summary {
 }
 
 /* Browser Mockup & Interactive Scrollable Frame */
+
+/* Clean Screenshot Card (No fake browser address bar) */
+.screenshot-card {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.screenshot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  gap: 12px;
+}
+
+.screenshot-hint {
+  font-size: 0.82rem;
+  color: #8b949e;
+}
+
+.screenshot-viewport {
+  width: 100%;
+  max-height: 720px;
+  overflow-y: auto;
+  background: #010409;
+}
+
+.screenshot-viewport img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .browser-mockup {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);

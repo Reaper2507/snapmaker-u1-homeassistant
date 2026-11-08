@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Assistant Dashboard · Snapmaker U1 Hub</title>
   <meta name="description" content="Production-ready Home Assistant dashboard, live telemetry, and automations for the Snapmaker U1 4-toolhead 3D printer.">
-  <link rel="stylesheet" href="styles.css?v=20261108_06">
+  <link rel="stylesheet" href="styles.css?v=20261108_07">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -49,7 +49,7 @@
         Interaktives Lovelace-Dashboard speziell für den Snapmaker U1 4-Kopf-Toolchanger. Live-Achsenüberwachung (X/Y/Z), umschaltbare Studio- und Cutaway-Optik, Klipper-Steuerung und smarte Benachrichtigungen.
       </p>
       <div class="quick-jump-bar">
-        <a href="#showcase" class="jump-pill">🖥️ Interaktiver Showcase</a>
+        <a href="#showcase" class="jump-pill">🖼️ Dashboard-Galerie</a>
         <a href="#telemetry" class="jump-pill">⚡ Tools & Material Card</a>
         <a href="#fanfare" class="jump-pill">🔔 Fertigdruck-Fanfare</a>
         <a href="#install" class="jump-pill">📦 1-Klick Installation</a>
@@ -57,46 +57,35 @@
     </div>
   </section>
 
-  <!-- Interactive Showcase / Simulator -->
+  <!-- Dashboard Gallery & Screenshots -->
   <section id="showcase" class="gallery-section">
     <div class="container">
       <div class="section-header">
-        <h2 data-i18n="gallery-title">Interaktiver Showcase</h2>
-        <p data-i18n="gallery-subtitle">Erkunde das komplette Dashboard, alternative Fotos und Diagnosen mit flüssigem Scrollen.</p>
+        <span class="badge-tag" data-i18n="gallery-badge">📷 Echte Screenshots</span>
+        <h2 data-i18n="gallery-title">Dashboard Galerie & Screenshots</h2>
+        <p data-i18n="gallery-subtitle">Echte Screenshots des produktiven Dashboards: Desktop-Vollansicht, Wireframe Cutaway mit Live-Achsen, Wartungs-Heatmap und Smartphone-Ansicht.</p>
       </div>
 
       <div class="gallery-tabs">
-        <button class="tab-btn active" data-tab="tab-desktop" data-i18n="tab-desktop">Full Dashboard (Scrollable)</button>
-        <button class="tab-btn" data-tab="tab-photos" data-i18n="tab-photos">Studio & Close-up Photos</button>
-        <button class="tab-btn" data-tab="tab-cutaway" data-i18n="tab-cutaway">Cutaway & Axes</button>
-        <button class="tab-btn" data-tab="tab-maintenance" data-i18n="tab-maintenance">Maintenance & Bed Mesh</button>
-        <button class="tab-btn" data-tab="tab-mobile" data-i18n="tab-mobile">Mobile View (Scrollable)</button>
+        <button class="tab-btn active" data-tab="tab-desktop" data-i18n="tab-desktop">🖥️ Desktop Dashboard</button>
+        <button class="tab-btn" data-tab="tab-photos" data-i18n="tab-photos">🌟 Studio & Close-up</button>
+        <button class="tab-btn" data-tab="tab-cutaway" data-i18n="tab-cutaway">📐 Cutaway & Live-Achsen</button>
+        <button class="tab-btn" data-tab="tab-maintenance" data-i18n="tab-maintenance">🛠️ Wartung & Bett-Mesh</button>
+        <button class="tab-btn" data-tab="tab-mobile" data-i18n="tab-mobile">📱 Smartphone (390px)</button>
       </div>
 
-      <!-- Tab 1: Full Scrollable Desktop Dashboard Mockup -->
+      <!-- Tab 1: Full Desktop Dashboard Screenshot -->
       <div class="tab-content active" id="tab-desktop">
-        <div class="browser-mockup">
-          <div class="browser-topbar">
-            <div class="browser-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="browser-address">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              <span>http://homeassistant.local:8123/3d-printer/snapmaker-u1</span>
-            </div>
-            <div class="browser-actions">
-              <button class="mockup-btn" id="btn-scroll-down" title="Scroll down">⬇ <span data-i18n="btn-scroll-down">Scroll down</span></button>
-              <button class="mockup-btn" id="btn-scroll-top" title="Scroll to top">⬆ <span data-i18n="btn-scroll-top">Top</span></button>
-              <button class="mockup-btn mockup-btn-tour" id="btn-auto-tour" title="Auto tour">▶ <span data-i18n="btn-auto-tour">Auto-Tour</span></button>
-            </div>
+        <div class="screenshot-card">
+          <div class="screenshot-header">
+            <span class="badge-tag">🖥️ Desktop-Vollansicht</span>
+            <span class="screenshot-hint">1920×1080 Full HD Screenshot</span>
           </div>
-          <div class="browser-viewport" id="desktop-viewport">
+          <div class="screenshot-viewport">
             <img src="assets/dashboard-full-desktop.jpg" alt="Snapmaker U1 Full Home Assistant Dashboard" class="full-dashboard-img">
           </div>
-          <div class="browser-footer">
-            <span class="hint-text" data-i18n="browser-hint">💡 Scroll with your mouse wheel or use the buttons above to view lower sections (Bed controls, toolhead docks, and emergency stop).</span>
+          <div class="caption">
+            Vollständige Lovelace-Dashboard-Ansicht mit 4 Toolheads (T0–T3), Live-Kamerabild, Nozzle- & Bett-Temperaturen, Spulenverknüpfung und Not-Halt.
           </div>
         </div>
       </div>
@@ -105,8 +94,8 @@
       <div class="tab-content" id="tab-photos">
         <div class="photo-showcase-container">
           <div class="photo-controls">
-            <button class="photo-toggle-btn active" data-photo="studio" data-i18n="btn-photo-studio">🌟 Studio Glanz (Default)</button>
-            <button class="photo-toggle-btn" data-photo="closeup" data-i18n="btn-photo-closeup">🔍 Realistischer Close-Up mit Logo</button>
+            <button class="photo-toggle-btn active" data-photo="studio" data-i18n="btn-photo-studio">🌟 Studio Glanz</button>
+            <button class="photo-toggle-btn" data-photo="closeup" data-i18n="btn-photo-closeup">🔍 Close-Up mit Logo</button>
           </div>
           <div class="photo-display-frame">
             <img id="photo-display-img" src="assets/studio.png" alt="Snapmaker U1 Studio Glanz">
@@ -119,7 +108,7 @@
       <div class="tab-content" id="tab-cutaway">
         <div class="showcase-frame">
           <div class="cutaway-toggle-bar">
-            <button class="cutaway-toggle-btn active" data-cutview="full" data-i18n="btn-cut-full">🖥️ Dashboard Gesamtansicht (Cutaway)</button>
+            <button class="cutaway-toggle-btn active" data-cutview="full" data-i18n="btn-cut-full">🖥️ Cutaway Gesamtansicht</button>
             <button class="cutaway-toggle-btn" data-cutview="closeup" data-i18n="btn-cut-closeup">🔍 Tools & Material Detailansicht</button>
           </div>
           <img id="cutaway-display-img" src="assets/dashboard-cutaway.jpg" alt="Authentic Cutaway Telemetry View">
@@ -127,39 +116,30 @@
         </div>
       </div>
 
-      <!-- Tab 4: Maintenance & Bed Mesh (Scrollable) -->
+      <!-- Tab 4: Maintenance & Bed Mesh -->
       <div class="tab-content" id="tab-maintenance">
-        <div class="browser-mockup">
-          <div class="browser-topbar">
-            <div class="browser-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="browser-address">
-              <span>http://homeassistant.local:8123/3d-printer/u1-maintenance</span>
-            </div>
-            <div class="browser-actions">
-              <span class="badge-tag">G-Code Console · Bed Mesh · Temps</span>
-            </div>
+        <div class="screenshot-card">
+          <div class="screenshot-header">
+            <span class="badge-tag">🛠️ Wartung & Diagnose</span>
+            <span class="screenshot-hint">11×11 Bett-Mesh & Klipper-Konsole</span>
           </div>
-          <div class="browser-viewport" id="maintenance-viewport">
+          <div class="screenshot-viewport">
             <img src="assets/dashboard-maintenance-full.jpg" alt="Maintenance and Diagnostics View" class="full-dashboard-img">
           </div>
-          <div class="browser-footer">
-            <span class="hint-text" data-i18n="maintenance-hint">Live Bed Leveling mesh heatmap, temperature curves, and Klipper terminal.</span>
+          <div class="caption">
+            11×11 Bett-Nivellierungs-Heatmap, Temperaturkurven für Köpfe und Bauraum sowie integriertes Klipper-Terminal zur Diagnose.
           </div>
         </div>
       </div>
 
-      <!-- Tab 5: Mobile View (Scrollable) -->
+      <!-- Tab 5: Mobile View -->
       <div class="tab-content" id="tab-mobile">
         <div class="mobile-phone-mockup">
           <div class="mobile-phone-speaker"></div>
           <div class="mobile-viewport">
             <img src="assets/dashboard-mobile.jpg" alt="Mobile Dashboard View">
           </div>
-          <div class="caption" data-i18n="cap-mobile">Compact mobile-optimized layout (390px). Touch-friendly controls, quick actions, and full status indicators.</div>
+          <div class="caption" data-i18n="cap-mobile">Kompaktes Smartphone-Layout (390px Breite) mit touch-optimierten Schnellzugriffen und Statusleiste.</div>
         </div>
       </div>
     </div>
@@ -683,108 +663,5 @@ max_exceeded: silent</code></pre>
       </div>
     </div>
   </section>
-
-  <!-- Interactive Showcase / Simulator -->
-  <section id="showcase" class="gallery-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="gallery-title">Interaktiver Showcase</h2>
-        <p data-i18n="gallery-subtitle">Erkunde das komplette Dashboard, alternative Fotos und Diagnosen mit flüssigem Scrollen.</p>
-      </div>
-
-      <div class="gallery-tabs">
-        <button class="tab-btn active" data-tab="tab-desktop" data-i18n="tab-desktop">Full Dashboard (Scrollable)</button>
-        <button class="tab-btn" data-tab="tab-photos" data-i18n="tab-photos">Studio & Close-up Photos</button>
-        <button class="tab-btn" data-tab="tab-cutaway" data-i18n="tab-cutaway">Cutaway & Axes</button>
-        <button class="tab-btn" data-tab="tab-maintenance" data-i18n="tab-maintenance">Maintenance & Bed Mesh</button>
-        <button class="tab-btn" data-tab="tab-mobile" data-i18n="tab-mobile">Mobile View (Scrollable)</button>
-      </div>
-
-      <!-- Tab 1: Full Scrollable Desktop Dashboard Mockup -->
-      <div class="tab-content active" id="tab-desktop">
-        <div class="browser-mockup">
-          <div class="browser-topbar">
-            <div class="browser-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="browser-address">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-              <span>http://homeassistant.local:8123/3d-printer/snapmaker-u1</span>
-            </div>
-            <div class="browser-actions">
-              <button class="mockup-btn" id="btn-scroll-down" title="Scroll down">⬇ <span data-i18n="btn-scroll-down">Scroll down</span></button>
-              <button class="mockup-btn" id="btn-scroll-top" title="Scroll to top">⬆ <span data-i18n="btn-scroll-top">Top</span></button>
-              <button class="mockup-btn mockup-btn-tour" id="btn-auto-tour" title="Auto tour">▶ <span data-i18n="btn-auto-tour">Auto-Tour</span></button>
-            </div>
-          </div>
-          <div class="browser-viewport" id="desktop-viewport">
-            <img src="assets/dashboard-full-desktop.jpg" alt="Snapmaker U1 Full Home Assistant Dashboard" class="full-dashboard-img">
-          </div>
-          <div class="browser-footer">
-            <span class="hint-text" data-i18n="browser-hint">💡 Scroll with your mouse wheel or use the buttons above to view lower sections (Bed controls, toolhead docks, and emergency stop).</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 2: Studio & Alternative Close-Up Photo Toggle -->
-      <div class="tab-content" id="tab-photos">
-        <div class="photo-showcase-container">
-          <div class="photo-controls">
-            <button class="photo-toggle-btn active" data-photo="studio" data-i18n="btn-photo-studio">🌟 Studio Glanz (Default)</button>
-            <button class="photo-toggle-btn" data-photo="closeup" data-i18n="btn-photo-closeup">🔍 Realistischer Close-Up mit Logo</button>
-          </div>
-          <div class="photo-display-frame">
-            <img id="photo-display-img" src="assets/studio.png" alt="Snapmaker U1 Studio Glanz">
-            <div class="caption" id="photo-display-caption" data-i18n="cap-photo-studio">Studio-Glanz: Elegantes Rendering des Snapmaker U1 mit 4 Toolheads, LED-Beleuchtung und dezentem Kicker.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 3: Cutaway & Live Axes -->
-      <div class="tab-content" id="tab-cutaway">
-        <div class="showcase-frame">
-          <div class="cutaway-toggle-bar">
-            <button class="cutaway-toggle-btn active" data-cutview="full" data-i18n="btn-cut-full">🖥️ Dashboard Gesamtansicht (Cutaway)</button>
-            <button class="cutaway-toggle-btn" data-cutview="closeup" data-i18n="btn-cut-closeup">🔍 Tools & Material Detailansicht</button>
-          </div>
-          <img id="cutaway-display-img" src="assets/dashboard-cutaway.jpg" alt="Authentic Cutaway Telemetry View">
-          <div class="caption" id="cutaway-display-caption" data-i18n="cap-cutaway">Authentische Cutaway-Ansicht: Wireframe-Drucker mit Live-Achsenkoordinaten (X, Y, Z), Kopf-Status (T3 Mounted) und Spulenfarben.</div>
-        </div>
-      </div>
-
-      <!-- Tab 4: Maintenance & Bed Mesh (Scrollable) -->
-      <div class="tab-content" id="tab-maintenance">
-        <div class="browser-mockup">
-          <div class="browser-topbar">
-            <div class="browser-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="browser-address">
-              <span>http://homeassistant.local:8123/3d-printer/u1-maintenance</span>
-            </div>
-            <div class="browser-actions">
-              <span class="badge-tag">G-Code Console · Bed Mesh · Temps</span>
-            </div>
-          </div>
-          <div class="browser-viewport" id="maintenance-viewport">
-            <img src="assets/dashboard-maintenance-full.jpg" alt="Maintenance and Diagnostics View" class="full-dashboard-img">
-          </div>
-          <div class="browser-footer">
-            <span class="hint-text" data-i18n="maintenance-hint">Live Bed Leveling mesh heatmap, temperature curves, and Klipper terminal.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 5: Mobile View (Scrollable) -->
-      <div class="tab-content" id="tab-mobile">
-        <div class="mobile-phone-mockup">
-          <div class="mobile-phone-speaker"></div>
-          <div class="mobile-viewport">
-            <img src="assets/dashboard-mobile.jpg" alt="Mobile Dashboard View">
-          </div>
-          <div class="caption" data-i18n="cap-mobile">Compact mobile-optimized layout (390px). Touch-friendly controls, quick actions, and full status indicators.</div>
-        </div>
+</body>
+</html>
