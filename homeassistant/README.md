@@ -1,83 +1,33 @@
-# Home Assistant · Snapmaker U1 Dashboard & Telemetry
+# Install the Snapmaker U1 dashboard
 
-Production-ready, interactive Home Assistant dashboard tailored specifically for the **Snapmaker U1 4-Toolhead 3D Printer**.
+The dashboard is a Lovelace configuration for your own Home Assistant. It uses data and services from [Ironoxx's Snapmaker U1 Card integration](https://github.com/Ironoxx/ha-snapmaker-u1-card). It is separate from the card installed by that integration.
 
----
+## 1. Set up the integration
 
-## 📸 Overview & Features
+- Use a supported Home Assistant version and a Snapmaker U1 reachable from HA on your network. The upstream integration documents HA 2025.3+; this showcase has no verified minimum across all of its cards.
+- If needed, follow the [official HACS setup](https://hacs.xyz/docs/use/download/download/) for your HA installation type.
+- [Open the Snapmaker U1 Card integration in HACS](https://my.home-assistant.io/redirect/hacs_repository/?owner=Ironoxx&repository=ha-snapmaker-u1-card&category=integration). Install it as an **Integration**, restart HA, then add **Snapmaker U1 Card** under **Settings → Devices & services → Add integration** and enter the printer's address. Run the integration's self test before importing this dashboard.
 
-### 🌟 Tools & Material: The Interactive Hero Card
-The core of the dashboard is the interactive **Tools & Material** card. Both **Studio Mode** and **Wireframe Cutaway Mode** provide 100% identical live capabilities:
-- **📐 Live Scaled 3D Axes ($X, Y, Z$):** Real-time spatial tracking of carriage and bed position (e.g. `X 227.6`, `Y 300.5`, `Z 9.9`), dynamically scaled in 3D space.
-- **🌡️ Live Heat Overlays:** Instant nozzle temperatures for all 4 heads (T0–T3) and the heated bed overlaid directly on the 3D model (target & actual temps).
-- **🎨 Dynamic Filament Spool Colors:** The 4 spool rings (T0–T3) around the chassis adapt in real time to the loaded filament colors and material types.
-- **👆 Tap-to-Control (Full Printer Control):** Clicking or tapping directly on the 3D printer graphic immediately launches full controls: axis jogging (raise/lower bed, center head, home axes), preheating, and emergency stop.
-- **🧵 Filament Load & Unload:** Fast trigger for toolhead heating and manual hand-reeling or motorized feeding.
-- **🔄 Dual Visual Modes:** Seamlessly switch between photorealistic **Studio Render** and technical **Wireframe Cutaway** view.
+## 2. Install the required frontend cards
 
-### 🛡️ Safety & Controls
-- **Safety Interlocks:** Motion controls and manual toolhead docking are locked while actively printing to prevent collisions.
-- **Emergency Stop:** Prominent emergency stop button with confirmation safeguards.
-- **Three Views Included:**
-  1. `Dashboard` (`snapmaker-u1`): Full daily operator view with camera, telemetry, job cards, flow/speed sliders, and toolhead controls.
-  2. `Minimal` (`u1-minimal`): Lightweight status card with camera and layer view.
-  3. `Maintenance & Diagnostics` (`u1-maintenance`): Bed leveling mesh, temperature graphs, G-code console, and hardware health.
+- [button-card](https://github.com/custom-cards/button-card)
+- [card-mod](https://github.com/thomasloven/lovelace-card-mod)
+- [slider-entity-row](https://github.com/thomasloven/lovelace-slider-entity-row)
+- [vertical-stack-in-card](https://github.com/ofekashern/vertical-stack-in-card)
+- [apexcharts-card](https://github.com/RomRider/apexcharts-card)
+- [config-template-card](https://github.com/iantrich/config-template-card)
 
----
+Install through HACS and verify their Lovelace resources. Spoolman is optional and can be configured in the upstream integration.
 
-## 🔔 Automations: Fertigdruck-Fanfare & Licht
+## 3. Copy the assets and import into a new dashboard
 
-Included in [`automations/fertigdruck_fanfare.yaml`](automations/fertigdruck_fanfare.yaml):
-- **Alexa Microwave Chime (`bell_02`):** Starts early when print progress reaches **99.9%**, so you are alerted right before cooldown begins.
-- **Chamber Light Flash:** As soon as print status switches from `printing` to `complete`, the internal chamber light flashes twice (On → 400ms → Off → 400ms → On) as an unmistakable visual cue.
-- **Prerequisites:**
-  - [Alexa Media Player](https://github.com/alandtse/alexa_media_player) installed via HACS.
-  - Snapmaker U1 entities: `sensor.snapmaker_u1_card_fortschritt`, `sensor.snapmaker_u1_card_druckstatus`, and `light.snapmaker_u1_card_innenraumlicht`.
-  - Echo player entity (e.g. `media_player.your_alexa_echo_device`).
+1. Copy **all three files** from [www/](www/) to **/config/www/media/snapmaker-u1/showcase/**. If you just created the initial **www** directory, restart HA before using **/local/**.
+2. Under **Settings → Dashboards → Resources** (three-dot menu, advanced mode if hidden), add **/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js** as a **JavaScript module**. The **/config/www/** directory is served as **/local/**. Open the resource URL on your HA instance to verify the file is served.
+3. Create a separate dashboard. Open its **Raw configuration editor** and paste [u1_dashboard_complete.yaml](u1_dashboard_complete.yaml), or add the three [views](views/) individually. Do not replace an existing dashboard unless you intend to.
+4. Compare the entity IDs in the YAML with the ones in your integration. The example uses German **snapmaker_u1_card** IDs. HA language, a custom name or additional printers can produce different IDs. Map them before using the dashboard controls. Start by checking camera, progress, temperatures and status while idle.
+5. If a custom element is missing, verify the associated card resource, then hard-refresh. If the Studio image fails, check the **media/snapmaker-u1/showcase/** path. On updates, back up your dashboard and reapply your local mappings after reviewing the diff.
 
----
+## Optional controls and notifications
 
-## 🛠️ Prerequisites & Cards
-
-Install the following frontend cards via **HACS (Home Assistant Community Store)**:
-1. `button-card`
-2. `card-mod`
-3. `slider-entity-row`
-4. `vertical-stack-in-card`
-5. `mini-graph-card`
-6. `tabbed-card`
-7. `fold-entity-row`
-
----
-
-## 📦 Directory Structure
-
-```text
-homeassistant/
-├── automations/
-│   ├── fertigdruck_fanfare.yaml   # Alexa microwave chime & light flash
-│   └── README.md                  # Automation setup guide
-├── packages/
-│   └── u1_control_package.yaml    # Moonraker REST commands & template switches
-├── views/
-│   ├── snapmaker-u1.yaml          # View 1: Complete operator dashboard
-│   ├── u1-minimal.yaml            # View 2: Minimalist status view
-│   └── u1-maintenance.yaml        # View 3: Bed mesh & diagnostics
-├── www/
-│   ├── close-up.png               # Close-up printer graphic
-│   ├── studio.png                 # Photorealistic Studio render
-│   └── u1-fusion-showcase.u1.js   # Interactive JS card
-├── u1_dashboard_complete.yaml     # Monolithic complete dashboard YAML
-└── u1_dashboard_complete.json     # Lovelace JSON representation
-```
-
----
-
-## 🚀 Quick Setup
-
-1. Copy files from `homeassistant/www/` to your Home Assistant `/config/www/snapmaker-u1/showcase/` folder.
-2. Register the Lovelace resource:
-   - **URL:** `/local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js`
-   - **Resource Type:** JavaScript Module
-3. Import the dashboard via **Raw Configuration Editor** in Home Assistant using `u1_dashboard_complete.yaml` (or add views individually from `views/`).
-4. (Optional) Import [`automations/fertigdruck_fanfare.yaml`](automations/fertigdruck_fanfare.yaml) for Alexa finish chime and light notification.
+- [Moonraker package](packages/u1_control_package.yaml) for direct controls. Enable [Home Assistant packages](https://www.home-assistant.io/docs/configuration/packages/) if needed, substitute **YOUR_PRINTER_IP**, map entities and validate the HA configuration before restarting. Keep the printer API on your LAN. Test movement only with the machine clear and idle. Software state checks cannot replace the printer's safety procedures.
+- [Fanfare and light automation](automations/README.md) with Alexa Media Player. The core dashboard does not need Alexa.

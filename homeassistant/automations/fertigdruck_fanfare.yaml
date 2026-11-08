@@ -9,7 +9,8 @@ triggers:
     above: 99.89
     id: early_chime
   - trigger: state
-    entity_id: sensor.snapmaker_u1_card_aktuelle_schicht
+    entity_id: sensor.snapmaker_u1_card_schicht
+    to: null
     id: last_layer
   - trigger: state
     entity_id: sensor.snapmaker_u1_card_druckstatus

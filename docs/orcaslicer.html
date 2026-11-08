@@ -3,240 +3,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OrcaSlicer Profile & Presets · Snapmaker U1 Hub</title>
+  <title data-i18n="page-orcaslicer">Optional OrcaSlicer presets · Snapmaker U1</title>
   <meta name="description" content="Tuned OrcaSlicer process profiles and 19 verified filament presets for the Snapmaker U1 4-toolhead 3D printer.">
-  <link rel="stylesheet" href="styles.css?v=20261108_09">
+  <link rel="stylesheet" href="styles.css?v=20261108_11">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <a href="#main-content" class="skip-link" data-i18n="skip-main">Skip to content</a>
   <!-- Header / Navigation -->
   <header class="site-header">
     <div class="container header-container">
       <a href="index.html" class="brand">
-        <span class="brand-badge">U1</span>
-        <span class="brand-text">Snapmaker U1 Hub</span>
+
+        <span class="brand-text">Snapmaker U1 Dashboard</span>
       </a>
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html" class="nav-link" data-i18n="nav-home">Overview</a>
-        <a href="install.html" class="nav-link" data-i18n="nav-install" style="color:#ff6347; font-weight:700;">⚡ Quick Install</a>
-        <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Home Assistant</a>
-        <a href="orcaslicer.html" class="nav-link active" data-i18n="nav-orcaslicer">OrcaSlicer</a>
-        <a href="guide.html" class="nav-link" data-i18n="nav-guide">Guide & FAQ</a>
+        <a href="install.html" class="nav-link" data-i18n="nav-install">Install</a>
+        <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Dashboard</a>
+        <a href="index.html#extras" class="nav-link active" data-i18n="nav-orcaslicer" aria-current="page">Extras</a>
+        <a href="guide.html" class="nav-link" data-i18n="nav-guide">Guide</a>
         <a href="credits.html" class="nav-link" data-i18n="nav-credits">Credits</a>
-        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" class="github-link" title="GitHub Repo">
+        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub repository" title="GitHub Repo">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
-        <button id="lang-toggle" class="lang-switch-btn" title="Sprache wechseln / Switch Language">
-          <span class="lang-icon">🌐</span> <span id="current-lang-text">DE</span>
+        </nav>
+      <button type="button" id="lang-toggle" aria-label="Auf Deutsch wechseln" class="lang-switch-btn" title="Sprache wechseln / Switch Language">
+          <span id="current-lang-text">DE</span>
         </button>
-        <div class="header-coffee-slot">
-          <a href="https://ko-fi.com/Reaper2507" id="header-coffee-link" target="_blank" class="header-kofi-badge" title="Support Reaper2507 on Ko-fi">
-            <img src="assets/githubbutton_sm.svg" height="28" alt="Support on Ko-fi">
-          </a>
-        </div>
-      </nav>
     </div>
   </header>
+  <main id="main-content" tabindex="-1">
 
   <!-- Page Hero Banner -->
   <section class="page-banner">
     <div class="container">
-      <div class="pill-badge" data-i18n="slicer-banner-badge">🔪 Kalibriert für U1 4-Toolchanger</div>
-      <h1 data-i18n="slicer-banner-title">OrcaSlicer Profile & Filament-Presets</h1>
-      <p class="banner-lead" data-i18n="slicer-banner-lead">
-        Auf den U1 Toolchanger abgestimmte Druck- und Filamentprofile für OrcaSlicer (ab v2.5.0 RC). Nahtlose Scarf Joint Seams, minimaler Turmabfall (12–15 mm³) und 12.000 mm/s² Travel-Speed.
-      </p>
+      <div class="pill-badge" data-i18n="slicer-banner-badge">Optional downloads</div>
+      <h1 data-i18n="slicer-banner-title">OrcaSlicer Profiles & Filament Presets</h1>
+      <p class="banner-lead" data-i18n="slicer-banner-lead">Community starting profiles for the Snapmaker U1 in OrcaSlicer 2.5. Choose the matching nozzle and verify the sliced preview before printing.</p>
       <div class="quick-jump-bar">
-        <a href="#install-slicer" class="jump-pill" data-i18n="jump-slicer-install">📦 Schnell-Installation</a>
+        <a href="#install-slicer" class="jump-pill" data-i18n="jump-slicer-install">📦 Quick Install</a>
         <a href="#set-and-send" class="jump-pill" data-i18n="jump-set-and-send">🧩 Set & Send Plugin</a>
-        <a href="#process-profiles" class="jump-pill" data-i18n="jump-profiles">⚡ 6 Prozessprofile (0.4 & 0.6 mm)</a>
-        <a href="#filaments" class="jump-pill" data-i18n="jump-filaments">🧵 19 Filament-Presets</a>
+        <a href="#process-profiles" class="jump-pill" data-i18n="jump-profiles">Process profiles</a>
+        <a href="#filaments" class="jump-pill" data-i18n="jump-filaments">🧵 19 Filament Presets</a>
       </div>
     </div>
   </section>
 
   <!-- Clear, Isolated OrcaSlicer Installation Guide -->
-  <section id="install-slicer" class="install-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="slicer-install-title">OrcaSlicer Installation (In 2 Schritten)</h2>
-        <p data-i18n="slicer-install-subtitle">Eigenständig und einfach: Kopiere die Dateien direkt in deinen lokalen OrcaSlicer-Benutzerordner. Kein Home Assistant erforderlich!</p>
-      </div>
+  <section class="features-section" id="install-slicer"><div class="container"><h2 data-i18n="preset-install">Install presets</h2><p data-i18n="preset-setup">Use OrcaSlicer 2.5 with the matching Snapmaker U1 nozzle preset. Close OrcaSlicer and back up your user presets before copying files. Restart and slice a small test model before sending it to the printer.</p>
+<p><a data-i18n="preset-doc" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/tree/main/orcaslicer">Installation paths and troubleshooting</a> · <a data-i18n="preset-zip" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/archive/refs/heads/main.zip">Download repository ZIP</a></p></div></section>
 
-      <div class="slicer-install-box">
-        <div class="install-path-group">
-          <h4>🪟 Windows Installationspfad:</h4>
-          <div class="path-code-box">
-            <code>%APPDATA%\OrcaSlicer\user\default\</code>
-          </div>
-          <p class="path-hint">Öffne den Windows-Explorer (Win + R), füge den Pfad ein und drücke Enter. Kopiere dort die Ordner <code>process/</code>, <code>filament/</code> und <code>machine/</code> hinein.</p>
-        </div>
-
-        <div class="install-path-group" style="margin-top:20px;">
-          <h4>🍎 macOS Installationspfad:</h4>
-          <div class="path-code-box">
-            <code>~/Library/Application Support/OrcaSlicer/user/default/</code>
-          </div>
-        </div>
-
-        <div class="collapsible-wrapper" style="margin-top:24px;">
-          <details>
-            <summary><b>Alternative: Import direkt über das OrcaSlicer-Menü (Hier klicken)</b></summary>
-            <div class="details-content">
-              <ol style="margin: 10px 0 0 20px; line-height: 1.6; color: #8b949e;">
-                <li>Lade die gewünschten JSON-Dateien aus den Tabellen unten herunter.</li>
-                <li>Öffne OrcaSlicer und klicke oben links auf <strong>Datei → Importieren → Konfigurationen importieren...</strong></li>
-                <li>Wähle die heruntergeladene JSON-Datei aus. OrcaSlicer speichert das Profil sofort in deinen Benutzer-Presets.</li>
-              </ol>
-            </div>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- "Set & Send" OrcaSlicer Plugin Section (LayerLab) -->
-  <section id="set-and-send" class="slicer-section" style="background:#0d1117; border-top:1px solid #30363d; border-bottom:1px solid #30363d;">
-    <div class="container">
-      <div class="section-header">
-        <span class="badge-tag" data-i18n="plugin-badge">🧩 Must-Have Plugin für Vanilla OrcaSlicer</span>
-        <h2 data-i18n="plugin-title">"Set & Send" Plugin (von LayerLab)</h2>
-        <p data-i18n="plugin-subtitle">Schaltet den nativen Pre-Print Dialog, Spulen-Toolhead-Zuweisung, 11×11 Vollbett-Nivellierung und Bauraum-Abluftsteuerung direkt in OrcaSlicer frei.</p>
-      </div>
+  <section class="features-section" id="set-and-send"><div class="container"><details><summary data-i18n="set-send-title">Optional: Set &amp; Send by LayerLab</summary><p data-i18n="set-send-desc">A separately distributed pre-print dialog for toolhead assignment and compatible printer options. Check plugin and firmware requirements with the author.</p><a data-i18n="set-send-source" href="https://layerlab.store/pages/set-and-send">LayerLab documentation and download →</a></details></div></section>
 
-      <div class="plugin-showcase-grid">
-        <div class="plugin-preview-card">
-          <div class="plugin-img-wrapper">
-            <img src="assets/set-and-send-dialog.png" alt="OrcaSlicer Set & Send Pre-Print Dialog by LayerLab" class="plugin-img">
-          </div>
-          <div class="plugin-img-caption" data-i18n="plugin-img-caption">
-            Der Set & Send Dialog vor dem Druckstart: Toolheads zuweisen, 11×11 Mesh aktivieren, Bauraumlüfter steuern und Druckoptionen prüfen.
-          </div>
-        </div>
-
-        <div class="plugin-info-content">
-          <div class="plugin-feature-box">
-            <h4 data-i18n="plugin-why-title">🎯 Warum dieses Plugin ein Game-Changer ist</h4>
-            <p data-i18n="plugin-why-desc">
-              Im offiziellen Snapmaker-Orca-Fork ist dieser Dialog fest verdrahtet. Wer aber das offizielle, stets aktuelle <strong>Vanilla OrcaSlicer (ab v2.5.0 RC)</strong> nutzt, vermisste bisher die Werkzeugkopf-Zuweisung und das gezielte Anstoßen der Kalibrierungen. Das geniale Python-Plugin von <strong>LayerLab</strong> schließt diese Lücke perfekt!
-            </p>
-          </div>
-
-          <div class="plugin-feature-list">
-            <div class="plugin-feat-item">
-              <span class="feat-dot">🧵</span>
-              <div>
-                <strong data-i18n="feat-mapping-title">Toolhead-to-Filament Mapping:</strong>
-                <span data-i18n="feat-mapping-desc">Weise geslicte Filamente visuell den geladenen Köpfen zu (z. B. Filament 3 &rarr; Toolhead 3) inklusive Farb- und Materialabgleich.</span>
-              </div>
-            </div>
-            <div class="plugin-feat-item">
-              <span class="feat-dot">📐</span>
-              <div>
-                <strong data-i18n="feat-mesh-title">Whole-bed mesh (11×11):</strong>
-                <span data-i18n="feat-mesh-desc">Tastet vor anspruchsvollen Drucken das komplette Bett in einem hochauflösenden 11×11 Raster ab – für maximale Haftung auf der gesamten Fläche.</span>
-              </div>
-            </div>
-            <div class="plugin-feat-item">
-              <span class="feat-dot">💨</span>
-              <div>
-                <strong data-i18n="feat-cover-title">Top Cover Purifier Steuerung:</strong>
-                <span data-i18n="feat-cover-desc">Regelt den oberen Aktivkohlefilter (Auto, Starke Kühlung, Schwache Kühlung, Warmhalten, Aus) passend zur Glastemperatur des Materials.</span>
-              </div>
-            </div>
-            <div class="plugin-feat-item">
-              <span class="feat-dot">🛡️</span>
-              <div>
-                <strong data-i18n="feat-safety-title">Lüfter- & Bauraum-Schutz:</strong>
-                <span data-i18n="feat-safety-desc">Schaltet den Bauteillüfter während Homing/Probing automatisch ab, um Bett-Temperaturdrifts zu verhindern, und fügt Bauraum-Wartezeiten ein.</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="plugin-install-card">
-            <h4 data-i18n="plugin-install-title">📦 Schnelle Plugin-Installation:</h4>
-            <div class="path-code-box">
-              <code>%APPDATA%\OrcaSlicer\orca_plugins\set_and_send.py\set_and_send.py</code>
-            </div>
-            <p class="install-hint" data-i18n="plugin-install-hint">
-              Lege die Datei <code>set_and_send.py</code> in deinem lokalen OrcaSlicer-Plugin-Ordner ab und aktiviere Plugins in OrcaSlicer.
-            </p>
-            <div class="plugin-actions-row">
-              <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="btn btn-primary btn-sm">
-                📖 <span data-i18n="btn-layerlab-guide">Offizielle LayerLab Anleitung &rarr;</span>
-              </a>
-              <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="btn btn-outline btn-sm">
-                ☕ <span data-i18n="btn-layerlab-tip">LayerLab Tip Jar & Store</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Process Profiles Table -->
   <section id="process-profiles" class="slicer-section">
     <div class="container">
       <div class="section-header">
-        <h2 data-i18n="slicer-title">Getunte Prozessprofile (0.4 mm & 0.6 mm)</h2>
-        <p data-i18n="slicer-subtitle">Präzise getestet für Maßhaltigkeit, minimale Rüstzeiten und sauberen Werkzeugwechsel.</p>
+        <h2 data-i18n="slicer-title">Tuned Process Profiles (0.4 & 0.6 mm)</h2>
+        <p data-i18n="slicer-subtitle">Validate each profile for your material and firmware.</p>
       </div>
 
       <div class="table-responsive">
         <table class="profile-table">
           <thead>
             <tr>
-              <th data-i18n="th-profile">Profilname</th>
-              <th data-i18n="th-nozzle">Düse</th>
-              <th data-i18n="th-layer">Schichthöhe</th>
-              <th data-i18n="th-features">Besonderheiten & Highlights</th>
+              <th data-i18n="th-profile">Profile Name</th>
+              <th data-i18n="th-nozzle">Nozzle</th>
+              <th data-i18n="th-layer">Layer Height</th>
+              <th data-i18n="th-features">Key Features & Highlights</th>
               <th data-i18n="th-action">Download</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr><td><strong>0.20 U1 Mehrfarbe Kompakt</strong></td><td>0.4 mm</td><td>0.20 mm</td><td data-i18n="p7-desc">Compact multicolor profile.</td><td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.20%20U1%20Mehrfarbe%20Kompakt.json" class="btn-sm">JSON</a></td></tr><tr>
               <td><strong>0.20 Antigravity Optimized</strong></td>
               <td>0.4 mm</td>
               <td>0.20 mm</td>
-              <td data-i18n="p1-desc">Alltags-Referenz. 3 Wände, Gyroid-Infill, Type-2 Prime Tower (12–15 mm³), bedingte Scarf-Naht, 12.000 mm/s² Travel.</td>
+              <td data-i18n="p1-desc">Daily reference. 3 walls, gyroid infill, slim prime tower (12–15 mm³), conditional scarf seam, 12,000 mm/s² travel.</td>
               <td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.20%20Antigravity%20Optimized.json" download class="btn-sm">JSON</a></td>
             </tr>
             <tr>
               <td><strong>0.24 U1 Quick & Solid</strong></td>
               <td>0.4 mm</td>
               <td>0.24 mm</td>
-              <td data-i18n="p-quick-solid-desc">High-Efficiency Alltagsprofil. 3 Wände, 4 Decken, 12% Gyroid, spart ~11,6% Druckzeit & 10g Material gegenüber 0.20 mm.</td>
+              <td data-i18n="p-quick-solid-desc">High-efficiency daily profile. 3 walls, 4 top layers, 12% Gyroid. Saves ~11.6% print time and 10g material compared to 0.20 mm.</td>
               <td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.24%20U1%20Quick%20%26%20Solid%20(0.4%20Nozzle).json" download class="btn-sm">JSON</a></td>
             </tr>
             <tr>
               <td><strong>0.28 Antigravity Prototype</strong></td>
               <td>0.4 mm</td>
               <td>0.28 mm</td>
-              <td data-i18n="p2-desc">Schnelle Funktionstests. 2 Wände, 10% Support Cubic Infill (-50% Material), direkte Verfahrwege.</td>
+              <td data-i18n="p2-desc">Prototype starting point with two walls and 10% Support Cubic infill.</td>
               <td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.28%20Antigravity%20Prototype%20(0.4%20Nozzle).json" download class="btn-sm">JSON</a></td>
             </tr>
             <tr>
               <td><strong>0.30 Antigravity Optimized</strong></td>
               <td>0.6 mm</td>
               <td>0.30 mm</td>
-              <td data-i18n="p3-desc">Hohe Stabilität & Durchsatz. Arachne-Wandgenerator, 1,2 mm Volldecke, 20 mm³ Turmvolumen.</td>
+              <td data-i18n="p3-desc">High strength & throughput for 0.6 mm nozzles. Arachne wall generator, 1.2 mm solid ceiling, 20 mm³ tower volume.</td>
               <td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.30%20Antigravity%20Optimized%20(0.6%20Nozzle).json" download class="btn-sm">JSON</a></td>
             </tr>
             <tr>
               <td><strong>0.24 Antigravity Optimized</strong></td>
               <td>0.6 mm</td>
               <td>0.24 mm</td>
-              <td data-i18n="p4-desc">Qualitätsprofil für 0.6 mm Düsen. Saubere Überhänge und glatte Konturen bei verkürzter Druckzeit.</td>
+              <td data-i18n="p4-desc">Quality profile for 0.6 mm nozzles. Clean overhangs and smooth contours.</td>
               <td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.24%20Antigravity%20Optimized%20(0.6%20Nozzle).json" download class="btn-sm">JSON</a></td>
             </tr>
             <tr>
               <td><strong>0.40 Antigravity Prototype</strong></td>
               <td>0.6 mm</td>
               <td>0.40 mm</td>
-              <td data-i18n="p5-desc">Maximaler Volumendurchsatz für riesige Prototypen in Rekordzeit.</td>
+              <td data-i18n="p5-desc">Turbo prototype profile for maximum volumetric flow in record time.</td>
               <td><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/process/0.40%20Antigravity%20Prototype%20(0.6%20Nozzle).json" download class="btn-sm">JSON</a></td>
             </tr>
           </tbody>
@@ -246,7 +130,7 @@
       <!-- Collapsible Deep Dive on Settings -->
       <div class="collapsible-wrapper" style="margin-top:24px;">
         <details>
-          <summary><b>🔍 Warum diese Einstellungen? (Scarf Seams, Prime Tower & Beschleunigung aufklappen)</b></summary>
+          <summary data-i18n="profile-names">Settings and baseline profiles</summary>
           <div class="details-content">
             <ul style="line-height:1.6; color:#8b949e; margin:10px 0 0 20px;">
               <li><strong>Bedingte Scarf-Naht (Scarf Joint Seam):</strong> Schrägt Start- und Endpunkt der Außenwand fließend an, wodurch die Z-Naht nahezu unsichtbar wird.</li>
@@ -260,182 +144,21 @@
   </section>
 
   <!-- 19 Filament Presets -->
-  <section id="filaments" class="slicer-section" style="background:#090d13; border-top:1px solid #30363d;">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="filaments-title">19 Verifizierte Filament-Presets</h2>
-        <p data-i18n="filaments-subtitle">Exakte Flow-Raten, Drucktemperaturen und Druckbetthaftung für gängige Marken.</p>
-      </div>
+  <section class="features-section" id="filaments"><div class="container"><h2 data-i18n="all-filaments">19 filament starting presets</h2><p data-i18n="filament-note">Validate temperatures and flow for your spool. For PETG-CF, follow the filament maker’s hardened-nozzle requirements.</p><ul class="preset-list"><li><strong>Bambu Lab PETG Basic</strong> · <a data-i18n="filament-1-0" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/Bambu%20Lab%20PETG%20Basic%20-%20Weiss.json">White</a></li>
+<li><strong>Bambu Lab PLA Basic</strong> · <a data-i18n="filament-2-0" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/Bambu%20Lab%20PLA%20Basic%20-%20Jade-Weiss.json">Jade white</a> · <a data-i18n="filament-2-1" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/Bambu%20Lab%20PLA%20Basic%20-%20Schwarz.json">Black</a></li>
+<li><strong>ELEGOO PETG-CF</strong> · <a data-i18n="filament-3-0" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/ELEGOO%20PETG-CF%20-%20Dunkelgrau.json">Dark grey</a> · <a data-i18n="filament-3-1" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/ELEGOO%20PETG-CF%20-%20Schwarz.json">Black</a></li>
+<li><strong>ELEGOO PLA Matte</strong> · <a data-i18n="filament-4-0" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/ELEGOO%20PLA%20Matte%20-%20Beige.json">Beige</a></li>
+<li><strong>eSUN PETG Matte</strong> · <a data-i18n="filament-5-0" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/eSUN%20PETG%20Matte%20-%20Apricot.json">Apricot</a> · <a data-i18n="filament-5-1" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/eSUN%20PETG%20Matte%20-%20Betongrau.json">Concrete grey</a> · <a data-i18n="filament-5-2" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/eSUN%20PETG%20Matte%20-%20Blue%20Brick.json">Blue Brick</a> · <a data-i18n="filament-5-3" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/eSUN%20PETG%20Matte%20-%20Dunkelgrau.json">Dark grey</a></li>
+<li><strong>GEEETECH PLA Matte</strong> · <a data-i18n="filament-6-0" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/GEEETECH%20PLA%20Matte%20-%20Grau.json">Grey</a></li>
+<li><strong>GEEETECH TPU 95A</strong> · <a data-i18n="filament-7-0" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/GEEETECH%20TPU%2095A%20-%20Transparent-Silber.json">Transparent silver</a></li>
+<li><strong data-i18n="vendor-unknown">High Speed Matte PETG (vendor unspecified)</strong> · <a data-i18n="filament-8-0" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/High%20Speed%20Matt%20PETG%20(Hersteller%20offen)%20-%20Schwarz.json">Black</a></li>
+<li><strong>SUNLU PLA+ 2.0</strong> · <a data-i18n="filament-9-0" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Knochenweiss.json">Bone white</a> · <a data-i18n="filament-9-1" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Little%20Blue.json">Little Blue</a> · <a data-i18n="filament-9-2" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Olivgruen.json">Olive green</a> · <a data-i18n="filament-9-3" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Schwarz.json">Black</a> · <a data-i18n="filament-9-4" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Sunny%20Orange.json">Sunny Orange</a> · <a data-i18n="filament-9-5" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Weiss.json">White</a></li></ul></div></section>
+  </main>
 
-      <div class="filament-brand-grid">
-        <!-- Bambu Lab -->
-        <div class="filament-card">
-          <h4>Bambu Lab</h4>
-          <ul>
-            <li><span>Bambu Lab PLA Basic</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/Bambu%20Lab%20PLA%20Basic%20-%20Schwarz.json" download class="btn-xs">Schwarz</a> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/Bambu%20Lab%20PLA%20Basic%20-%20Weiss.json" download class="btn-xs">Weiß</a></li>
-            <li><span>Bambu Lab PETG Basic</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/Bambu%20Lab%20PETG%20Basic%20-%20Schwarz.json" download class="btn-xs">Schwarz</a></li>
-          </ul>
-        </div>
 
-        <!-- SUNLU -->
-        <div class="filament-card">
-          <h4>SUNLU PLA+ 2.0</h4>
-          <ul>
-            <li><span>Knochenweiß</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Knochenweiss.json" download class="btn-xs">JSON</a></li>
-            <li><span>Little Daisy</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Little%20Daisy.json" download class="btn-xs">JSON</a></li>
-            <li><span>Olive</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Olive.json" download class="btn-xs">JSON</a></li>
-            <li><span>Schwarz</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Schwarz.json" download class="btn-xs">JSON</a></li>
-            <li><span>Sunny Orange</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Sunny%20Orange.json" download class="btn-xs">JSON</a></li>
-            <li><span>Weiß</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20-%20Weiss.json" download class="btn-xs">JSON</a></li>
-          </ul>
-        </div>
 
-        <!-- eSUN -->
-        <div class="filament-card">
-          <h4>eSUN PETG Matte</h4>
-          <ul>
-            <li><span>Apricot</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/eSUN%20PETG%20Matte%20-%20Apricot.json" download class="btn-xs">JSON</a></li>
-            <li><span>Betongrau</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/eSUN%20PETG%20Matte%20-%20Betongrau.json" download class="btn-xs">JSON</a></li>
-            <li><span>Blueberry</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/eSUN%20PETG%20Matte%20-%20Blueberry.json" download class="btn-xs">JSON</a></li>
-            <li><span>Dunkelgrau</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/eSUN%20PETG%20Matte%20-%20Dunkelgrau.json" download class="btn-xs">JSON</a></li>
-          </ul>
-        </div>
-
-        <!-- ELEGOO & GEEETECH -->
-        <div class="filament-card">
-          <h4>ELEGOO & GEEETECH</h4>
-          <ul>
-            <li><span>ELEGOO PLA Matte Beige</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/ELEGOO%20PLA%20Matte%20-%20Beige.json" download class="btn-xs">JSON</a></li>
-            <li><span>ELEGOO PETG-CF Schwarz</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/ELEGOO%20PETG-CF%20-%20Schwarz.json" download class="btn-xs">JSON</a></li>
-            <li><span>ELEGOO PETG-CF Dunkelgrau</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/ELEGOO%20PETG-CF%20-%20Dunkelgrau.json" download class="btn-xs">JSON</a></li>
-            <li><span>GEEETECH PLA Matte Weiß</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/GEEETECH%20PLA%20Matte%20-%20Weiss.json" download class="btn-xs">JSON</a></li>
-            <li><span>GEEETECH TPU 95A Transparent</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/GEEETECH%20TPU%2095A%20-%20Transparent.json" download class="btn-xs">JSON</a></li>
-            <li><span>High Speed Matt PETG Schwarz</span> <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/High%20Speed%20Matt%20PETG%20-%20Schwarz.json" download class="btn-xs">JSON</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Support & Coffee Section -->
-  <section class="coffee-section">
-    <div class="container coffee-container">
-      <div class="coffee-card">
-        <h2 data-i18n="support-title">Feedback & Support</h2>
-        <p class="coffee-lead" data-i18n="support-lead">The project is free and open-source. A star on GitHub helps, and if you like, buy me a coffee:</p>
-        <div class="coffee-btn-group" style="display:flex; justify-content:center;">
-          <a href="https://ko-fi.com/Reaper2507" id="body-coffee-link" target="_blank" class="btn-coffee-large" title="Support on Ko-fi">
-            <img src="assets/githubbutton_sm.svg" height="36" alt="Support on Ko-fi">
-          </a>
-        </div>
-        </div>
-    </div>
-  </section>
-
-  <!-- Credits & Acknowledgements -->
-  <section id="credits" class="credits-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="credits-title">Credits & Acknowledgements</h2>
-        <p data-i18n="credits-subtitle">Aufgebaut auf herausragender Vorarbeit der Home Assistant- und 3D-Druck-Community</p>
-      </div>
-            <div class="credits-grid">
-        <!-- 1. Ironoxx (Main Giver - Ganz oben links!) -->
-        <div class="credit-item featured-credit-item">
-          <div class="hall-badge" style="background:#ff6347; color:#fff; top:12px; right:12px;">Fundament & Haupt-Ideengeber</div>
-          <h4>Ironoxx (ha-snapmaker-u1-card)</h4>
-          <p data-i18n="credit-ironoxx">Das Fundament dieses gesamten Projekts: Ursprüngliche Integrationsbasis, 4-Toolhead-Telemetrie und Kamera-Streaming (MIT-Lizenz).</p>
-          <div class="credit-links">
-            <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card" target="_blank" class="credit-repo-link">github.com/Ironoxx/ha-snapmaker-u1-card &rarr;</a>
-            <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" title="Support Ironoxx on Ko-fi">
-              <span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi
-            </a>
-          </div>
-        </div>
-
-        <!-- 2. Donkie (Spoolman) -->
-        <div class="credit-item">
-          <h4>Donkie (Spoolman)</h4>
-          <p data-i18n="credit-spoolman">Open-Source Filament- und Spulen-Inventarverwaltung für Klipper und Home Assistant.</p>
-          <div class="credit-links">
-            <a href="https://github.com/Donkie/Spoolman" target="_blank" class="credit-repo-link">github.com/Donkie/Spoolman &rarr;</a>
-            <a href="https://github.com/sponsors/Donkie" target="_blank" class="credit-sponsor-btn" title="Sponsor Donkie on GitHub">
-              <span class="kofi-icon">❤️</span> Sponsor Donkie on GitHub
-            </a>
-          </div>
-        </div>
-
-        <!-- 3. LayerLab (Set & Send Plugin) -->
-        <div class="credit-item">
-          <h4>LayerLab (Set & Send Plugin)</h4>
-          <p data-i18n="credit-layerlab">Entwickler des unverzichtbaren "Set & Send" Pre-Print Popups, 11×11 Vollbett-Nivellierung und Bauraum-Filtersteuerung für den U1.</p>
-          <div class="credit-links">
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-repo-link">layerlab.store/pages/set-and-send &rarr;</a>
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-kofi-btn" title="Support LayerLab">
-              <span class="kofi-icon">☕</span> LayerLab Tip Jar & Guide
-            </a>
-          </div>
-        </div>
-
-        <!-- 4. Home Assistant Custom Cards (RomRider, thomasloven, kalkih, ofekashern) -->
-        <div class="credit-item">
-          <h4>Home Assistant Custom Cards</h4>
-          <p data-i18n="credit-cards">Besonderer Dank an RomRider (button-card), thomasloven (card-mod, slider-entity-row), kalkih (mini-graph-card) und ofekashern.</p>
-          <div class="credit-links">
-            <a href="https://www.buymeacoffee.com/thomasloven" target="_blank" class="credit-bmac-btn" title="Buy Thomas Lovén a Coffee">
-              <span class="kofi-icon">☕</span> Buy Thomas Lovén a Coffee
-            </a>
-          </div>
-        </div>
-
-        <!-- 5. OrcaSlicer & SoftFever (Nach hinten verschoben) -->
-        <div class="credit-item">
-          <h4>OrcaSlicer & SoftFever</h4>
-          <p data-i18n="credit-orca">Für Open-Source-Slicing-Exzellenz und native Toolchanger-Unterstützung.</p>
-          <div class="credit-links">
-            <a href="https://github.com/OrcaSlicer/OrcaSlicer" target="_blank" class="credit-repo-link">github.com/OrcaSlicer &rarr;</a>
-            <a href="https://ko-fi.com/SoftFever" target="_blank" class="credit-kofi-btn" title="Support SoftFever on Ko-fi">
-              <span class="kofi-icon">☕</span> Support SoftFever on Ko-fi
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Clear, Isolated OrcaSlicer Installation Guide -->
-  <section id="install-slicer" class="install-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="slicer-install-title">OrcaSlicer Installation (In 2 Schritten)</h2>
-        <p data-i18n="slicer-install-subtitle">Eigenständig und einfach: Kopiere die Dateien direkt in deinen lokalen OrcaSlicer-Benutzerordner. Kein Home Assistant erforderlich!</p>
-      </div>
-
-      <div class="slicer-install-box">
-        <div class="install-path-group">
-          <h4>🪟 Windows Installationspfad:</h4>
-          <div class="path-code-box">
-            <code>%APPDATA%\OrcaSlicer\user\default\</code>
-          </div>
-          <p class="path-hint">Öffne den Windows-Explorer (Win + R), füge den Pfad ein und drücke Enter. Kopiere dort die Ordner <code>process/</code>, <code>filament/</code> und <code>machine/</code> hinein.</p>
-        </div>
-
-        <div class="install-path-group" style="margin-top:20px;">
-          <h4>🍎 macOS Installationspfad:</h4>
-          <div class="path-code-box">
-            <code>~/Library/Application Support/OrcaSlicer/user/default/</code>
-          </div>
-        </div>
-
-        <div class="collapsible-wrapper" style="margin-top:24px;">
-          <details>
-            <summary><b>Alternative: Import direkt über das OrcaSlicer-Menü (Hier klicken)</b></summary>
-            <div class="details-content">
-              <ol style="margin: 10px 0 0 20px; line-height: 1.6; color: #8b949e;">
-                <li>Lade die gewünschten JSON-Dateien aus den Tabellen unten herunter.</li>
-                <li>Öffne OrcaSlicer und klicke oben links auf <strong>Datei → Importieren → Konfigurationen importieren...</strong></li>
-                <li>Wähle die heruntergeladene JSON-Datei aus. OrcaSlicer speichert das Profil sofort in deinen Benutzer-Presets.</li>
-              </ol>
-            </div>
-          </details>
-        </div>
+  <!-- Footer -->
+  <footer class="site-footer"><div class="container footer-content"><p>Snapmaker U1 Community Hub · <a href="credits.html" data-i18n="nav-credits">Credits</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE">MIT</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues">GitHub Issues</a></p></div></footer>
+  <script src="app.js?v=20261108_11"></script>
+</body>
+</html>

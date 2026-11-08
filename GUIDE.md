@@ -57,14 +57,14 @@ Nein, und das ist bauartbedingt so gewollt: Der Extrudermotor löst nur die hei�
 <details>
 <summary><b>Kann ich Filament auch bei kalter Düse herausziehen?</b></summary>
 
-**Niemals!** Bei kalter Düse sitzt das erkaltete Filament fest in der Düsenbohrung. Ein Ziehen mit Gewalt kann das PTFE-Inlet beschädigen oder das Hotend verstopfen. Immer zuerst aufschmelzen lassen (mind. 200 °C bei PLA, 240 °C bei PETG).
+**Niemals!** Bei kalter Düse sitzt das erkaltete Filament fest in der Düsenbohrung. Ein Ziehen mit Gewalt kann das PTFE-Inlet beschädigen oder das Hotend verstopfen. Starte den Entladevorgang am Drucker und warte auf die für das Material eingestellte Temperatur.
 </details>
 
 <details>
 <summary><b>Wann nutze ich „Cancel Print“ und wann den Not-Halt?</b></summary>
 
-- **Druck abbrechen (Cancel Print):** Normaler Stopp. Der Drucker beendet den G-Code, hebt die Z-Achse an, parkt das aktive Werkzeug sauber im Dock und kühlt kontrolliert ab.
-- **Not-Halt (Emergency Stop):** Reiner Notfall-Schalter. Schaltet sofort Klipper, alle Schrittmotoren und Heizpatronen stromlos. Nur bei mechanischen Kollisionen oder drohender Beschädigung drücken! Danach ist ein Klipper-Firmware-Restart erforderlich.
+- **Druck abbrechen (Cancel Print):** Regulärer Abbruch über die Firmware. Prüfe danach den Druckerstatus.
+- **Not-Halt (Emergency Stop):** Software-Notstopp über Klipper (M112). Befolge bei Gefahr die Sicherheitsanweisungen des Herstellers. Für die Wiederaufnahme ist ein Firmware-Neustart erforderlich.
 </details>
 
 <details>
@@ -87,8 +87,5 @@ Die Hero-Karte visualisiert den U1 vollständig in Echtzeit:
 <details>
 <summary><b>Wie richte ich die Alexa-Mikrowellen-Benachrichtigung und das Lichtflackern bei Druckende ein?</b></summary>
 
-Im Ordner [`homeassistant/automations/fertigdruck_fanfare.yaml`](homeassistant/automations/fertigdruck_fanfare.yaml) findest du die fertige YAML-Vorlage:
-1. **Mikrowellen-Chime (`bell_02`):** Ertönt über dein Amazon Echo Gerät ab 99,9 % Fortschritt für eine punktgenaue Vorwarnung.
-2. **Licht-Flackern:** Sobald der Druckstatus endgültig auf `complete` wechselt, pulsiert das Bauraumlicht 2x kurz (An → 400ms → Aus → 400ms → An).
-3. **Voraussetzung:** [Alexa Media Player (HACS)](https://github.com/alandtse/alexa_media_player) und die U1-Sensoren in Home Assistant. In der YAML-Datei musst du lediglich den Namen deines Echo-Geräts anpassen.
+Die optionale Fanfare mit Lichtimpuls und Alexa-Ton ist in der [Einrichtungsanleitung](homeassistant/automations/README.md) beschrieben.
 </details>

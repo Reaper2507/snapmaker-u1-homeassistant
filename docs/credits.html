@@ -3,51 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Credits & Community Hall of Fame · Snapmaker U1 Hub</title>
+  <title data-i18n="page-credits">Credits and dependencies · Snapmaker U1</title>
   <meta name="description" content="Standing on the shoulders of giants: Acknowledgements, original creators, and tip jars for the tools powering the Snapmaker U1 Community Hub.">
-  <link rel="stylesheet" href="styles.css?v=20261108_09">
+  <link rel="stylesheet" href="styles.css?v=20261108_11">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <a href="#main-content" class="skip-link" data-i18n="skip-main">Skip to content</a>
   <!-- Header / Navigation -->
   <header class="site-header">
     <div class="container header-container">
       <a href="index.html" class="brand">
-        <span class="brand-badge">U1</span>
-        <span class="brand-text">Snapmaker U1 Hub</span>
+
+        <span class="brand-text">Snapmaker U1 Dashboard</span>
       </a>
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html" class="nav-link" data-i18n="nav-home">Overview</a>
-        <a href="install.html" class="nav-link" data-i18n="nav-install" style="color:#ff6347; font-weight:700;">⚡ Quick Install</a>
-        <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Home Assistant</a>
-        <a href="orcaslicer.html" class="nav-link" data-i18n="nav-orcaslicer">OrcaSlicer</a>
-        <a href="guide.html" class="nav-link" data-i18n="nav-guide">Guide & FAQ</a>
-        <a href="credits.html" class="nav-link active" data-i18n="nav-credits">Credits</a>
-        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" class="github-link" title="GitHub Repo">
+        <a href="install.html" class="nav-link" data-i18n="nav-install">Install</a>
+        <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Dashboard</a>
+        <a href="index.html#extras" class="nav-link" data-i18n="nav-orcaslicer">Extras</a>
+        <a href="guide.html" class="nav-link" data-i18n="nav-guide">Guide</a>
+        <a href="credits.html" class="nav-link active" data-i18n="nav-credits" aria-current="page">Credits</a>
+        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub repository" title="GitHub Repo">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
-        <button id="lang-toggle" class="lang-switch-btn" title="Sprache wechseln / Switch Language">
-          <span class="lang-icon">🌐</span> <span id="current-lang-text">DE</span>
+        </nav>
+      <button type="button" id="lang-toggle" aria-label="Auf Deutsch wechseln" class="lang-switch-btn" title="Sprache wechseln / Switch Language">
+          <span id="current-lang-text">DE</span>
         </button>
-        <div class="header-coffee-slot">
-          <a href="https://ko-fi.com/Reaper2507" id="header-coffee-link" target="_blank" class="header-kofi-badge" title="Support Reaper2507 on Ko-fi">
-            <img src="assets/githubbutton_sm.svg" height="28" alt="Support on Ko-fi">
-          </a>
-        </div>
-      </nav>
     </div>
   </header>
+  <main id="main-content" tabindex="-1">
 
   <!-- Page Hero Banner -->
   <section class="page-banner">
     <div class="container">
-      <div class="pill-badge" data-i18n="credits-banner-badge">🏆 Community Hall of Fame</div>
-      <h1 data-i18n="credits-banner-title">Standing on the Shoulders of Giants</h1>
-      <p class="banner-lead" data-i18n="credits-banner-lead">
-        This project exists solely because of the generous contributions, open-source code, and tireless innovation of the 3D printing and Home Assistant communities. Give credit where credit is due — explore their repositories and consider supporting them!
-      </p>
+      <div class="pill-badge" data-i18n="credits-banner-badge">Credits</div>
+      <h1 data-i18n="credits-banner-title">Credits and dependencies</h1>
+      <p class="banner-lead" data-i18n="credits-banner-lead">Thanks to the projects and maintainers whose work this dashboard and its extras build on.</p>
     </div>
   </section>
 
@@ -57,23 +52,19 @@
             <div class="credits-hall-grid">
 
         <!-- 1. Ironoxx (ha-snapmaker-u1-card) - HAUPT-IDEENGEBER GANZ LINKS OBEN! -->
-        <div class="hall-card featured-hall-card" style="border-color:#ff6347;">
-          <div class="hall-badge" style="background:#ff6347; color:#fff;">Fundament & Haupt-Ideengeber</div>
+        <div class="hall-card featured-hall-card">
+          <div class="hall-badge" data-i18n="credit-primary">Core integration</div>
           <div class="hall-header">
             <div class="hall-avatar">🖨️</div>
             <div>
               <h3>Ironoxx</h3>
-              <span class="hall-role">Creator of ha-snapmaker-u1-card</span>
+              <span class="hall-role" data-i18n="role-ironoxx">Creator of ha-snapmaker-u1-card</span>
             </div>
           </div>
-          <p class="hall-desc">
-            Das Herzstück und die Basis dieses Projekts: Author der originalen Snapmaker U1 Home Assistant Integration (MIT-Lizenz). Er schuf das Fundament für 4-Kopf-Telemetrie, Nozzle-Temperaturen und Kamera-Streaming!
-          </p>
+          <p data-i18n="credit-detail-0" class="hall-desc">Provides the original Snapmaker U1 integration and frontend card. The adapted card retains the upstream MIT notice.</p>
           <div class="hall-actions">
-            <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card" target="_blank" class="btn btn-primary btn-sm">GitHub Repository &rarr;</a>
-            <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" title="Support Ironoxx on Ko-fi">
-              <span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi
-            </a>
+            <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" data-i18n="link-repo">GitHub repository →</a>
+            <a href="https://ko-fi.com/ironoxx" target="_blank" rel="noopener noreferrer" class="coffee-link" title="Support Ironoxx on Ko-fi" data-i18n="link-ironoxx">☕ Support Ironoxx on Ko-fi</a>
           </div>
         </div>
 
@@ -83,38 +74,30 @@
             <div class="hall-avatar">🧵</div>
             <div>
               <h3>Donkie</h3>
-              <span class="hall-role">Author of Spoolman</span>
+              <span class="hall-role" data-i18n="role-donkie">Maintainer of Spoolman</span>
             </div>
           </div>
-          <p class="hall-desc">
-            The standard in self-hosted filament & spool management for Klipper and 3D printing. Powers our dynamic spool ring color feedback and remaining weight tracking.
-          </p>
+          <p data-i18n="credit-detail-1" class="hall-desc">Spoolman provides optional filament inventory through the upstream integration.</p>
           <div class="hall-actions">
-            <a href="https://github.com/Donkie/Spoolman" target="_blank" class="btn btn-secondary btn-sm">GitHub Spoolman &rarr;</a>
-            <a href="https://github.com/sponsors/Donkie" target="_blank" class="credit-sponsor-btn" title="Sponsor Donkie on GitHub">
-              <span class="kofi-icon">❤️</span> Sponsor Donkie on GitHub
-            </a>
+            <a href="https://github.com/Donkie/Spoolman" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">GitHub Spoolman &rarr;</a>
+            <a href="https://github.com/sponsors/Donkie" target="_blank" rel="noopener noreferrer" class="coffee-link" title="Sponsor Donkie on GitHub" data-i18n="link-donkie">❤️ Sponsor Donkie on GitHub</a>
           </div>
         </div>
 
         <!-- 3. LayerLab (Set & Send Plugin) -->
         <div class="hall-card">
-          <div class="hall-badge" style="background:#a371f7; color:#fff;">Featured Slicer Add-On</div>
+          <div class="hall-badge" data-i18n="credit-plugin">Optional slicer plugin</div>
           <div class="hall-header">
             <div class="hall-avatar">🧩</div>
             <div>
               <h3>LayerLab</h3>
-              <span class="hall-role">Creator of the "Set & Send" OrcaSlicer Plugin</span>
+              <span class="hall-role" data-i18n="role-layerlab">Developer of Set &amp; Send</span>
             </div>
           </div>
-          <p class="hall-desc">
-            Bridges the gap between vanilla OrcaSlicer and the Snapmaker U1. Unlocks the interactive pre-print popup dialog with filament-to-toolhead remapping, whole-bed mesh (11x11) leveling, and top-cover purifier fan controls.
-          </p>
+          <p data-i18n="credit-detail-2" class="hall-desc">Develops and distributes the optional Set &amp; Send plugin separately.</p>
           <div class="hall-actions">
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="btn btn-primary btn-sm">Visit Guide & Store &rarr;</a>
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-kofi-btn" title="Support LayerLab">
-              <span class="kofi-icon">☕</span> LayerLab Tip Jar & Guide
-            </a>
+            <a href="https://layerlab.store/pages/set-and-send" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" data-i18n="link-layer">LayerLab project →</a>
+
           </div>
         </div>
 
@@ -124,17 +107,13 @@
             <div class="hall-avatar">🛠️</div>
             <div>
               <h3>Thomas Lovén (thomasloven)</h3>
-              <span class="hall-role">HA Frontend Pioneer</span>
+              <span class="hall-role" data-i18n="role-thomas">Home Assistant frontend cards</span>
             </div>
           </div>
-          <p class="hall-desc">
-            Creator of <code>card-mod</code>, <code>slider-entity-row</code>, and <code>fold-entity-row</code>. Without his styling engine, custom responsive dashboards in Home Assistant wouldn't be possible.
-          </p>
+          <p data-i18n="credit-detail-3" class="hall-desc">Provides card-mod and slider-entity-row, both used by the dashboard.</p>
           <div class="hall-actions">
-            <a href="https://github.com/thomasloven" target="_blank" class="btn btn-secondary btn-sm">GitHub Profile &rarr;</a>
-            <a href="https://www.buymeacoffee.com/thomasloven" target="_blank" class="credit-bmac-btn" title="Buy Thomas Lovén a Coffee">
-              <span class="kofi-icon">☕</span> Buy Thomas Lovén a Coffee
-            </a>
+            <a href="https://github.com/thomasloven" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="link-profile">GitHub profile →</a>
+            <a href="https://github.com/thomasloven/lovelace-card-mod" class="coffee-link" data-i18n="thomas-card">card-mod on GitHub →</a>
           </div>
         </div>
 
@@ -144,17 +123,13 @@
             <div class="hall-avatar">🔪</div>
             <div>
               <h3>SoftFever & OrcaSlicer Team</h3>
-              <span class="hall-role">Open-Source Slicing Excellence</span>
+              <span class="hall-role" data-i18n="role-orca">OrcaSlicer maintainers</span>
             </div>
           </div>
-          <p class="hall-desc">
-            Brought multi-toolhead printing, Scarf Joint Seams, precise prime tower purge volumes, and rich Klipper integration to the open-source community.
-          </p>
+          <p data-i18n="credit-detail-4" class="hall-desc">Maintains the slicer used by the optional presets.</p>
           <div class="hall-actions">
-            <a href="https://github.com/OrcaSlicer/OrcaSlicer" target="_blank" class="btn btn-secondary btn-sm">GitHub OrcaSlicer &rarr;</a>
-            <a href="https://ko-fi.com/SoftFever" target="_blank" class="credit-kofi-btn" title="Support SoftFever on Ko-fi">
-              <span class="kofi-icon">☕</span> Support SoftFever on Ko-fi
-            </a>
+            <a href="https://github.com/OrcaSlicer/OrcaSlicer" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">GitHub OrcaSlicer &rarr;</a>
+            <a href="https://ko-fi.com/SoftFever" target="_blank" rel="noopener noreferrer" class="coffee-link" title="Support SoftFever on Ko-fi" data-i18n="link-orca">☕ Support SoftFever on Ko-fi</a>
           </div>
         </div>
 
@@ -164,31 +139,12 @@
             <div class="hall-avatar">🎛️</div>
             <div>
               <h3>RomRider</h3>
-              <span class="hall-role">Author of button-card</span>
+              <span class="hall-role" data-i18n="role-rom">Home Assistant frontend cards</span>
             </div>
           </div>
-          <p class="hall-desc">
-            The swiss army knife of Home Assistant UI cards. Powers all reactive status icons, animated toolhead state pills, and responsive layout grids. (Hinweis: RomRider betreibt keine öffentliche Spenden-Seite; gib seinem Repo einen Stern!).
-          </p>
+          <p data-i18n="credit-detail-5" class="hall-desc">Maintains button-card and apexcharts-card, both used by the dashboard.</p>
           <div class="hall-actions">
-            <a href="https://github.com/custom-cards/button-card" target="_blank" class="btn btn-secondary btn-sm">⭐ Star button-card on GitHub &rarr;</a>
-          </div>
-        </div>
-
-        <!-- 7. kalkih -->
-        <div class="hall-card">
-          <div class="hall-header">
-            <div class="hall-avatar">📈</div>
-            <div>
-              <h3>kalkih</h3>
-              <span class="hall-role">Author of mini-graph-card</span>
-            </div>
-          </div>
-          <p class="hall-desc">
-            Provides the smooth, hardware-accelerated telemetry and temperature curves for toolheads, heated bed, and chamber sensors in the diagnostics view. (Hinweis: kalkih betreibt keine aktive Spenden-Seite; besuche seinen Blog/GitHub).
-          </p>
-          <div class="hall-actions">
-            <a href="https://github.com/kalkih/mini-graph-card" target="_blank" class="btn btn-secondary btn-sm">⭐ Star mini-graph-card on GitHub &rarr;</a>
+            <a href="https://github.com/custom-cards/button-card" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" data-i18n="link-button">button-card on GitHub →</a>
           </div>
         </div>
 
@@ -198,14 +154,12 @@
             <div class="hall-avatar">🚀</div>
             <div>
               <h3>Klipper & Snapmaker Community</h3>
-              <span class="hall-role">Firmware & Hardware Ecosystem</span>
+              <span class="hall-role" data-i18n="role-firmware">Firmware and hardware</span>
             </div>
           </div>
-          <p class="hall-desc">
-            Special thanks to the firmware engineers, Moonraker API developers, and Discord beta testers pushing 4-toolhead 3D printing forward.
-          </p>
+          <p data-i18n="credit-detail-6" class="hall-desc">Thanks to the projects behind the printer firmware and control API.</p>
           <div class="hall-actions">
-            <a href="https://www.klipper3d.org" target="_blank" class="btn btn-secondary btn-sm">klipper3d.org &rarr;</a>
+            <a href="https://www.klipper3d.org" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">klipper3d.org &rarr;</a>
           </div>
         </div>
 
@@ -213,24 +167,26 @@
     </div>
   </section>
 
+<section class="features-section" id="dependencies"><div class="container"><p data-i18n="credit-deps">See the <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/homeassistant/README.md">complete dashboard dependencies</a> and <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE">MIT license</a>. External projects have their own licenses.</p></div></section>
+  </main>
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-content">
       <div class="footer-left">
-        <p>© 2026 Torsten Reise & Community · Released under the <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE" target="_blank">MIT License</a></p>
+        <p>© 2026 Reaper2507 & Community · Released under the <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></p>
         <p class="footer-sub">Community project — not officially affiliated with Snapmaker. Built for 4-toolhead makers.</p>
       </div>
       <div class="footer-links">
-        <a href="index.html">Overview</a>
-        <a href="homeassistant.html">Home Assistant</a>
-        <a href="orcaslicer.html">OrcaSlicer</a>
-        <a href="guide.html">Guide & FAQ</a>
-        <a href="credits.html">Credits</a>
-        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank">GitHub</a>
+        <a href="index.html" data-i18n="nav-home">Overview</a>
+        <a href="homeassistant.html" data-i18n="nav-ha">Dashboard</a>
+        <a href="orcaslicer.html" data-i18n="nav-orcaslicer">Extras</a>
+        <a href="guide.html" data-i18n="nav-guide">Guide</a>
+        <a href="credits.html" data-i18n="nav-credits">Credits</a>
+        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
   </footer>
 
-  <script src="app.js?v=20261108_09"></script>
+  <script src="app.js?v=20261108_11"></script>
 </body>
 </html>

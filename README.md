@@ -1,186 +1,34 @@
-<div align="center">
+# Snapmaker U1 Dashboard for Home Assistant
 
-# 🖨️ Snapmaker U1 Community Hub
-### Home Assistant Multi-Toolhead Dashboard & Tuned OrcaSlicer Profiles
+A community dashboard for the Snapmaker U1. See the four toolheads, camera, job status and temperatures in one place. Switch between Studio and Cutaway, or open the Minimal and Maintenance views.
 
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
-[![Home Assistant](https://img.shields.io/badge/Home_Assistant-2026.8+-41BDF5?style=flat-square&logo=home-assistant&logoColor=white)](https://www.home-assistant.io/)
-[![OrcaSlicer](https://img.shields.io/badge/OrcaSlicer-v2.5.0_RC+-green?style=flat-square)](https://github.com/OrcaSlicer/OrcaSlicer)
-[![Buy Me A Coffee on Ko-fi](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/Reaper2507)
+[View screenshots and dashboard details](https://reaper2507.github.io/snapmaker-u1-homeassistant/homeassistant.html) · [Install the dashboard](homeassistant/README.md) · [Report an issue](../../issues)
 
-**The complete, production-ready community toolkit for the 4-toolhead Snapmaker U1.**
+![Snapmaker U1 dashboard with toolhead telemetry and camera](screenshots/dashboard-desktop.jpg)
 
-[🌐 View Community Hub Website](https://reaper2507.github.io/snapmaker-u1-homeassistant/) · [📖 Installation Guide](#-home-assistant-dashboard) · [⚡ OrcaSlicer Profiles](#-orcaslicer-profiles) · [🧵 Operator Guide & FAQ](GUIDE.md) · [☕ Support](#-support-this-project)
+## Installation
 
-</div>
+Start with the [Home Assistant installation guide](homeassistant/README.md). This dashboard uses the [Snapmaker U1 Card integration by Ironoxx](https://github.com/Ironoxx/ha-snapmaker-u1-card) and additional Lovelace cards. It runs on your own Home Assistant instance. The public gallery and simulation work without a connection to a printer.
 
----
+## Optional extras
 
-<div align="center">
-  <img src="screenshots/dashboard-desktop.jpg" alt="Snapmaker U1 Home Assistant Desktop Dashboard" width="48%">
-  <img src="screenshots/dashboard-cutaway.jpg" alt="Snapmaker U1 Wireframe Cutaway Telemetry" width="48%">
-</div>
-<p align="center">
-  <em>Both modes offer 100% full feature parity: Live scaled XYZ axes, live temperatures, dynamic spool colors, click-to-control, and filament loading/unloading.<br>
-  <strong>Left:</strong> Photorealistic Studio Mode · <strong>Right:</strong> Technical Wireframe Cutaway Mode</em>
-</p>
+- [OrcaSlicer presets](orcaslicer/README.md) for 0.4 mm and 0.6 mm nozzles. Start from a profile and validate it for your material and hardware.
+- [LayerLab Set & Send](https://layerlab.store/pages/set-and-send), a separate OrcaSlicer plugin with its own installation and support.
+- [Print completion chime and chamber light](homeassistant/automations/README.md), an optional Home Assistant automation.
+- [Filament handling and troubleshooting](GUIDE.md).
 
----
+## Support and contributing
 
-## ⚡ What's Inside
+[Report a problem or share feedback](../../issues). Include your HA, integration or slicer version and redact private details. See [contribution guidelines](CONTRIBUTING.md).
 
-- **🎯 Multi-Toolhead Dashboard:** Live tracking for all 4 toolheads (T0–T3), nozzle temperatures, bed status, cutaway axis overlay, and camera streaming.
-- **🛡️ 100% Local & Safe:** Moonraker-connected without cloud lock-in. Intelligent safety interlocks prevent axis movement during active printing.
-- **🚀 Tuned OrcaSlicer Profiles:** Optimized for 0.4 mm and 0.6 mm stainless steel nozzles with gyroid infill, scarf seams, slim prime tower (12–15 mm³), and 12,000 mm/s² travel speed.
-- **🧵 19 Calibrated Filament Presets:** Tested profiles for Bambu Lab, SUNLU PLA+ 2.0, eSUN PETG Matte, ELEGOO, and GEEETECH TPU.
-- **📖 Operator Guide & FAQ:** Quick cheat sheets for filament loading/unloading (with & without dashboard), spool swapping, and troubleshooting states like *"At feeder only"* ([read guide](GUIDE.md)).
+If you want to support this project, [Ko-fi](https://ko-fi.com/Reaper2507) is optional.
 
----
+## Credits and license
 
-## 🎯 Tools & Material: Telemetry & Direct Control
+1. [Ironoxx](https://github.com/Ironoxx/ha-snapmaker-u1-card) supplies the integration and original card. The adapted frontend retains the upstream MIT notice. [Ironoxx on Ko-fi](https://ko-fi.com/ironoxx).
+2. [Donkie / Spoolman](https://github.com/Donkie/Spoolman) provides optional spool inventory through the integration. [Sponsor Spoolman](https://github.com/sponsors/Donkie).
+3. [LayerLab](https://layerlab.store/pages/set-and-send) develops and distributes Set & Send separately.
+4. [Thomas Lovén](https://github.com/thomasloven) provides card-mod and slider-entity-row. The [installation guide](homeassistant/README.md) links the other required cards.
+5. [SoftFever and the OrcaSlicer team](https://github.com/OrcaSlicer/OrcaSlicer) maintain the slicer used by the optional presets.
 
-The centerpiece of the dashboard is the interactive **Tools & Material** hero card. Both **Studio Mode** and **Wireframe Cutaway Mode** offer 100% identical live features:
-- **📐 Live Scaled 3D Axes ($X, Y, Z$):** Real-time spatial tracking of carriage and bed coordinates (e.g. `X 227.6`, `Y 300.5`, `Z 9.9`), dynamically scaled in 3D space.
-- **🌡️ Live Heat Telemetry:** Live nozzle temperatures for all 4 heads (T0–T3) and the heated bed overlaid directly on the printer model (actual & target temperatures).
-- **🎨 Dynamic Spool Colors:** The 4 side spool holders automatically adapt to the exact loaded filament color (PLA, PETG, TPU).
-- **👆 Tap-to-Control (Full Printer Control):** Clicking or tapping directly on the 3D printer graphic opens full interactive control: axis jogging (raise/lower bed, center head, home axes) and preheating.
-- **🧵 Filament Load & Unload:** Convenient one-click load/unload controls directly integrated into the toolhead management.
-- **🔄 Dual Visual Modes:** Switch between the photorealistic **Studio Render** (ambient lighting) and the technical **Wireframe Cutaway** (transparent mechanical schematic).
-
----
-
-## 🔔 Print Done Fanfare & Light Notification
-
-Get notified immediately without constantly staring at your phone:
-- **Microwave Chime (`bell_02`):** Plays Amazon Alexa's familiar microwave "Bing" as soon as progress reaches **99.9%** (early chime before cool-down).
-- **Chamber Light Flash:** Pulses the printer's interior chamber light twice (On → 400ms → Off → 400ms → On) once the state switches from `printing` to `complete`.
-- **Ready-to-use YAML:** Available at [`homeassistant/automations/fertigdruck_fanfare.yaml`](homeassistant/automations/fertigdruck_fanfare.yaml).
-- **Fully De-personalized:** Generic placeholders (`media_player.your_alexa_echo_device`, `light.snapmaker_u1_card_innenraumlicht`), ready to run on any setup.
-
----
-
-## 📱 Home Assistant Dashboard
-
-Get a complete 3-view dashboard (`Dashboard`, `Minimal`, `Maintenance & Diagnostics`) running in 3 minutes.
-
-1. **Install HACS Frontend Cards:** Search for `button-card`, `card-mod`, `slider-entity-row`, `vertical-stack-in-card`, `mini-graph-card`, `tabbed-card`, `fold-entity-row` in **HACS → Frontend** and click Download.
-2. **Copy Card Assets & Register Resource:** Place [`homeassistant/www/*`](homeassistant/www/) into `/config/www/snapmaker-u1/showcase/` on your Home Assistant machine. In Home Assistant, register the resource under **Settings → Dashboards → ⋮ (Top Right 3 Dots) → Resources → Add Resource**:
-   - **URL:** `/local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js`
-   - **Type:** `JavaScript Module` *(Note: `/config/www/` is exposed to the browser as `/local/`)*
-3. **Import YAML:** Paste [`homeassistant/u1_dashboard_complete.yaml`](homeassistant/u1_dashboard_complete.yaml) into your dashboard's Raw Configuration Editor.
-
-<details>
-<summary><b>📖 Step-by-Step Home Assistant Setup & Control Package (Click to expand)</b></summary>
-
-### 1. Requirements
-Ensure your Snapmaker U1 is connected via Moonraker or the [`ha-snapmaker-u1-card`](https://github.com/Ironoxx/ha-snapmaker-u1-card) integration.
-
-### 2. Optional: Moonraker Direct Control Package
-To enable direct homing, head parking, and jog movements with live state validation from Home Assistant:
-- Copy [`homeassistant/packages/u1_control_package.yaml`](homeassistant/packages/u1_control_package.yaml) to your Home Assistant `/config/packages/` folder.
-- Open the file and replace `YOUR_PRINTER_IP` with your printer's LAN IP address.
-- Reload scripts and REST commands under **Developer Tools → YAML**.
-
-### 3. Individual View Imports
-If you don't want the full dashboard, you can import views individually:
-- [`homeassistant/views/snapmaker-u1.yaml`](homeassistant/views/snapmaker-u1.yaml) — Main operator showcase.
-- [`homeassistant/views/u1-minimal.yaml`](homeassistant/views/u1-minimal.yaml) — Clean, lightweight view.
-- [`homeassistant/views/u1-maintenance.yaml`](homeassistant/views/u1-maintenance.yaml) — Diagnostics, bed mesh & G-code console.
-
-</details>
-
-## 🔪 OrcaSlicer Profiles
-
-Drop-in profiles for OrcaSlicer (v2.5.0 RC and newer) tailored to the U1 toolchanger mechanism.
-
-| Profile Name | Nozzle | Layer Height | Key Highlights |
-|---|---|---|---|
-| **0.20 Antigravity Optimized** | 0.4 mm | 0.20 mm | Daily reference. 3 walls, gyroid infill, slim prime tower (12–15 mm³), conditional scarf seam, 12,000 mm/s² travel. |
-| **0.28 Antigravity Prototype** | 0.4 mm | 0.28 mm | Ultra-fast functional tests. 2 walls, 10% support cubic infill (-50% material). |
-| **0.30 Antigravity Optimized** | 0.6 mm | 0.30 mm | High strength workhorse. Arachne wall generator, 1.2 mm solid ceiling. |
-| **0.24 Antigravity Optimized** | 0.6 mm | 0.24 mm | Fine quality alternative for 0.6 mm nozzles. |
-| **0.40 Antigravity Prototype** | 0.6 mm | 0.40 mm | Turbo throughput profile for oversized test prints. |
-
-<details>
-<summary><b>📂 Profile Installation & 19 Filament Presets (Click to expand)</b></summary>
-
-### How to Install
-Copy the [`orcaslicer/`](orcaslicer/) folders (`machine/`, `process/`, `filament/`) into your OrcaSlicer user directory:
-- **Windows:** `%APPDATA%\OrcaSlicer\user\default\`
-- **macOS:** `~/Library/Application Support/OrcaSlicer/user/default/`
-- **Linux:** `~/.config/OrcaSlicer/user/default/`
-
-### 19 Tuned Filament Presets Included
-- **Bambu Lab:** PLA Basic (Black, Jade-White), PETG Basic (White).
-- **SUNLU:** PLA+ 2.0 (Black, White, Bone-White, Little Blue, Olive Green, Sunny Orange).
-- **eSUN:** PETG Matte (Apricot, Concrete Grey, Blue Brick, Dark Grey).
-- **ELEGOO:** PLA Matte (Beige), PETG-CF (Black, Dark Grey — requires hardened nozzle!).
-- **GEEETECH:** PLA Matte (Grey), TPU 95A (Transparent-Silver).
-
-</details>
-
-### 🧩 Recommended: "Set & Send" Pre-Print Plugin (by LayerLab)
-
-To bring the native Snapmaker pre-print popup into vanilla OrcaSlicer, we highly recommend the **Set & Send** plugin by **[LayerLab](https://layerlab.store/pages/set-and-send)**:
-
-<div align="center">
-  <img src="screenshots/set-and-send-dialog.png" alt="OrcaSlicer Set and Send Pre-Print Dialog" width="68%">
-</div>
-
-- **Toolhead-to-Filament Mapping:** Assign filaments directly to toolheads (e.g. Filament 3 &rarr; Toolhead 3) with color verification.
-- **Whole-Bed Mesh (11x11):** Probes the entire 11&times;11 matrix for superior first-layer adhesion instead of generic fast probing.
-- **Top Cover Purifier Control:** Set purifier fan modes (`Auto`, `Strong cooling`, `Weak cooling`, `Keep warm`, `Off`) based on material softening temps.
-- **Chamber & Fan Safety:** Automatically turns off part cooling fans during probing to prevent bed thermal drift and injects `WAIT_CHAMBER_TEMP TIMEOUT=180`.
-- **Installation:** Place `set_and_send.py` into `%APPDATA%\OrcaSlicer\orca_plugins\set_and_send.py\set_and_send.py`. Full instructions and support at [LayerLab Guide & Store](https://layerlab.store/pages/set-and-send).
-
----
-
-
-
----
-
-## Feedback and support
-
-Bugs, profile feedback, and ideas are welcome as an [issue](https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues).
-
-The project is free and open-source. A star on GitHub helps, and if you like, buy me a coffee:
-
-[![Support on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Reaper2507)
-
-
-## 🤝 Contributing
-
-Community feedback and improvements are welcome!
-- To submit print feedback or suggest filament profile tweaks, please open an [Issue using our profile template](https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues/new?template=profile-feedback.yml).
-- Pull requests for dashboard improvements, mobile tweaks, or translations are happily reviewed.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-
----
-
-## 📜 Credits & Acknowledgements
-
-Standing on the shoulders of giants: This toolkit builds directly upon outstanding open-source work. Please support these incredible creators directly:
-
-- **[LayerLab (Set & Send Plugin)](https://layerlab.store/pages/set-and-send):** Creator of the essential OrcaSlicer pre-print dialog, toolhead remapping, whole-bed mesh (11×11), and purifier fan add-on.<br>
-  [![LayerLab Tip Jar & Store](https://img.shields.io/badge/☕_Tip_Jar-LayerLab_Store-00C48C?style=flat-square)](https://layerlab.store/pages/set-and-send)
-
-- **[Ironoxx (ha-snapmaker-u1-card)](https://github.com/Ironoxx/ha-snapmaker-u1-card):** Foundation for toolhead layout, live status tracking, and camera streaming (MIT License).<br>
-  [![Support Ironoxx on Ko-fi](https://img.shields.io/badge/☕_Support-Ko--fi_Ironoxx-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/ironoxx)
-
-- **[OrcaSlicer & SoftFever](https://github.com/OrcaSlicer/OrcaSlicer):** Leading open-source slicing excellence, multi-toolchanger support, and Klipper integration.<br>
-  [![Support SoftFever on Ko-fi](https://img.shields.io/badge/☕_Support-Ko--fi_SoftFever-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/SoftFever)
-
-- **[Thomas Lovén (thomasloven)](https://github.com/thomasloven):** Pioneer of Home Assistant UI customization (`card-mod`, `slider-entity-row`, `fold-entity-row`).<br>
-  [![Buy Thomas Lovén a Coffee](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-Thomas_Lovén-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/thomasloven)
-
-- **[Donkie (Spoolman)](https://github.com/Donkie/Spoolman):** Leading self-hosted filament & spool inventory manager for Klipper and Home Assistant.<br>
-  [![Sponsor Donkie on GitHub](https://img.shields.io/badge/❤️_Sponsor-GitHub_Donkie-EA4AAA?style=flat-square&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/Donkie)
-
-- **Home Assistant Card Authors:** Special thanks to RomRider ([button-card](https://github.com/custom-cards/button-card)), ofekashern ([vertical-stack-in-card](https://github.com/ofekashern/vertical-stack-in-card)), and kalkih ([mini-graph-card](https://github.com/kalkih/mini-graph-card)).
-
----
-
-## ⚖️ License
-
-Released under the [MIT License](LICENSE).
+See [full credits](https://reaper2507.github.io/snapmaker-u1-homeassistant/credits.html) and the [MIT license](LICENSE). Third-party projects retain their own licenses.

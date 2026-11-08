@@ -3,50 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Operator Guide & FAQ · Snapmaker U1 Hub</title>
+  <title data-i18n="page-guide">Filament guide and FAQ · Snapmaker U1</title>
   <meta name="description" content="Quick operator cheat sheets for filament loading/unloading and troubleshooting the Snapmaker U1 4-toolhead 3D printer.">
-  <link rel="stylesheet" href="styles.css?v=20261108_09">
+  <link rel="stylesheet" href="styles.css?v=20261108_11">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <a href="#main-content" class="skip-link" data-i18n="skip-main">Skip to content</a>
   <!-- Header / Navigation -->
   <header class="site-header">
     <div class="container header-container">
       <a href="index.html" class="brand">
-        <span class="brand-badge">U1</span>
-        <span class="brand-text">Snapmaker U1 Hub</span>
+
+        <span class="brand-text">Snapmaker U1 Dashboard</span>
       </a>
-      <nav class="nav-links">
+      <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html" class="nav-link" data-i18n="nav-home">Overview</a>
-        <a href="install.html" class="nav-link" data-i18n="nav-install" style="color:#ff6347; font-weight:700;">⚡ Quick Install</a>
-        <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Home Assistant</a>
-        <a href="orcaslicer.html" class="nav-link" data-i18n="nav-orcaslicer">OrcaSlicer</a>
-        <a href="guide.html" class="nav-link active" data-i18n="nav-guide">Guide & FAQ</a>
-        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" class="github-link" title="GitHub Repo">
+        <a href="install.html" class="nav-link" data-i18n="nav-install">Install</a>
+        <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Dashboard</a>
+        <a href="index.html#extras" class="nav-link" data-i18n="nav-orcaslicer">Extras</a>
+        <a href="guide.html" class="nav-link active" data-i18n="nav-guide" aria-current="page">Guide</a>
+        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub repository" title="GitHub Repo">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
-        <button id="lang-toggle" class="lang-switch-btn" title="Sprache wechseln / Switch Language">
-          <span class="lang-icon">🌐</span> <span id="current-lang-text">DE</span>
+        </nav>
+      <button type="button" id="lang-toggle" aria-label="Auf Deutsch wechseln" class="lang-switch-btn" title="Sprache wechseln / Switch Language">
+          <span id="current-lang-text">DE</span>
         </button>
-        <div class="header-coffee-slot">
-          <a href="https://ko-fi.com/Reaper2507" id="header-coffee-link" target="_blank" class="header-kofi-badge" title="Support Reaper2507 on Ko-fi">
-            <img src="assets/githubbutton_sm.svg" height="28" alt="Support on Ko-fi">
-          </a>
-        </div>
-      </nav>
     </div>
   </header>
+  <main id="main-content" tabindex="-1">
 
   <!-- Page Hero Banner -->
   <section class="page-banner">
     <div class="container">
-      <div class="pill-badge" data-i18n="guide-banner-badge">🧵 Praxis-Hilfe & Problemlöser</div>
+      <div class="pill-badge" data-i18n="guide-banner-badge">🧵 Quick Guide & Problem Solver</div>
       <h1 data-i18n="guide-banner-title">Snapmaker U1 Operator Guide & FAQ</h1>
-      <p class="banner-lead" data-i18n="guide-banner-lead">
-        Filamentwechsel in zwei Worten erklärt: Schnelle Handlungsanweisungen für Dashboard und Drucker-Touchscreen, verständliche Antworten auf mechanischen Widerstand und die wichtigsten FAQ-Punkte.
-      </p>
+      <p class="banner-lead" data-i18n="guide-banner-lead">Filament swapping explained in two words: Fast instructions for dashboard and printer touchscreen, resistance explained, and essential FAQs.</p>
     </div>
   </section>
 
@@ -58,22 +53,22 @@
         <div class="guide-card">
           <div class="guide-card-header">
             <span style="font-size: 1.8rem;">📤</span>
-            <h3 data-i18n="unload-title">Filament Entladen (Unload)</h3>
+            <h3 data-i18n="unload-title">Unloading Filament</h3>
           </div>
-          <div class="guide-punchline" data-i18n="unload-punchline">In zwei Worten: Aufheizen lassen &rarr; Gleichmäßig per Hand aufspulen</div>
+          <div class="guide-punchline" data-i18n="unload-punchline">In a nutshell: Tap Unload → Wait for preheat → Pull with gentle continuous tug</div>
           <div class="guide-steps">
             <div class="guide-step-item">
-              <strong data-i18n="lbl-with-dash">Mit Dashboard:</strong>
-              <p data-i18n="unload-dash-step">Klick auf Kopf (T0–T3) &rarr; <strong>Unload</strong> wählen. Das Hotend heizt vor, Motor entkoppelt, Filament per Hand aufwickeln.</p>
+              <strong data-i18n="lbl-with-dash">With the dashboard</strong>
+              <p data-i18n="unload-dash-step">Click <strong>Unload</strong> on the respective toolhead. Wait for temperature ramp-up, then gently pull filament from the tube.</p>
             </div>
             <div class="guide-step-item">
-              <strong data-i18n="lbl-on-screen">Touchscreen am Drucker:</strong>
-              <p data-i18n="unload-screen-step">Wähle <strong>Filament &rarr; Unload</strong> &rarr; Kopf wählen. Warten bis Temperatur erreicht ist und 'Unload' aktiv ist, dann gleichmäßig ziehen.</p>
+              <strong data-i18n="lbl-on-screen">Touchscreen:</strong>
+              <p data-i18n="unload-screen-step">Select <strong>Filament → Unload</strong> → pick toolhead. Wait for nozzle temperature prompt, then gently pull.</p>
             </div>
           </div>
           <div class="guide-pro-tip">
-            <strong data-i18n="unload-tip-title">💡 Warum spürt man leichten Widerstand?</strong>
-            <p data-i18n="unload-tip-text">Ein leichter mechanischer Widerstand ist völlig normal, da das Filament an den Feeder-Zahnrädern vorbeiläuft. Zum Abnehmen der Spule: Haltearm am Gehäuse festhalten und Spule gerade nach vorne abziehen.</p>
+            <strong data-i18n="unload-tip-title">💡 Why does it have slight resistance?</strong>
+            <p data-i18n="unload-tip-text">Light tactile resistance is completely normal as the filament passes the feeder gears. Pull smoothly! To remove the spool: hold the holder arm at the chassis and pull the spool straight outward.</p>
           </div>
         </div>
 
@@ -81,168 +76,64 @@
         <div class="guide-card card-blue">
           <div class="guide-card-header">
             <span style="font-size: 1.8rem;">📥</span>
-            <h3 data-i18n="load-title">Filament Laden (Load)</h3>
+            <h3 data-i18n="load-title">Loading Filament</h3>
           </div>
-          <div class="guide-punchline" data-i18n="load-punchline">In zwei Worten: 45° Schnitt &rarr; Bis zum Feeder schieben &rarr; Load drücken</div>
+          <div class="guide-punchline" data-i18n="load-punchline">In a nutshell: 45° cut → Push to feeder → Press Load</div>
           <div class="guide-steps">
             <div class="guide-step-item">
-              <strong data-i18n="lbl-prep">1. 45° Schnitt:</strong>
-              <p data-i18n="load-cut-step">Filament sauber schräg im 45°-Winkel abschneiden. Spule auf den Haltearm stecken.</p>
+              <strong data-i18n="lbl-prep">1. Cut 45°:</strong>
+              <p data-i18n="load-cut-step">Snip filament cleanly at a 45° angle. Hang spool on the spindle.</p>
             </div>
             <div class="guide-step-item">
-              <strong data-i18n="lbl-insert">2. Einschieben:</strong>
-              <p data-i18n="load-insert-step">Filament in den Schlauch schieben, bis der Einlass-Sensor auslöst (Dashboard zeigt: <em>At feeder only</em>).</p>
+              <strong data-i18n="lbl-insert">2. Insert:</strong>
+              <p data-i18n="load-insert-step">Push filament into the feed tube until the inlet sensor trips (Dashboard shows: <em>At feeder only</em>).</p>
             </div>
             <div class="guide-step-item">
-              <strong data-i18n="lbl-load">3. Load drücken:</strong>
-              <p data-i18n="load-trigger-step">Am Dashboard oder Display <strong>Load</strong> drücken. Der Drucker heizt vor, zieht das Filament ein und fördert einen Teststrang.</p>
+              <strong data-i18n="lbl-load">3. Trigger Load:</strong>
+              <p data-i18n="load-trigger-step">Click <strong>Load</strong> in Dashboard or Touchscreen. The printer preheats, motor feeds through the tube, and purges a test bead.</p>
             </div>
           </div>
           <div class="guide-pro-tip">
-            <strong data-i18n="load-tip-title">💡 Pro-Tipp für reibungslosen Einzug</strong>
-            <p data-i18n="load-tip-text">Niemals verbogene oder gequetschte Spitzen einschieben. Der schräge 45°-Schnitt verhindert zuverlässig ein Verkanten im Toolchanger-Einlass.</p>
+            <strong data-i18n="load-tip-title">💡 Pro Tip for smooth feeding</strong>
+            <p data-i18n="load-tip-text">Never insert bent or flattened filament tips. A sharp 45° cut ensures the filament slides effortlessly through the toolchanger dock inlet.</p>
           </div>
         </div>
       </div>
 
       <!-- FAQ Accordions -->
       <div class="faq-container" style="margin-top:40px;">
-        <h2 style="margin-bottom:20px; font-size:1.4rem; color:#f0f6fc;">❓ Häufige Fragen & Problemlöser</h2>
+        <h2 data-i18n="guide-faq">Frequently asked questions</h2>
 
         <details>
-          <summary data-i18n="faq1-q">Was bedeutet die Meldung „At feeder only“ im Dashboard?</summary>
-          <div class="details-content" data-i18n="faq1-a">
-            Das Filament steckt bereits im Schlauch und der Vorfeeder-Sensor meldet Bereitschaft, das Material ist aber noch nicht bis zum eigentlichen Druckkopf vorgefördert. Einfach auf <strong>Load</strong> tippen — der Drucker heizt vor und zieht das Filament automatisch bis zur Düse.
-          </div>
+          <summary data-i18n="faq1-q">What does 'At feeder only' mean in the dashboard?</summary>
+          <div class="details-content" data-i18n="faq1-a">The filament has been inserted into the Bowden feed inlet and the inlet sensor confirmed its presence, but it has not been advanced through the long tube to the nozzle yet. Simply tap <strong>Load</strong> to let the motor feed it to the hotend.</div>
         </details>
 
         <details>
-          <summary data-i18n="faq2-q">Extrudiert der Motor das Filament beim Entladen von alleine komplett heraus?</summary>
-          <div class="details-content" data-i18n="faq2-a">
-            Nein, und das ist bauartbedingt so gewollt! Der Extrudermotor zieht nur die heiße Spitze kurz aus der Schmelzzone zurück, damit sich kein dicker Pfropfen bildet. Den langen Weg durch den PTFE-Schlauch wickelst du per Hand direkt auf die Spule auf, um loses Filament-Chaos hinter dem Drucker zu vermeiden.
-          </div>
+          <summary data-i18n="faq2-q">Does the motor automatically spit out the filament during unload?</summary>
+          <div class="details-content" data-i18n="faq2-a">No, and that is intentional by design! The extruder motor only pulls the hot tip back out of the melt zone to prevent thick bulbs from jamming the PTFE tube. The long distance through the tube back to the spool is reeled up smoothly by hand to prevent messy tangles.</div>
         </details>
 
         <details>
-          <summary data-i18n="faq3-q">Darf ich Filament auch bei kalter Düse herausziehen?</summary>
-          <div class="details-content" data-i18n="faq3-a">
-            <strong>Niemals!</strong> Bei kalter Düse sitzt das erstarrte Filament fest in der Bohrung. Ein Ziehen mit Gewalt kann das PTFE-Inlet beschädigen oder das Hotend verstopfen. Immer zuerst aufschmelzen lassen (mind. 200 °C bei PLA, 240 °C bei PETG).
-          </div>
+          <summary data-i18n="faq3-q">Can I pull filament out when the nozzle is cold?</summary>
+          <div class="details-content" data-i18n="faq3-a">Use the printer’s unload routine and wait until it reaches the configured temperature for the material. Avoid pulling against resistance.</div>
         </details>
 
         <details>
-          <summary data-i18n="faq4-q">Wann nutze ich „Cancel Print“ und wann den Not-Halt?</summary>
-          <div class="details-content" data-i18n="faq4-a">
-            <strong>Cancel Print:</strong> Normaler Stopp. Der Drucker beendet den G-Code, hebt die Z-Achse an, parkt das aktive Werkzeug sauber im Dock und kühlt kontrolliert ab.<br>
-            <strong>Emergency Stop:</strong> Reiner Notfall-Schalter. Schaltet sofort Klipper, alle Schrittmotoren und Heizpatronen stromlos. Nur bei mechanischen Kollisionen oder drohender Beschädigung drücken! Danach ist ein Klipper-Firmware-Restart erforderlich.
-          </div>
+          <summary data-i18n="faq4-q">When should I use 'Cancel Print' vs. Emergency Stop?</summary>
+          <div class="details-content" data-i18n="faq4-a">Use <strong>Cancel Print</strong> for a routine abort and check the resulting printer status. <strong>Emergency Stop</strong> sends a software shutdown command (Klipper M112). Follow the manufacturer’s instructions in a hazardous situation.</div>
         </details>
 
         <details>
-          <summary>Warum sind die Bewegungsachsen während des Druckens im Dashboard gesperrt?</summary>
-          <div class="details-content">
-            Das Dashboard besitzt eine aktive Sicherheitsverriegelung (<em>Not available during printing</em>). Während eines Drucks dürfen keine manuellen Homing- oder Jog-Befehle an Klipper gesendet werden, da dies unweigerlich zu Schichtversatz oder Werkzeugkollisionen führen würde.
-          </div>
-        </details>
+          <summary data-i18n="guide-motion">Why are motion controls disabled during a print?</summary><div data-i18n="guide-motion-a" class="details-content">The dashboard gates manual motion by the reported printer state. Use the normal printer controls to stop a job before attempting manual movement.</div></details>
       </div>
     </div>
   </section>
+  </main>
 
-  <!-- Support & Coffee Section -->
-  <section class="coffee-section">
-    <div class="container coffee-container">
-      <div class="coffee-card">
-        <h2 data-i18n="support-title">Feedback & Support</h2>
-        <p class="coffee-lead" data-i18n="support-lead">The project is free and open-source. A star on GitHub helps, and if you like, buy me a coffee:</p>
-        <div class="coffee-btn-group" style="display:flex; justify-content:center;">
-          <a href="https://ko-fi.com/Reaper2507" id="body-coffee-link" target="_blank" class="btn-coffee-large" title="Support on Ko-fi">
-            <img src="assets/githubbutton_sm.svg" height="36" alt="Support on Ko-fi">
-          </a>
-        </div>
-        </div>
-    </div>
-  </section>
 
-  <!-- Credits & Acknowledgements -->
-  <section id="credits" class="credits-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="credits-title">Credits & Acknowledgements</h2>
-        <p data-i18n="credits-subtitle">Aufgebaut auf herausragender Vorarbeit der Home Assistant- und 3D-Druck-Community</p>
-      </div>
-            <div class="credits-grid">
-        <!-- 1. Ironoxx (Main Giver - Ganz oben links!) -->
-        <div class="credit-item featured-credit-item">
-          <div class="hall-badge" style="background:#ff6347; color:#fff; top:12px; right:12px;">Fundament & Haupt-Ideengeber</div>
-          <h4>Ironoxx (ha-snapmaker-u1-card)</h4>
-          <p data-i18n="credit-ironoxx">Das Fundament dieses gesamten Projekts: Ursprüngliche Integrationsbasis, 4-Toolhead-Telemetrie und Kamera-Streaming (MIT-Lizenz).</p>
-          <div class="credit-links">
-            <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card" target="_blank" class="credit-repo-link">github.com/Ironoxx/ha-snapmaker-u1-card &rarr;</a>
-            <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" title="Support Ironoxx on Ko-fi">
-              <span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi
-            </a>
-          </div>
-        </div>
-
-        <!-- 2. Donkie (Spoolman) -->
-        <div class="credit-item">
-          <h4>Donkie (Spoolman)</h4>
-          <p data-i18n="credit-spoolman">Open-Source Filament- und Spulen-Inventarverwaltung für Klipper und Home Assistant.</p>
-          <div class="credit-links">
-            <a href="https://github.com/Donkie/Spoolman" target="_blank" class="credit-repo-link">github.com/Donkie/Spoolman &rarr;</a>
-            <a href="https://github.com/sponsors/Donkie" target="_blank" class="credit-sponsor-btn" title="Sponsor Donkie on GitHub">
-              <span class="kofi-icon">❤️</span> Sponsor Donkie on GitHub
-            </a>
-          </div>
-        </div>
-
-        <!-- 3. LayerLab (Set & Send Plugin) -->
-        <div class="credit-item">
-          <h4>LayerLab (Set & Send Plugin)</h4>
-          <p data-i18n="credit-layerlab">Entwickler des unverzichtbaren "Set & Send" Pre-Print Popups, 11×11 Vollbett-Nivellierung und Bauraum-Filtersteuerung für den U1.</p>
-          <div class="credit-links">
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-repo-link">layerlab.store/pages/set-and-send &rarr;</a>
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-kofi-btn" title="Support LayerLab">
-              <span class="kofi-icon">☕</span> LayerLab Tip Jar & Guide
-            </a>
-          </div>
-        </div>
-
-        <!-- 4. Home Assistant Custom Cards (RomRider, thomasloven, kalkih, ofekashern) -->
-        <div class="credit-item">
-          <h4>Home Assistant Custom Cards</h4>
-          <p data-i18n="credit-cards">Besonderer Dank an RomRider (button-card), thomasloven (card-mod, slider-entity-row), kalkih (mini-graph-card) und ofekashern.</p>
-          <div class="credit-links">
-            <a href="https://www.buymeacoffee.com/thomasloven" target="_blank" class="credit-bmac-btn" title="Buy Thomas Lovén a Coffee">
-              <span class="kofi-icon">☕</span> Buy Thomas Lovén a Coffee
-            </a>
-          </div>
-        </div>
-
-        <!-- 5. OrcaSlicer & SoftFever (Nach hinten verschoben) -->
-        <div class="credit-item">
-          <h4>OrcaSlicer & SoftFever</h4>
-          <p data-i18n="credit-orca">Für Open-Source-Slicing-Exzellenz und native Toolchanger-Unterstützung.</p>
-          <div class="credit-links">
-            <a href="https://github.com/OrcaSlicer/OrcaSlicer" target="_blank" class="credit-repo-link">github.com/OrcaSlicer &rarr;</a>
-            <a href="https://ko-fi.com/SoftFever" target="_blank" class="credit-kofi-btn" title="Support SoftFever on Ko-fi">
-              <span class="kofi-icon">☕</span> Support SoftFever on Ko-fi
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Support & Coffee Section -->
-  <section class="coffee-section">
-    <div class="container coffee-container">
-      <div class="coffee-card">
-        <h2 data-i18n="support-title">Feedback & Support</h2>
-        <p class="coffee-lead" data-i18n="support-lead">The project is free and open-source. A star on GitHub helps, and if you like, buy me a coffee:</p>
-        <div class="coffee-btn-group" style="display:flex; justify-content:center;">
-          <a href="https://ko-fi.com/Reaper2507" id="body-coffee-link" target="_blank" class="btn-coffee-large" title="Support on Ko-fi">
-            <img src="assets/githubbutton_sm.svg" height="36" alt="Support on Ko-fi">
-          </a>
-        </div>
-        
+  <!-- Footer -->
+  <footer class="site-footer"><div class="container footer-content"><p>Snapmaker U1 Community Hub · <a href="credits.html" data-i18n="nav-credits">Credits</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE">MIT</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues">GitHub Issues</a></p></div></footer>
+  <script src="app.js?v=20261108_11"></script>
+</body>
+</html>

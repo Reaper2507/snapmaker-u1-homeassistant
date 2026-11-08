@@ -3,264 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Snapmaker U1 Community Hub · Home Assistant & OrcaSlicer</title>
-  <meta name="description" content="Community toolkit for Snapmaker U1 4-toolhead 3D printer: Home Assistant Dashboard, OrcaSlicer profiles, and Operator Guide.">
-  <link rel="stylesheet" href="styles.css?v=20261108_09">
+  <title data-i18n="page-index">Snapmaker U1 Dashboard for Home Assistant</title>
+  <meta name="description" content="Home Assistant dashboard and installation guide for the Snapmaker U1.">
+  <link rel="stylesheet" href="styles.css?v=20261108_11">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <a href="#main-content" class="skip-link" data-i18n="skip-main">Skip to content</a>
   <!-- Header / Navigation -->
   <header class="site-header">
     <div class="container header-container">
       <a href="index.html" class="brand">
-        <span class="brand-badge">U1</span>
-        <span class="brand-text">Snapmaker U1 Hub</span>
+
+        <span class="brand-text">Snapmaker U1 Dashboard</span>
       </a>
-      <nav class="nav-links">
-        <a href="index.html" class="nav-link active" data-i18n="nav-home">Overview</a>
-        <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Home Assistant</a>
-        <a href="orcaslicer.html" class="nav-link" data-i18n="nav-orcaslicer">OrcaSlicer</a>
-        <a href="guide.html" class="nav-link" data-i18n="nav-guide">Guide & FAQ</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html" class="nav-link active" data-i18n="nav-home" aria-current="page">Overview</a>
+        <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Dashboard</a>
+        <a href="install.html" class="nav-link" data-i18n="nav-install">Install</a>
+        <a href="#extras" class="nav-link" data-i18n="nav-orcaslicer">Extras</a>
+        <a href="guide.html" class="nav-link" data-i18n="nav-guide">Guide</a>
         <a href="credits.html" class="nav-link" data-i18n="nav-credits">Credits</a>
-        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" class="github-link" title="GitHub Repo">
+        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="GitHub repository" title="GitHub Repo">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
-        <button id="lang-toggle" class="lang-switch-btn" title="Sprache wechseln / Switch Language">
-          <span class="lang-icon">🌐</span> <span id="current-lang-text">DE</span>
+        </nav>
+      <button type="button" id="lang-toggle" aria-label="Auf Deutsch wechseln" class="lang-switch-btn" title="Sprache wechseln / Switch Language">
+          <span id="current-lang-text">DE</span>
         </button>
-        <div class="header-coffee-slot">
-          <a href="https://ko-fi.com/Reaper2507" id="header-coffee-link" target="_blank" class="header-kofi-badge" title="Support Reaper2507 on Ko-fi">
-            <img src="assets/githubbutton_sm.svg" height="28" alt="Support on Ko-fi">
-          </a>
-        </div>
-      </nav>
     </div>
   </header>
+  <main id="main-content" tabindex="-1">
 
   <!-- Hub Hero Section -->
   <section class="hero-section">
     <div class="container hero-container">
       <div class="hero-content">
-        <div class="pill-badge" data-i18n="hero-badge">⚡ Open Source Community Hub</div>
-        <h1 data-i18n="hero-title-hub">Snapmaker U1<br><span class="gradient-text">Community Toolkit</span></h1>
-        <p class="hero-lead" data-i18n="hero-lead-hub">
-          Das modulare Toolkit für deinen Snapmaker U1 4-Kopf-Toolchanger. Wähle den passenden Bereich: Vollwertiges Home Assistant Dashboard, präzise getunte OrcaSlicer-Profile oder die kompakte Filament-Bedienhilfe.
-        </p>
-        <div class="hero-actions">
-          <a href="install.html" class="btn btn-primary" style="background: linear-gradient(135deg, #ff6347 0%, #d83a37 100%); border-color:#ff6347; font-weight:800; box-shadow: 0 4px 18px rgba(255, 99, 71, 0.5);">⚡ Quick & Dirty (3-Min Install)</a>
-          <a href="homeassistant.html" class="btn btn-secondary" data-i18n="btn-hub-ha">🏠 Home Assistant Dashboard</a>
-          <a href="orcaslicer.html" class="btn btn-outline" data-i18n="btn-hub-slicer">🔪 OrcaSlicer Profile</a>
-        </div>
+        <div class="pill-badge" data-i18n="hero-badge">Home Assistant</div>
+        <h1 data-i18n="hero-title-hub">Snapmaker U1 Dashboard</h1>
+        <p class="hero-lead" data-i18n="hero-lead-hub">See all four toolheads, camera, print status and temperatures in Home Assistant. Includes Studio and Cutaway modes, a Minimal view and Maintenance diagnostics.</p>
+        <div class="hero-actions"><a data-i18n="dash-cta" href="homeassistant.html" class="btn btn-primary">Explore the dashboard</a><a data-i18n="install-cta" href="install.html" class="btn btn-secondary">Installation</a></div>
       </div>
       <div class="hero-image">
-        <a href="homeassistant.html" title="Zu den Dashboard-Screenshots & Guide">
+        <a href="homeassistant.html" >
           <img src="assets/dashboard-desktop.jpg" alt="Snapmaker U1 Dashboard Preview" class="preview-card">
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Ironoxx Main Giver Tribute Banner -->
-  <section class="main-giver-banner" style="background: linear-gradient(90deg, rgba(255,99,71,0.15) 0%, rgba(33,38,45,0.8) 100%); border-top:1px solid #ff6347; border-bottom:1px solid #30363d; padding:20px 0;">
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
-      <div style="display:flex; align-items:center; gap:16px;">
-        <span style="font-size:2.2rem; background:#161b22; border:1px solid #ff6347; border-radius:12px; padding:6px 12px;">🖨️</span>
-        <div>
-          <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:#ff7b72; font-weight:800;">Fundament & Haupt-Ideengeber</span>
-          <h3 style="color:#f0f6fc; margin:2px 0 4px; font-size:1.15rem;">Dieses gesamte Projekt entstand dank der genialen Vorarbeit von <strong>Ironoxx</strong>!</h3>
-          <p style="color:#8b949e; margin:0; font-size:0.88rem;">Er schuf die originale <code>ha-snapmaker-u1-card</code> Basis für 4-Kopf-Telemetrie und Kamerastreaming.</p>
-        </div>
-      </div>
-      <div>
-        <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" style="font-size:0.95rem; padding:9px 20px;">
-          <span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi &rarr;
-        </a>
-      </div>
-    </div>
-  </section>
 
-  <!-- Hub Navigation Cards (Separate Dedicated Areas) -->
-  <section class="hub-cards-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="hub-modules-title">Modulare Themenwelten</h2>
-        <p data-i18n="hub-modules-subtitle">Klar getrennt, ohne Überfrachtung: Direkt zum Thema, das du gerade brauchst.</p>
-      </div>
-
-      <div class="hub-modules-grid">
-        <!-- Card 1: Home Assistant -->
-        <div class="hub-module-card">
-          <div class="module-icon">🏠</div>
-          <h3 data-i18n="mod-ha-title">Home Assistant Dashboard</h3>
-          <p data-i18n="mod-ha-desc">Vollwertige Lovelace-Integration: Live-Überwachung aller 4 Köpfe (T0–T3), XYZ-Koordinaten, Studio- & Wireframe-Cutaway, Kamera, Klipper-Steuerung und Alexa Fertigdruck-Fanfare.</p>
-          <div class="module-tags">
-            <span>Live 3D-Achsen</span>
-            <span>Spulenfarben</span>
-            <span>Alexa Bing</span>
-            <span>Licht-Flackern</span>
-          </div>
-          <a href="homeassistant.html" class="btn btn-primary btn-block" data-i18n="btn-open-ha">Dashboard & Installation ansehen &rarr;</a>
-        </div>
-
-        <!-- Card 2: OrcaSlicer -->
-        <div class="hub-module-card">
-          <div class="module-icon">🔪</div>
-          <h3 data-i18n="mod-orca-title">OrcaSlicer Profile & Presets</h3>
-          <p data-i18n="mod-orca-desc">5 abgestimmte Prozessprofile für 0.4 und 0.6 mm Düsen mit Scarf Joint Seams, minimalem Turmvolumen (12–15 mm³) und 19 kalibrierten Filamenten (Bambu, SUNLU, eSUN, ELEGOO).</p>
-          <div class="module-tags">
-            <span>0.20–0.40 mm</span>
-            <span>Scarf Seams</span>
-            <span>19 Filamente</span>
-            <span>12.000 mm/s²</span>
-          </div>
-          <a href="orcaslicer.html" class="btn btn-primary btn-block" data-i18n="btn-open-orca">Profile & Presets herunterladen &rarr;</a>
-        </div>
-
-        <!-- Card 3: Operator Guide & FAQ -->
-        <div class="hub-module-card">
-          <div class="module-icon">🧵</div>
-          <h3 data-i18n="mod-guide-title">Operator Guide & FAQ</h3>
-          <p data-i18n="mod-guide-desc">Filamentwechsel in zwei Worten: Laden und Entladen mit Dashboard oder Touchscreen, Erklärung des mechanischen Widerstands, Spulenabnahme und FAQ-Problemlöser.</p>
-          <div class="module-tags">
-            <span>In zwei Worten</span>
-            <span>Spulenwechsel</span>
-            <span>At feeder only</span>
-            <span>Not-Halt</span>
-          </div>
-          <a href="guide.html" class="btn btn-primary btn-block" data-i18n="btn-open-guide">Bedienhilfe & FAQ öffnen &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Key Pillars Highlights -->
-  <section class="features-section">
-    <div class="container">
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3 data-i18n="feat-1-title">Interactive Toolchanger View</h3>
-          <p data-i18n="feat-1-desc">Visualizes all 4 toolheads, live positions (T0–T3), spool colors, bed temperature, and mounted carriage state at a glance.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🛡️</div>
-          <h3 data-i18n="feat-2-title">Direct Local Moonraker</h3>
-          <p data-i18n="feat-2-desc">100% local, no cloud lock-in. Safety interlocks prevent accidental movements while actively printing.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h3 data-i18n="feat-3-title">Optimized OrcaSlicer Profiles</h3>
-          <p data-i18n="feat-3-desc">Tuned for 0.4 mm and 0.6 mm nozzles. Scarf joint seams, gyroid infill, slim prime tower, and 12,000 mm/s² travel acceleration.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🧵</div>
-          <h3 data-i18n="feat-4-title">19 Verified Filament Presets</h3>
-          <p data-i18n="feat-4-desc">Pre-configured material settings for Bambu PLA/PETG, SUNLU PLA+ 2.0, eSUN PETG Matte, ELEGOO, and GEEETECH TPU.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Support & Coffee Section -->
-  <section class="coffee-section">
-    <div class="container coffee-container">
-      <div class="coffee-card">
-        <h2 data-i18n="support-title">Feedback & Support</h2>
-        <p class="coffee-lead" data-i18n="support-lead">The project is free and open-source. A star on GitHub helps, and if you like, buy me a coffee:</p>
-        <div class="coffee-btn-group" style="display:flex; justify-content:center;">
-          <a href="https://ko-fi.com/Reaper2507" id="body-coffee-link" target="_blank" class="btn-coffee-large" title="Support on Ko-fi">
-            <img src="assets/githubbutton_sm.svg" height="36" alt="Support on Ko-fi">
-          </a>
-        </div>
-        </div>
-    </div>
-  </section>
-
-  <!-- Credits & Acknowledgements -->
-  <section id="credits" class="credits-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="credits-title">Credits & Acknowledgements</h2>
-        <p data-i18n="credits-subtitle">Aufgebaut auf herausragender Vorarbeit der Home Assistant- und 3D-Druck-Community</p>
-      </div>
-            <div class="credits-grid">
-        <!-- 1. Ironoxx (Main Giver - Ganz oben links!) -->
-        <div class="credit-item featured-credit-item">
-          <div class="hall-badge" style="background:#ff6347; color:#fff; top:12px; right:12px;">Fundament & Haupt-Ideengeber</div>
-          <h4>Ironoxx (ha-snapmaker-u1-card)</h4>
-          <p data-i18n="credit-ironoxx">Das Fundament dieses gesamten Projekts: Ursprüngliche Integrationsbasis, 4-Toolhead-Telemetrie und Kamera-Streaming (MIT-Lizenz).</p>
-          <div class="credit-links">
-            <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card" target="_blank" class="credit-repo-link">github.com/Ironoxx/ha-snapmaker-u1-card &rarr;</a>
-            <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" title="Support Ironoxx on Ko-fi">
-              <span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi
-            </a>
-          </div>
-        </div>
-
-        <!-- 2. Donkie (Spoolman) -->
-        <div class="credit-item">
-          <h4>Donkie (Spoolman)</h4>
-          <p data-i18n="credit-spoolman">Open-Source Filament- und Spulen-Inventarverwaltung für Klipper und Home Assistant.</p>
-          <div class="credit-links">
-            <a href="https://github.com/Donkie/Spoolman" target="_blank" class="credit-repo-link">github.com/Donkie/Spoolman &rarr;</a>
-            <a href="https://github.com/sponsors/Donkie" target="_blank" class="credit-sponsor-btn" title="Sponsor Donkie on GitHub">
-              <span class="kofi-icon">❤️</span> Sponsor Donkie on GitHub
-            </a>
-          </div>
-        </div>
-
-        <!-- 3. LayerLab (Set & Send Plugin) -->
-        <div class="credit-item">
-          <h4>LayerLab (Set & Send Plugin)</h4>
-          <p data-i18n="credit-layerlab">Entwickler des unverzichtbaren "Set & Send" Pre-Print Popups, 11×11 Vollbett-Nivellierung und Bauraum-Filtersteuerung für den U1.</p>
-          <div class="credit-links">
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-repo-link">layerlab.store/pages/set-and-send &rarr;</a>
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-kofi-btn" title="Support LayerLab">
-              <span class="kofi-icon">☕</span> LayerLab Tip Jar & Guide
-            </a>
-          </div>
-        </div>
-
-        <!-- 4. Home Assistant Custom Cards (RomRider, thomasloven, kalkih, ofekashern) -->
-        <div class="credit-item">
-          <h4>Home Assistant Custom Cards</h4>
-          <p data-i18n="credit-cards">Besonderer Dank an RomRider (button-card), thomasloven (card-mod, slider-entity-row), kalkih (mini-graph-card) und ofekashern.</p>
-          <div class="credit-links">
-            <a href="https://www.buymeacoffee.com/thomasloven" target="_blank" class="credit-bmac-btn" title="Buy Thomas Lovén a Coffee">
-              <span class="kofi-icon">☕</span> Buy Thomas Lovén a Coffee
-            </a>
-          </div>
-        </div>
-
-        <!-- 5. OrcaSlicer & SoftFever (Nach hinten verschoben) -->
-        <div class="credit-item">
-          <h4>OrcaSlicer & SoftFever</h4>
-          <p data-i18n="credit-orca">Für Open-Source-Slicing-Exzellenz und native Toolchanger-Unterstützung.</p>
-          <div class="credit-links">
-            <a href="https://github.com/OrcaSlicer/OrcaSlicer" target="_blank" class="credit-repo-link">github.com/OrcaSlicer &rarr;</a>
-            <a href="https://ko-fi.com/SoftFever" target="_blank" class="credit-kofi-btn" title="Support SoftFever on Ko-fi">
-              <span class="kofi-icon">☕</span> Support SoftFever on Ko-fi
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ironoxx Main Giver Tribute Banner -->
-  <section class="main-giver-banner" style="background: linear-gradient(90deg, rgba(255,99,71,0.15) 0%, rgba(33,38,45,0.8) 100%); border-top:1px solid #ff6347; border-bottom:1px solid #30363d; padding:20px 0;">
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
-      <div style="display:flex; align-items:center; gap:16px;">
-        <span style="font-size:2.2rem; background:#161b22; border:1px solid #ff6347; border-radius:12px; padding:6px 12px;">🖨️</span>
-        <div>
-          <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:#ff7b72; font-weight:800;">Fundament & Haupt-Ideengeber</span>
-          <h3 style="color:#f0f6fc; margin:2px 0 4px; font-size:1.15rem;">Dieses gesamte Projekt entstand dank der genialen Vorarbeit von <strong>Ironoxx</strong>!</h3>
-          <p style="color:#8b949e; margin:0; font-size:0.88rem;">Er schuf die originale <code>ha-snapmaker-u1-card</code> Basis für 4-Kopf-Telemetrie und Kamerastreaming.</p>
-        </div>
-      </div>
-      <div>
-        <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" style="font-size:0.95rem; padding:9px 20px;">
-          <span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi &rarr;
-        </a>
+<section class="features-section" id="views"><div class="container"><h2 data-i18n="three-views">Three dashboard views</h2><p data-i18n="views-lead">Dashboard for daily control, Minimal for quick status, and Maintenance for diagnostics.</p><a data-i18n="gallery-cta" href="homeassistant.html#showcase">View screenshot gallery →</a><p data-i18n="main-credit">Built on <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card">Ironoxx’s Snapmaker U1 integration</a>. See the <a href="credits.html">credits</a>.</p></div></section>
+<section class="features-section" id="extras"><div class="container"><h2 data-i18n="extras-title">Optional extras</h2><ul class="extra-links"><li><a data-i18n="extra-orca" href="orcaslicer.html">OrcaSlicer profiles</a></li>
+<li><a data-i18n="extra-layer" href="orcaslicer.html#set-and-send">LayerLab Set &amp; Send</a></li>
+<li><a data-i18n="extra-tone" href="homeassistant.html#fanfare">Print completion chime and light</a></li>
+<li><a data-i18n="extra-guide" href="guide.html">Filament guide and FAQ</a></li></ul></div></section>
+<section class="features-section" id="support"><div class="container"><h2 data-i18n="support-title">Feedback and support</h2><p data-i18n="support-note">Report a bug, share feedback or buy a coffee if the project helped you.</p>
+<p class="extra-links"><a data-i18n="feedback" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues">Report an issue</a> <a class="coffee-link" href="https://ko-fi.com/ironoxx" data-i18n="coffee-ironoxx">Coffee for Ironoxx</a>
+        <a class="coffee-link" href="https://ko-fi.com/Reaper2507" data-i18n="coffee-maintainer">Coffee for Reaper2507</a></p></div></section>
+  </main>
+  <!-- Footer -->
+  <footer class="site-footer"><div class="container footer-content"><p>Snapmaker U1 Community Hub · <a href="credits.html" data-i18n="nav-credits">Credits</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE">MIT</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues">GitHub Issues</a></p></div></footer>
+  <script src="app.js?v=20261108_11"></script>
+</body>
+</html>

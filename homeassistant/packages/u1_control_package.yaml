@@ -4,8 +4,8 @@
 #
 # INSTRUCTIONS:
 # 1. Place this file in your Home Assistant 'packages/' or 'integrations/' folder.
-# 2. Replace 'YOUR_PRINTER_IP' with your Snapmaker U1's local IP (e.g. 192.168.1.150).
-# 3. Reload Scripts & REST commands (or restart Home Assistant).
+# 2. Replace 'YOUR_PRINTER_IP' with your Snapmaker U1's local IP.
+# 3. Validate the configuration, then restart Home Assistant.
 # ==============================================================================
 
 {

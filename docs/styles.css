@@ -2277,3 +2277,55 @@ summary {
   color: #ffffff;
   font-weight: 700;
 }
+
+/* Keep dashboard navigation and the language control accessible at narrow widths. */
+.extra-links { display: flex; flex-wrap: wrap; gap: .6rem 1.25rem; align-items: center; margin: .75rem 0; }
+ul.extra-links, .preset-list, .quick-steps { padding-inline-start: 1.25rem; }
+.quick-steps li, .preset-list li { margin-block: .6rem; overflow-wrap: anywhere; }
+:focus-visible { outline: 2px solid #79c0ff; outline-offset: 3px; }
+@media (max-width: 900px) {
+  .header-container { flex-wrap: wrap; justify-content: space-between; }
+  .nav-links { order: 3; width: 100%; justify-content: flex-start; flex-wrap: wrap; overflow: visible; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+.skip-link { position: fixed; z-index: 1000; top: .75rem; left: .75rem; padding: .5rem; background: #0d1117; transform: translateY(-200%); }
+.skip-link:focus { transform: translateY(0); }
+
+/* Muted controls and labels. Badges stay in the document flow. */
+:root { --link-muted: #b6c9ed; --panel-muted: #171d26; --border-muted: #3a4658; }
+a { color: var(--link-muted); }
+.btn-primary, .btn-secondary, .btn-outline, .coffee-link, .ha-my-badge { border: 1px solid var(--border-muted); box-shadow: none; text-shadow: none; }
+.btn-primary { background: #344258; color: #edf2fb; }
+.btn-primary:hover { background: #40516d; color: #f4f7fd; box-shadow: none; }
+.btn-secondary, .btn-outline, .coffee-link, .ha-my-badge { background: var(--panel-muted); color: var(--link-muted); }
+.btn-secondary:hover, .btn-outline:hover, .coffee-link:hover, .ha-my-badge:hover { background: #263143; color: #edf2fb; box-shadow: none; }
+.coffee-link, .ha-my-badge { display: inline-flex; align-items: center; padding: .35rem .65rem; border-radius: 6px; font-size: .85rem; text-decoration: none; }
+.pill-badge, .badge-tag, .step-pill, .hall-badge { background: #202936; color: #c3d1e9; border: 1px solid #3a4658; box-shadow: none; }
+.hall-badge { position: static; align-self: flex-start; margin: 0 0 .6rem; }
+.hall-card, .hall-card:hover, .featured-hall-card { border-color: var(--border-muted); box-shadow: none; background: var(--panel-muted); }
+.hall-role { color: #b0c4e5; }
+.page-banner { background: #131923; border-bottom-color: #2f3a4c; }
+.page-banner h1, .hero-content h1 { color: #eff3fa; }
+.hero-actions { gap: .6rem; }
+.quick-steps { max-width: 74ch; }
+.quick-steps li { padding-block: .3rem; }
+.path-code-box code, .quick-steps code { white-space: normal; overflow-wrap: anywhere; }
+.table-wrapper { overflow-x: auto; }
+
+/* Gallery images scroll with the page. Controls share one muted treatment. */
+.screenshot-viewport, .mobile-viewport { max-height: none; height: auto; overflow: visible; }
+.screenshot-viewport > a, .mobile-viewport > a { display: block; }
+.screenshot-card .caption { padding: .75rem 1rem; }
+.screenshot-header, .cutaway-toggle-bar, .gallery-tabs, .preview-mode-switch { flex-wrap: wrap; }
+.tab-btn, .photo-toggle-btn, .cutaway-toggle-btn, .preview-btn, .sim-chip { background: var(--panel-muted); border: 1px solid var(--border-muted); color: #bac8dc; box-shadow: none; }
+.tab-btn[aria-pressed="true"], .photo-toggle-btn[aria-pressed="true"], .cutaway-toggle-btn[aria-pressed="true"], .preview-btn[aria-pressed="true"], .sim-chip[aria-pressed="true"] { background: #29374a; color: #e6edfa; border-color: #7487a5; }
+.tab-btn:hover, .photo-toggle-btn:hover, .cutaway-toggle-btn:hover, .preview-btn:hover, .sim-chip:hover { border-color: #7487a5; color: #edf2fb; }
+.telemetry-feat-item.highlight-feat, .highlight-feat .feat-icon-box { background: var(--panel-muted); border-color: var(--border-muted); }
+.telemetry-preview-card, .telemetry-grid > * { min-width: 0; }
+
+.gallery-detail { margin: .75rem 1rem 1rem; }
+.gallery-detail img { display: block; width: 100%; height: auto; margin-block-start: .65rem; }
+.gallery-detail img[src$="dashboard-mobile.jpg"] { width: min(100%, 420px); margin-inline: auto; }
