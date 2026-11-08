@@ -150,6 +150,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 This project builds upon great work from the Home Assistant and 3D printing community:
 - **[Ironoxx (ha-snapmaker-u1-card)](https://github.com/Ironoxx/ha-snapmaker-u1-card):** Foundation for toolhead layout and camera streaming (MIT License) · [☕ Support Ironoxx on Ko-fi](https://ko-fi.com/ironoxx)
 - **Home Assistant Card Authors:** Special thanks to RomRider ([button-card](https://github.com/custom-cards/button-card)), thomasloven ([card-mod](https://github.com/thomasloven/lovelace-card-mod), [slider-entity-row](https://github.com/thomasloven/lovelace-slider-entity-row) · [☕ Support Thomas Lovén](https://www.buymeacoffee.com/thomasloven)), ofekashern ([vertical-stack-in-card](https://github.com/ofekashern/vertical-stack-in-card)), and kalkih ([mini-graph-card](https://github.com/kalkih/mini-graph-card)).
+- **[Donkie (Spoolman)](https://github.com/Donkie/Spoolman):** Leading open-source filament & spool inventory manager for Klipper · [❤️ Sponsor Donkie on GitHub](https://github.com/sponsors/Donkie)
 - **[OrcaSlicer & SoftFever](https://github.com/OrcaSlicer/OrcaSlicer):** For premier open-source slicing and toolchanger control · [☕ Support SoftFever on Ko-fi](https://ko-fi.com/SoftFever)
 
 ---
