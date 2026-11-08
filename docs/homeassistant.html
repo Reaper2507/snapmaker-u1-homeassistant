@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Assistant Dashboard · Snapmaker U1 Hub</title>
   <meta name="description" content="Production-ready Home Assistant dashboard, live telemetry, and automations for the Snapmaker U1 4-toolhead 3D printer.">
-  <link rel="stylesheet" href="styles.css?v=20261108_07">
+  <link rel="stylesheet" href="styles.css?v=20261108_08">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -163,6 +163,16 @@
           </div>
           <div class="preview-image-wrapper">
             <img id="telemetry-preview-img" src="assets/tools-material-cutaway.jpg" alt="Tools & Material Telemetry Card" class="telemetry-img">
+          </div>
+          <div class="sim-tool-bar" style="display:flex; gap:6px; margin:14px 0 6px; justify-content:center; flex-wrap:wrap;">
+            <button class="sim-chip" data-tool="0" title="Kopf 0 auswählen"><strong>T0</strong> · Docked (24°C)</button>
+            <button class="sim-chip" data-tool="1" title="Kopf 1 auswählen"><strong>T1</strong> · Docked (23°C)</button>
+            <button class="sim-chip" data-tool="2" title="Kopf 2 auswählen"><strong>T2</strong> · Docked (25°C)</button>
+            <button class="sim-chip active" data-tool="3" title="Kopf 3 auswählen"><strong>T3</strong> · Mounted (210°C)</button>
+          </div>
+          <div class="sim-status-banner" id="sim-status-banner" style="background:#161b22; border:1px solid #30363d; border-radius:6px; padding:8px 14px; font-size:0.85rem; color:#adbac7; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <span><strong style="color:#58a6ff;" id="sim-active-tool">Toolhead 3 (Mounted)</strong>: <span id="sim-material">eSUN PETG Matte Grey · Nozzle 210°C · Bed 70°C</span></span>
+            <span style="font-family:monospace; color:#3fb950; font-weight:700;" id="sim-coords">X 227.6 · Y 300.5 · Z 9.9</span>
           </div>
           <div class="preview-caption" id="telemetry-preview-caption" data-i18n="cap-telemetry-cutaway">
             Beide Modi bieten volle Feature-Parität: Live skalierte XYZ-Achsen, Nozzle- & Betttemperaturen, dynamische Spulenfarben, Klick-Direktsteuerung und Spulen-Laden/Entladen. (Hier: Wireframe-Modus).

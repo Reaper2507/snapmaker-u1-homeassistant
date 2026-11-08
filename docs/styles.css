@@ -2253,3 +2253,27 @@ summary {
   gap: 10px;
   flex-wrap: wrap;
 }
+
+
+.sim-chip {
+  background: #21262d;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 5px 12px;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.sim-chip:hover {
+  border-color: #58a6ff;
+  color: #fff;
+}
+
+.sim-chip.active {
+  background: #1f6feb;
+  border-color: #58a6ff;
+  color: #ffffff;
+  font-weight: 700;
+}

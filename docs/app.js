@@ -597,6 +597,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  
+  // Interactive Toolhead Simulation Chips (Pure Client-Side, No HA Backend Needed)
+  const simChips = document.querySelectorAll('.sim-chip');
+  const simActiveTool = document.getElementById('sim-active-tool');
+  const simMaterial = document.getElementById('sim-material');
+  const simCoords = document.getElementById('sim-coords');
+
+  const toolData = {
+    '0': { name: 'Toolhead 0 (Mounted)', mat: 'SUNLU PLA+ 2.0 Black · Nozzle 205°C · Bed 60°C', coords: 'X 12.0 · Y 24.5 · Z 0.2' },
+    '1': { name: 'Toolhead 1 (Mounted)', mat: 'Bambu PLA Basic White · Nozzle 220°C · Bed 60°C', coords: 'X 64.2 · Y 112.0 · Z 18.4' },
+    '2': { name: 'Toolhead 2 (Mounted)', mat: 'eSUN PETG Fire Red · Nozzle 240°C · Bed 75°C', coords: 'X 152.0 · Y 185.3 · Z 42.0' },
+    '3': { name: 'Toolhead 3 (Mounted)', mat: 'eSUN PETG Matte Grey · Nozzle 210°C · Bed 70°C', coords: 'X 227.6 · Y 300.5 · Z 9.9' }
+  };
+
+  simChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const toolId = chip.getAttribute('data-tool');
+      simChips.forEach(c => {
+        const id = c.getAttribute('data-tool');
+        c.classList.remove('active');
+        c.innerHTML = `<strong>T${id}</strong> · Docked (${23 + parseInt(id)}°C)`;
+      });
+      chip.classList.add('active');
+      chip.innerHTML = `<strong>T${toolId}</strong> · Mounted (${toolId === '0' ? '205' : toolId === '1' ? '220' : toolId === '2' ? '240' : '210'}°C)`;
+
+      if (toolData[toolId] && simActiveTool && simMaterial && simCoords) {
+        simActiveTool.textContent = toolData[toolId].name;
+        simMaterial.textContent = toolData[toolId].mat;
+        simCoords.textContent = toolData[toolId].coords;
+      }
+    });
+  });
+
   telemBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       telemBtns.forEach(b => b.classList.remove('active'));
