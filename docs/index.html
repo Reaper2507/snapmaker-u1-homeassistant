@@ -20,6 +20,8 @@
       </a>
       <nav class="nav-links">
         <a href="#dashboard" data-i18n="nav-dashboard">Dashboard</a>
+        <a href="#telemetry" data-i18n="nav-telemetry">Tools & Material</a>
+        <a href="#automations" data-i18n="nav-automations">Automatisierung</a>
         <a href="#orcaslicer" data-i18n="nav-orcaslicer">OrcaSlicer</a>
         <a href="#guide" data-i18n="nav-guide">Guide & FAQ</a>
         <a href="#install" data-i18n="nav-install">Installation</a>
@@ -152,8 +154,12 @@
       <!-- Tab 3: Cutaway & Live Axes -->
       <div class="tab-content" id="tab-cutaway">
         <div class="showcase-frame">
-          <img src="assets/dashboard-cutaway.jpg" alt="Cutaway Telemetry View">
-          <div class="caption" data-i18n="cap-cutaway">Cutaway graphic with live axes overlay (X, Y, Z), bed origin, and active toolhead parking status.</div>
+          <div class="cutaway-toggle-bar">
+            <button class="cutaway-toggle-btn active" data-cutview="full" data-i18n="btn-cut-full">🖥️ Dashboard Gesamtansicht (Cutaway)</button>
+            <button class="cutaway-toggle-btn" data-cutview="closeup" data-i18n="btn-cut-closeup">🔍 Tools & Material Detailansicht</button>
+          </div>
+          <img id="cutaway-display-img" src="assets/dashboard-cutaway.jpg" alt="Authentic Cutaway Telemetry View">
+          <div class="caption" id="cutaway-display-caption" data-i18n="cap-cutaway">Authentische Cutaway-Ansicht: Wireframe-Drucker mit Live-Achsenkoordinaten (X, Y, Z), Kopf-Status (T3 Mounted) und Spulenfarben.</div>
         </div>
       </div>
 
@@ -193,6 +199,224 @@
         </div>
       </div>
     </div>
+  <!-- Tools & Material Deep Dive Section -->
+  <section id="telemetry" class="telemetry-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag" data-i18n="telemetry-badge">⚡ Live-Telemetrie & Direktsteuerung</span>
+        <h2 data-i18n="telemetry-title">Tools & Material: Was die Hero-Card alles kann</h2>
+        <p data-i18n="telemetry-subtitle">Mehr als nur ein hübsches Bild: Vollwertige Echtzeit-Überwachung und Direktsteuerung aller 4 Toolheads, Achsen und Heizbett.</p>
+      </div>
+
+      <div class="telemetry-grid">
+        <!-- Interactive Card Preview -->
+        <div class="telemetry-preview-card">
+          <div class="preview-mode-switch">
+            <button class="preview-btn active" data-mode="cutaway" data-i18n="btn-mode-cutaway">📐 Wireframe Cutaway</button>
+            <button class="preview-btn" data-mode="studio" data-i18n="btn-mode-studio">🌟 Studio Glanz</button>
+          </div>
+          <div class="preview-image-wrapper">
+            <img id="telemetry-preview-img" src="assets/tools-material-cutaway.jpg" alt="Tools & Material Telemetry Card" class="telemetry-img">
+          </div>
+          <div class="preview-caption" id="telemetry-preview-caption" data-i18n="cap-telemetry-cutaway">
+            Cutaway-Modus: Technische Wireframe-Darstellung mit Live-Achsenüberlagerung (X/Y/Z) und direkt ablesbaren Nozzle-Temperaturen.
+          </div>
+        </div>
+
+        <!-- Capability List -->
+        <div class="telemetry-features">
+          <div class="telemetry-feat-item">
+            <div class="feat-icon-box">📐</div>
+            <div class="feat-content">
+              <h4 data-i18n="feat-axes-title">Echtzeit-Achsenüberwachung (X, Y, Z)</h4>
+              <p data-i18n="feat-axes-desc">Live-Koordinaten für Bett und Druckkopf (z. B. <code>X 227.6</code>, <code>Y 300.5</code>, <code>Z 9.9</code>). Du siehst auf den Millimeter genau, wo sich Werkzeug und Bauplatte aktuell befinden.</p>
+            </div>
+          </div>
+
+          <div class="telemetry-feat-item">
+            <div class="feat-icon-box">🌡️</div>
+            <div class="feat-content">
+              <h4 data-i18n="feat-temps-title">Live-Temperaturen direkt an Nozzle & Bett</h4>
+              <p data-i18n="feat-temps-desc">Sowohl Ist- als auch Solltemperatur werden für alle 4 Köpfe (T0–T3) und das Heizbett direkt am Objekt eingeblendet (z. B. <code>T3 46° / 0° (Selected)</code>, <code>Bed 25° / 0°</code>).</p>
+            </div>
+          </div>
+
+          <div class="telemetry-feat-item">
+            <div class="feat-icon-box">🧲</div>
+            <div class="feat-content">
+              <h4 data-i18n="feat-docking-title">Toolhead-Status & Docking-Rückmeldung</h4>
+              <p data-i18n="feat-docking-desc">Kein Rätselraten mehr: Das Dashboard zeigt live an, welcher Kopf auf dem Schlitten montiert ist (<code>T3 - Mounted</code>) und welche Köpfe sicher in den Halterungen geparkt sind (<code>Docked</code>).</p>
+            </div>
+          </div>
+
+          <div class="telemetry-feat-item">
+            <div class="feat-icon-box">🎨</div>
+            <div class="feat-content">
+              <h4 data-i18n="feat-spools-title">Dynamische Spulenfarben</h4>
+              <p data-i18n="feat-spools-desc">Die 4 Spulenhalter (T0–T3) rings um das Gehäuse leuchten in der exakten Farbe des geladenen Filaments und zeigen Materialtyp sowie verbleibende Restmenge an.</p>
+            </div>
+          </div>
+
+          <div class="telemetry-feat-item highlight-feat">
+            <div class="feat-icon-box">👆</div>
+            <div class="feat-content">
+              <h4 data-i18n="feat-tap-title">Interaktive Touch- & Klick-Direktsteuerung</h4>
+              <p data-i18n="feat-tap-desc">Tippe oder klicke einfach direkt auf die 3D-Druckergrafik: Sofort öffnet sich das interaktive Schnellmenü für Achsen-Jogging (Bett rauf/runter, Kopf zentrieren), Vorheizen und Filamentwechsel!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fertigdruck-Fanfare & Licht Automation Section -->
+  <section id="automations" class="automations-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge-tag badge-fanfare">🔔 Smarte Benachrichtigung</span>
+        <h2 data-i18n="auto-title">Fertigdruck-Fanfare & Licht-Benachrichtigung</h2>
+        <p data-i18n="auto-subtitle">Verpasse keinen fertigen Druck mehr: Alexa Mikrowellen-"Bing" ab 99,9% und 2x kurzes Lichtflackern bei Druckende.</p>
+      </div>
+
+      <div class="fanfare-card-grid">
+        <!-- Highlights Card -->
+        <div class="fanfare-info-card">
+          <div class="fanfare-badge-row">
+            <span class="fanfare-pill">Alexa <code>bell_02</code> (Mikrowelle)</span>
+            <span class="fanfare-pill">Licht-Flackern</span>
+            <span class="fanfare-pill">100% Endpersonalisiert</span>
+          </div>
+
+          <h3 data-i18n="fanfare-h3">Wie die Automatisierung funktioniert</h3>
+          <ul class="fanfare-feature-list">
+            <li>
+              <strong>1. Vorwarnung (Early Chime):</strong>
+              <span data-i18n="fanfare-step1">Sobald der Druckfortschritt <code>99,9 %</code> erreicht, spielt Alexa sofort den kurzen, dezenten Mikrowellenton (<code>bell_02</code>). Du weißt Bescheid, bevor der Drucker überhaupt abkühlt.</span>
+            </li>
+            <li>
+              <strong>2. Bestätigtes Druckende:</strong>
+              <span data-i18n="fanfare-step2">Die Automatisierung wartet, bis der Druckstatus von <code>printing</code> offiziell auf <code>complete</code> wechselt.</span>
+            </li>
+            <li>
+              <strong>3. Bauraumlicht flackert 2x:</strong>
+              <span data-i18n="fanfare-step3">Das Gehäuselicht pulsiert 2x kurz (An → 400ms → Aus → 400ms → An). Ein unübersehbares optisches Signal im Raum!</span>
+            </li>
+          </ul>
+
+          <div class="prerequisites-box">
+            <h4 data-i18n="prereq-title">📋 Voraussetzungen (Prerequisites)</h4>
+            <div class="prereq-item">
+              <span>🔌</span>
+              <div>
+                <strong>Alexa Media Player (HACS):</strong>
+                <span data-i18n="prereq-amp">Über HACS installiert und mit deinem Amazon-Konto verbunden (für <code>media_content_id: bell_02</code>).</span>
+              </div>
+            </div>
+            <div class="prereq-item">
+              <span>🖨️</span>
+              <div>
+                <strong>Snapmaker U1 Entitäten:</strong>
+                <span><code>sensor.snapmaker_u1_card_fortschritt</code>, <code>sensor.snapmaker_u1_card_druckstatus</code>, <code>light.snapmaker_u1_card_innenraumlicht</code>.</span>
+              </div>
+            </div>
+            <div class="prereq-item">
+              <span>🛡️</span>
+              <div>
+                <strong>Vollständig Endpersonalisiert:</strong>
+                <span data-i18n="prereq-generic">Keine privaten IP-Adressen oder Namen hartcodiert. Trage einfach den Namen deines Echo-Geräts ein (z. B. <code>media_player.echo_dot_bureau</code>).</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- YAML Code Box -->
+        <div class="fanfare-yaml-card">
+          <div class="yaml-header">
+            <span><code>fertigdruck_fanfare.yaml</code></span>
+            <button class="copy-code-btn" id="btn-copy-yaml" title="Copy YAML to clipboard">
+              📋 <span data-i18n="btn-copy-code">Copy YAML</span>
+            </button>
+          </div>
+          <pre class="code-block"><code id="fanfare-yaml-code">alias: "Snapmaker U1 – Fertigdruck-Fanfare & Licht"
+description: >-
+  Spielt den Alexa-Sound 'bell_02' ab 99,9% Druckfortschritt ab und lässt das
+  Bauraumlicht bei bestätigtem Druckende (complete) kurz aufblinken.
+triggers:
+  - trigger: numeric_state
+    entity_id: sensor.snapmaker_u1_card_fortschritt
+    above: 99.89
+    id: early_chime
+  - trigger: state
+    entity_id: sensor.snapmaker_u1_card_druckstatus
+    from: printing
+    to: complete
+    id: complete
+conditions:
+  - condition: or
+    conditions:
+      - condition: trigger
+        id: complete
+      - condition: and
+        conditions:
+          - condition: trigger
+            id: early_chime
+          - condition: state
+            entity_id: sensor.snapmaker_u1_card_druckstatus
+            state: printing
+          - condition: template
+            value_template: >-
+              {{ trigger.from_state is not none and is_number(trigger.from_state.state) }}
+actions:
+  # 1. Alexa Microwave / Bell Chime abspielen
+  - action: media_player.play_media
+    target:
+      entity_id: media_player.your_alexa_echo_device # <-- Hier dein Echo eintragen
+    data:
+      media_content_type: sound
+      media_content_id: bell_02
+    continue_on_error: true
+
+  # 2. Falls Early-Chime: Warten bis Druckstatus printing/paused verlässt
+  - if:
+      - condition: trigger
+        id: early_chime
+    then:
+      - wait_template: >-
+          {{ states('sensor.snapmaker_u1_card_druckstatus') not in ['printing', 'paused'] }}
+        timeout: "00:15:00"
+        continue_on_timeout: false
+
+  # 3. Bestätigen, dass der Druck wirklich abgeschlossen ist
+  - condition: state
+    entity_id: sensor.snapmaker_u1_card_druckstatus
+    state: complete
+
+  # 4. Bauraumlicht 2x kurz flackern / pulsieren lassen
+  - action: light.turn_on
+    target:
+      entity_id: light.snapmaker_u1_card_innenraumlicht # <-- Hier dein Bauraumlicht eintragen
+  - delay:
+      milliseconds: 400
+  - action: light.turn_off
+    target:
+      entity_id: light.snapmaker_u1_card_innenraumlicht
+  - delay:
+      milliseconds: 400
+  - action: light.turn_on
+    target:
+      entity_id: light.snapmaker_u1_card_innenraumlicht
+mode: single
+max_exceeded: silent</code></pre>
+          <div class="yaml-footer">
+            <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/automations/fertigdruck_fanfare.yaml" target="_blank" class="btn btn-secondary btn-sm">
+              ⬇ <span data-i18n="btn-download-yaml">Download fertigdruck_fanfare.yaml</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- OrcaSlicer Profiles Section -->
   <section id="orcaslicer" class="slicer-section">
     <div class="container">

@@ -6,9 +6,18 @@ Production-ready, interactive Home Assistant dashboard tailored specifically for
 
 ## 📸 Overview & Features
 
-- **Multi-Toolhead Telemetry:** Visual indicators for all 4 toolheads (T0–T3), live coordinates (X 0–271, Y 0–335, Z -6–275 mm), docked/mounted status, and nozzle temperatures.
-- **Dynamic Filament Spool Display:** Automatically reads live spool colors and filament types, distinguishing between firmware presets and active OrcaSlicer job parameters.
-- **Safety Interlocks:** Motion controls and toolhead operations are locked while actively printing. Integrated emergency stop button with confirmation prompt.
+### 🌟 Tools & Material: The Interactive Hero Card
+The core of the dashboard is the interactive **Tools & Material** card. It provides live telemetry and direct hardware control:
+- **Real-Time 3D Axes Tracking ($X, Y, Z$):** Displays live millimeter coordinates for both the toolhead carriage and print bed (e.g. `X 227.6`, `Y 300.5`, `Z 9.9`).
+- **Live Temperature Overlays:** Current and target temperatures are overlaid directly onto the corresponding toolheads (T0–T3) and the heated bed (e.g. `T3 46° / 0° (Selected)`, `Bed 25° / 0°`).
+- **Toolhead Mounting & Docking Feedback:** Instant visual state indication — shows whether a tool is actively mounted on the carriage (`T3 - Mounted`) or safely parked in the docking rail (`Docked`).
+- **Dynamic Filament Spool Colors:** The 4 spool rings (T0–T3) around the chassis illuminate dynamically matching loaded filament colors (Bambu PLA White, SUNLU Black, eSUN Apricot, etc.) and indicate remaining material.
+- **👆 Tap-to-Control Direct Shortcut:** Clicking or tapping directly on the 3D printer graphic immediately launches the interactive control popup for axis jogging (raise/lower bed, center head), preheating, and filament loading.
+- **Dual Visual Modes:** Toggle seamlessly between photorealistic **Studio Render** and technical **Wireframe Cutaway** view.
+
+### 🛡️ Safety & Controls
+- **Safety Interlocks:** Motion controls and manual toolhead docking are locked while actively printing to prevent collisions.
+- **Emergency Stop:** Prominent emergency stop button with confirmation safeguards.
 - **Three Views Included:**
   1. `Dashboard` (`snapmaker-u1`): Full daily operator view with camera, telemetry, job cards, flow/speed sliders, and toolhead controls.
   2. `Minimal` (`u1-minimal`): Lightweight status card with camera and layer view.
@@ -16,64 +25,59 @@ Production-ready, interactive Home Assistant dashboard tailored specifically for
 
 ---
 
-## 🛠️ Prerequisites
+## 🔔 Automations: Fertigdruck-Fanfare & Licht
+
+Included in [`automations/fertigdruck_fanfare.yaml`](automations/fertigdruck_fanfare.yaml):
+- **Alexa Microwave Chime (`bell_02`):** Starts early when print progress reaches **99.9%**, so you are alerted right before cooldown begins.
+- **Chamber Light Flash:** As soon as print status switches from `printing` to `complete`, the internal chamber light flashes twice (On → 400ms → Off → 400ms → On) as an unmistakable visual cue.
+- **Prerequisites:**
+  - [Alexa Media Player](https://github.com/alandtse/alexa_media_player) installed via HACS.
+  - Snapmaker U1 entities: `sensor.snapmaker_u1_card_fortschritt`, `sensor.snapmaker_u1_card_druckstatus`, and `light.snapmaker_u1_card_innenraumlicht`.
+  - Echo player entity (e.g. `media_player.your_alexa_echo_device`).
+
+---
+
+## 🛠️ Prerequisites & Cards
 
 Install the following frontend cards via **HACS (Home Assistant Community Store)**:
-- [`button-card`](https://github.com/custom-cards/button-card)
-- [`card-mod`](https://github.com/thomasloven/lovelace-card-mod)
-- [`slider-entity-row`](https://github.com/thomasloven/lovelace-slider-entity-row)
-- [`vertical-stack-in-card`](https://github.com/ofekashern/vertical-stack-in-card)
-- [`mini-graph-card`](https://github.com/kalkih/mini-graph-card)
-- [`tabbed-card`](https://github.com/kinghat/tabbed-card)
-- [`fold-entity-row`](https://github.com/thomasloven/lovelace-fold-entity-row)
+1. `button-card`
+2. `card-mod`
+3. `slider-entity-row`
+4. `vertical-stack-in-card`
+5. `mini-graph-card`
+6. `tabbed-card`
+7. `fold-entity-row`
 
 ---
 
-## 🚀 Quick Setup (3 Steps)
+## 📦 Directory Structure
 
-### Step 1: Copy Card Assets
-Copy the contents of `homeassistant/www/` to your Home Assistant directory:
+```text
+homeassistant/
+├── automations/
+│   ├── fertigdruck_fanfare.yaml   # Alexa microwave chime & light flash
+│   └── README.md                  # Automation setup guide
+├── packages/
+│   └── u1_control_package.yaml    # Moonraker REST commands & template switches
+├── views/
+│   ├── snapmaker-u1.yaml          # View 1: Complete operator dashboard
+│   ├── u1-minimal.yaml            # View 2: Minimalist status view
+│   └── u1-maintenance.yaml        # View 3: Bed mesh & diagnostics
+├── www/
+│   ├── close-up.png               # Close-up printer graphic
+│   ├── studio.png                 # Photorealistic Studio render
+│   └── u1-fusion-showcase.u1.js   # Interactive JS card
+├── u1_dashboard_complete.yaml     # Monolithic complete dashboard YAML
+└── u1_dashboard_complete.json     # Lovelace JSON representation
 ```
-/config/www/snapmaker-u1/showcase/
-  ├── u1-fusion-showcase.u1.js
-  ├── studio.png
-  └── close-up.png
-```
-
-Register the Lovelace resource in **Settings → Dashboards → Resources**:
-- **URL:** `/local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js`
-- **Resource Type:** `JavaScript Module`
-
-### Step 2: Add the Control Package
-Copy `homeassistant/packages/u1_control_package.yaml` to `/config/packages/` (or merge into your configuration).  
-Open the file and set your printer's IP address:
-```yaml
-url: http://YOUR_PRINTER_IP/printer/objects/query?...
-```
-Reload Home Assistant scripts and REST commands (**Developer Tools → YAML → Reload**).
-
-### Step 3: Import Dashboard
-- Create a new dashboard or add a view to an existing one.
-- Open the 3-dots menu top right → **Raw configuration editor**.
-- Paste the content of [`homeassistant/u1_dashboard_complete.yaml`](u1_dashboard_complete.yaml).
-- Save and enjoy!
 
 ---
 
-<details>
-<summary><b>🔍 Entity Mapping & Customization (Click to expand)</b></summary>
+## 🚀 Quick Setup
 
-The dashboard uses standard entities created by the Moonraker integration / `ha-snapmaker-u1-card`:
-- `binary_sensor.snapmaker_u1_card_live_verbindung`
-- `sensor.snapmaker_u1_card_druckstatus`
-- `sensor.snapmaker_u1_card_druckerwerte`
-- `sensor.snapmaker_u1_card_filamente`
-- `sensor.snapmaker_u1_card_druckdateien`
-- `camera.snapmaker_u1_card_kamera`
-- `button.snapmaker_u1_card_not_halt`
-- `number.snapmaker_u1_card_geschwindigkeit`
-- `number.snapmaker_u1_card_flussrate`
-- `number.snapmaker_u1_card_bauteillufter`
-
-If your entity IDs have a custom prefix, search and replace `snapmaker_u1_card_` in `u1_dashboard_complete.yaml`.
-</details>
+1. Copy files from `homeassistant/www/` to your Home Assistant `/config/www/snapmaker-u1/showcase/` folder.
+2. Register the Lovelace resource:
+   - **URL:** `/local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js`
+   - **Resource Type:** JavaScript Module
+3. Import the dashboard via **Raw Configuration Editor** in Home Assistant using `u1_dashboard_complete.yaml` (or add views individually from `views/`).
+4. (Optional) Import [`automations/fertigdruck_fanfare.yaml`](automations/fertigdruck_fanfare.yaml) for Alexa finish chime and light notification.

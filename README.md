@@ -17,9 +17,12 @@
 ---
 
 <div align="center">
-  <img src="screenshots/dashboard-desktop.jpg" alt="Snapmaker U1 Home Assistant Desktop Dashboard" width="68%">
-  <img src="screenshots/dashboard-mobile.jpg" alt="Snapmaker U1 Home Assistant Mobile View" width="28%">
+  <img src="screenshots/dashboard-desktop.jpg" alt="Snapmaker U1 Home Assistant Desktop Dashboard" width="48%">
+  <img src="screenshots/dashboard-cutaway.jpg" alt="Snapmaker U1 Wireframe Cutaway Telemetry" width="48%">
 </div>
+<p align="center">
+  <em>Left: Photorealistic Studio Mode with live heat overlays · Right: Technical Wireframe Cutaway with live XYZ axes coordinates</em>
+</p>
 
 ---
 
@@ -30,6 +33,28 @@
 - **🚀 Tuned OrcaSlicer Profiles:** Optimized for 0.4 mm and 0.6 mm stainless steel nozzles with gyroid infill, scarf seams, slim prime tower (12–15 mm³), and 12,000 mm/s² travel speed.
 - **🧵 19 Calibrated Filament Presets:** Tested profiles for Bambu Lab, SUNLU PLA+ 2.0, eSUN PETG Matte, ELEGOO, and GEEETECH TPU.
 - **📖 Operator Guide & FAQ:** Quick cheat sheets for filament loading/unloading (with & without dashboard), spool swapping, and troubleshooting states like *"At feeder only"* ([read guide](GUIDE.md)).
+
+---
+
+## 🎯 Tools & Material: Telemetry & Direct Control
+
+The centerpiece of the dashboard is the interactive **Tools & Material** hero card:
+- **📐 Live 3D Axes Overlay ($X, Y, Z$):** Real-time spatial tracking of carriage and bed position (e.g. `X 227.6`, `Y 300.5`, `Z 9.9`).
+- **🌡️ Live Heat Overlays:** Nozzle temperatures for all 4 heads (T0–T3) and heated bed overlaid directly on the 3D model (target & current temps).
+- **🧲 Toolhead Docking Status:** Instant visual confirmation of active tool mounted on carriage (`T3 - Mounted`) vs. parked heads (`Docked`).
+- **🎨 Dynamic Spool Colors:** The 4 side spool holders automatically illuminate in the exact color of the loaded filament.
+- **👆 Tap-to-Control Shortcut:** Clicking or tapping directly on the 3D printer graphic instantly opens the direct control popup for axis jogging (raise/lower bed, center tool), preheating, and filament loading!
+- **🔄 Dual Visual Modes:** Choose between the high-end photorealistic **Studio Render** and the technical **Wireframe Cutaway**.
+
+---
+
+## 🔔 Print Done Fanfare & Light Notification
+
+Get notified immediately without constantly staring at your phone:
+- **Microwave Chime (`bell_02`):** Plays Amazon Alexa's familiar microwave "Bing" as soon as progress reaches **99.9%** (early chime before cool-down).
+- **Chamber Light Flash:** Pulses the printer's interior chamber light twice (On → 400ms → Off → 400ms → On) once the state switches from `printing` to `complete`.
+- **Ready-to-use YAML:** Available at [`homeassistant/automations/fertigdruck_fanfare.yaml`](homeassistant/automations/fertigdruck_fanfare.yaml).
+- **Fully De-personalized:** Generic placeholders (`media_player.your_alexa_echo_device`, `light.snapmaker_u1_card_innenraumlicht`), ready to run on any setup.
 
 ---
 

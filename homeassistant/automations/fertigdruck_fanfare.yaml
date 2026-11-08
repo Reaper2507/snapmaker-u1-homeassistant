@@ -1,0 +1,75 @@
+# Snapmaker U1 – Fertigdruck-Fanfare & Licht-Benachrichtigung
+# Spielt den typischen Mikrowellen-"Bing"-Chime (bell_02) ab 99,9% Druckfortschritt
+# über Alexa ab und lässt die Bauraumbeleuchtung 2x kurz flackern/blinken,
+# sobald der Druckstatus endgültig auf "complete" gewechselt ist.
+
+alias: "Snapmaker U1 – Fertigdruck-Fanfare & Licht"
+description: >-
+  Spielt den Alexa-Sound 'bell_02' ab 99,9% Druckfortschritt ab und lässt das
+  Bauraumlicht bei bestätigtem Druckende (complete) kurz aufblinken.
+triggers:
+  - trigger: numeric_state
+    entity_id: sensor.snapmaker_u1_card_fortschritt
+    above: 99.89
+    id: early_chime
+  - trigger: state
+    entity_id: sensor.snapmaker_u1_card_druckstatus
+    from: printing
+    to: complete
+    id: complete
+conditions:
+  - condition: or
+    conditions:
+      - condition: trigger
+        id: complete
+      - condition: and
+        conditions:
+          - condition: trigger
+            id: early_chime
+          - condition: state
+            entity_id: sensor.snapmaker_u1_card_druckstatus
+            state: printing
+          - condition: template
+            value_template: >-
+              {{ trigger.from_state is not none and is_number(trigger.from_state.state) }}
+actions:
+  # 1. Alexa Microwave / Bell Chime abspielen
+  - action: media_player.play_media
+    target:
+      entity_id: media_player.your_alexa_echo_device # <-- Hier dein Echo / Alexa-Gerät eintragen
+    data:
+      media_content_type: sound
+      media_content_id: bell_02
+    continue_on_error: true
+
+  # 2. Falls Early-Chime: Warten bis Druckstatus printing/paused verlässt
+  - if:
+      - condition: trigger
+        id: early_chime
+    then:
+      - wait_template: >-
+          {{ states('sensor.snapmaker_u1_card_druckstatus') not in ['printing', 'paused'] }}
+        timeout: "00:15:00"
+        continue_on_timeout: false
+
+  # 3. Bestätigen, dass der Druck wirklich abgeschlossen ist
+  - condition: state
+    entity_id: sensor.snapmaker_u1_card_druckstatus
+    state: complete
+
+  # 4. Bauraumlicht 2x kurz flackern / pulsieren lassen
+  - action: light.turn_on
+    target:
+      entity_id: light.snapmaker_u1_card_innenraumlicht # <-- Hier dein Bauraumlicht eintragen
+  - delay:
+      milliseconds: 400
+  - action: light.turn_off
+    target:
+      entity_id: light.snapmaker_u1_card_innenraumlicht
+  - delay:
+      milliseconds: 400
+  - action: light.turn_on
+    target:
+      entity_id: light.snapmaker_u1_card_innenraumlicht
+mode: single
+max_exceeded: silent

@@ -72,3 +72,23 @@ Nein, und das ist bauartbedingt so gewollt: Der Extrudermotor löst nur die hei�
 
 Das Dashboard besitzt eine aktive Sicherheitsverriegelung (`Not available during printing`). Während eines Drucks dürfen keine manuellen Homing- oder Jog-Befehle an Klipper gesendet werden, da dies unweigerlich zu Schichtversatz oder Werkzeugkollisionen führen würde.
 </details>
+
+<details>
+<summary><b>Was kann die „Tools & material“ Karte im Dashboard und wie funktioniert die Direktsteuerung?</b></summary>
+
+Die Hero-Karte visualisiert den U1 vollständig in Echtzeit:
+- **Live 3D-Achsen (X, Y, Z):** Zeigt auf den Millimeter genau, wo sich der Werkzeugschlitten und das Druckbett befinden (z. B. `X 227.6`, `Y 300.5`, `Z 9.9`).
+- **Live-Temperaturen:** Direkte Überlagerung der Ist- und Solltemperatur auf den 4 Nozzles (T0–T3) und dem Druckbett.
+- **Docking-Status:** Zeigt sofort, welcher Kopf montiert ist (`T3 - Mounted`) und welche geparkt im Dock stehen (`Docked`).
+- **Dynamische Spulenfarben:** Ringe rings um das Gehäuse leuchten in der exakten Farbe des geladenen Filaments.
+- **Direktsteuerung per Fingertipp:** Ein Klick oder Tap direkt auf die 3D-Druckergrafik öffnet sofort das Schnellmenü für Achsen-Jogging (Bett absenken/anheben, Kopf zentrieren), Vorheizen und Filamentwechsel.
+</details>
+
+<details>
+<summary><b>Wie richte ich die Alexa-Mikrowellen-Benachrichtigung und das Lichtflackern bei Druckende ein?</b></summary>
+
+Im Ordner [`homeassistant/automations/fertigdruck_fanfare.yaml`](homeassistant/automations/fertigdruck_fanfare.yaml) findest du die fertige YAML-Vorlage:
+1. **Mikrowellen-Chime (`bell_02`):** Ertönt über dein Amazon Echo Gerät ab 99,9 % Fortschritt für eine punktgenaue Vorwarnung.
+2. **Licht-Flackern:** Sobald der Druckstatus endgültig auf `complete` wechselt, pulsiert das Bauraumlicht 2x kurz (An → 400ms → Aus → 400ms → An).
+3. **Voraussetzung:** [Alexa Media Player (HACS)](https://github.com/alandtse/alexa_media_player) und die U1-Sensoren in Home Assistant. In der YAML-Datei musst du lediglich den Namen deines Echo-Geräts anpassen.
+</details>
