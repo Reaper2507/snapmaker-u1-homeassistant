@@ -1,0 +1,13 @@
+{
+  "inherits": "SUNLU PLA+ 2.0 @System",
+  "compatible_printers": [
+    "Snapmaker U1 (0.4 nozzle)"
+  ],
+  "default_filament_colour": [
+    "#181818"
+  ],
+  "description": "Farbdarstellung im Slicer angenähert. CP-000540.",
+  "name": "SUNLU PLA+ 2.0 - Schwarz",
+  "from": "User",
+  "version": "2.5.0.0"
+}

@@ -1,0 +1,41 @@
+name: 🧵 Slicer / Filament Profile Feedback
+description: Submit test results or propose tweaks for OrcaSlicer U1 profiles
+labels: ["profiles", "community-tested"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping refine the Snapmaker U1 profile collection! Please share your real-world print feedback.
+  - type: input
+    id: filament_info
+    attributes:
+      label: Brand, Material & Color
+      placeholder: e.g. Polymaker PolyLite PLA Pro Teal
+    validations:
+      required: true
+  - type: dropdown
+    id: nozzle_size
+    attributes:
+      label: Nozzle Diameter
+      options:
+        - "0.4 mm Stainless"
+        - "0.4 mm Hardened"
+        - "0.6 mm Stainless"
+        - "0.6 mm Hardened"
+    validations:
+      required: true
+  - type: input
+    id: orca_version
+    attributes:
+      label: OrcaSlicer Version
+      placeholder: e.g. 2.5.0-rc
+    validations:
+      required: true
+  - type: textarea
+    id: findings
+    attributes:
+      label: Observed Print Quality & Tweaks
+      description: What worked well? Did you tweak temperatures, flow ratio, pressure advance, or retraction?
+      placeholder: Describe stringing, bed adhesion, overhang quality, or layer consistency...
+    validations:
+      required: true

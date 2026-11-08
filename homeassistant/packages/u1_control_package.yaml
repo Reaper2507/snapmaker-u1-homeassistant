@@ -1,0 +1,713 @@
+# ==============================================================================
+# Snapmaker U1 Control & Telemetry Package for Home Assistant
+# Community Edition
+#
+# INSTRUCTIONS:
+# 1. Place this file in your Home Assistant 'packages/' or 'integrations/' folder.
+# 2. Replace 'YOUR_PRINTER_IP' with your Snapmaker U1's local IP (e.g. 192.168.1.150).
+# 3. Reload Scripts & REST commands (or restart Home Assistant).
+# ==============================================================================
+
+{
+  "rest_command": {
+    "u1_fusion_v2_probe": {
+      "url": "http://YOUR_PRINTER_IP/printer/objects/query?webhooks=state&print_stats=state&pause_resume=is_paused&virtual_sdcard=is_active&idle_timeout=state&machine_state_manager=main_state,action_code&toolhead=homed_axes,position,axis_minimum,axis_maximum,extruder&gcode_move=absolute_coordinates,gcode_position&filament_feed%20left&filament_feed%20right&filament_motion_sensor%20e0_filament=filament_detected,enabled&filament_motion_sensor%20e1_filament=filament_detected,enabled&filament_motion_sensor%20e2_filament=filament_detected,enabled&filament_motion_sensor%20e3_filament=filament_detected,enabled&extruder=park_pin,active_pin,activating_move&extruder1=park_pin,active_pin,activating_move&extruder2=park_pin,active_pin,activating_move&extruder3=park_pin,active_pin,activating_move",
+      "method": "get",
+      "timeout": 5
+    }
+  },
+  "input_select": {
+    "u1_fusion_v2_jog_step": {
+      "name": "U1 Schrittweite (mm)",
+      "options": [
+        "0.1",
+        "1",
+        "10"
+      ],
+      "initial": "1",
+      "icon": "mdi:ruler"
+    },
+    "u1_fusion_v2_selected_head": {
+      "name": "U1 Kopf fÃ¼r Steuerzentrale",
+      "options": [
+        "Kopf 1",
+        "Kopf 2",
+        "Kopf 3",
+        "Kopf 4"
+      ],
+      "icon": "mdi:printer-3d-nozzle"
+    }
+  },
+  "script": {
+    "u1_fusion_v2_control": {
+      "alias": "U1 Fusion v2 Â· Maschine und Filament",
+      "description": "Erlaubt feste Lab-v2-Aktionen mit aktueller Moonraker-Sperre und RÃ¼ckmeldung.",
+      "mode": "single",
+      "max_exceeded": "error",
+      "fields": {
+        "operation": {
+          "name": "Aktion",
+          "selector": {
+            "select": {
+              "options": [
+                "check",
+                "home",
+                "jog",
+                "load",
+                "unload",
+                "preset",
+                "pick",
+                "park"
+              ]
+            }
+          }
+        },
+        "direction": {
+          "name": "Richtung",
+          "selector": {
+            "select": {
+              "options": [
+                "x_minus",
+                "x_plus",
+                "y_minus",
+                "y_plus"
+              ]
+            }
+          }
+        },
+        "tool": {
+          "name": "Werkzeugindex (T0â€“T3)",
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 3,
+              "step": 1,
+              "mode": "box"
+            }
+          }
+        },
+        "preset": {
+          "name": "Zielposition",
+          "selector": {
+            "select": {
+              "options": [
+                "bed_top",
+                "bed_mid",
+                "bed_bottom",
+                "head_left",
+                "head_center",
+                "head_back_right"
+              ]
+            }
+          }
+        }
+      },
+      "sequence": [
+        {
+          "variables": {
+            "op": "{{ operation | default('') }}",
+            "direction_key": "{{ direction | default('') }}",
+            "tool_id": "{{ tool | default(-1) | int(-1) }}",
+            "axes_map": {
+              "x_minus": 0,
+              "x_plus": 0,
+              "y_minus": 1,
+              "y_plus": 1
+            },
+            "step_size": "{{ states('input_select.u1_fusion_v2_jog_step') | float(0) }}",
+            "preset_key": "{{ preset | default('') }}",
+            "preset_points": {
+              "bed_top": [
+                null,
+                null,
+                31
+              ],
+              "bed_mid": [
+                null,
+                null,
+                140
+              ],
+              "bed_bottom": [
+                null,
+                null,
+                260
+              ],
+              "head_left": [
+                25,
+                25,
+                null
+              ],
+              "head_center": [
+                135,
+                135,
+                null
+              ],
+              "head_back_right": [
+                245,
+                245,
+                null
+              ]
+            }
+          }
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ op not in ['check','home','jog','load','unload','preset','pick','park'] }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "Unbekannte U1-Aktion."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "Unbekannte U1-Aktion.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "action": "rest_command.u1_fusion_v2_probe",
+          "response_variable": "probe",
+          "continue_on_error": true
+        },
+        {
+          "variables": {
+            "live": "{% set response = probe | default({}) %}{% set raw = response.get('content', {}) if response is mapping else {} %}{% set body = raw | from_json(default={}) if raw is string else raw %}{{ body.get('result', {}).get('status', {}) if response is mapping and response.get('status') == 200 and body is mapping else {} }}"
+          }
+        },
+        {
+          "variables": {
+            "idle_ok": "{{ live.get('webhooks', {}).get('state') == 'ready'\n  and live.get('print_stats', {}).get('state') in ['standby', 'complete', 'cancelled']\n  and live.get('pause_resume', {}).get('is_paused') is sameas false\n  and live.get('virtual_sdcard', {}).get('is_active') is sameas false\n  and live.get('idle_timeout', {}).get('state') in ['Idle', 'Ready']\n  and live.get('machine_state_manager', {}).get('main_state') == 0\n  and live.get('machine_state_manager', {}).get('action_code') == 0 }}",
+            "home_ok": "{% set axes = live.get('toolhead', {}).get('homed_axes', '') %}{{ 'x' in axes and 'y' in axes and 'z' in axes }}",
+            "ha_ok": "{{ is_state('binary_sensor.snapmaker_u1_card_live_verbindung', 'on')\n  and is_state('sensor.snapmaker_u1_card_druckerwerte', 'ready')\n  and states('sensor.snapmaker_u1_card_druckstatus') in ['standby', 'ready', 'complete', 'cancelled'] }}"
+          }
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ op == 'check' }}"
+            }
+          ],
+          "then": [
+            {
+              "variables": {
+                "result": "{{ {'idle': idle_ok and ha_ok, 'homed': home_ok, 'device_state': live.get('print_stats', {}).get('state', 'unavailable')} }}"
+              }
+            },
+            {
+              "stop": "U1-Zustand gelesen.",
+              "response_variable": "result"
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ not live }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "Der aktuelle Druckerzustand ist nicht erreichbar."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "Der aktuelle Druckerzustand ist nicht erreichbar.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ not idle_ok or not ha_ok }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "U1 gesperrt. Der Drucker muss online, fehlerfrei und im Leerlauf sein."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "U1 gesperrt. Der Drucker muss online, fehlerfrei und im Leerlauf sein.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ op != 'home' and not home_ok }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "Zuerst â€žAchsen referenzierenâ€œ. Die Achsen sind nicht referenziert."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "Zuerst â€žAchsen referenzierenâ€œ. Die Achsen sind nicht referenziert.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "variables": {
+            "delta_mm": "{{ -step_size if direction_key in ['x_minus','y_minus'] else step_size }}",
+            "feed": "{% set prefix = 'filament_feed left' if tool_id < 2 else 'filament_feed right' %}{{ live.get(prefix, {}).get('extruder' ~ tool_id, {}) }}",
+            "motion": "{{ live.get('filament_motion_sensor e' ~ tool_id ~ '_filament', {}) }}"
+          }
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{% set move = live.get('gcode_move', {}) %}\n{% set th = live.get('toolhead', {}) %}\n{% set coords = [th.get('position', []), th.get('axis_minimum', []), th.get('axis_maximum', []), move.get('gcode_position', [])] %}\n{% set axis = axes_map.get(direction_key, -1) %}\n{% set ns = namespace(valid=axis >= 0 and step_size in [0.1, 1, 10] and move.get('absolute_coordinates') is boolean) %}\n{% for coord in coords %}\n  {% if not (coord is sequence and coord is not string and coord | length >= 3 and axis >= 0 and coord[0] is number and coord[1] is number and coord[2] is number) %}{% set ns.valid = false %}{% endif %}\n{% endfor %}\n{% set goal = coords[0][axis] + delta_mm if ns.valid else 0 %}\n{{ op == 'jog' and not (ns.valid and coords[1][axis] <= goal <= coords[2][axis]\n  and axis < 2 and 0 <= goal <= 270 and 0 <= coords[0][1 - axis] <= 270 and coords[0][2] >= 1) }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "U1-Fahrt gesperrt. Schritt, Koordinaten oder Softlimit ungÃ¼ltig."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "U1-Fahrt gesperrt. Schritt, Koordinaten oder Softlimit ungÃ¼ltig.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ op in ['load', 'unload'] and not (tool_id in [0,1,2,3] and feed.get('module_exist') is sameas true\n  and feed.get('disable_auto') is sameas false and feed.get('channel_error') == 'ok'\n  and motion.get('enabled') is sameas true\n  and ((op == 'load' and feed.get('filament_detected') is sameas true and motion.get('filament_detected') is sameas false and feed.get('channel_state') != 'load_finish')\n    or (op == 'unload' and motion.get('filament_detected') is sameas true))) }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "U1-Filamentaktion gesperrt. Feeder, Filamentzustand oder Sensor des gewÃ¤hlten Kopfes prÃ¼fen."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "U1-Filamentaktion gesperrt. Feeder, Filamentzustand oder Sensor des gewÃ¤hlten Kopfes prÃ¼fen.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "variables": {
+            "head_positions": "{% set ns = namespace(result=[]) %}\n{% for key in ['extruder','extruder1','extruder2','extruder3'] %}\n  {% set head = live.get(key, {}) %}\n  {% set parked = head.get('park_pin') is sameas true and head.get('active_pin') is sameas false %}\n  {% set active = head.get('active_pin') is sameas true and head.get('park_pin') is sameas false %}\n  {% set status = ('parked' if parked else 'active' if active else 'unknown') if head.get('activating_move') is sameas false else 'unknown' %}\n  {% set ns.result = ns.result + [status] %}\n{% endfor %}\n{{ ns.result }}"
+          }
+        },
+        {
+          "variables": {
+            "mounted": "{{ head_positions | select('eq', 'active') | list | length }}",
+            "active_head_index": "{{ head_positions.index('active') if 'active' in head_positions else -1 }}"
+          }
+        },
+        {
+          "variables": {
+            "head_needs_clearance": "{% set target = preset_points.get(preset_key, []) %}\n{% set pos = live.get('toolhead', {}).get('position', []) %}\n{{ op == 'preset' and target | length == 3 and target[0] is number and target[1] is number\n  and pos is sequence and pos | length >= 3 and pos[0] is number and pos[1] is number and pos[2] is number\n  and pos[2] < 30 and (((pos[0] - target[0]) | abs) > 0.05 or ((pos[1] - target[1]) | abs) > 0.05) }}"
+          }
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ head_needs_clearance }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "Bett zuerst auf Mitte oder Unten fahren, damit der Kopf genug Abstand hat."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "Bett zuerst auf Mitte oder Unten fahren, damit der Kopf genug Abstand hat.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "variables": {
+            "preset_plan": "{% if op == 'preset' %}\n{% set th = live.get('toolhead', {}) %}\n{% set move = live.get('gcode_move', {}) %}\n{% set pos = th.get('position', []) %}\n{% set minimum = th.get('axis_minimum', []) %}\n{% set maximum = th.get('axis_maximum', []) %}\n{% set gpos = move.get('gcode_position', []) %}\n{% set absolute = move.get('absolute_coordinates') %}\n{% set ns = namespace(valid=preset_key in preset_points and absolute is boolean, steps=[]) %}\n{% for coords in [pos, minimum, maximum, gpos] %}\n  {% if not (coords is sequence and coords is not string and coords | length >= 3 and coords[0] is number and coords[1] is number and coords[2] is number) %}\n    {% set ns.valid = false %}\n  {% endif %}\n{% endfor %}\n{% if ns.valid %}\n  {% set preset = preset_points[preset_key] %}\n  {% set head_move = preset[0] is not none %}\n  {% if head_move and (mounted != 1 or head_needs_clearance or not (0 <= pos[0] <= 270 and 0 <= pos[1] <= 270)) %}\n    {% set ns.valid = false %}\n  {% endif %}\n  {% set goals = preset %}\n  {% for axis in [2,1,0] %}\n    {% set goal = goals[axis] %}\n    {% if goal is not none %}\n      {% if not minimum[axis] <= goal <= maximum[axis] %}\n        {% set ns.valid = false %}\n      {% elif ((goal - pos[axis]) | abs) > 0.05 %}\n        {% set delta = goal - pos[axis] %}\n        {% set ns.steps = ns.steps + [[axis, goal, gpos[axis] + delta if absolute else delta]] %}\n      {% endif %}\n    {% endif %}\n  {% endfor %}\n{% endif %}\n{{ ns.steps if ns.valid else none }}\n{% else %}{{ none }}{% endif %}"
+          }
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ op == 'preset' and preset_key in ['head_left','head_center','head_back_right'] and (mounted != 1 or 'unknown' in head_positions) }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "U1-Preset gesperrt. FÃ¼r diese Position muss genau ein Druckkopf am Schlitten sein."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "U1-Preset gesperrt. FÃ¼r diese Position muss genau ein Druckkopf am Schlitten sein.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ op == 'preset' and preset_plan is not sequence }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "U1-Preset gesperrt. Ziel, Achsgrenzen oder aktuelle Position ungÃ¼ltig."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "U1-Preset gesperrt. Ziel, Achsgrenzen oder aktuelle Position ungÃ¼ltig.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ op == 'preset' and preset_plan | length == 0 }}"
+            }
+          ],
+          "then": [
+            {
+              "variables": {
+                "result": "{{ {'operation': 'preset', 'confirmed': true, 'already_at_target': true} }}"
+              }
+            },
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "U1 steht bereits am gewÃ¤hlten Ziel."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "U1 steht bereits am gewÃ¤hlten Ziel.",
+              "response_variable": "result"
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ op == 'pick' and (tool_id not in [0,1,2,3] or 'unknown' in head_positions or mounted > 1) }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "U1-Kopfaufnahme gesperrt. Werkzeugindex oder Dock-/Schlittenposition ungÃ¼ltig."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "U1-Kopfaufnahme gesperrt. Werkzeugindex oder Dock-/Schlittenposition ungÃ¼ltig.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ op == 'pick' and head_positions[tool_id] == 'active' }}"
+            }
+          ],
+          "then": [
+            {
+              "variables": {
+                "result": "{{ {'operation': 'pick', 'confirmed': true, 'already_mounted': true} }}"
+              }
+            },
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "Der gewÃ¤hlte Druckkopf ist bereits am Schlitten."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "Der gewÃ¤hlte Druckkopf ist bereits am Schlitten.",
+              "response_variable": "result"
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ op == 'park' and ('unknown' in head_positions or mounted > 1) }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "U1-Parken gesperrt. Dock- oder Schlittenposition ist unklar."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "U1-Parken gesperrt. Dock- oder Schlittenposition ist unklar.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ op == 'park' and mounted == 0 }}"
+            }
+          ],
+          "then": [
+            {
+              "variables": {
+                "result": "{{ {'operation': 'park', 'confirmed': true, 'already_parked': true} }}"
+              }
+            },
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "Alle DruckkÃ¶pfe sind bereits im Dock."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "Alle DruckkÃ¶pfe sind bereits im Dock.",
+              "response_variable": "result"
+            }
+          ]
+        },
+        {
+          "variables": {
+            "wanted_position": "{{ live.toolhead.position[axes_map[direction_key]] + delta_mm if op == 'jog' else 0 }}",
+            "before_absolute": "{{ live.get('gcode_move', {}).get('absolute_coordinates') }}",
+            "gcode": "{% if op == 'jog' %}\n{% set move = live.gcode_move %}\n{% set axis = axes_map[direction_key] %}\n{% set value = (move.gcode_position[axis] + delta_mm) if move.absolute_coordinates else delta_mm %}\nSAVE_GCODE_STATE NAME=U1_FUSION_V2_JOG\nG1 {{ 'XYZ'[axis] }}{{ value | round(4) }} F600\nRESTORE_GCODE_STATE NAME=U1_FUSION_V2_JOG MOVE=0\nM400\n{% elif op == 'preset' %}\nSAVE_GCODE_STATE NAME=U1_FUSION_V2_JOG\n{% for axis, goal, value in preset_plan %}\nG1 {{ 'XYZ'[axis] }}{{ value | round(4) }} F{{ 1200 if axis == 2 else 4800 }}\n{% endfor %}\nRESTORE_GCODE_STATE NAME=U1_FUSION_V2_JOG MOVE=0\nM400\n{% elif op == 'pick' %}\nT{{ tool_id }} A0\n{% elif op == 'park' %}\nPARK_EXTRUDER{{ active_head_index if active_head_index > 0 else '' }}\n{% elif op == 'home' %}\nG28\nM400\n{% else %}\nAUTO_FEEDING EXTRUDER={{ tool_id }} {{ 'LOAD' if op == 'load' else 'UNLOAD' }}=1\n{% endif %}"
+          }
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ not (is_state('binary_sensor.snapmaker_u1_card_live_verbindung', 'on')\n  and is_state('sensor.snapmaker_u1_card_druckerwerte', 'ready')\n  and states('sensor.snapmaker_u1_card_druckstatus') in ['standby', 'ready', 'complete', 'cancelled']) }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "U1-Zustand hat sich geÃ¤ndert. Aktion gesperrt."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "U1-Zustand hat sich geÃ¤ndert. Aktion gesperrt.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "action": "snapmaker_u1_card.send_gcode",
+          "data": {
+            "config_entry_id": "01M6MDP9BERJF8APQZST7BRDAK",
+            "script": "{{ gcode }}"
+          },
+          "response_variable": "command_result",
+          "continue_on_error": true
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ command_result is not defined or command_result is not mapping or command_result.get('ok') is not sameas true }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "U1-Befehl fehlgeschlagen oder ZeitÃ¼berschreitung. Vor Wiederholung Druckerzustand und G-Code-Konsole prÃ¼fen."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "U1-Befehl fehlgeschlagen oder ZeitÃ¼berschreitung. Vor Wiederholung Druckerzustand und G-Code-Konsole prÃ¼fen.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "variables": {
+            "probe": {}
+          }
+        },
+        {
+          "action": "rest_command.u1_fusion_v2_probe",
+          "response_variable": "probe",
+          "continue_on_error": true
+        },
+        {
+          "variables": {
+            "live": "{% set response = probe | default({}) %}{% set raw = response.get('content', {}) if response is mapping else {} %}{% set body = raw | from_json(default={}) if raw is string else raw %}{{ body.get('result', {}).get('status', {}) if response is mapping and response.get('status') == 200 and body is mapping else {} }}"
+          }
+        },
+        {
+          "variables": {
+            "home_ok": "{% set axes = live.get('toolhead', {}).get('homed_axes', '') %}{{ 'x' in axes and 'y' in axes and 'z' in axes }}",
+            "feed": "{% set prefix = 'filament_feed left' if tool_id < 2 else 'filament_feed right' %}{{ live.get(prefix, {}).get('extruder' ~ tool_id, {}) }}",
+            "motion": "{{ live.get('filament_motion_sensor e' ~ tool_id ~ '_filament', {}) }}",
+            "head_positions": "{% set ns = namespace(result=[]) %}\n{% for key in ['extruder','extruder1','extruder2','extruder3'] %}\n  {% set head = live.get(key, {}) %}\n  {% set parked = head.get('park_pin') is sameas true and head.get('active_pin') is sameas false %}\n  {% set active = head.get('active_pin') is sameas true and head.get('park_pin') is sameas false %}\n  {% set status = ('parked' if parked else 'active' if active else 'unknown') if head.get('activating_move') is sameas false else 'unknown' %}\n  {% set ns.result = ns.result + [status] %}\n{% endfor %}\n{{ ns.result }}"
+          }
+        },
+        {
+          "variables": {
+            "confirmed": "{% if op == 'home' %}\n  {{ home_ok }}\n{% elif op == 'jog' %}\n  {% set axis = axes_map[direction_key] %}\n  {% set pos = live.get('toolhead', {}).get('position', []) %}\n  {{ home_ok and live.get('gcode_move', {}).get('absolute_coordinates') is sameas before_absolute and pos | length >= 3 and pos[axis] is number and ((pos[axis] - wanted_position) | abs) <= ([0.15, (delta_mm | abs) / 2] | min) }}\n{% elif op == 'preset' %}\n  {% set pos = live.get('toolhead', {}).get('position', []) %}\n  {% set ns = namespace(ok=home_ok and pos | length >= 3 and live.get('gcode_move', {}).get('absolute_coordinates') is sameas before_absolute) %}\n  {% for axis, goal, value in preset_plan %}\n    {% if not (ns.ok and pos[axis] is number and ((pos[axis] - goal) | abs) <= 0.15) %}\n      {% set ns.ok = false %}\n    {% endif %}\n  {% endfor %}\n  {{ ns.ok }}\n{% elif op == 'pick' %}\n  {% set expected = 'extruder' ~ (tool_id if tool_id > 0 else '') %}\n  {{ home_ok and head_positions[tool_id] == 'active'\n     and (head_positions | select('eq','parked') | list | length) == 3\n     and live.get('toolhead', {}).get('extruder') == expected }}\n{% elif op == 'park' %}\n  {{ (head_positions | select('eq','parked') | list | length) == 4 }}\n{% else %}\n  {{ feed.get('channel_error') == 'ok'\n     and motion.get('filament_detected') is sameas (op == 'load')\n     and (op == 'unload' or feed.get('channel_state') == 'load_finish') }}\n{% endif %}"
+          }
+        },
+        {
+          "if": [
+            {
+              "condition": "template",
+              "value_template": "{{ not confirmed }}"
+            }
+          ],
+          "then": [
+            {
+              "action": "input_text.set_value",
+              "target": {
+                "entity_id": "input_text.u1_fusion_v2_action_status"
+              },
+              "data": {
+                "value": "U1 hat den erwarteten Endzustand nicht bestÃ¤tigt. Druckerzustand vor einer Wiederholung prÃ¼fen."
+              },
+              "continue_on_error": true
+            },
+            {
+              "stop": "U1 hat den erwarteten Endzustand nicht bestÃ¤tigt. Druckerzustand vor einer Wiederholung prÃ¼fen.",
+              "error": true
+            }
+          ]
+        },
+        {
+          "variables": {
+            "result": "{{ {'operation': op, 'confirmed': true} }}"
+          }
+        },
+        {
+          "action": "input_text.set_value",
+          "target": {
+            "entity_id": "input_text.u1_fusion_v2_action_status"
+          },
+          "data": {
+            "value": "{% set m = {'home':'Achsen referenziert.', 'preset':'Zielposition erreicht.', 'jog':'Feinbewegung abgeschlossen.', 'pick':'Druckkopf am Schlitten bestÃ¤tigt.', 'park':'Druckkopf im Dock bestÃ¤tigt.', 'load':'Filament geladen.', 'unload':'Filament entladen.'} %}{{ m.get(op, 'Aktion abgeschlossen.') }}"
+          },
+          "continue_on_error": true
+        },
+        {
+          "stop": "U1-Aktion und RÃ¼ckmeldung bestÃ¤tigt.",
+          "response_variable": "result"
+        }
+      ]
+    }
+  },
+  "input_text": {
+    "u1_fusion_v2_action_status": {
+      "name": "U1 Steuerzentrale RÃ¼ckmeldung",
+      "initial": "Bereit",
+      "max": 160
+    }
+  }
+}

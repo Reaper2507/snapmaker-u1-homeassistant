@@ -1,0 +1,45 @@
+{
+  "inherits": "Snapmaker PETG @U1",
+  "compatible_printers": [
+    "Snapmaker U1 (0.4 nozzle)"
+  ],
+  "default_filament_colour": [
+    "#E68A1D"
+  ],
+  "description": "Farbcode und Temperaturbereich laut eSUN PETG Matte. Konservatives U1-PETG-Volumenlimit. CP-000540.",
+  "filament_vendor": [
+    "eSUN"
+  ],
+  "nozzle_temperature": [
+    "245",
+    "245"
+  ],
+  "nozzle_temperature_initial_layer": [
+    "245",
+    "245"
+  ],
+  "textured_plate_temp": [
+    "70"
+  ],
+  "textured_plate_temp_initial_layer": [
+    "70"
+  ],
+  "hot_plate_temp": [
+    "70"
+  ],
+  "hot_plate_temp_initial_layer": [
+    "70"
+  ],
+  "fan_min_speed": [
+    "50"
+  ],
+  "fan_max_speed": [
+    "70"
+  ],
+  "filament_density": [
+    "1.35"
+  ],
+  "name": "eSUN PETG Matte - Apricot",
+  "from": "User",
+  "version": "2.5.0.0"
+}

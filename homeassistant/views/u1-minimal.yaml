@@ -1,0 +1,378 @@
+title: Minimal
+path: u1-minimal
+type: sections
+max_columns: 3
+dense_section_placement: false
+sections:
+  - type: grid
+    column_span: 3
+    cards:
+      - type: custom:button-card
+        template: u1_showcase_data
+        custom_fields:
+          content: |-
+            [[[
+            // A running HA client may have loaded its resource list before the Showcase was registered.
+            if (!customElements.get("u1-fusion-showcase-hero-v17") ||
+                !customElements.get("u1-fusion-showcase-ironoxx")) {
+              this._u1ShowcaseModule ??= import("/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js?v=559-17").catch(error => {
+                console.error("U1 Fusion Showcase resource failed to load", error);
+              });
+            }
+            const d = variables.d;
+              const tone = {neutral:'#a3a7ad',hot:'#ff6347',warn:'#f3be73',error:'#ff8377',ok:'#93cc9f'}[d.tone];
+              const tool = !d.known ? '' : d.active !== null ? `T${d.active} mounted` :
+                d.heads.every(head => head.state === 'parked') ? '4 tools docked' : 'Tool position unknown';
+              return `<style>
+                .u1-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px 24px;border-bottom:1px solid var(--divider-color);padding:5px 0 16px}
+                .u1-title{display:flex;align-items:center;gap:9px;color:#ff6347;font-size:clamp(27px,3.1vw,40px);font-weight:760;line-height:1.12;letter-spacing:-.035em}
+                .u1-kicker{margin:0 0 4px 2px;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:650;color:var(--secondary-text-color)}
+                .u1-meta{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;color:var(--secondary-text-color);font-size:13px}
+                .u1-live{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid color-mix(in srgb,var(--u1-tone),transparent 64%);border-radius:99px;color:var(--primary-text-color);font-weight:650}
+                .u1-live i{width:7px;height:7px;border-radius:50%;background:var(--u1-tone);box-shadow:0 0 0 3px color-mix(in srgb,var(--u1-tone),transparent 83%)}
+                @media(max-width:540px){.u1-head{gap:12px;padding-bottom:12px}.u1-meta{font-size:12px}.u1-live{padding:5px 8px}}
+                </style><div class="u1-head"><div><div class="u1-kicker">Johnny5 Â· Snapmaker U1</div><div class="u1-title"><ha-icon icon="mdi:printer-3d-nozzle" style="--mdc-icon-size:1em"></ha-icon>U1 Fusion Showcase</div></div><div class="u1-meta"><span class="u1-live" style="--u1-tone:${tone}" role="status"><i aria-hidden="true"></i>${d.label}</span>${tool ? `<span>${tool}</span>` : ''}</div></div>`;
+            ]]]
+        styles:
+          card:
+            - background: transparent
+            - border: none
+            - padding: '0'
+        grid_options:
+          columns: full
+          rows: auto
+  - type: grid
+    cards:
+      - type: custom:u1-fusion-showcase-hero-v17
+        axis_limits:
+          x:
+            - 0
+            - 271
+          y:
+            - 0
+            - 335
+          z:
+            - -6
+            - 275
+        grid_options:
+          columns: full
+          rows: auto
+        card_mod:
+          style: |-
+            @media (min-width: 1200px) {
+              ha-card {
+                box-sizing: border-box;
+                --u1-overview-height: clamp(345px, calc(22vw + 64px), 410px);
+                min-height: var(--u1-overview-height);
+              }
+            }
+        show_print_actions: true
+        show_filament_heat: true
+        controls_source:
+          dashboard: 3d-printer
+          view: snapmaker-u1
+  - type: grid
+    cards:
+      - type: custom:u1-fusion-showcase-ironoxx
+        filaments_sensor: sensor.snapmaker_u1_card_filamente
+        files_sensor: sensor.snapmaker_u1_card_druckdateien
+        camera: camera.snapmaker_u1_card_kamera
+        layout: scroll
+        controls_lock: 60
+        emergency_stop: hide
+        camera_direct: 'off'
+        camera_webrtc: 'off'
+        camera_mode: still
+        refresh: 3
+        camera_max_height: 480
+        show:
+          - stage
+        camera_overlay: false
+        state_accent: false
+        card_mod:
+          style: |-
+            ha-card { border-radius: 14px; box-shadow: none; }
+            .head { display: none !important; }
+            ha-card { padding: 0; overflow: hidden; background: transparent; }
+            .panel.stage { margin: 0; }
+            .stage .thumb, .cam-state small { display: none !important; }
+            .stage-actions { padding: 8px 12px; }
+            .stage-actions button { min-height: 38px; }
+            ha-card {
+              background: var(--card-background-color);
+              border: 1px solid var(--divider-color);
+              border-radius: 14px;
+              padding: 0;
+            }
+            .panel.stage { border: none; border-radius: 0; background: transparent; }
+            .panel.stage::before {
+              content: "Printer camera";
+              display: block;
+              padding: 14px 14px 11px;
+              color: var(--primary-text-color);
+              font-size: 17px;
+              font-weight: 700;
+            }
+            .stage-actions button:not([data-act="light"]) { display: none; }
+            .stage-actions { padding: 8px; }
+            .stage-actions button { min-height: 36px; }
+            @media (min-width: 1200px) {
+              ha-card {
+                box-sizing: border-box;
+                --u1-overview-height: clamp(345px, calc(22vw + 64px), 410px);
+                min-height: var(--u1-overview-height);
+              }
+            }
+            @media (min-width: 1200px) { .stage .frame { min-height:calc(var(--u1-overview-height) - 111px); } }
+        camera_fit: contain
+        grid_options:
+          columns: full
+          rows: auto
+  - type: grid
+    cards:
+      - type: custom:button-card
+        template: u1_showcase_data
+        custom_fields:
+          content: |-
+            [[[
+            const d = variables.d;
+              const esc = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+              const decimal = (n,digits=0) => Number(n).toLocaleString('en-GB',{maximumFractionDigits:digits});
+              const positive = n => typeof n === 'number' && Number.isFinite(n) && n > 0;
+              const duration = minutes => {
+                if (!positive(minutes)) return '';
+                const m = Math.max(1,Math.round(minutes));
+                return m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${m % 60} min`;
+              };
+              const date = (value,options) => Number.isFinite(Date.parse(value)) ? new Date(value).toLocaleString('en-GB',options) : '';
+              const image = (...candidates) => candidates.find(p => typeof p === 'string' && /^\/snapmaker_u1_card\/thumbs\//.test(p));
+              const metric = (label,value) => value ? `<div><dt>${label}</dt><dd>${esc(value)}</dd></div>` : '';
+              const result = {complete:'Completed',completed:'Completed',cancelled:'Cancelled',canceled:'Cancelled',error:'Error',failed:'Error',aborted:'Cancelled'};
+              const err = d.known && d.status === 'error';
+              const activeJob = d.running || err;
+              const last = d.known && !activeJob ? d.last : null;
+              const thumb = activeJob ? image(d.model?.thumb) : last ? image(last.thumb,d.lastModel?.thumb,last.photo) : undefined;
+              const pct = d.running && d.progress !== null ? Math.round(Math.max(0,Math.min(100,d.progress))) : null;
+              const short = v => v.replace(/\.(gcode|3mf)$/i,'').replace(/[_+]+/g,' ');
+              const filename = activeJob ? short(d.filename) : last ? short(last.name || last.file) : '';
+              const heading = activeJob ? 'Print job' : d.known ? 'Last print' : 'Print job';
+              const chip = activeJob ? d.label : last ? result[last.result] : '';
+              const finish = date(d.eta,{hour:'2-digit',minute:'2-digit'});
+              const ended = date(last?.ended,{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+              const filament = positive(last?.filament_used) ? `${decimal(last.filament_used / 1000,2)} m` : '';
+              const layer = d.layer || d.layers ? `${d.layer ?? 'â€”'} / ${d.layers ?? 'â€”'}` : '';
+              const metrics = d.running
+                ? metric('Layer',layer)+metric('ETA',finish)+metric('Remaining',duration(d.remaining))+metric('Elapsed',duration(d.elapsed))
+                : last ? metric('Duration',duration(last.duration / 60))+metric('Filament',filament) : '';
+              const statusText = err ? d.reason || 'The printer reported an error.'
+                : d.status === 'paused' && d.running ? d.reason || 'The print is waiting to resume.'
+                : !d.online ? 'Printer disconnected.'
+                : !d.known ? 'Print status is currently unknown.'
+                : !activeJob && !last ? 'No print has been recorded yet.' : '';
+              const tone = activeJob ? d.tone : last && ['complete','completed'].includes(last.result) ? 'ok' : 'neutral';
+              return `<style>
+                .u1-job-h{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 8px;margin-bottom:12px}
+                .u1-job-h b{font-size:17px;font-weight:720}
+                .u1-job-badge{font-size:11px;font-weight:650;border-radius:99px;padding:4px 8px;background:color-mix(in srgb,var(--secondary-text-color) 12%,transparent);color:var(--secondary-text-color)}
+                .u1-job-badge[data-tone=ok]{color:#a1d5a8;background:#75b48320}
+                .u1-job-badge[data-tone=hot],.u1-job-badge[data-tone=error]{color:#ffab98;background:#ff634724}
+                .u1-job-badge[data-tone=warn]{color:#f3be73;background:#f3be7323}
+                .u1-job-main{display:grid;grid-template-columns:minmax(0,1fr);gap:11px;align-items:center}
+                .u1-model{display:block;box-sizing:border-box;width:100%;height:clamp(105px,12vw,165px);object-fit:contain;border-radius:11px;padding:6px;background:radial-gradient(ellipse at 50% 55%,#46423f,#242327 76%)}
+                .u1-filename{font-weight:720;font-size:16px;line-height:1.25;overflow-wrap:anywhere}
+                .u1-muted{color:var(--secondary-text-color);font-size:12px;line-height:1.4}
+                .u1-pct{font-size:clamp(26px,3.2vw,39px);font-weight:760;letter-spacing:-.04em;line-height:1;color:#ff7961;margin:0 0 7px}
+                .u1-pct small{font-size:.49em;letter-spacing:0}
+                .u1-track{height:6px;border-radius:99px;background:var(--divider-color);overflow:hidden;margin-bottom:12px}
+                .u1-track i{display:block;height:100%;background:#ff6347;border-radius:inherit}
+                .u1-job-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 8px;margin:12px 0 0;padding-top:11px;border-top:1px solid var(--divider-color)}
+                .u1-job-metrics dt{color:var(--secondary-text-color);font-size:12px}.u1-job-metrics dd{margin:3px 0 0;font-weight:710;font-size:15px}
+                @media(max-width:560px){.u1-job-main.has-model{grid-template-columns:86px minmax(0,1fr)}.u1-model{height:82px}.u1-filename{font-size:14px}.u1-job-h{margin-bottom:9px}}
+                </style><div class="u1-job-h"><b>${heading}</b>${chip ? `<span class="u1-job-badge" data-tone="${tone}">${chip}</span>` : ''}</div>
+                ${pct === null ? '' : `<div class="u1-pct">${pct}<small> %</small></div><div class="u1-track" role="progressbar" aria-label="Print progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}"><i style="width:${pct}%"></i></div>`}
+                ${(thumb || filename) ? `<div class="u1-job-main ${thumb ? 'has-model' : ''}">${thumb ? `<img class="u1-model" src="${esc(thumb)}" alt="${thumb===last?.photo && thumb!==last?.thumb ? 'Photo of the last print' : 'Model thumbnail'}">` : ''}<div><div class="u1-filename">${esc(filename)}</div>${ended ? `<div class="u1-muted">${esc(ended)}</div>` : ''}</div></div>` : ''}
+                ${statusText ? `<div class="u1-muted" style="margin-top:${filename ? 8 : 0}px">${esc(statusText)}</div>` : ''}
+                ${metrics ? `<dl class="u1-job-metrics">${metrics}</dl>` : ''}`;
+            ]]]
+        grid_options:
+          columns: full
+          rows: auto
+        card_mod:
+          style: |-
+            @media (min-width: 1200px) {
+              ha-card {
+                box-sizing: border-box;
+                --u1-overview-height: clamp(345px, calc(22vw + 64px), 410px);
+                min-height: var(--u1-overview-height);
+              }
+            }
+            @media (min-width: 1200px) {
+              ha-card { min-height: calc(var(--u1-overview-height) - 57px); }
+              ha-card:not(:has(.u1-track)) .u1-job-main .u1-model {
+                height: clamp(105px, calc(22vw - 174px), 145px);
+              }
+            }
+        styles:
+          card:
+            - justify-content: flex-start
+          grid:
+            - grid-template-rows: max-content
+            - align-content: start
+            - align-items: start
+      - type: custom:button-card
+        template: u1_showcase_data
+        entity: button.snapmaker_u1_card_not_halt
+        name: Emergency stop
+        icon: mdi:alert-octagon
+        show_name: true
+        show_icon: true
+        tap_action:
+          action: |-
+            [[[
+            const available = entity?.state && entity.state !== 'unavailable';
+            return variables.d.online && available ? 'perform-action' : 'none';
+            ]]]
+          perform_action: button.press
+          target:
+            entity_id: button.snapmaker_u1_card_not_halt
+          confirmation:
+            text: Trigger an emergency stop? Klipper stops immediately and switches
+              off the heaters and motors. A firmware restart is required afterward.
+        styles:
+          card:
+            - height: 40px
+            - border-radius: 999px
+            - padding: 0 7px
+            - box-shadow: none
+            - background: '[[[ return variables.d.running ? ''#a41622'' : ''#424448'';
+                ]]]'
+            - border: '[[[ return variables.d.running ? ''1px solid #d94b52'' : ''1px
+                solid #6b6d72''; ]]]'
+            - color: '#fff'
+            - opacity: '[[[ return variables.d.online && entity?.state && entity.state
+                !== ''unavailable'' ? ''1'' : ''.48''; ]]]'
+          grid:
+            - grid-template-areas: '"i n"'
+            - grid-template-columns: 22px max-content
+            - grid-template-rows: 1fr
+            - justify-content: center
+            - column-gap: 5px
+          icon:
+            - width: 18px
+            - color: '#fff'
+          name:
+            - font-size: 13px
+            - font-weight: '650'
+        grid_options:
+          columns: full
+          rows: auto
+  - type: grid
+    column_span: 3
+    cards:
+      - type: custom:u1-fusion-showcase-ironoxx
+        filaments_sensor: sensor.snapmaker_u1_card_filamente
+        files_sensor: sensor.snapmaker_u1_card_druckdateien
+        camera: camera.snapmaker_u1_card_kamera
+        layout: tabs
+        controls_lock: 60
+        emergency_stop: hide
+        camera_direct: 'off'
+        camera_webrtc: 'off'
+        camera_mode: still
+        refresh: 3
+        camera_max_height: 420
+        show:
+          - files
+          - history
+          - timelapse
+        state_accent: false
+        card_mod:
+          style: |-
+            ha-card { border-radius: 14px; box-shadow: none; }
+            .head { display: none !important; }
+            .tab[aria-selected="true"] { color: #ff8069; border-bottom-color: #ff6347; }
+            .tab:focus-visible { outline-color: #ff8069; }
+            .tabs { flex-wrap: wrap; gap: 2px 4px; overflow: visible; }
+            @container u1 (max-width: 520px) { .tab span { display: inline; } .tab { padding: 8px 9px; } }
+            @media(max-width: 560px) { .panel { min-width: 0; } }
+            .layout[data-pane="files"] > :only-child { grid-column: 1 / -1; }
+            .panel:has(> .files > .file):not(:has(> .files > .file:nth-child(4))) { padding-block: 12px; gap: 8px; }
+            .files:has(> .file):not(:has(> .file:nth-child(4))) button.file { padding: 6px; gap: 4px; }
+            .files:has(> .file):not(:has(> .file:nth-child(4))) .file-thumb { height: 68px; aspect-ratio: auto; }
+        grid_options:
+          columns: 24
+          rows: auto
+        files_limit: 4
+        timelapse_limit: 4
+      - type: custom:u1-fusion-showcase-ironoxx
+        filaments_sensor: sensor.snapmaker_u1_card_filamente
+        files_sensor: sensor.snapmaker_u1_card_druckdateien
+        camera: camera.snapmaker_u1_card_kamera
+        layout: scroll
+        controls_lock: 60
+        emergency_stop: hide
+        camera_direct: 'off'
+        camera_webrtc: 'off'
+        camera_mode: still
+        refresh: 3
+        camera_max_height: 420
+        show:
+          - layer
+        state_accent: false
+        card_mod:
+          style: |-
+            ha-card { border-radius: 14px; box-shadow: none; }
+            .head { display: none !important; }
+            @container style(--column-span: 3) {
+              :host { display: block; height: 100%; min-height: 260px; max-height: 440px; }
+              ha-card { box-sizing: border-box; height: 100%; }
+              .layout { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); }
+              .lv-panel { min-height: 0; }
+              .lv { flex: 1 1 0; min-height: 0; aspect-ratio: auto; }
+            }
+            .panel > .panel-head .panel-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--primary-text-color); }
+        grid_options:
+          columns: 12
+          rows: auto
+        visibility:
+          - condition: or
+            conditions:
+              - condition: state
+                entity: sensor.snapmaker_u1_card_druckstatus
+                state: printing
+              - condition: state
+                entity: sensor.snapmaker_u1_card_druckstatus
+                state: paused
+          - condition: state
+            entity: binary_sensor.snapmaker_u1_card_live_verbindung
+            state: 'on'
+      - type: markdown
+        title: Layer view
+        content: |-
+          **Inactive**
+
+          The layer view appears during a print when the printer is connected.
+        grid_options:
+          columns: 12
+          rows: auto
+        card_mod:
+          style:
+            .: ha-card { border-radius:14px; box-shadow:none; --ha-card-header-font-size:16px;
+              }
+            ha-card$: .card-header { font-weight:700; padding:14px 14px 0; }
+        visibility:
+          - condition: not
+            conditions:
+              - condition: and
+                conditions:
+                  - condition: or
+                    conditions:
+                      - condition: state
+                        entity: sensor.snapmaker_u1_card_druckstatus
+                        state: printing
+                      - condition: state
+                        entity: sensor.snapmaker_u1_card_druckstatus
+                        state: paused
+                  - condition: state
+                    entity: binary_sensor.snapmaker_u1_card_live_verbindung
+                    state: 'on'

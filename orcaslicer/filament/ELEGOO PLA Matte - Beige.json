@@ -1,0 +1,13 @@
+{
+  "inherits": "Elegoo PLA Matte @System",
+  "compatible_printers": [
+    "Snapmaker U1 (0.4 nozzle)"
+  ],
+  "default_filament_colour": [
+    "#D8C5A6"
+  ],
+  "description": "Farbdarstellung im Slicer angenähert. CP-000540.",
+  "name": "ELEGOO PLA Matte - Beige",
+  "from": "User",
+  "version": "2.5.0.0"
+}

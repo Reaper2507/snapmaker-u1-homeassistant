@@ -1,0 +1,307 @@
+{
+  "title": "Maintenance & Diagnostics",
+  "path": "u1-maintenance",
+  "type": "sections",
+  "max_columns": 3,
+  "dense_section_placement": false,
+  "sections": [
+    {
+      "type": "grid",
+      "column_span": 3,
+      "cards": [
+        {
+          "type": "custom:button-card",
+          "template": "u1_showcase_data",
+          "custom_fields": {
+            "content": "[[[\n// A running HA client may have loaded its resource list before the Showcase was registered.\nif (!customElements.get(\"u1-fusion-showcase-hero-v17\") ||\n    !customElements.get(\"u1-fusion-showcase-ironoxx\")) {\n  this._u1ShowcaseModule ??= import(\"/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js?v=559-17\").catch(error => {\n    console.error(\"U1 Fusion Showcase resource failed to load\", error);\n  });\n}\nconst d = variables.d;\n  const tone = {neutral:'#a3a7ad',hot:'#ff6347',warn:'#f3be73',error:'#ff8377',ok:'#93cc9f'}[d.tone];\n  const tool = !d.known ? '' : d.active !== null ? `T${d.active} mounted` :\n    d.heads.every(head => head.state === 'parked') ? '4 tools docked' : 'Tool position unknown';\n  return `<style>\n    .u1-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px 24px;border-bottom:1px solid var(--divider-color);padding:5px 0 16px}\n    .u1-title{display:flex;align-items:center;gap:9px;color:#ff6347;font-size:clamp(27px,3.1vw,40px);font-weight:760;line-height:1.12;letter-spacing:-.035em}\n    .u1-kicker{margin:0 0 4px 2px;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:650;color:var(--secondary-text-color)}\n    .u1-meta{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;color:var(--secondary-text-color);font-size:13px}\n    .u1-live{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid color-mix(in srgb,var(--u1-tone),transparent 64%);border-radius:99px;color:var(--primary-text-color);font-weight:650}\n    .u1-live i{width:7px;height:7px;border-radius:50%;background:var(--u1-tone);box-shadow:0 0 0 3px color-mix(in srgb,var(--u1-tone),transparent 83%)}\n    @media(max-width:540px){.u1-head{gap:12px;padding-bottom:12px}.u1-meta{font-size:12px}.u1-live{padding:5px 8px}}\n    </style><div class=\"u1-head\"><div><div class=\"u1-kicker\">Johnny5 Â· Snapmaker U1</div><div class=\"u1-title\"><ha-icon icon=\"mdi:printer-3d-nozzle\" style=\"--mdc-icon-size:1em\"></ha-icon>U1 Fusion Showcase</div></div><div class=\"u1-meta\"><span class=\"u1-live\" style=\"--u1-tone:${tone}\" role=\"status\"><i aria-hidden=\"true\"></i>${d.label}</span>${tool ? `<span>${tool}</span>` : ''}</div></div>`;\n]]]"
+          },
+          "styles": {
+            "card": [
+              {
+                "background": "transparent"
+              },
+              {
+                "border": "none"
+              },
+              {
+                "padding": "0"
+              }
+            ]
+          },
+          "grid_options": {
+            "columns": "full",
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "filaments_sensor": "sensor.snapmaker_u1_card_filamente",
+          "files_sensor": "sensor.snapmaker_u1_card_druckdateien",
+          "camera": "camera.snapmaker_u1_card_kamera",
+          "layout": "scroll",
+          "controls_lock": 60,
+          "emergency_stop": "hide",
+          "camera_direct": "off",
+          "camera_webrtc": "off",
+          "camera_mode": "still",
+          "refresh": 3,
+          "camera_max_height": 420,
+          "show": [
+            "console"
+          ],
+          "state_accent": false,
+          "card_mod": {
+            "style": "ha-card { border-radius: 14px; box-shadow: none; }\n.head { display: none !important; }\n.panel > .panel-head .panel-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--primary-text-color); }"
+          },
+          "type": "custom:u1-fusion-showcase-ironoxx",
+          "grid_options": {
+            "columns": "full",
+            "rows": "auto"
+          }
+        },
+        {
+          "filaments_sensor": "sensor.snapmaker_u1_card_filamente",
+          "files_sensor": "sensor.snapmaker_u1_card_druckdateien",
+          "camera": "camera.snapmaker_u1_card_kamera",
+          "layout": "scroll",
+          "controls_lock": 60,
+          "emergency_stop": "hide",
+          "camera_direct": "off",
+          "camera_webrtc": "off",
+          "camera_mode": "still",
+          "refresh": 3,
+          "camera_max_height": 420,
+          "show": [
+            "maintenance"
+          ],
+          "state_accent": false,
+          "card_mod": {
+            "style": "ha-card { border-radius: 14px; box-shadow: none; }\n.head { display: none !important; }\n.tab[aria-selected=\"true\"] { color: #ff8069; border-bottom-color: #ff6347; }\n.tab:focus-visible { outline-color: #ff8069; }\n.tabs { flex-wrap: wrap; gap: 2px 4px; overflow: visible; }\n@container u1 (max-width: 520px) { .tab span { display: inline; } .tab { padding: 8px 9px; } }\n@media(max-width: 560px) { .panel { min-width: 0; } }\n.layout[data-pane=\"files\"] > :only-child { grid-column: 1 / -1; }\n.panel > .panel-head .panel-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--primary-text-color); }\n@media (min-width: 1200px) { .m-list { gap:5px; } .m-top { margin-bottom:3px; } }"
+          },
+          "type": "custom:u1-fusion-showcase-ironoxx",
+          "grid_options": {
+            "columns": "full",
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "type": "custom:config-template-card",
+          "entities": [
+            "sensor.snapmaker_u1_card_druckstatus",
+            "sensor.snapmaker_u1_card_filamente",
+            "binary_sensor.snapmaker_u1_card_live_verbindung"
+          ],
+          "variables": {
+            "RUNNING": "states['binary_sensor.snapmaker_u1_card_live_verbindung']?.state === 'on' && ['printing','paused'].includes(states['sensor.snapmaker_u1_card_druckstatus']?.state)",
+            "HEAD": "(() => {const h=states['sensor.snapmaker_u1_card_filamente']?.attributes?.head_states ?? []; const i=h.indexOf('active'); return vars.RUNNING && i >= 0 && i < 4 && i===h.lastIndexOf('active') ? i : -1;})()"
+          },
+          "card": {
+            "type": "custom:apexcharts-card",
+            "header": {
+              "show": true,
+              "title": "Temperature history Â· Â°C"
+            },
+            "graph_span": "1h",
+            "apex_config": {
+              "chart": {
+                "height": "${RUNNING ? 186 : 155}",
+                "toolbar": {
+                  "show": false
+                },
+                "animations": {
+                  "enabled": false
+                }
+              },
+              "legend": {
+                "show": true,
+                "position": "bottom",
+                "fontSize": "12px",
+                "itemMargin": {
+                  "horizontal": 7,
+                  "vertical": 2
+                }
+              },
+              "xaxis": {
+                "labels": {
+                  "datetimeUTC": false,
+                  "format": "HH:mm"
+                }
+              },
+              "grid": {
+                "borderColor": "var(--divider-color)",
+                "strokeDashArray": 3
+              },
+              "stroke": {
+                "curve": "straight"
+              }
+            },
+            "series": [
+              {
+                "entity": "sensor.snapmaker_u1_card_betttemperatur",
+                "name": "Bed",
+                "color": "#78bbab",
+                "stroke_width": 2,
+                "group_by": {
+                  "func": "avg",
+                  "duration": "1min"
+                },
+                "show": {
+                  "legend_value": false
+                }
+              },
+              {
+                "entity": "sensor.snapmaker_u1_card_duse_1_temperatur",
+                "name": "T0",
+                "color": "${HEAD === 0 ? '#ff6347' : '#e3a477'}",
+                "stroke_width": "${HEAD === 0 ? 3 : 1}",
+                "group_by": {
+                  "func": "avg",
+                  "duration": "1min"
+                },
+                "show": {
+                  "legend_value": false,
+                  "hidden_by_default": "${HEAD !== 0}"
+                }
+              },
+              {
+                "entity": "sensor.snapmaker_u1_card_duse_2_temperatur",
+                "name": "T1",
+                "color": "${HEAD === 1 ? '#ff6347' : '#b8c7d5'}",
+                "stroke_width": "${HEAD === 1 ? 3 : 1}",
+                "group_by": {
+                  "func": "avg",
+                  "duration": "1min"
+                },
+                "show": {
+                  "legend_value": false,
+                  "hidden_by_default": "${HEAD !== 1}"
+                }
+              },
+              {
+                "entity": "sensor.snapmaker_u1_card_duse_3_temperatur",
+                "name": "T2",
+                "color": "${HEAD === 2 ? '#ff6347' : '#a998ce'}",
+                "stroke_width": "${HEAD === 2 ? 3 : 1}",
+                "group_by": {
+                  "func": "avg",
+                  "duration": "1min"
+                },
+                "show": {
+                  "legend_value": false,
+                  "hidden_by_default": "${HEAD !== 2}"
+                }
+              },
+              {
+                "entity": "sensor.snapmaker_u1_card_duse_4_temperatur",
+                "name": "T3",
+                "color": "${HEAD === 3 ? '#ff6347' : '#e3c47b'}",
+                "stroke_width": "${HEAD === 3 ? 3 : 1}",
+                "group_by": {
+                  "func": "avg",
+                  "duration": "1min"
+                },
+                "show": {
+                  "legend_value": false,
+                  "hidden_by_default": "${HEAD !== 3}"
+                }
+              }
+            ],
+            "card_mod": {
+              "style": "ha-card { border-radius:14px; box-shadow:none; } #header__title { font-size:16px; font-weight:700; line-height:1.25; color:var(--primary-text-color); }"
+            },
+            "experimental": {
+              "hidden_by_default": true
+            },
+            "yaxis": [
+              {
+                "min": 0,
+                "max": "~90",
+                "decimals": 0,
+                "apex_config": {
+                  "tickAmount": 3,
+                  "show": true,
+                  "showAlways": true,
+                  "showForNullSeries": true
+                }
+              }
+            ]
+          },
+          "grid_options": {
+            "columns": "full",
+            "rows": "auto"
+          },
+          "card_mod": {
+            "style": {
+              "apexcharts-card$": "#header__title { font-size:16px; font-weight:700; line-height:1.25; color:var(--primary-text-color); }\n@media (min-width: 1200px) { ha-card { box-sizing:border-box; min-height:214px; } }"
+            }
+          }
+        },
+        {
+          "filaments_sensor": "sensor.snapmaker_u1_card_filamente",
+          "files_sensor": "sensor.snapmaker_u1_card_druckdateien",
+          "camera": "camera.snapmaker_u1_card_kamera",
+          "layout": "scroll",
+          "controls_lock": 60,
+          "emergency_stop": "hide",
+          "camera_direct": "off",
+          "camera_webrtc": "off",
+          "camera_mode": "still",
+          "refresh": 3,
+          "camera_max_height": 420,
+          "show": [
+            "mesh"
+          ],
+          "state_accent": false,
+          "card_mod": {
+            "style": "ha-card { border-radius: 14px; box-shadow: none; }\n.head { display: none !important; }\n.ctl:has(input[data-num$=\"_speed_factor\"]), .ctl:has(input[data-num$=\"_flow_factor\"]) { display: none; }\n.panel > .panel-head .panel-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--primary-text-color); }\n@media (min-width: 1200px) { .mesh { padding-block:18px 22px; } }\n.mesh .tlegend { font-size:14px; line-height:1.35; gap:4px 18px; }\n.mesh .tlegend i { width:12px; height:12px; }\n@media (min-width:1200px) { .mesh .tlegend { padding-block:12px 13px; } }"
+          },
+          "type": "custom:u1-fusion-showcase-ironoxx",
+          "grid_options": {
+            "columns": "full",
+            "rows": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "cards": [
+        {
+          "filaments_sensor": "sensor.snapmaker_u1_card_filamente",
+          "files_sensor": "sensor.snapmaker_u1_card_druckdateien",
+          "camera": "camera.snapmaker_u1_card_kamera",
+          "layout": "scroll",
+          "controls_lock": 60,
+          "emergency_stop": "hide",
+          "camera_direct": "off",
+          "camera_webrtc": "off",
+          "camera_mode": "still",
+          "refresh": 3,
+          "camera_max_height": 420,
+          "show": [
+            "system"
+          ],
+          "state_accent": false,
+          "card_mod": {
+            "style": "ha-card { border-radius: 14px; box-shadow: none; }\n.head { display: none !important; }\n.tab[aria-selected=\"true\"] { color: #ff8069; border-bottom-color: #ff6347; }\n.tab:focus-visible { outline-color: #ff8069; }\n.tabs { flex-wrap: wrap; gap: 2px 4px; overflow: visible; }\n@container u1 (max-width: 520px) { .tab span { display: inline; } .tab { padding: 8px 9px; } }\n@media(max-width: 560px) { .panel { min-width: 0; } }\n.layout[data-pane=\"files\"] > :only-child { grid-column: 1 / -1; }\n.panel > details > summary { visibility:hidden; pointer-events:none; }\n.panel > details > summary > :not(.caret) { visibility:visible; }\n.panel > details > summary > .caret { display:none; }\n.panel > details > summary > span { font-size:16px; font-weight:700; line-height:1.25; color:var(--primary-text-color); }"
+          },
+          "type": "custom:u1-fusion-showcase-ironoxx",
+          "grid_options": {
+            "columns": "full",
+            "rows": "auto"
+          },
+          "compact": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "inherits": "Snapmaker PETG @U1",
+  "compatible_printers": [
+    "Snapmaker U1 (0.4 nozzle)"
+  ],
+  "default_filament_colour": [
+    "#202020"
+  ],
+  "description": "Farbdarstellung im Slicer angenähert. CP-000540.",
+  "filament_vendor": [
+    "Unbekannt"
+  ],
+  "name": "High Speed Matt PETG (Hersteller offen) - Schwarz",
+  "from": "User",
+  "version": "2.5.0.0"
+}
