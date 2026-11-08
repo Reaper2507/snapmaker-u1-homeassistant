@@ -1,10 +1,10 @@
 # Snapmaker U1 Dashboard for Home Assistant
 
-A community dashboard for the Snapmaker U1. See the four toolheads, camera, job status and temperatures in one place. Tap the printer graphic to open its controls. The card shows each loaded filament color at its tool position, and lets you use already loaded tools when the printer state allows it. Switch between Studio and Cutaway, or open the Minimal and Maintenance views.
+A community dashboard by [Reaper2507](https://github.com/Reaper2507) for the Snapmaker U1. See the four toolheads, camera, job status and temperatures in one place. Tap the printer graphic to open its controls. The card shows each loaded filament color at its tool position, and lets you use already loaded tools when the printer state allows it. Switch between Studio and Cutaway, or open the Minimal and Maintenance views.
 
 > Built on [Ironoxx’s Snapmaker U1 Card](https://github.com/Ironoxx/ha-snapmaker-u1-card). This community project provides the three-view Lovelace layout, Studio and Cutaway visuals, and installation guide. The bundled frontend adapts [Ironoxx’s v2.0.0 code](https://github.com/Ironoxx/ha-snapmaker-u1-card/tree/v2.0.0).
 
-[Dashboard views](#dashboard-views) · [Features](#features) · [Install the dashboard](#installation) · [Report an issue](../../issues)
+[Dashboard views](#dashboard-views) · [Features](#features) · [Install the dashboard](#installation) · [Feedback & Ko-fi](#feedback-and-support)
 
 ## Dashboard views
 
@@ -16,7 +16,7 @@ The upper section shows the Studio printer graphic, live camera and print progre
 
 ![Full dashboard with live toolhead telemetry, camera, print progress and controls](screenshots/dashboard-full-printing.png)
 
-Further down, the same view shows the print files, history, timelapses and the current layer with individual objects.
+Further down, the same view shows the print files, history, timelapses and the current layer. Ironoxx’s [object exclusion in the layer view](https://github.com/Ironoxx/ha-snapmaker-u1-card/blob/3a76d19e3a7ac33bf9e5f730ebdaf2558d186e44/CHANGELOG.md#L682) lets you skip an individual object while the rest of the print continues.
 
 ![Lower section of the full dashboard with print files, history tabs and the current layer](screenshots/dashboard-full-files.png)
 
@@ -40,6 +40,14 @@ Maintenance intervals, temperature history, an 11 × 11 bed mesh, the G-code con
 - **Control the printer from the graphic.** Tap it to open printer controls. With the [optional control package](homeassistant/README.md#optional-controls-and-notifications), you can mount or dock a toolhead and load or unload filament when the printer state permits. During a print, check progress and adjust speed and flow from the dashboard.
 - **Follow the job and plan maintenance.** Check the camera, estimated finish time and current layer. The diagnostics view shows maintenance intervals, the bed mesh and temperature history.
 
+### Tap the printer to open its controls
+
+Select the printer illustration in **Tools & material** to open the control panel. **Controls** shows print speed, flow and job actions. **Filament & heat** shows the four toolheads, their loaded materials and their temperature targets. These screenshots were taken during a print, when movement, tool changes and heater controls are locked.
+
+![Printer controls opened from the Studio illustration, showing print speed, flow, pause and cancel](screenshots/printer-controls-popup.png)
+
+![Filament and heat tab showing all four toolheads, their filament colors and current and target temperatures](screenshots/printer-controls-filament-heat.png)
+
 **Alternative Cutaway view**
 
 ![Cutaway printer graphic showing the four filament colors, mounted tool and live XYZ positions](screenshots/tools-material-cutaway-printing.png)
@@ -58,9 +66,9 @@ Maintenance intervals, temperature history, an 11 × 11 bed mesh, the G-code con
 
 ## Optional extras
 
-- [OrcaSlicer presets](orcaslicer/README.md) for 0.4 mm and 0.6 mm nozzles. Start from a profile and validate it for your material and hardware.
-- [LayerLab Set & Send](https://layerlab.store/pages/set-and-send), a separate OrcaSlicer plugin with its own installation and support.
-- [Print completion chime and chamber light](homeassistant/automations/README.md), an optional Home Assistant automation.
+- **OrcaSlicer profiles.** [Install the U1 process presets](orcaslicer/README.md#install-the-presets) for everyday prints, faster drafts and compact multicolor jobs. [Browse 19 filament presets](orcaslicer/README.md#filament-presets) for matching spools, including SUNLU PLA+ 2.0 and eSUN PETG Matte.
+- **Set & Send.** Thanks to LayerLab for bringing the U1’s pre-print setup to OrcaSlicer. Their add-on lets you match filaments to toolheads and choose U1 print options before sending a job. [LayerLab download and guide](https://layerlab.store/pages/set-and-send) · [Quick setup](orcaslicer/README.md#set--send-by-layerlab)
+- **Helpful Home Assistant scripts.** [Optional printer controls](homeassistant/README.md#optional-controls-and-notifications) for tool changes and filament handling, plus a [microwave-style print completion ding and a brief chamber-light pulse](homeassistant/automations/README.md).
 - [Filament handling and troubleshooting](GUIDE.md).
 
 ## Feedback and support

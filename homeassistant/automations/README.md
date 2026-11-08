@@ -2,8 +2,8 @@
 
 Use [fertigdruck_fanfare.yaml](fertigdruck_fanfare.yaml) if you want a short Echo chime and a chamber light cue. The dashboard works independently.
 
-- **Light:** On the transition into the last valid layer, it reverses the light state for 1.2 seconds after waiting up to four seconds for feedback. If the final-layer event is missed, **printing → complete** is the fallback. When native shutoff applies during the final-layer pulse, the light stays off.
-- **Chime:** Alexa Media Player attempts to play **bell_02** when progress crosses approximately 99.9% while printing, with confirmed completion as a fallback. Early timing depends on printer telemetry and the selected Echo's ability to play the sound. Cancellation is not treated as completion.
+- **Light:** On the last valid layer, it briefly flips the chamber light on if it was off, or off if it was on. It waits up to four seconds for feedback, holds the pulse for 1.2 seconds, then restores the previous state. If the final-layer event is missed, **printing → complete** is the fallback. If the printer finishes during the final-layer pulse with native light shutoff enabled, the light stays off.
+- **Chime:** Alexa Media Player attempts to play the microwave-style **bell_02** ding when progress crosses approximately 99.9% while printing, with confirmed completion as a fallback. Early timing depends on printer telemetry and the selected Echo's ability to play the sound. Cancellation is not treated as completion.
 
 ## Install
 
