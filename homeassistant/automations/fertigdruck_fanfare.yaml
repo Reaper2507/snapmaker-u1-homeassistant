@@ -1,17 +1,16 @@
-# Snapmaker U1 – Fertigdruck-Fanfare & Licht-Benachrichtigung
-# Spielt den typischen Mikrowellen-"Bing"-Chime (bell_02) ab 99,9% Druckfortschritt
-# über Alexa ab und lässt die Bauraumbeleuchtung 2x kurz flackern/blinken,
-# sobald der Druckstatus endgültig auf "complete" gewechselt ist.
-
-alias: "Snapmaker U1 – Fertigdruck-Fanfare & Licht"
+alias: "Snapmaker U1 – Fertigdruck-Fanfare & Licht (Letzter Layer & Ende)"
 description: >-
-  Spielt den Alexa-Sound 'bell_02' ab 99,9% Druckfortschritt ab und lässt das
-  Bauraumlicht bei bestätigtem Druckende (complete) kurz aufblinken.
+  Spielt den Alexa-Sound 'bell_02' bei 99,9% bzw. Druckende ab und lässt das
+  Bauraumlicht beim Eintritt in die letzte Schicht (Last Layer) 1,2 Sekunden sichtbar
+  blinken (Gegenphase), damit man das Signal auch bei aktiver nativer Lichtabschaltung sieht.
 triggers:
   - trigger: numeric_state
     entity_id: sensor.snapmaker_u1_card_fortschritt
     above: 99.89
     id: early_chime
+  - trigger: state
+    entity_id: sensor.snapmaker_u1_card_aktuelle_schicht
+    id: last_layer
   - trigger: state
     entity_id: sensor.snapmaker_u1_card_druckstatus
     from: printing
@@ -30,46 +29,139 @@ conditions:
             entity_id: sensor.snapmaker_u1_card_druckstatus
             state: printing
           - condition: template
+            value_template: "{{ trigger.from_state is not none and is_number(trigger.from_state.state) }}"
+      - condition: and
+        conditions:
+          - condition: trigger
+            id: last_layer
+          - condition: state
+            entity_id: sensor.snapmaker_u1_card_druckstatus
+            state: printing
+          - condition: state
+            entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+            state: "on"
+          - condition: template
             value_template: >-
-              {{ trigger.from_state is not none and is_number(trigger.from_state.state) }}
+              {% set before = trigger.from_state %}
+              {% set after = trigger.to_state %}
+              {% if before is none or after is none %}
+                {{ false }}
+              {% else %}
+                {% set total = after.attributes.get('total_layers') | int(0) %}
+                {{ total > 0
+                   and before.attributes.get('total_layers') | int(0) == total
+                   and is_number(before.state) and before.state | int(-1) < total
+                   and is_number(after.state) and after.state | int(-1) == total }}
+              {% endif %}
 actions:
-  # 1. Alexa Microwave / Bell Chime abspielen
-  - action: media_player.play_media
-    target:
-      entity_id: media_player.your_alexa_echo_device # <-- Hier dein Echo / Alexa-Gerät eintragen
-    data:
-      media_content_type: sound
-      media_content_id: bell_02
-    continue_on_error: true
+  - parallel:
+      - alias: "Glocke zum Druckende"
+        sequence:
+          - if:
+              - condition: trigger
+                id: last_layer
+            then:
+              - wait_template: >-
+                  {{ states('sensor.snapmaker_u1_card_druckstatus') not in ['printing', 'paused']
+                     or (is_state('sensor.snapmaker_u1_card_druckstatus', 'printing')
+                         and states('sensor.snapmaker_u1_card_fortschritt') | float(-1) > 99.89) }}
+                timeout: "02:00:00"
+                continue_on_timeout: false
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: sensor.snapmaker_u1_card_druckstatus
+                state: complete
+              - condition: and
+                conditions:
+                  - condition: state
+                    entity_id: sensor.snapmaker_u1_card_druckstatus
+                    state: printing
+                  - condition: numeric_state
+                    entity_id: sensor.snapmaker_u1_card_fortschritt
+                    above: 99.89
+          - action: media_player.play_media
+            target:
+              entity_id: media_player.your_alexa_echo_device # <-- Hier dein Echo-Gerät eintragen
+            data:
+              media_content_type: sound
+              media_content_id: bell_02
+            continue_on_error: true
+          - wait_template: "{{ states('sensor.snapmaker_u1_card_druckstatus') not in ['printing', 'paused'] }}"
+            timeout: "00:15:00"
+            continue_on_timeout: false
 
-  # 2. Falls Early-Chime: Warten bis Druckstatus printing/paused verlässt
-  - if:
-      - condition: trigger
-        id: early_chime
-    then:
-      - wait_template: >-
-          {{ states('sensor.snapmaker_u1_card_druckstatus') not in ['printing', 'paused'] }}
-        timeout: "00:15:00"
-        continue_on_timeout: false
-
-  # 3. Bestätigen, dass der Druck wirklich abgeschlossen ist
-  - condition: state
-    entity_id: sensor.snapmaker_u1_card_druckstatus
-    state: complete
-
-  # 4. Bauraumlicht 2x kurz flackern / pulsieren lassen
-  - action: light.turn_on
-    target:
-      entity_id: light.snapmaker_u1_card_innenraumlicht # <-- Hier dein Bauraumlicht eintragen
-  - delay:
-      milliseconds: 400
-  - action: light.turn_off
-    target:
-      entity_id: light.snapmaker_u1_card_innenraumlicht
-  - delay:
-      milliseconds: 400
-  - action: light.turn_on
-    target:
-      entity_id: light.snapmaker_u1_card_innenraumlicht
+      - alias: "Innenraumlicht einmal sichtbar blinken lassen"
+        sequence:
+          - if:
+              - condition: trigger
+                id: early_chime
+            then:
+              - wait_template: "{{ states('sensor.snapmaker_u1_card_druckstatus') not in ['printing', 'paused'] }}"
+                timeout: "00:15:00"
+                continue_on_timeout: false
+          - condition: or
+            conditions:
+              - condition: and
+                conditions:
+                  - condition: trigger
+                    id: last_layer
+                  - condition: state
+                    entity_id: sensor.snapmaker_u1_card_druckstatus
+                    state: printing
+              - condition: state
+                entity_id: sensor.snapmaker_u1_card_druckstatus
+                state: complete
+          - condition: state
+            entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+            state: "on"
+          - condition: state
+            entity_id: light.snapmaker_u1_card_innenraumlicht
+            state:
+              - "on"
+              - "off"
+          - variables:
+              light_before: "{{ states('light.snapmaker_u1_card_innenraumlicht') }}"
+          - if:
+              - condition: template
+                value_template: "{{ light_before == 'on' }}"
+            then:
+              - action: light.turn_off
+                target:
+                  entity_id: light.snapmaker_u1_card_innenraumlicht
+                continue_on_error: true
+            else:
+              - action: light.turn_on
+                target:
+                  entity_id: light.snapmaker_u1_card_innenraumlicht
+                continue_on_error: true
+          - wait_template: "{{ is_state('light.snapmaker_u1_card_innenraumlicht', 'off' if light_before == 'on' else 'on') }}"
+            timeout: "00:00:04"
+            continue_on_timeout: true
+          - delay:
+              milliseconds: 1200
+          - if:
+              - condition: template
+                value_template: "{{ light_before == 'on' }}"
+              - condition: not
+                conditions:
+                  - condition: and
+                    conditions:
+                      - condition: trigger
+                        id: last_layer
+                      - condition: state
+                        entity_id: sensor.snapmaker_u1_card_druckstatus
+                        state: complete
+                      - condition: state
+                        entity_id: switch.snapmaker_u1_card_licht_aus_nach_dem_druck
+                        state: "on"
+            then:
+              - action: light.turn_on
+                target:
+                  entity_id: light.snapmaker_u1_card_innenraumlicht
+            else:
+              - action: light.turn_off
+                target:
+                  entity_id: light.snapmaker_u1_card_innenraumlicht
 mode: single
 max_exceeded: silent
