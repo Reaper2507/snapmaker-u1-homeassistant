@@ -13,7 +13,7 @@ The dashboard is a Lovelace configuration for your own Home Assistant. It uses d
 - [button-card](https://github.com/custom-cards/button-card)
 - [card-mod](https://github.com/thomasloven/lovelace-card-mod)
 - [slider-entity-row](https://github.com/thomasloven/lovelace-slider-entity-row)
-- [vertical-stack-in-card](https://github.com/ofekashern/vertical-stack-in-card)
+- [vertical-stack-in-card](https://github.com/ofekashery/vertical-stack-in-card)
 - [apexcharts-card](https://github.com/RomRider/apexcharts-card)
 - [config-template-card](https://github.com/iantrich/config-template-card)
 
