@@ -4,9 +4,45 @@ A community dashboard for the Snapmaker U1. See the four toolheads, camera, job 
 
 > Built on [Ironoxx’s Snapmaker U1 Card](https://github.com/Ironoxx/ha-snapmaker-u1-card). This community project provides the three-view Lovelace layout, Studio and Cutaway visuals, and installation guide. The bundled frontend adapts [Ironoxx’s v2.0.0 code](https://github.com/Ironoxx/ha-snapmaker-u1-card/tree/v2.0.0).
 
-[View screenshots and dashboard details](https://reaper2507.github.io/snapmaker-u1-homeassistant/homeassistant.html#showcase) · [Install the dashboard](homeassistant/README.md) · [Report an issue](../../issues)
+[Dashboard views](#dashboard-views) · [Features](#features) · [Install the dashboard](#installation) · [Report an issue](../../issues)
 
-![Snapmaker U1 dashboard with toolhead telemetry and camera](docs/assets/studio-dashboard.png)
+## Dashboard views
+
+[Full dashboard](#full-dashboard) · [Minimal](#minimal) · [Maintenance & diagnostics](#maintenance--diagnostics)
+
+### Full dashboard
+
+The upper section shows the Studio printer graphic, live camera and print progress, with speed, flow and filament controls below.
+
+![Full dashboard with live toolhead telemetry, camera, print progress and controls](screenshots/dashboard-full-printing.png)
+
+Further down, the same view shows the print files, history, timelapses and the current layer with individual objects.
+
+![Lower section of the full dashboard with print files, history tabs and the current layer](screenshots/dashboard-full-files.png)
+
+### Minimal
+
+A compact view of the printer, camera, job progress and estimated finish time, with recent files and the current layer below.
+
+![Minimal dashboard during a print, with camera, ETA, recent files and layer preview](screenshots/dashboard-minimal-printing.png)
+
+### Maintenance & diagnostics
+
+Maintenance intervals, temperature history, an 11 × 11 bed mesh, the G-code console and system diagnostics in one view.
+
+![Maintenance dashboard with service intervals, temperatures, bed mesh and system diagnostics](screenshots/dashboard-maintenance-printing.png)
+
+[More screenshots, including Cutaway and mobile](https://reaper2507.github.io/snapmaker-u1-homeassistant/homeassistant.html#showcase)
+
+## Features
+
+- **See what’s loaded.** The printer graphic shows the loaded filament color at each of the four spool positions (T0–T3), along with the mounted toolhead, live XYZ position and current and target nozzle and bed temperatures.
+- **Control the printer from the graphic.** Tap it to open printer controls. With the [optional control package](homeassistant/README.md#optional-controls-and-notifications), you can mount or dock a toolhead and load or unload filament when the printer state permits. During a print, check progress and adjust speed and flow from the dashboard.
+- **Follow the job and plan maintenance.** Check the camera, estimated finish time and current layer. The diagnostics view shows maintenance intervals, the bed mesh and temperature history.
+
+**Alternative Cutaway view**
+
+![Cutaway printer graphic showing the four filament colors, mounted tool and live XYZ positions](screenshots/tools-material-cutaway-printing.png)
 
 ## Installation
 
