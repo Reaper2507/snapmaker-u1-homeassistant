@@ -6,7 +6,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Home Assistant](https://img.shields.io/badge/Home_Assistant-2026.8+-41BDF5?style=flat-square&logo=home-assistant&logoColor=white)](https://www.home-assistant.io/)
 [![OrcaSlicer](https://img.shields.io/badge/OrcaSlicer-v2.5.0_RC+-green?style=flat-square)](https://github.com/OrcaSlicer/OrcaSlicer)
-[![Buy Me A Coffee](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-PayPal-FFDD00?style=flat-square&logo=paypal&logoColor=black)](https://www.paypal.com/donate/?business=torsten.reise@gmail.com&no_recurring=0&item_name=Snapmaker+U1+Community+Hub&currency_code=EUR)
+[![Buy Me A Coffee on Ko-fi](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/torstenreise)
 
 **The complete, production-ready community toolkit for the 4-toolhead Snapmaker U1.**
 
@@ -87,8 +87,6 @@ If you don't want the full dashboard, you can import views individually:
 
 </details>
 
----
-
 ## 🔪 OrcaSlicer Profiles
 
 Drop-in profiles for OrcaSlicer (v2.5.0 RC and newer) tailored to the U1 toolchanger mechanism.
@@ -119,6 +117,24 @@ Copy the [`orcaslicer/`](orcaslicer/) folders (`machine/`, `process/`, `filament
 
 </details>
 
+### 🧩 Recommended: "Set & Send" Pre-Print Plugin (by LayerLab)
+
+To bring the native Snapmaker pre-print popup into vanilla OrcaSlicer, we highly recommend the **Set & Send** plugin by **[LayerLab](https://layerlab.store/pages/set-and-send)**:
+
+<div align="center">
+  <img src="screenshots/set-and-send-dialog.png" alt="OrcaSlicer Set and Send Pre-Print Dialog" width="68%">
+</div>
+
+- **Toolhead-to-Filament Mapping:** Assign filaments directly to toolheads (e.g. Filament 3 &rarr; Toolhead 3) with color verification.
+- **Whole-Bed Mesh (11x11):** Probes the entire 11&times;11 matrix for superior first-layer adhesion instead of generic fast probing.
+- **Top Cover Purifier Control:** Set purifier fan modes (`Auto`, `Strong cooling`, `Weak cooling`, `Keep warm`, `Off`) based on material softening temps.
+- **Chamber & Fan Safety:** Automatically turns off part cooling fans during probing to prevent bed thermal drift and injects `WAIT_CHAMBER_TEMP TIMEOUT=180`.
+- **Installation:** Place `set_and_send.py` into `%APPDATA%\OrcaSlicer\orca_plugins\set_and_send.py\set_and_send.py`. Full instructions and support at [LayerLab Guide & Store](https://layerlab.store/pages/set-and-send).
+
+---
+
+
+
 ---
 
 ## ☕ Support this Project
@@ -127,7 +143,7 @@ This project is 100% free, independent, and open-source. If this dashboard or th
 
 <div align="center">
 
-[![Buy Me A Coffee via PayPal](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://www.paypal.com/donate/?business=torsten.reise@gmail.com&no_recurring=0&item_name=Snapmaker+U1+Community+Hub&currency_code=EUR)
+[![Buy Me A Coffee on Ko-fi](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-Ko--fi-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/torstenreise)
 
 *If you share, feature, or fork this project, keeping the coffee link would be greatly appreciated, but is entirely optional!*
 
