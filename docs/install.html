@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick & Dirty · 3-Minute Fast Install · Snapmaker U1 Hub</title>
+  <meta name="description" content="Quick & Dirty 3-Minute fast install guide for Snapmaker U1 Home Assistant & OrcaSlicer. No fluff, just click and run.">
+  <link rel="stylesheet" href="styles.css?v=20261108_05">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">U1</span>
+        <span class="brand-text">Snapmaker U1 Hub</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link" data-i18n="nav-home">Overview</a>
+        <a href="install.html" class="nav-link active" data-i18n="nav-install" style="color:#ff6347; font-weight:800;">⚡ Quick Install</a>
+        <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Home Assistant</a>
+        <a href="orcaslicer.html" class="nav-link" data-i18n="nav-orcaslicer">OrcaSlicer</a>
+        <a href="guide.html" class="nav-link" data-i18n="nav-guide">Guide & FAQ</a>
+        <a href="credits.html" class="nav-link" data-i18n="nav-credits">Credits</a>
+        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" class="github-link" title="GitHub Repo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <button id="lang-toggle" class="lang-switch-btn" title="Sprache wechseln / Switch Language">
+          <span class="lang-icon">🌐</span> <span id="current-lang-text">DE</span>
+        </button>
+        <div class="header-coffee-slot">
+          <a href="https://ko-fi.com/Reaper2507" id="header-coffee-link" target="_blank" class="btn-header-coffee" title="Support Reaper2507 on Ko-fi">
+            <span class="coffee-cup-icon">☕</span>
+            <span class="coffee-text-full" data-i18n="header-coffee-full">Buy Me a Coffee (Ko-fi)</span>
+            <span class="coffee-text-short" data-i18n="header-coffee-short">Ko-fi</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner: Quick & Dirty -->
+  <section class="page-banner" style="background: linear-gradient(180deg, #1c2128 0%, #0d1117 100%); border-bottom: 2px solid #ff6347;">
+    <div class="container">
+      <div class="pill-badge" style="background:#ff6347; color:#fff; font-weight:800;">⚡ ZERO FLUFF · 3-MINUTE SETUP</div>
+      <h1>Quick & Dirty: Fast-Track Install</h1>
+      <p class="banner-lead" style="font-size:1.15rem; color:#f0f6fc;">
+        Kein langes Einlesen. Hier ist das komplette All-in-One Paket: 1 Klick zu HACS, 1 Klick zur Ressource, YAML rein und Slicer-Profile rüberkopieren. <strong>Knopf drücken und losdrucken.</strong>
+      </p>
+
+      <!-- Prominent Ko-fi Box directly in Hero -->
+      <div class="quick-kofi-hero-box" style="margin-top:24px; display:inline-flex; align-items:center; gap:16px; background:#161b22; border:2px solid #ff5e5b; padding:14px 24px; border-radius:99px; box-shadow:0 8px 30px rgba(255, 94, 91, 0.35);">
+        <span style="font-size:1.4rem;">☕</span>
+        <span style="font-size:0.95rem; font-weight:700; color:#fff;">Sparen dir dieses Dashboard & die Profile Zeit & Filament?</span>
+        <a href="https://ko-fi.com/Reaper2507" target="_blank" class="btn-header-coffee" style="box-shadow:none; font-size:0.95rem;">
+          ❤️ Spendier Reaper2507 einen Kaffee auf Ko-fi
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick & Dirty 4-Pack Grid -->
+  <section class="slicer-section" style="padding: 40px 0 60px;">
+    <div class="container">
+      <div class="quick-install-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap:24px;">
+
+        <!-- Pack 1: Home Assistant 1-Minute Pack -->
+        <div class="hall-card featured-hall-card" style="border-color:#58a6ff;">
+          <div class="hall-badge" style="background:#388bfd; color:#fff;">Schritt 1: HA Dashboard</div>
+          <div class="hall-header">
+            <div class="hall-avatar">🏠</div>
+            <div>
+              <h3>Home Assistant in 60 Sekunden</h3>
+              <span class="hall-role">Lovelace Dashboard & Integration</span>
+            </div>
+          </div>
+          <ol style="margin: 0 0 16px 20px; color:#adbac7; line-height:1.6; font-size:0.9rem;">
+            <li><strong>Integration öffnen:</strong> Klicke auf den Button, um HACS zu öffnen und <code>ha-snapmaker-u1-card</code> herunterzuladen:
+              <div style="margin:8px 0;">
+                <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=Ironoxx&repository=ha-snapmaker-u1-card&category=plugin" target="_blank" class="ha-my-badge">
+                  <img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="Open in HACS">
+                </a>
+              </div>
+            </li>
+            <li><strong>Assets ablegen:</strong> Lade <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/raw/main/homeassistant/www/u1-fusion-showcase.u1.js" download style="color:#58a6ff; font-weight:700;">u1-fusion-showcase.u1.js</a> herunter und speichere es in <code>/config/www/snapmaker-u1/showcase/</code>.</li>
+            <li><strong>Ressource anlegen:</strong> In HA unter <em>Einstellungen → Dashboards → ⋮ (oben rechts) → Ressourcen</em> als <code>/local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> (JavaScript-Modul) eintragen:
+              <div style="margin:8px 0;">
+                <a href="https://my.home-assistant.io/redirect/lovelace_resources/" target="_blank" class="ha-my-badge">
+                  <img src="https://my.home-assistant.io/badges/lovelace_resources.svg" alt="Open Resources">
+                </a>
+              </div>
+            </li>
+            <li><strong>Dashboard YAML einfügen:</strong> Neues Dashboard erstellen → <em>Raw-Konfigurations-Editor</em> öffnen → <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml" target="_blank" style="color:#58a6ff; font-weight:700;">u1_dashboard_complete.yaml</a> reinkopieren. Fertig!</li>
+          </ol>
+          <div class="hall-actions" style="margin-top:auto;">
+            <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml" target="_blank" class="btn btn-primary btn-sm">📋 Dashboard YAML kopieren</a>
+          </div>
+        </div>
+
+        <!-- Pack 2: OrcaSlicer Quick-Drop -->
+        <div class="hall-card featured-hall-card" style="border-color:#3fb950;">
+          <div class="hall-badge" style="background:#238636; color:#fff;">Schritt 2: OrcaSlicer</div>
+          <div class="hall-header">
+            <div class="hall-avatar">🔪</div>
+            <div>
+              <h3>OrcaSlicer Profile & 19 Filamente</h3>
+              <span class="hall-role">Scarf Seams & 12.000 mm/s² Travel</span>
+            </div>
+          </div>
+          <p style="color:#adbac7; font-size:0.9rem; line-height:1.6;">
+            Kopiere die Ordner <code>process/</code>, <code>filament/</code> und <code>machine/</code> direkt in dein OrcaSlicer-Benutzerverzeichnis:
+          </p>
+          <div class="path-code-box" style="margin:10px 0;">
+            <strong style="color:#f0f6fc;">🪟 Windows:</strong><br>
+            <code>%APPDATA%\OrcaSlicer\user\default\</code>
+          </div>
+          <div class="path-code-box" style="margin:10px 0;">
+            <strong style="color:#f0f6fc;">🍎 macOS:</strong><br>
+            <code>~/Library/Application Support/OrcaSlicer/user/default/</code>
+          </div>
+          <div class="hall-actions" style="margin-top:auto;">
+            <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/archive/refs/heads/main.zip" target="_blank" class="btn btn-primary btn-sm">📦 Komplettes ZIP herunterladen</a>
+            <a href="orcaslicer.html#process-profiles" class="btn btn-outline btn-sm">Einzeldruckprofile ansehen &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Pack 3: Set & Send Plugin Drop-in -->
+        <div class="hall-card featured-hall-card" style="border-color:#a371f7;">
+          <div class="hall-badge" style="background:#8957e5; color:#fff;">Schritt 3: Plugin</div>
+          <div class="hall-header">
+            <div class="hall-avatar">🧩</div>
+            <div>
+              <h3>Set & Send Plugin (LayerLab)</h3>
+              <span class="hall-role">Pre-Print Pop-up, Mesh & Spulenmapping</span>
+            </div>
+          </div>
+          <p style="color:#adbac7; font-size:0.9rem; line-height:1.6;">
+            Schaltet den nativen Snapmaker Vor-Druck Dialog in Vanilla OrcaSlicer frei:
+          </p>
+          <div class="path-code-box" style="margin:10px 0;">
+            <code>%APPDATA%\OrcaSlicer\orca_plugins\set_and_send.py\set_and_send.py</code>
+          </div>
+          <p style="color:#8b949e; font-size:0.85rem; margin-top:8px;">
+            1 Datei ablegen → In OrcaSlicer Plugins aktivieren → Vor jedem Druck öffnet sich das Menü für 11×11 Mesh, Werkzeugkopf-Zuordnung und Filter-Steuerung!
+          </p>
+          <div class="hall-actions" style="margin-top:auto;">
+            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="btn btn-primary btn-sm">📖 LayerLab Guide & Download</a>
+            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-kofi-btn"><span class="kofi-icon">☕</span> LayerLab Tip Jar</a>
+          </div>
+        </div>
+
+        <!-- Pack 4: 1-Click AI MCP Agent Auto-Installer -->
+        <div class="hall-card ai-step-card" style="border-color:#58a6ff;">
+          <div class="hall-badge" style="background:#1f6feb; color:#fff;">Zero-Effort KI-Mode</div>
+          <div class="hall-header">
+            <div class="hall-avatar">🤖</div>
+            <div>
+              <h3>Lass die KI alles machen (MCP)</h3>
+              <span class="hall-role">Antigravity · Codex · Cursor · Claude</span>
+            </div>
+          </div>
+          <p style="color:#adbac7; font-size:0.88rem; line-height:1.5;">
+            Wenn du Home Assistant per MCP angebunden hast: Kopiere einfach diesen Prompt und lehn dich zurück:
+          </p>
+          <div class="ai-prompt-box" style="margin: 10px 0;">
+            <pre style="max-height:180px; font-size:0.8rem;"><code id="quick-ai-prompt">You have access to Home Assistant via MCP. Install and configure the Snapmaker U1 Dashboard:
+1. Register Lovelace JavaScript module: /local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js
+2. Verify HACS cards (button-card, card-mod, slider-entity-row, vertical-stack-in-card, mini-graph-card)
+3. Import configuration from: https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml
+4. Verify entity mappings for toolheads T0-T3 and chamber light.</code></pre>
+            <button class="btn btn-primary btn-sm" id="btn-copy-quick-prompt" style="width:100%; margin-top:8px;">📋 Prompt für KI kopieren</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Big Supporter Box on Quick & Dirty Page -->
+  <section class="coffee-section" style="padding: 60px 0; background: #090d13; border-top: 1px solid #30363d;">
+    <div class="container coffee-container">
+      <div class="coffee-card" style="border: 2px solid #ff5e5b; box-shadow: 0 12px 40px rgba(255, 94, 91, 0.25);">
+        <div class="coffee-icon">☕</div>
+        <h2>Happy mit dem Quick-Install Pack?</h2>
+        <p class="coffee-lead">
+          Wenn dir dieser Shortcut Stunden an Konfiguration, Filamentverschwendung und Nerven spart: <strong>Lade Reaper2507 auf einen Kaffee auf Ko-fi ein!</strong> Deine Unterstützung motiviert, das Toolkit für Firmware-Updates und neue Filamente aktuell zu halten.
+        </p>
+        <div class="coffee-btn-group">
+          <a href="https://ko-fi.com/Reaper2507" target="_blank" class="btn btn-coffee-large" title="Support Reaper2507 on Ko-fi">
+            ☕ <span>Buy Me a Coffee on Ko-fi (Reaper2507)</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <p>© 2026 Torsten Reise (Reaper2507) & Community · Released under the <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE" target="_blank">MIT License</a></p>
+        <p class="footer-sub">Community project — not officially affiliated with Snapmaker. Built for 4-toolhead makers.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Overview</a>
+        <a href="install.html">Quick Install</a>
+        <a href="homeassistant.html">Home Assistant</a>
+        <a href="orcaslicer.html">OrcaSlicer</a>
+        <a href="guide.html">Guide & FAQ</a>
+        <a href="credits.html">Credits</a>
+        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js?v=20261108_05"></script>
+  <script>
+    const btn = document.getElementById('btn-copy-quick-prompt');
+    const txt = document.getElementById('quick-ai-prompt');
+    if (btn && txt) {
+      btn.addEventListener('click', () => {
+        navigator.clipboard.writeText(txt.innerText).then(() => {
+          btn.innerText = '✅ Prompt in Zwischenablage!';
+          setTimeout(() => { btn.innerText = '📋 Prompt für KI kopieren'; }, 2000);
+        });
+      });
+    }
+  </script>
+</body>
+</html>

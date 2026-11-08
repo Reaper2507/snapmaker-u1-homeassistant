@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Credits & Community Hall of Fame · Snapmaker U1 Hub</title>
   <meta name="description" content="Standing on the shoulders of giants: Acknowledgements, original creators, and tip jars for the tools powering the Snapmaker U1 Community Hub.">
-  <link rel="stylesheet" href="styles.css?v=20261108_04">
+  <link rel="stylesheet" href="styles.css?v=20261108_05">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
       </a>
       <nav class="nav-links">
         <a href="index.html" class="nav-link" data-i18n="nav-home">Overview</a>
+        <a href="install.html" class="nav-link" data-i18n="nav-install" style="color:#ff6347; font-weight:700;">⚡ Quick Install</a>
         <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Home Assistant</a>
         <a href="orcaslicer.html" class="nav-link" data-i18n="nav-orcaslicer">OrcaSlicer</a>
         <a href="guide.html" class="nav-link" data-i18n="nav-guide">Guide & FAQ</a>
@@ -55,30 +56,11 @@
   <!-- Main Credits Grid -->
   <section class="credits-hall-section">
     <div class="container">
-      <div class="credits-hall-grid">
+            <div class="credits-hall-grid">
 
-        <!-- 1. LayerLab (Set & Send Plugin) -->
-        <div class="hall-card featured-hall-card">
-          <div class="hall-badge">Featured Slicer Add-On</div>
-          <div class="hall-header">
-            <div class="hall-avatar">🧩</div>
-            <div>
-              <h3>LayerLab</h3>
-              <span class="hall-role">Creator of the "Set & Send" OrcaSlicer Plugin</span>
-            </div>
-          </div>
-          <p class="hall-desc">
-            Bridges the gap between vanilla OrcaSlicer and the Snapmaker U1. Unlocks the interactive pre-print popup dialog with filament-to-toolhead remapping, whole-bed mesh (11x11) leveling, and top-cover purifier fan controls.
-          </p>
-          <div class="hall-actions">
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="btn btn-primary btn-sm">Visit Guide & Store &rarr;</a>
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-kofi-btn" title="Support LayerLab"><span class="kofi-icon">☕</span> LayerLab Tip Jar & Guide</a>
-          </div>
-        </div>
-
-        <!-- 2. Ironoxx (ha-snapmaker-u1-card) -->
-        <div class="hall-card featured-hall-card">
-          <div class="hall-badge">Featured Integration</div>
+        <!-- 1. Ironoxx (ha-snapmaker-u1-card) - HAUPT-IDEENGEBER GANZ LINKS OBEN! -->
+        <div class="hall-card featured-hall-card" style="border-color:#ff6347;">
+          <div class="hall-badge" style="background:#ff6347; color:#fff;">Fundament & Haupt-Ideengeber</div>
           <div class="hall-header">
             <div class="hall-avatar">🖨️</div>
             <div>
@@ -87,15 +69,17 @@
             </div>
           </div>
           <p class="hall-desc">
-            Author of the foundational Home Assistant custom integration for the Snapmaker U1 under the MIT License. Laid the groundwork for 4-toolhead telemetry, live temperature monitoring, and webcam streaming.
+            Das Herzstück und die Basis dieses Projekts: Author der originalen Snapmaker U1 Home Assistant Integration (MIT-Lizenz). Er schuf das Fundament für 4-Kopf-Telemetrie, Nozzle-Temperaturen und Kamera-Streaming!
           </p>
           <div class="hall-actions">
             <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card" target="_blank" class="btn btn-primary btn-sm">GitHub Repository &rarr;</a>
-            <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" title="Support Ironoxx on Ko-fi"><span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi</a>
+            <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" title="Support Ironoxx on Ko-fi">
+              <span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi
+            </a>
           </div>
         </div>
 
-        <!-- 3. Donkie (Spoolman) -->
+        <!-- 2. Donkie (Spoolman) -->
         <div class="hall-card">
           <div class="hall-header">
             <div class="hall-avatar">🧵</div>
@@ -109,29 +93,34 @@
           </p>
           <div class="hall-actions">
             <a href="https://github.com/Donkie/Spoolman" target="_blank" class="btn btn-secondary btn-sm">GitHub Spoolman &rarr;</a>
-            <a href="https://github.com/sponsors/Donkie" target="_blank" class="credit-sponsor-btn" title="Sponsor Donkie on GitHub"><span class="kofi-icon">❤️</span> Sponsor Donkie on GitHub</a>
+            <a href="https://github.com/sponsors/Donkie" target="_blank" class="credit-sponsor-btn" title="Sponsor Donkie on GitHub">
+              <span class="kofi-icon">❤️</span> Sponsor Donkie on GitHub
+            </a>
           </div>
         </div>
 
-        <!-- 4. SoftFever & OrcaSlicer Team -->
+        <!-- 3. LayerLab (Set & Send Plugin) -->
         <div class="hall-card">
+          <div class="hall-badge" style="background:#a371f7; color:#fff;">Featured Slicer Add-On</div>
           <div class="hall-header">
-            <div class="hall-avatar">🔪</div>
+            <div class="hall-avatar">🧩</div>
             <div>
-              <h3>SoftFever & OrcaSlicer Team</h3>
-              <span class="hall-role">Open-Source Slicing Excellence</span>
+              <h3>LayerLab</h3>
+              <span class="hall-role">Creator of the "Set & Send" OrcaSlicer Plugin</span>
             </div>
           </div>
           <p class="hall-desc">
-            Brought multi-toolhead printing, Scarf Joint Seams, precise prime tower purge volumes, and rich Klipper integration to the open-source community.
+            Bridges the gap between vanilla OrcaSlicer and the Snapmaker U1. Unlocks the interactive pre-print popup dialog with filament-to-toolhead remapping, whole-bed mesh (11x11) leveling, and top-cover purifier fan controls.
           </p>
           <div class="hall-actions">
-            <a href="https://github.com/OrcaSlicer/OrcaSlicer" target="_blank" class="btn btn-secondary btn-sm">GitHub OrcaSlicer &rarr;</a>
-            <a href="https://ko-fi.com/SoftFever" target="_blank" class="credit-kofi-btn" title="Support SoftFever on Ko-fi"><span class="kofi-icon">☕</span> Support SoftFever on Ko-fi</a>
+            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="btn btn-primary btn-sm">Visit Guide & Store &rarr;</a>
+            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-kofi-btn" title="Support LayerLab">
+              <span class="kofi-icon">☕</span> LayerLab Tip Jar & Guide
+            </a>
           </div>
         </div>
 
-        <!-- 5. Thomas Lovén -->
+        <!-- 4. Thomas Lovén -->
         <div class="hall-card">
           <div class="hall-header">
             <div class="hall-avatar">🛠️</div>
@@ -145,7 +134,29 @@
           </p>
           <div class="hall-actions">
             <a href="https://github.com/thomasloven" target="_blank" class="btn btn-secondary btn-sm">GitHub Profile &rarr;</a>
-            <a href="https://www.buymeacoffee.com/thomasloven" target="_blank" class="credit-bmac-btn" title="Buy Thomas Lovén a Coffee"><span class="kofi-icon">☕</span> Buy Thomas Lovén a Coffee</a>
+            <a href="https://www.buymeacoffee.com/thomasloven" target="_blank" class="credit-bmac-btn" title="Buy Thomas Lovén a Coffee">
+              <span class="kofi-icon">☕</span> Buy Thomas Lovén a Coffee
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. SoftFever & OrcaSlicer Team (Nach hinten verschoben) -->
+        <div class="hall-card">
+          <div class="hall-header">
+            <div class="hall-avatar">🔪</div>
+            <div>
+              <h3>SoftFever & OrcaSlicer Team</h3>
+              <span class="hall-role">Open-Source Slicing Excellence</span>
+            </div>
+          </div>
+          <p class="hall-desc">
+            Brought multi-toolhead printing, Scarf Joint Seams, precise prime tower purge volumes, and rich Klipper integration to the open-source community.
+          </p>
+          <div class="hall-actions">
+            <a href="https://github.com/OrcaSlicer/OrcaSlicer" target="_blank" class="btn btn-secondary btn-sm">GitHub OrcaSlicer &rarr;</a>
+            <a href="https://ko-fi.com/SoftFever" target="_blank" class="credit-kofi-btn" title="Support SoftFever on Ko-fi">
+              <span class="kofi-icon">☕</span> Support SoftFever on Ko-fi
+            </a>
           </div>
         </div>
 
@@ -159,10 +170,10 @@
             </div>
           </div>
           <p class="hall-desc">
-            The swiss army knife of Home Assistant UI cards. Powers all reactive status icons, animated toolhead state pills, and responsive layout grids across our views.
+            The swiss army knife of Home Assistant UI cards. Powers all reactive status icons, animated toolhead state pills, and responsive layout grids. (Hinweis: RomRider betreibt keine öffentliche Spenden-Seite; gib seinem Repo einen Stern!).
           </p>
           <div class="hall-actions">
-            <a href="https://github.com/custom-cards/button-card" target="_blank" class="btn btn-secondary btn-sm">GitHub button-card &rarr;</a>
+            <a href="https://github.com/custom-cards/button-card" target="_blank" class="btn btn-secondary btn-sm">⭐ Star button-card on GitHub &rarr;</a>
           </div>
         </div>
 
@@ -176,10 +187,10 @@
             </div>
           </div>
           <p class="hall-desc">
-            Provides the smooth, hardware-accelerated telemetry and temperature curves for toolheads, heated bed, and chamber sensors in the diagnostics view.
+            Provides the smooth, hardware-accelerated telemetry and temperature curves for toolheads, heated bed, and chamber sensors in the diagnostics view. (Hinweis: kalkih betreibt keine aktive Spenden-Seite; besuche seinen Blog/GitHub).
           </p>
           <div class="hall-actions">
-            <a href="https://github.com/kalkih/mini-graph-card" target="_blank" class="btn btn-secondary btn-sm">GitHub mini-graph-card &rarr;</a>
+            <a href="https://github.com/kalkih/mini-graph-card" target="_blank" class="btn btn-secondary btn-sm">⭐ Star mini-graph-card on GitHub &rarr;</a>
           </div>
         </div>
 
@@ -222,6 +233,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=20261108_04"></script>
+  <script src="app.js?v=20261108_05"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Snapmaker U1 Community Hub · Home Assistant & OrcaSlicer</title>
   <meta name="description" content="Community toolkit for Snapmaker U1 4-toolhead 3D printer: Home Assistant Dashboard, OrcaSlicer profiles, and Operator Guide.">
-  <link rel="stylesheet" href="styles.css?v=20261108_04">
+  <link rel="stylesheet" href="styles.css?v=20261108_05">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -51,14 +51,33 @@
           Das modulare Toolkit für deinen Snapmaker U1 4-Kopf-Toolchanger. Wähle den passenden Bereich: Vollwertiges Home Assistant Dashboard, präzise getunte OrcaSlicer-Profile oder die kompakte Filament-Bedienhilfe.
         </p>
         <div class="hero-actions">
-          <a href="homeassistant.html" class="btn btn-primary" data-i18n="btn-hub-ha">🏠 Home Assistant Dashboard</a>
-          <a href="orcaslicer.html" class="btn btn-secondary" data-i18n="btn-hub-slicer">🔪 OrcaSlicer Profile</a>
-          <a href="guide.html" class="btn btn-outline" data-i18n="btn-hub-guide">🧵 Guide & FAQ</a>
+          <a href="install.html" class="btn btn-primary" style="background: linear-gradient(135deg, #ff6347 0%, #d83a37 100%); border-color:#ff6347; font-weight:800; box-shadow: 0 4px 18px rgba(255, 99, 71, 0.5);">⚡ Quick & Dirty (3-Min Install)</a>
+          <a href="homeassistant.html" class="btn btn-secondary" data-i18n="btn-hub-ha">🏠 Home Assistant Dashboard</a>
+          <a href="orcaslicer.html" class="btn btn-outline" data-i18n="btn-hub-slicer">🔪 OrcaSlicer Profile</a>
         </div>
       </div>
       <div class="hero-image">
         <a href="homeassistant.html" title="Zum Home Assistant Showcase">
           <img src="assets/dashboard-desktop.jpg" alt="Snapmaker U1 Dashboard Preview" class="preview-card">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ironoxx Main Giver Tribute Banner -->
+  <section class="main-giver-banner" style="background: linear-gradient(90deg, rgba(255,99,71,0.15) 0%, rgba(33,38,45,0.8) 100%); border-top:1px solid #ff6347; border-bottom:1px solid #30363d; padding:20px 0;">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span style="font-size:2.2rem; background:#161b22; border:1px solid #ff6347; border-radius:12px; padding:6px 12px;">🖨️</span>
+        <div>
+          <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:#ff7b72; font-weight:800;">Fundament & Haupt-Ideengeber</span>
+          <h3 style="color:#f0f6fc; margin:2px 0 4px; font-size:1.15rem;">Dieses gesamte Projekt entstand dank der genialen Vorarbeit von <strong>Ironoxx</strong>!</h3>
+          <p style="color:#8b949e; margin:0; font-size:0.88rem;">Er schuf die originale <code>ha-snapmaker-u1-card</code> Basis für 4-Kopf-Telemetrie und Kamerastreaming.</p>
+        </div>
+      </div>
+      <div>
+        <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" style="font-size:0.95rem; padding:9px 20px;">
+          <span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi &rarr;
         </a>
       </div>
     </div>
@@ -174,17 +193,21 @@
         <h2 data-i18n="credits-title">Credits & Acknowledgements</h2>
         <p data-i18n="credits-subtitle">Aufgebaut auf herausragender Vorarbeit der Home Assistant- und 3D-Druck-Community</p>
       </div>
-      <div class="credits-grid">
+            <div class="credits-grid">
+        <!-- 1. Ironoxx (Main Giver - Ganz oben links!) -->
         <div class="credit-item featured-credit-item">
-          <h4>LayerLab (Set & Send Plugin)</h4>
-          <p data-i18n="credit-layerlab">Entwickler des unverzichtbaren "Set & Send" Pre-Print Popups, 11×11 Vollbett-Nivellierung und Bauraum-Filtersteuerung für den U1.</p>
+          <div class="hall-badge" style="background:#ff6347; color:#fff; top:12px; right:12px;">Fundament & Haupt-Ideengeber</div>
+          <h4>Ironoxx (ha-snapmaker-u1-card)</h4>
+          <p data-i18n="credit-ironoxx">Das Fundament dieses gesamten Projekts: Ursprüngliche Integrationsbasis, 4-Toolhead-Telemetrie und Kamera-Streaming (MIT-Lizenz).</p>
           <div class="credit-links">
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-repo-link">layerlab.store/pages/set-and-send &rarr;</a>
-            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-kofi-btn" title="Support LayerLab">
-              <span class="kofi-icon">☕</span> LayerLab Tip Jar & Guide
+            <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card" target="_blank" class="credit-repo-link">github.com/Ironoxx/ha-snapmaker-u1-card &rarr;</a>
+            <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" title="Support Ironoxx on Ko-fi">
+              <span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi
             </a>
           </div>
         </div>
+
+        <!-- 2. Donkie (Spoolman) -->
         <div class="credit-item">
           <h4>Donkie (Spoolman)</h4>
           <p data-i18n="credit-spoolman">Open-Source Filament- und Spulen-Inventarverwaltung für Klipper und Home Assistant.</p>
@@ -195,25 +218,31 @@
             </a>
           </div>
         </div>
+
+        <!-- 3. LayerLab (Set & Send Plugin) -->
         <div class="credit-item">
-          <h4>Ironoxx (ha-snapmaker-u1-card)</h4>
-          <p data-i18n="credit-ironoxx">Grundlage für Toolheads-Layout und Kamerastreaming (MIT-Lizenz).</p>
+          <h4>LayerLab (Set & Send Plugin)</h4>
+          <p data-i18n="credit-layerlab">Entwickler des unverzichtbaren "Set & Send" Pre-Print Popups, 11×11 Vollbett-Nivellierung und Bauraum-Filtersteuerung für den U1.</p>
           <div class="credit-links">
-            <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card" target="_blank" class="credit-repo-link">github.com/Ironoxx/ha-snapmaker-u1-card &rarr;</a>
-            <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" title="Support Ironoxx on Ko-fi">
-              <span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi
+            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-repo-link">layerlab.store/pages/set-and-send &rarr;</a>
+            <a href="https://layerlab.store/pages/set-and-send" target="_blank" class="credit-kofi-btn" title="Support LayerLab">
+              <span class="kofi-icon">☕</span> LayerLab Tip Jar & Guide
             </a>
           </div>
         </div>
+
+        <!-- 4. Home Assistant Custom Cards (RomRider, thomasloven, kalkih, ofekashern) -->
         <div class="credit-item">
           <h4>Home Assistant Custom Cards</h4>
           <p data-i18n="credit-cards">Besonderer Dank an RomRider (button-card), thomasloven (card-mod, slider-entity-row), kalkih (mini-graph-card) und ofekashern.</p>
           <div class="credit-links">
             <a href="https://www.buymeacoffee.com/thomasloven" target="_blank" class="credit-bmac-btn" title="Buy Thomas Lovén a Coffee">
-              <span class="kofi-icon">☕</span> Support Thomas Lovén
+              <span class="kofi-icon">☕</span> Buy Thomas Lovén a Coffee
             </a>
           </div>
         </div>
+
+        <!-- 5. OrcaSlicer & SoftFever (Nach hinten verschoben) -->
         <div class="credit-item">
           <h4>OrcaSlicer & SoftFever</h4>
           <p data-i18n="credit-orca">Für Open-Source-Slicing-Exzellenz und native Toolchanger-Unterstützung.</p>
@@ -228,23 +257,18 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-content">
-      <div class="footer-left">
-        <p>© 2026 Torsten Reise & Community · Veröffentlicht unter der <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE" target="_blank">MIT-Lizenz</a></p>
-        <p class="footer-sub">Community-Projekt — nicht offiziell mit Snapmaker verbunden. Gebaut für 4-Toolhead-Macher.</p>
+  <!-- Ironoxx Main Giver Tribute Banner -->
+  <section class="main-giver-banner" style="background: linear-gradient(90deg, rgba(255,99,71,0.15) 0%, rgba(33,38,45,0.8) 100%); border-top:1px solid #ff6347; border-bottom:1px solid #30363d; padding:20px 0;">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span style="font-size:2.2rem; background:#161b22; border:1px solid #ff6347; border-radius:12px; padding:6px 12px;">🖨️</span>
+        <div>
+          <span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:#ff7b72; font-weight:800;">Fundament & Haupt-Ideengeber</span>
+          <h3 style="color:#f0f6fc; margin:2px 0 4px; font-size:1.15rem;">Dieses gesamte Projekt entstand dank der genialen Vorarbeit von <strong>Ironoxx</strong>!</h3>
+          <p style="color:#8b949e; margin:0; font-size:0.88rem;">Er schuf die originale <code>ha-snapmaker-u1-card</code> Basis für 4-Kopf-Telemetrie und Kamerastreaming.</p>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="index.html">Übersicht</a>
-        <a href="homeassistant.html">Home Assistant</a>
-        <a href="orcaslicer.html">OrcaSlicer</a>
-        <a href="guide.html">Guide & FAQ</a>
-        <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank">GitHub</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="app.js?v=20261108_04"></script>
-</body>
-</html>
+      <div>
+        <a href="https://ko-fi.com/ironoxx" target="_blank" class="credit-kofi-btn" style="font-size:0.95rem; padding:9px 20px;">
+          <span class="kofi-icon">☕</span> Support Ironoxx on Ko-fi &rarr;
+        </a>
