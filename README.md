@@ -6,7 +6,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Home Assistant](https://img.shields.io/badge/Home_Assistant-2026.8+-41BDF5?style=flat-square&logo=home-assistant&logoColor=white)](https://www.home-assistant.io/)
 [![OrcaSlicer](https://img.shields.io/badge/OrcaSlicer-v2.5.0_RC+-green?style=flat-square)](https://github.com/OrcaSlicer/OrcaSlicer)
-[![Buy Me A Coffee on Ko-fi](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/torstenreise)
+[![Buy Me A Coffee on Ko-fi](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/Reaper2507)
 
 **The complete, production-ready community toolkit for the 4-toolhead Snapmaker U1.**
 
@@ -145,7 +145,7 @@ This project is 100% free, independent, and open-source. If this dashboard or th
 
 <div align="center">
 
-[![Buy Me A Coffee on Ko-fi](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-Ko--fi-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/torstenreise)
+[![Buy Me A Coffee on Ko-fi](https://img.shields.io/badge/☕_Buy_Me_A_Coffee-Ko--fi-FF5E5B?style=for-the-badge&logo=ko-fi&logoColor=white)](https://ko-fi.com/Reaper2507)
 
 *If you share, feature, or fork this project, keeping the coffee link would be greatly appreciated, but is entirely optional!*
 
