@@ -21,6 +21,7 @@
       <nav class="nav-links">
         <a href="#dashboard" data-i18n="nav-dashboard">Dashboard</a>
         <a href="#orcaslicer" data-i18n="nav-orcaslicer">OrcaSlicer</a>
+        <a href="#guide" data-i18n="nav-guide">Guide & FAQ</a>
         <a href="#install" data-i18n="nav-install">Installation</a>
         <a href="#credits" data-i18n="nav-credits">Credits</a>
         <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" class="github-link" title="GitHub Repo">
@@ -193,6 +194,98 @@
         <h4 data-i18n="slicer-tip-title">💡 Installation in OrcaSlicer</h4>
         <p data-i18n="slicer-tip-text">Copy the files from <code>/orcaslicer/</code> into your local OrcaSlicer user directory:</p>
         <code>%APPDATA%\OrcaSlicer\user\default\</code>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Operator Guide & FAQ Section -->
+  <section id="guide" class="guide-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="guide-title">Operator Guide & FAQ</h2>
+        <p data-i18n="guide-subtitle">Essential cheat sheets for loading, unloading, and daily handling</p>
+      </div>
+
+      <div class="guide-grid">
+        <!-- Unload Card -->
+        <div class="guide-card">
+          <div class="guide-card-header">
+            <span style="font-size: 1.8rem;">📤</span>
+            <h3 data-i18n="unload-title">Unloading Filament</h3>
+          </div>
+          <div class="guide-punchline" data-i18n="unload-punchline">In a nutshell: Auto-heat → Hand-reel spool</div>
+          <div class="guide-steps">
+            <div class="guide-step-item">
+              <strong data-i18n="lbl-with-dash">With Dashboard:</strong>
+              <p data-i18n="unload-dash-step">Click toolhead (T0–T3) → select <strong>Unload</strong>. Hotend heats up, motor unlocks, reel filament by hand.</p>
+            </div>
+            <div class="guide-step-item">
+              <strong data-i18n="lbl-on-screen">Touchscreen:</strong>
+              <p data-i18n="unload-screen-step">Select <strong>Filament → Unload</strong> → pick toolhead. Wait for nozzle temperature prompt, then gently pull.</p>
+            </div>
+          </div>
+          <div class="guide-pro-tip">
+            <strong data-i18n="unload-tip-title">💡 Why does it have slight resistance?</strong>
+            <p data-i18n="unload-tip-text">Light tactile resistance is completely normal as the filament passes the feeder gears. Pull smoothly! To remove the spool: hold the holder arm at the chassis and pull the spool straight outward.</p>
+          </div>
+        </div>
+
+        <!-- Load Card -->
+        <div class="guide-card card-blue">
+          <div class="guide-card-header">
+            <span style="font-size: 1.8rem;">📥</span>
+            <h3 data-i18n="load-title">Loading Filament</h3>
+          </div>
+          <div class="guide-punchline" data-i18n="load-punchline">In a nutshell: 45° cut → Push to feeder → Press Load</div>
+          <div class="guide-steps">
+            <div class="guide-step-item">
+              <strong data-i18n="lbl-prep">1. Cut 45°:</strong>
+              <p data-i18n="load-cut-step">Snip filament cleanly at a 45° angle. Hang spool on the spindle.</p>
+            </div>
+            <div class="guide-step-item">
+              <strong data-i18n="lbl-insert">2. Insert:</strong>
+              <p data-i18n="load-insert-step">Push filament into the feed tube until the inlet sensor trips (Dashboard shows: <em>At feeder only</em>).</p>
+            </div>
+            <div class="guide-step-item">
+              <strong data-i18n="lbl-load">3. Trigger Load:</strong>
+              <p data-i18n="load-trigger-step">Click <strong>Load</strong> in Dashboard or Touchscreen. The printer preheats, motor feeds through the tube, and purges a test bead.</p>
+            </div>
+          </div>
+          <div class="guide-pro-tip">
+            <strong data-i18n="load-tip-title">💡 Pro Tip for smooth feeding</strong>
+            <p data-i18n="load-tip-text">Never insert bent or flattened filament tips. A sharp 45° cut ensures the filament slides effortlessly through the toolchanger dock inlet.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Accordions -->
+      <div class="faq-container">
+        <details>
+          <summary data-i18n="faq1-q">What does 'At feeder only' mean in the dashboard?</summary>
+          <div class="details-content" data-i18n="faq1-a">
+            The filament has been inserted into the Bowden feed inlet and the inlet sensor confirmed its presence, but it has not been advanced through the long tube to the nozzle yet. Simply tap <strong>Load</strong> to let the motor feed it to the hotend.
+          </div>
+        </details>
+        <details>
+          <summary data-i18n="faq2-q">Does the motor automatically spit out the filament during unload?</summary>
+          <div class="details-content" data-i18n="faq2-a">
+            No, and that is intentional by design! The extruder motor only pulls the hot tip back out of the melt zone to prevent thick bulbs from jamming the PTFE tube. The long distance through the tube back to the spool is reeled up smoothly by hand to prevent messy tangles.
+          </div>
+        </details>
+        <details>
+          <summary data-i18n="faq3-q">Can I pull filament out when the nozzle is cold?</summary>
+          <div class="details-content" data-i18n="faq3-a">
+            <strong>Never!</strong> Solidified plastic inside the cold nozzle will tear or damage the feeder mechanism if pulled with force. Always allow the nozzle to reach at least 200°C (PLA) or 240°C (PETG) before retracting.
+          </div>
+        </details>
+        <details>
+          <summary data-i18n="faq4-q">When should I use 'Cancel Print' vs. Emergency Stop?</summary>
+          <div class="details-content" data-i18n="faq4-a">
+            <strong>Cancel Print:</strong> Standard graceful stop. Finishes current move, raises Z-axis, safely docks active toolhead, and turns off heaters.<br>
+            <strong>Emergency Stop:</strong> Immediate power cut to all motors and heaters. Use only in case of physical collision or risk of damage. Requires Klipper firmware restart afterward.
+          </div>
+        </details>
       </div>
     </div>
   </section>

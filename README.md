@@ -10,7 +10,7 @@
 
 **The complete, production-ready community toolkit for the 4-toolhead Snapmaker U1.**
 
-[🌐 View Interactive Showcase Website](https://reaper2507.github.io/snapmaker-u1-homeassistant/) · [📖 Installation Guide](#-home-assistant-dashboard) · [⚡ OrcaSlicer Profiles](#-orcaslicer-profiles) · [☕ Support](#-support-this-project)
+[🌐 View Interactive Showcase Website](https://reaper2507.github.io/snapmaker-u1-homeassistant/) · [📖 Installation Guide](#-home-assistant-dashboard) · [⚡ OrcaSlicer Profiles](#-orcaslicer-profiles) · [🧵 Operator Guide & FAQ](GUIDE.md) · [☕ Support](#-support-this-project)
 
 </div>
 
@@ -29,6 +29,7 @@
 - **🛡️ 100% Local & Safe:** Moonraker-connected without cloud lock-in. Intelligent safety interlocks prevent axis movement during active printing.
 - **🚀 Tuned OrcaSlicer Profiles:** Optimized for 0.4 mm and 0.6 mm stainless steel nozzles with gyroid infill, scarf seams, slim prime tower (12–15 mm³), and 12,000 mm/s² travel speed.
 - **🧵 19 Calibrated Filament Presets:** Tested profiles for Bambu Lab, SUNLU PLA+ 2.0, eSUN PETG Matte, ELEGOO, and GEEETECH TPU.
+- **📖 Operator Guide & FAQ:** Quick cheat sheets for filament loading/unloading (with & without dashboard), spool swapping, and troubleshooting states like *"At feeder only"* ([read guide](GUIDE.md)).
 
 ---
 
