@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="page-homeassistant">Dashboard and installation · Snapmaker U1</title>
   <meta name="description" content="Home Assistant dashboard, live telemetry, and automations for the Snapmaker U1 4-toolhead 3D printer.">
-  <link rel="stylesheet" href="styles.css?v=20261108_11">
+  <link rel="stylesheet" href="styles.css?v=20261108_14">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -57,8 +57,8 @@
       </div>
 
       <div class="gallery-tabs">
-        <button type="button" class="tab-btn active" aria-pressed="true" aria-controls="tab-desktop" data-tab="tab-desktop" data-i18n="tab-desktop">Desktop</button>
-        <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-photos" data-tab="tab-photos" data-i18n="tab-photos">Studio and close-up</button>
+        <button type="button" class="tab-btn active" aria-pressed="true" aria-controls="tab-desktop" data-tab="tab-desktop" data-i18n="tab-desktop">Studio dashboard</button>
+        <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-photos" data-tab="tab-photos" data-i18n="tab-photos">Printer images</button>
         <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-cutaway" data-tab="tab-cutaway" data-i18n="tab-cutaway">Cutaway and axes</button>
         <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-maintenance" data-tab="tab-maintenance" data-i18n="tab-maintenance">Maintenance</button>
         <button type="button" class="tab-btn" aria-pressed="false" aria-controls="tab-mobile" data-tab="tab-mobile" data-i18n="tab-mobile">Minimal</button>
@@ -153,11 +153,11 @@
         <!-- Interactive Card Preview -->
         <div class="telemetry-preview-card">
           <div class="preview-mode-switch">
-            <button type="button" class="preview-btn active" aria-pressed="true" data-mode="cutaway" data-i18n="btn-mode-cutaway">Cutaway</button>
-            <button type="button" class="preview-btn" aria-pressed="false" data-mode="studio" data-i18n="btn-mode-studio">Studio</button>
+            <button type="button" class="preview-btn active" aria-pressed="true" data-mode="studio" data-i18n="btn-mode-studio">Studio</button>
+            <button type="button" class="preview-btn" aria-pressed="false" data-mode="cutaway" data-i18n="btn-mode-cutaway">Cutaway</button>
           </div>
           <div class="preview-image-wrapper">
-            <img id="telemetry-preview-img" src="assets/tools-material-cutaway.jpg" alt="Tools & Material Telemetry Card" class="telemetry-img">
+            <img id="telemetry-preview-img" src="assets/tools-material-studio.jpg" alt="Tools & Material Telemetry Card" class="telemetry-img">
           </div>
           <p data-i18n="sim-disclosure" class="path-hint">Browser simulation · sample values only. No printer or Home Assistant connection.</p>
           <div class="sim-tool-bar" style="display:flex; gap:6px; margin:14px 0 6px; justify-content:center; flex-wrap:wrap;">
@@ -170,7 +170,7 @@
             <span><strong id="sim-active-tool">Toolhead 3 (Mounted)</strong>: <span id="sim-material">eSUN PETG Matte Grey · Nozzle 210°C · Bed 70°C</span></span>
             <span style="font-family:monospace; color:#b1c9c1; font-weight:600;" id="sim-coords">X 227.6 · Y 300.5 · Z 9.9</span>
           </div>
-          <div class="preview-caption" id="telemetry-preview-caption" data-i18n="cap-telemetry-cutaway">Cutaway screenshot with tool positions, temperatures and mounted-tool status.</div>
+          <div class="preview-caption" id="telemetry-preview-caption" data-i18n="cap-telemetry-studio">Studio screenshot with temperatures, spool colors and mounted-tool status.</div>
         </div>
 
         <!-- Capability List -->
@@ -559,6 +559,6 @@ max_exceeded: silent
   </main>
   <!-- Footer -->
   <footer class="site-footer"><div class="container footer-content"><p>Snapmaker U1 Community Hub · <a href="credits.html" data-i18n="nav-credits">Credits</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE">MIT</a> · <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues">GitHub Issues</a></p></div></footer>
-  <script src="app.js?v=20261108_13"></script>
+  <script src="app.js?v=20261108_14"></script>
 </body>
 </html>

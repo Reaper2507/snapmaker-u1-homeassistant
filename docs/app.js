@@ -29,8 +29,8 @@ const i18n = {
     "credits-banner-lead": "Thanks to the projects and maintainers whose work this dashboard and its extras build on.",
     "gallery-title": "Dashboard Gallery & Screenshots",
     "gallery-subtitle": "Screenshots of the dashboard in Home Assistant. Open an image to see it at its original size.",
-    "tab-desktop": "Desktop",
-    "tab-photos": "Studio and close-up",
+    "tab-desktop": "Studio dashboard",
+    "tab-photos": "Printer images",
     "tab-cutaway": "Cutaway and axes",
     "tab-maintenance": "Maintenance",
     "tab-mobile": "Minimal",
@@ -288,8 +288,8 @@ const i18n = {
     "credits-banner-lead": "Danke an die Projekte und Maintainer, deren Arbeit dieses Dashboard und seine Extras nutzen.",
     "gallery-title": "Dashboard Galerie & Screenshots",
     "gallery-subtitle": "Screenshots des Dashboards in Home Assistant. Öffne ein Bild, um es in Originalgröße zu sehen.",
-    "tab-desktop": "Desktop",
-    "tab-photos": "Studio und Nahaufnahme",
+    "tab-desktop": "Studio-Dashboard",
+    "tab-photos": "Druckerbilder",
     "tab-cutaway": "Cutaway und Achsen",
     "tab-maintenance": "Wartung",
     "tab-mobile": "Minimal",
@@ -589,10 +589,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
+      selectPreviewButton(tabBtns, btn);
       tabContents.forEach(c => c.classList.remove('active'));
-
-      btn.classList.add('active');
       const targetId = btn.getAttribute('data-tab');
       const targetContent = document.getElementById(targetId);
       if (targetContent) {
