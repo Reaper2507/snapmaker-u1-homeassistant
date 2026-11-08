@@ -1,5 +1,7 @@
 const i18n = {
   en: {
+    "header-coffee-short": "Coffee",
+    "header-coffee-full": "Buy Me a Coffee via PayPal",
     "faq4-a": "<strong>Cancel Print:</strong> Standard graceful stop. Finishes current move, raises Z-axis, safely docks active toolhead, and turns off heaters.<br><strong>Emergency Stop:</strong> Immediate power cut to all motors and heaters. Use only in case of physical collision or risk of damage. Requires Klipper firmware restart afterward.",
     "faq4-q": "When should I use 'Cancel Print' vs. Emergency Stop?",
     "faq3-a": "<strong>Never!</strong> Solidified plastic inside the cold nozzle will tear or damage the feeder mechanism if pulled with force. Always allow the nozzle to reach at least 200°C (PLA) or 240°C (PETG) before retracting.",

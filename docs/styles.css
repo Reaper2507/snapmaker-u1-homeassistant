@@ -828,3 +828,53 @@ summary {
   font-size: 0.94rem;
   line-height: 1.6;
 }
+
+/* Header Coffee CTA Button (Permanent Top Right) */
+.header-coffee-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0070ba 0%, #005ea6 100%);
+  color: #ffffff !important;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0, 112, 186, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+  margin-left: 6px;
+}
+
+.header-coffee-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 18px rgba(0, 112, 186, 0.7);
+  background: linear-gradient(135deg, #007acb 0%, #0068b5 100%);
+}
+
+.header-coffee-btn .coffee-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.header-coffee-btn .coffee-text-short {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header-coffee-btn {
+    padding: 6px 12px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .header-coffee-btn .coffee-text-full {
+    display: none;
+  }
+  .header-coffee-btn .coffee-text-short {
+    display: inline;
+  }
+}
