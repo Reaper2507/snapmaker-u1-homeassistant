@@ -63,8 +63,10 @@ Get notified immediately without constantly staring at your phone:
 
 Get a complete 3-view dashboard (`Dashboard`, `Minimal`, `Maintenance & Diagnostics`) running in 3 minutes.
 
-1. **Install HACS Frontend Cards:** `button-card`, `card-mod`, `slider-entity-row`, `vertical-stack-in-card`, `mini-graph-card`, `tabbed-card`, `fold-entity-row`.
-2. **Copy Card Assets:** Place [`homeassistant/www/*`](homeassistant/www/) into your `/config/www/snapmaker-u1/showcase/` folder and register `/local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js` as a Lovelace resource.
+1. **Install HACS Frontend Cards:** Search for `button-card`, `card-mod`, `slider-entity-row`, `vertical-stack-in-card`, `mini-graph-card`, `tabbed-card`, `fold-entity-row` in **HACS → Frontend** and click Download.
+2. **Copy Card Assets & Register Resource:** Place [`homeassistant/www/*`](homeassistant/www/) into `/config/www/snapmaker-u1/showcase/` on your Home Assistant machine. In Home Assistant, register the resource under **Settings → Dashboards → ⋮ (Top Right 3 Dots) → Resources → Add Resource**:
+   - **URL:** `/local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js`
+   - **Type:** `JavaScript Module` *(Note: `/config/www/` is exposed to the browser as `/local/`)*
 3. **Import YAML:** Paste [`homeassistant/u1_dashboard_complete.yaml`](homeassistant/u1_dashboard_complete.yaml) into your dashboard's Raw Configuration Editor.
 
 <details>

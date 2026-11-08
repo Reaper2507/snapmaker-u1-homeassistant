@@ -2130,3 +2130,74 @@ summary {
 .featured-credit-item {
   border-color: #ff6347 !important;
 }
+
+
+/* Installation Step 0 & Detailed Resource Guide Styles */
+.prereq-step-card {
+  border-color: #30363d;
+  background: linear-gradient(180deg, #161b22 0%, #13171e 100%);
+}
+
+.step-header-with-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.step-pill {
+  background: rgba(56, 139, 253, 0.15);
+  border: 1px solid rgba(56, 139, 253, 0.4);
+  color: #58a6ff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.step-guide-list {
+  margin: 10px 0 0 20px;
+  padding: 0;
+  color: #8b949e;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.step-guide-list li {
+  margin-bottom: 8px;
+}
+
+.step-guide-list strong {
+  color: #f0f6fc;
+}
+
+.ha-path-explanation-box {
+  background: rgba(56, 139, 253, 0.08);
+  border: 1px solid rgba(56, 139, 253, 0.25);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 12px 0;
+}
+
+.ha-path-explanation-box h5 {
+  color: #58a6ff;
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.ha-path-explanation-box p {
+  color: #adbac7;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.step-links-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}

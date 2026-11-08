@@ -388,17 +388,65 @@ max_exceeded: silent</code></pre>
   <section id="install" class="install-section">
     <div class="container">
       <div class="section-header">
+        <span class="badge-tag" data-i18n="install-badge">🚀 Schnell & Sicher Einrichten</span>
         <h2 data-i18n="install-title">Home Assistant Installationsanleitung</h2>
-        <p data-i18n="install-subtitle">Mit offiziellen 1-Klick-Buttons direkt in deiner Home Assistant Umgebung öffnen.</p>
+        <p data-i18n="install-subtitle">Schritt-für-Schritt von den HACS-Grundlagen über die Asset-Registrierung bis zum fertigen Dashboard.</p>
       </div>
 
       <div class="steps-container">
-        <!-- Step 1: HACS Integration One-Click -->
+
+        <!-- Step 0: Pre-Quiz / HACS Prerequisites Guide -->
+        <div class="step-card prereq-step-card">
+          <div class="step-number">0</div>
+          <div class="step-body">
+            <div class="step-header-with-badge">
+              <h3 data-i18n="step0-title">Voraussetzung: HACS (Community Store) einrichten</h3>
+              <span class="step-pill" data-i18n="step0-pill">Nur für Einsteiger</span>
+            </div>
+            <p data-i18n="step0-desc">HACS ist der Community Store für Home Assistant, mit dem Erweiterungen und Karten mit einem Klick installiert werden. Falls du HACS noch nicht nutzt:</p>
+            
+            <div class="collapsible-wrapper" style="margin-top:12px;">
+              <details open>
+                <summary><b data-i18n="step0-summary">📖 HACS Schnell-Anleitung in 4 Schritten (Hier aufklappen)</b></summary>
+                <div class="details-content">
+                  <ol class="step-guide-list">
+                    <li>
+                      <strong data-i18n="step0-s1-title">Terminal & SSH öffnen:</strong>
+                      <span data-i18n="step0-s1-desc">Öffne das Terminal-Add-on in Home Assistant oder verbinde dich per SSH mit deinem Host.</span>
+                    </li>
+                    <li>
+                      <strong data-i18n="step0-s2-title">Installations-Skript ausführen:</strong>
+                      <span data-i18n="step0-s2-desc">Führe den offiziellen Download-Befehl aus:</span>
+                      <div class="path-code-box" style="margin:6px 0;">
+                        <code>wget -O - https://get.hacs.xyz | bash -</code>
+                      </div>
+                    </li>
+                    <li>
+                      <strong data-i18n="step0-s3-title">Home Assistant neu starten:</strong>
+                      <span data-i18n="step0-s3-desc">Gehe auf <em>Einstellungen → System → Neu starten</em>.</span>
+                    </li>
+                    <li>
+                      <strong data-i18n="step0-s4-title">HACS Integration hinzufügen:</strong>
+                      <span data-i18n="step0-s4-desc">Gehe auf <em>Einstellungen → Geräte & Dienste → Integration hinzufügen</em>, suche nach <strong>HACS</strong> und folge der einmaligen GitHub-Aktivierung per 8-stelligem Gerätecode.</span>
+                    </li>
+                  </ol>
+                  <div class="step-links-row" style="margin-top:12px;">
+                    <a href="https://hacs.xyz/docs/use/download/download/" target="_blank" class="btn btn-outline btn-sm">
+                      🌐 <span data-i18n="btn-hacs-doc">Offizielle HACS Dokumentation (hacs.xyz) &rarr;</span>
+                    </a>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 1: HACS Integration & Frontend Cards -->
         <div class="step-card">
           <div class="step-number">1</div>
           <div class="step-body">
-            <h3 data-i18n="step1-title">Snapmaker U1 Integration & Karten via HACS</h3>
-            <p data-i18n="step1-desc">Nutze den direkten 1-Klick-Link, um das Repository in deinem HACS zu öffnen:</p>
+            <h3 data-i18n="step1-title">Snapmaker U1 Integration & Lovelace-Karten via HACS</h3>
+            <p data-i18n="step1-desc">Öffne das Integrations-Repository direkt in deinem HACS oder installiere die Karten über das HACS Frontend:</p>
             
             <div style="margin: 16px 0;">
               <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=Ironoxx&repository=ha-snapmaker-u1-card&category=plugin" target="_blank" class="ha-my-badge" title="Open in HACS via My Home Assistant">
@@ -407,64 +455,93 @@ max_exceeded: silent</code></pre>
             </div>
 
             <div class="collapsible-wrapper">
-              <details>
-                <summary><b>Benötigte HACS Lovelace-Karten anzeigen (Hier klicken)</b></summary>
-                <p style="margin:8px 0; color:#8b949e; font-size:0.88rem;">Installiere diese Karten aus dem HACS Frontend-Bereich:</p>
-                <ul class="tag-list">
-                  <li><code>button-card</code></li>
-                  <li><code>card-mod</code></li>
-                  <li><code>slider-entity-row</code></li>
-                  <li><code>vertical-stack-in-card</code></li>
-                  <li><code>mini-graph-card</code></li>
-                  <li><code>tabbed-card</code></li>
-                  <li><code>fold-entity-row</code></li>
-                </ul>
+              <details open>
+                <summary><b data-i18n="step1-cards-summary">🎨 Anleitung: Frontend-Karten in HACS installieren (Hier aufklappen)</b></summary>
+                <div class="details-content">
+                  <p data-i18n="step1-cards-guide" style="margin:8px 0; color:#8b949e; font-size:0.88rem;">
+                    Klicke in der Home Assistant Seitenleiste auf <strong>HACS → Frontend</strong> (oder das Menü oben rechts), suche nach den folgenden 7 Community-Karten und klicke jeweils auf <strong>Herunterladen</strong>:
+                  </p>
+                  <ul class="tag-list">
+                    <li><code>button-card</code> (von RomRider)</li>
+                    <li><code>card-mod</code> (von thomasloven)</li>
+                    <li><code>slider-entity-row</code> (von thomasloven)</li>
+                    <li><code>vertical-stack-in-card</code> (von ofekashern)</li>
+                    <li><code>mini-graph-card</code> (von kalkih)</li>
+                    <li><code>tabbed-card</code></li>
+                    <li><code>fold-entity-row</code></li>
+                  </ul>
+                  <p style="margin-top:8px; font-size:0.82rem; color:#f3be73;" data-i18n="step1-cards-hint">
+                    💡 <em>Tipp: Wenn Home Assistant nach dem Download fragt „Ressource neu laden?“, klicke einfach auf <strong>Neu laden</strong>.</em>
+                  </p>
+                </div>
               </details>
             </div>
           </div>
         </div>
 
-        <!-- Step 4: AI & MCP Automation Prompt -->
-        <div class="step-card ai-step-card">
-          <div class="step-number">🤖</div>
-          <div class="step-body">
-            <h3 data-i18n="ai-step-title">KI-Installation via Antigravity, Codex oder MCP</h3>
-            <p data-i18n="ai-step-desc">Nutzt du einen KI-Agenten (Google Antigravity, OpenAI Codex, Claude Code, Cursor) mit angebundenem Home Assistant MCP Server? Kopiere einfach diesen Prompt, um die gesamte Installation vollautomatisch ausführen zu lassen:</p>
-            
-            <div class="ai-prompt-box">
-              <pre><code id="ai-install-prompt-text">You have access to Home Assistant via MCP tools. Please install and configure the Snapmaker U1 4-Toolhead Dashboard:
-1. Register the Lovelace JavaScript module resource:
-   URL: /local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js
-2. Verify that the required frontend cards are installed (button-card, card-mod, slider-entity-row, vertical-stack-in-card, mini-graph-card).
-3. Import or update the dashboard Lovelace configuration using the official template from:
-   https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml
-4. Verify entity mappings for toolheads T0-T3, heated bed, and the chamber light entity (light.snapmaker_u1_card_innenraumlicht).</code></pre>
-              <button class="btn btn-primary btn-sm" id="btn-copy-ai-prompt" style="margin-top:12px;">
-                📋 <span data-i18n="btn-copy-ai-prompt">Prompt für KI kopieren</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Step 2: Lovelace Resources One-Click -->
+        <!-- Step 2: Showcase Assets & Lovelace Resource Registration -->
         <div class="step-card">
           <div class="step-number">2</div>
           <div class="step-body">
-            <h3 data-i18n="step2-title">Showcase-Assets & Lovelace-Ressource</h3>
-            <p data-i18n="step2-desc">Kopiere die Dateien aus <code>homeassistant/www/</code> in deinen Home Assistant Ordner <code>/config/www/snapmaker-u1/showcase/</code>:</p>
+            <h3 data-i18n="step2-title">Showcase-Assets ablegen & Ressource im Dashboard registrieren</h3>
+            <p data-i18n="step2-desc">Kopiere die Dateien aus <code>homeassistant/www/</code> in deinen lokalen Home Assistant Ordner <code>/config/www/snapmaker-u1/showcase/</code>:</p>
             <div class="code-pill-list">
               <span><code>u1-fusion-showcase.u1.js</code></span>
               <span><code>studio.png</code></span>
               <span><code>close-up.png</code></span>
             </div>
             
-            <div style="margin: 16px 0;">
-              <a href="https://my.home-assistant.io/redirect/lovelace_resources/" target="_blank" class="ha-my-badge" title="Open Lovelace Resources in My Home Assistant">
-                <img src="https://my.home-assistant.io/badges/lovelace_resources.svg" alt="Open Resources on My Home Assistant">
-              </a>
+            <div class="collapsible-wrapper" style="margin-top:16px;">
+              <details open>
+                <summary><b data-i18n="step2-reg-summary">🔍 Wo und wie wird die Ressource registriert? (Detaillierte Schritt-für-Schritt-Anleitung)</b></summary>
+                <div class="details-content">
+                  <div class="ha-path-explanation-box">
+                    <h5 data-i18n="step2-path-title">💡 Wichtiges Home Assistant Pfad-Wissen:</h5>
+                    <p data-i18n="step2-path-desc">
+                      Der lokale Ordner <code>/config/www/</code> auf deiner Festplatte wird vom integrierten Webserver von Home Assistant intern als <code>/local/</code> im Browser ausgeliefert. Die Datei <code>/config/www/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> wird im Dashboard daher als <code>/local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> aufgerufen!
+                    </p>
+                  </div>
+
+                  <h5 style="color:#f0f6fc; margin:14px 0 6px;" data-i18n="step2-steps-title">Schritt-für-Schritt im Home Assistant Menü registrieren:</h5>
+                  <ol class="step-guide-list">
+                    <li>
+                      <span data-i18n="step2-s1">Klicke in Home Assistant links unten auf <strong>Einstellungen</strong> (Settings).</span>
+                    </li>
+                    <li>
+                      <span data-i18n="step2-s2">Wähle <strong>Dashboards</strong>.</span>
+                    </li>
+                    <li>
+                      <span data-i18n="step2-s3">Klicke oben rechts auf das Drei-Punkte-Menü <strong>⋮</strong> und wähle <strong>Ressourcen</strong> (Resources).</span>
+                    </li>
+                    <li>
+                      <span data-i18n="step2-s4">Klicke unten rechts auf den blauen Button <strong>+ Ressource hinzufügen</strong> (Add Resource).</span>
+                    </li>
+                    <li>
+                      <span data-i18n="step2-s5">Trage folgende Werte exakt ein:</span>
+                      <ul style="margin: 6px 0 0 16px; color:#adbac7; font-size:0.88rem;">
+                        <li><strong>URL:</strong> <code>/local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code></li>
+                        <li><strong>Ressourcentyp:</strong> <code>JavaScript-Modul</code> (JavaScript Module)</li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span data-i18n="step2-s6">Klicke auf <strong>Erstellen</strong> (Create). Fertig!</span>
+                    </li>
+                  </ol>
+
+                  <div style="margin: 16px 0 8px;">
+                    <a href="https://my.home-assistant.io/redirect/lovelace_resources/" target="_blank" class="ha-my-badge" title="Direkt zu den Lovelace Ressourcen in My Home Assistant">
+                      <img src="https://my.home-assistant.io/badges/lovelace_resources.svg" alt="Open Resources on My Home Assistant">
+                    </a>
+                  </div>
+
+                  <div class="step-links-row" style="margin-top:12px;">
+                    <a href="https://www.home-assistant.io/dashboards/resources/" target="_blank" class="btn btn-outline btn-sm">
+                      📖 <span data-i18n="btn-ha-res-doc">Offizielle Home Assistant Dokumentation zu Ressourcen &rarr;</span>
+                    </a>
+                  </div>
+                </div>
+              </details>
             </div>
-            <p class="sub-text" data-i18n="step2-sub">Klicke oben auf den Button und trage als URL ein: <code>/local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> (JavaScript-Modul).</p>
           </div>
         </div>
 
@@ -495,6 +572,29 @@ max_exceeded: silent</code></pre>
             </div>
           </div>
         </div>
+
+        <!-- Step 4: AI & MCP Automation Prompt -->
+        <div class="step-card ai-step-card">
+          <div class="step-number">🤖</div>
+          <div class="step-body">
+            <h3 data-i18n="ai-step-title">KI-Installation via Antigravity, Codex oder MCP</h3>
+            <p data-i18n="ai-step-desc">Nutzt du einen KI-Agenten (Google Antigravity, OpenAI Codex, Claude Code, Cursor) mit angebundenem Home Assistant MCP Server? Kopiere einfach diesen Prompt, um die gesamte Installation vollautomatisch ausführen zu lassen:</p>
+            
+            <div class="ai-prompt-box">
+              <pre><code id="ai-install-prompt-text">You have access to Home Assistant via MCP tools. Please install and configure the Snapmaker U1 4-Toolhead Dashboard:
+1. Register the Lovelace JavaScript module resource:
+   URL: /local/snapmaker-u1/showcase/u1-fusion-showcase.u1.js
+2. Verify that the required frontend cards are installed (button-card, card-mod, slider-entity-row, vertical-stack-in-card, mini-graph-card).
+3. Import or update the dashboard Lovelace configuration using the official template from:
+   https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml
+4. Verify entity mappings for toolheads T0-T3, heated bed, and the chamber light entity (light.snapmaker_u1_card_innenraumlicht).</code></pre>
+              <button class="btn btn-primary btn-sm" id="btn-copy-ai-prompt" style="margin-top:12px;">
+                📋 <span data-i18n="btn-copy-ai-prompt">Prompt für KI kopieren</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
