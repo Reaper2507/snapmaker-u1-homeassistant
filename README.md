@@ -6,7 +6,11 @@ A community dashboard by [Reaper2507](https://github.com/Reaper2507) for the Sna
 
 [Ironoxx’s Snapmaker U1 Card](https://github.com/Ironoxx/ha-snapmaker-u1-card) provides the Home Assistant integration and the original printer card, including the layer view and object exclusion. The frontend bundled here is adapted from [Ironoxx’s v2.0.0 release](https://github.com/Ironoxx/ha-snapmaker-u1-card/tree/v2.0.0) and retains the [original copyright notice and MIT license](https://github.com/Ironoxx/ha-snapmaker-u1-card/blob/v2.0.0/LICENSE).
 
-I built the Full, Minimal and Maintenance Lovelace views around that foundation. I also added the Studio and Cutaway visuals and made the printer graphic a shortcut to the dashboard’s controls.
+### What I added
+
+- **Live printer rendering.** I created the Studio rendering and mapped all four spool and toolhead positions. The rendered filament changes color to match the loaded spool at T0–T3, using data from Ironoxx’s integration. Studio and Cutaway also show live XYZ positions, nozzle and bed temperatures, and which toolhead is mounted.
+- **Controls from the printer graphic.** I made the graphic open the dashboard’s **Controls** and **Filament & heat** panels, so the controls are within reach from the printer view.
+- **Lovelace dashboard YAML.** I wrote the YAML for the Full, Minimal and Maintenance & Diagnostics views. I organized the maintenance view around the G-code console, service intervals, temperature history, bed mesh and system status.
 
 [Dashboard views](#dashboard-views) · [Features](#features) · [Install the dashboard](#installation) · [Feedback & Ko-fi](#feedback-and-support)
 
