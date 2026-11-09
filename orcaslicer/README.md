@@ -2,18 +2,22 @@
 
 These [OrcaSlicer 2.5](https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/v2.5.0) presets cover print settings, matching filaments and optional LAN printer profiles. Use them as starting points for your U1.
 
+---
 ## Process presets
 
 | Nozzle | Preset | When to use it |
 | --- | --- | --- |
 | 0.4 mm | [0.20 Antigravity Optimized](process/0.20%20Antigravity%20Optimized.json) | Everyday prints with three walls and a compact Type 2 prime tower. |
+| 0.4 mm | [0.20 Antigravity Speed](process/0.20%20Antigravity%20Speed%20%280.4%20Nozzle%29.json) | High-speed everyday prints with two walls, 0.48 mm inner line width and Adaptive Cubic infill. |
 | 0.4 mm | [0.20 U1 Mehrfarbe Kompakt](process/0.20%20U1%20Mehrfarbe%20Kompakt.json) | Multicolor jobs with a ribbed Type 2 prime tower and 15 mm³ prime volume. |
 | 0.4 mm | [0.24 U1 Quick & Solid](process/0.24%20U1%20Quick%20%26%20Solid%20%280.4%20Nozzle%29.json) | A quicker starting point with 0.24 mm layers, three walls and 12% infill. |
+| 0.4 mm | [0.28 Antigravity Solid & Fast](process/0.28%20Antigravity%20Solid%20%26%20Fast%20%280.4%20Nozzle%29.json) | Heavy-duty functional speed profile: 4 solid top layers, 3 bottom layers, precise outer wall and Adaptive Cubic. |
 | 0.4 mm | [0.28 Antigravity Prototype](process/0.28%20Antigravity%20Prototype%20%280.4%20Nozzle%29.json) | Drafts with thicker layers, two walls and 10% infill. |
 | 0.6 mm | [0.24, 0.30 and 0.40 mm layer presets](process/) | Start with 0.24 mm for finer layers, 0.30 mm for general use or 0.40 mm for drafts. |
 
 Compare the time and material estimates in **Preview** after slicing your model. The result depends on the geometry, material, support and tool changes.
 
+---
 ## Filament presets
 
 [Download the 19 filament presets](filament/) for the 0.4 mm U1. Pick the preset for your actual spool and confirm its temperature and flow on a small print.
@@ -25,12 +29,14 @@ Compare the time and material estimates in **Preview** after slicing your model.
 - **GEEETECH:** PLA Matte (Grey), TPU 95A (Transparent Silver).
 - **Generic:** High Speed Matte PETG (Black), a starting point for an unidentified brand.
 
+---
 ## Install the presets
 
 1. In OrcaSlicer, enable the **Snapmaker U1** system printer for your nozzle size. Open **Help → Show Configuration Folder**, then close OrcaSlicer.
 2. Back up your presets. [Download the repository ZIP](https://github.com/Reaper2507/snapmaker-u1-homeassistant/archive/refs/heads/main.zip) and extract it. Copy the JSON files from `orcaslicer/process/` and `orcaslicer/filament/` into the matching `process/` and `filament/` folders in your Orca user profile. The usual location is `user/default/` when signed out or the account folder under `user/` when using OrcaCloud. The optional stainless-steel LAN printer presets go into `machine/`. Preserve any presets you already customized.
 3. Reopen OrcaSlicer and select the matching **Snapmaker U1** and nozzle in **Prepare**. Open the **Process** dropdown to find the entries under **User presets**, and use each toolhead’s **Filament** dropdown to assign its material. If a preset is missing, check its `inherits` and `compatible_printers` fields against the system printer and nozzle you enabled.
 
+---
 ![OrcaSlicer Prepare screen showing the U1 filament selections and process user presets](../screenshots/orcaslicer-u1-user-presets.png)
 
 See the [OrcaSlicer guide to user profile folders](https://github.com/OrcaSlicer/OrcaSlicer/wiki/user_profiles) for platform and account details.
