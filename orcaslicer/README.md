@@ -16,8 +16,6 @@ All presets include integrated **in-slicer hover descriptions (tooltips)** in Or
 | [U1 Fast](process/U1%20Fast%20%280.4%20Nozzle%29.json) | 0.28 mm | 2 (`inner-outer`) · 12% Cubic | 200 / 300 / 270 mm/s | Everyday utility prints, bins, trays, Gridfinity, and household organizers. |
 | [U1 Draft](process/U1%20Draft%20%280.4%20Nozzle%29.json) | 0.28 mm | 2 (`inner-outer`) · 8% Support Cubic | 220 / 300 / 300 mm/s | Rapid prototypes, dimensional checks, and quick fitment tests (`reduce_crossing_wall = 0`). |
 | [U1 Extreme Draft](process/U1%20Extreme%20Draft%20%280.4%20Nozzle%29.json) | 0.28 mm | 2 (`inner-outer`) · 15% Lightning | 220 / 300 / 300 mm/s | Ultra-fast hollow form models, mockups, and cosmetic shells (minimal material use). |
-| [0.20 U1 Mehrfarbe Kompakt](process/0.20%20U1%20Mehrfarbe%20Kompakt.json) | 0.20 mm | 3 walls · 15% Gyroid | Snapmaker Standard | Multi-material toolchanger prints with Type-2 compact prime tower & rib purge wall. |
-| [0.20 Antigravity Optimized](process/0.20%20Antigravity%20Optimized.json) | 0.20 mm | 3 walls · 15% Gyroid | Snapmaker Standard | Historical baseline reference profile for comparison against factory settings. |
 
 ### 0.6 mm Nozzle Lineup (High Volumetric Throughput)
 
