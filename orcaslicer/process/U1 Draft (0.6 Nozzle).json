@@ -1,0 +1,122 @@
+{
+    "name": "U1 Draft (0.6 Nozzle)",
+    "print_settings_id": "U1 Draft (0.6 Nozzle)",
+    "from": "User",
+    "inherits": "0.42 Standard @Snapmaker U1 (0.6 nozzle)",
+    "description": "Empfohlen f\u00fcr: Extrem schneller Druck riesiger Volumenk\u00f6rper und Formenbau.\n\u2022 Setup: 0.42 mm Schicht, 2 W\u00e4nde, 0.65 mm Au\u00dfen- / 0.70 mm Innenbreite, 8% Support Cubic.\n\u2022 Tempo: 120 mm/s Au\u00dfenwand, 150 mm/s Innenwand, 160 mm/s Infill, reduce_crossing_wall = 0.\n\u2022 Praxistipps:\n  - Maximaler Materialdurchsatz. Sichtbare Schichtstufen konstruktiv einkalkulieren.",
+    "compatible_printers": [
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "version": "2.5.0.0",
+    "layer_height": "0.42",
+    "initial_layer_print_height": "0.28",
+    "wall_loops": "2",
+    "wall_generator": "arachne",
+    "wall_sequence": "inner-outer wall",
+    "sparse_infill_pattern": "supportcubic",
+    "sparse_infill_density": "8%",
+    "top_shell_layers": "3",
+    "bottom_shell_layers": "2",
+    "top_shell_thickness": "0",
+    "reduce_infill_retraction": "0",
+    "reduce_crossing_wall": "0",
+    "outer_wall_line_width": "0.65",
+    "inner_wall_line_width": "0.70",
+    "outer_wall_speed": [
+        "120",
+        "500",
+        "120",
+        "500",
+        "120",
+        "500",
+        "120",
+        "500"
+    ],
+    "inner_wall_speed": [
+        "150",
+        "600",
+        "150",
+        "600",
+        "150",
+        "600",
+        "150",
+        "600"
+    ],
+    "sparse_infill_speed": [
+        "160",
+        "600",
+        "160",
+        "600",
+        "160",
+        "600",
+        "160",
+        "600"
+    ],
+    "internal_solid_infill_speed": [
+        "150",
+        "600",
+        "150",
+        "600",
+        "150",
+        "600",
+        "150",
+        "600"
+    ],
+    "top_surface_speed": "140",
+    "outer_wall_acceleration": "6000",
+    "top_surface_acceleration": [
+        "3000",
+        "3000",
+        "3000",
+        "3000",
+        "3000",
+        "3000",
+        "3000",
+        "3000"
+    ],
+    "travel_acceleration": [
+        "12000",
+        "12000",
+        "12000",
+        "12000",
+        "12000",
+        "12000",
+        "12000",
+        "12000"
+    ],
+    "initial_layer_acceleration": [
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000"
+    ],
+    "initial_layer_travel_acceleration": [
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000"
+    ],
+    "elefant_foot_compensation": "0.15",
+    "brim_type": "no_brim",
+    "enable_support": "0",
+    "support_type": "tree(auto)",
+    "support_style": "tree_slim",
+    "support_threshold_angle": "20",
+    "prime_volume": "20",
+    "wipe_tower_max_purge_speed": "150",
+    "plugins": [
+        "set_and_send;;U1 print setup"
+    ],
+    "slicing_pipeline_plugin": [
+        "U1 print setup"
+    ]
+}

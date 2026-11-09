@@ -121,5 +121,6 @@
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
-    ]
+    ],
+    "description": "Empfohlen f\u00fcr: Alltags-Standard f\u00fcr Boxen, Schalen, Trays, Gridfinity und Organizer.\n\u2022 Setup: 0.28 mm Schicht, 2 W\u00e4nde (Inner/Outer), 0.45 mm Au\u00dfen- / 0.48 mm Innenbreite, 12% Cubic.\n\u2022 Tempo: 200 mm/s Au\u00dfenwand, 300 mm/s Innenwand, 270 mm/s Infill.\n\u2022 Praxistipps:\n  - Hervorragender Kompromiss aus hoher Druckgeschwindigkeit und Alltagshaltbarkeit.\n  - Brim ist standardm\u00e4\u00dfig AUS."
 }

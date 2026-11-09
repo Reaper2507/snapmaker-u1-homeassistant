@@ -54,5 +54,6 @@
         "10000",
         "10000"
     ],
-    "print_settings_id": "0.20 U1 Mehrfarbe Kompakt"
+    "print_settings_id": "0.20 U1 Mehrfarbe Kompakt",
+    "description": "Optimiert f\u00fcr Mehrfarbdrucke mit Toolchanger & Sp\u00fclung.\n\u2022 Setup: 0.20 mm Schicht, Type-2 kompakter Wipe-Tower mit Rippen-Purge-Wand.\n\u2022 Spart Sp\u00fclvolumen und Bettfl\u00e4che bei Farbwechseln."
 }

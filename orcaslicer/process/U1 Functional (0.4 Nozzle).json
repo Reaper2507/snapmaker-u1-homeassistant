@@ -121,5 +121,6 @@
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
-    ]
+    ],
+    "description": "Empfohlen f\u00fcr: Belastete Halterungen, Adapter, Werkzeuge und mechanische Bauteile.\n\u2022 Setup: 0.24 mm Schicht, 3 W\u00e4nde (Inner/Outer), 0.44 mm Au\u00dfen- / 0.48 mm Innenbreite, 15% Adaptive Cubic.\n\u2022 Tempo: 200 mm/s Au\u00dfenwand, 260 mm/s Innenwand, 270 mm/s Infill.\n\u2022 Praxistipps:\n  - F\u00fcr maximale Festigkeit W\u00e4nde auf 4-5 erh\u00f6hen statt Infill sinnlos zu steigern.\n  - Bei extremen Schr\u00e4gen ggf. Tree Hybrid statt Tree Slim w\u00e4hlen."
 }

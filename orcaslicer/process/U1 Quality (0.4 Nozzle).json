@@ -122,5 +122,6 @@
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
-    ]
+    ],
+    "description": "Empfohlen f\u00fcr: Sichtfl\u00e4chen, Deko, Figuren, glatte Geh\u00e4use und Zylinder.\n\u2022 Setup: 0.20 mm Schicht, 3 W\u00e4nde (Inner/Outer/Inner), 0.40 mm symmetrische Linienbreite, 15% Gyroid.\n\u2022 VFA-Tuning: 210 mm/s Wandgeschwindigkeit \u00fcberspringt U1-Schrittmotor-Resonanzen (120-170 mm/s).\n\u2022 Praxistipps:\n  - Bei steilen \u00dcberh\u00e4ngen (>45\u00b0): Wandreihenfolge auf 'Inner/Outer' umschalten.\n  - Bei winzigen Turmspitzen/Antennen: Schichtzeitk\u00fchlung im Filament erlauben."
 }

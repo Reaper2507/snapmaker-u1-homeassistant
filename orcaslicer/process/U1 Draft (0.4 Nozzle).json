@@ -117,5 +117,6 @@
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
-    ]
+    ],
+    "description": "Empfohlen f\u00fcr: Schnelle Prototypen, Ma\u00dfpr\u00fcfungen, Passform-Checks und Entw\u00fcrfe.\n\u2022 Setup: 0.28 mm Schicht, 2 W\u00e4nde, 8% Support Cubic, Leerweg-Optimierung (reduce_crossing_wall = 0).\n\u2022 Tempo: 220 mm/s Au\u00dfenwand, 300 mm/s Innenwand, 300 mm/s Infill.\n\u2022 Praxistipps:\n  - Minimaler Filamentverbrauch und k\u00fcrzeste Druckzeit.\n  - Nicht f\u00fcr wasserdichte oder mechanisch hochbelastete Bauteile."
 }

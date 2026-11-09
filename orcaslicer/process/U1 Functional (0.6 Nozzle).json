@@ -1,0 +1,126 @@
+{
+    "name": "U1 Functional (0.6 Nozzle)",
+    "print_settings_id": "U1 Functional (0.6 Nozzle)",
+    "from": "User",
+    "inherits": "0.30 Standard @Snapmaker U1 (0.6 nozzle)",
+    "description": "Empfohlen f\u00fcr: Hochbelastete Werkstatt-Halterungen, Maschinenadapter und technische Teile.\n\u2022 Setup: 0.30 mm Schicht, 3 W\u00e4nde (Inner/Outer), 0.62 mm Au\u00dfen- / 0.68 mm Innenbreite, 15% Adaptive Cubic.\n\u2022 Tempo: 140 mm/s Au\u00dfenwand, 180 mm/s Innenwand, 200 mm/s Infill.\n\u2022 Praxistipps:\n  - Enorme Schichthaftung und Bruchfestigkeit bei hohem Materialfluss.",
+    "compatible_printers": [
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "version": "2.5.0.0",
+    "layer_height": "0.30",
+    "initial_layer_print_height": "0.24",
+    "wall_loops": "3",
+    "wall_generator": "arachne",
+    "wall_sequence": "inner-outer wall",
+    "sparse_infill_pattern": "adaptivecubic",
+    "sparse_infill_density": "15%",
+    "top_shell_layers": "4",
+    "bottom_shell_layers": "4",
+    "top_shell_thickness": "0",
+    "reduce_infill_retraction": "0",
+    "dont_slow_down_outer_wall": "1",
+    "reduce_crossing_wall": "1",
+    "outer_wall_line_width": "0.62",
+    "inner_wall_line_width": "0.68",
+    "outer_wall_speed": [
+        "140",
+        "500",
+        "140",
+        "500",
+        "140",
+        "500",
+        "140",
+        "500"
+    ],
+    "inner_wall_speed": [
+        "180",
+        "600",
+        "180",
+        "600",
+        "180",
+        "600",
+        "180",
+        "600"
+    ],
+    "sparse_infill_speed": [
+        "200",
+        "600",
+        "200",
+        "600",
+        "200",
+        "600",
+        "200",
+        "600"
+    ],
+    "internal_solid_infill_speed": [
+        "180",
+        "600",
+        "180",
+        "600",
+        "180",
+        "600",
+        "180",
+        "600"
+    ],
+    "top_surface_speed": "140",
+    "outer_wall_acceleration": "5000",
+    "top_surface_acceleration": [
+        "3000",
+        "3000",
+        "3000",
+        "3000",
+        "3000",
+        "3000",
+        "3000",
+        "3000"
+    ],
+    "travel_acceleration": [
+        "12000",
+        "12000",
+        "12000",
+        "12000",
+        "12000",
+        "12000",
+        "12000",
+        "12000"
+    ],
+    "initial_layer_acceleration": [
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000",
+        "1000"
+    ],
+    "initial_layer_travel_acceleration": [
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000"
+    ],
+    "elefant_foot_compensation": "0.15",
+    "seam_slope_conditional": "1",
+    "seam_slope_type": "external",
+    "wipe_before_external_loop": "1",
+    "brim_type": "no_brim",
+    "enable_support": "0",
+    "support_type": "tree(auto)",
+    "support_style": "tree_slim",
+    "support_threshold_angle": "25",
+    "prime_volume": "20",
+    "wipe_tower_max_purge_speed": "150",
+    "plugins": [
+        "set_and_send;;U1 print setup"
+    ],
+    "slicing_pipeline_plugin": [
+        "U1 print setup"
+    ]
+}
