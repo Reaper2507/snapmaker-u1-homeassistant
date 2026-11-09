@@ -1,0 +1,17 @@
+{
+    "inherits": "Bambu PETG Basic @System",
+    "compatible_printers": [
+        "Snapmaker U1 (0.4 nozzle)",
+        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "name": "Bambu Lab PETG Basic",
+    "from": "User",
+    "version": "2.5.0.0",
+    "additional_cooling_fan_speed": [
+        "0",
+        "0"
+    ],
+    "description": "Bambu Lab PETG Basic general preset for Snapmaker U1. AUX fan disabled to prevent warping."
+}

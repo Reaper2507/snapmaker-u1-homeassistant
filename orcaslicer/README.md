@@ -45,14 +45,14 @@ Compare the time and material estimates in **Preview** after slicing your model.
 ---
 ## Filament presets
 
-[Download the 19 filament presets](filament/) for the 0.4 mm U1. Pick the preset for your actual spool and confirm its temperature and flow on a small print.
+[Download the 9 material presets](filament/) for the Snapmaker U1 (compatible with both 0.4 mm and 0.6 mm nozzles). Color variants have been intentionally removed from preset names; colors are assigned dynamically per spool/toolhead in OrcaSlicer's **Prepare** tab. All PLA and PETG presets have the auxiliary side fan set to **0%** to eliminate left-bed warping.
 
-- **Bambu Lab:** PLA Basic (Black, Jade White), PETG Basic (White).
-- **SUNLU:** PLA+ 2.0 (Black, White, Bone White, Little Blue, Olive Green, Sunny Orange).
-- **eSUN:** PETG Matte (Apricot, Concrete Grey, Blue Brick, Dark Grey).
-- **ELEGOO:** PLA Matte (Beige), PETG-CF (Black, Dark Grey). Use a suitable hardened nozzle for PETG-CF.
-- **GEEETECH:** PLA Matte (Grey), TPU 95A (Transparent Silver).
-- **Generic:** High Speed Matte PETG (Black), a starting point for an unidentified brand.
+- **Bambu Lab:** PLA Basic, PETG Basic.
+- **SUNLU:** PLA+ 2.0.
+- **eSUN:** PETG Matte.
+- **ELEGOO:** PLA Matte, PETG-CF (hardened / stainless steel nozzle recommended).
+- **GEEETECH:** PLA Matte, TPU 95A.
+- **Generic:** High Speed PETG.
 
 ---
 ## Install the presets

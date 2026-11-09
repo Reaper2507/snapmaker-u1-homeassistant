@@ -1,39 +1,39 @@
 {
-  "inherits": "Snapmaker U1 (0.6 nozzle)",
-  "printer_extruder_id": [
-    "1",
-    "1",
-    "2",
-    "2",
-    "3",
-    "3",
-    "4",
-    "4"
-  ],
-  "printer_extruder_variant": [
-    "Direct Drive Standard",
-    "Direct Drive High Flow",
-    "Direct Drive Standard",
-    "Direct Drive High Flow",
-    "Direct Drive Standard",
-    "Direct Drive High Flow",
-    "Direct Drive Standard",
-    "Direct Drive High Flow"
-  ],
-  "nozzle_type": [
-    "stainless_steel",
-    "stainless_steel",
-    "stainless_steel",
-    "stainless_steel",
-    "stainless_steel",
-    "stainless_steel",
-    "stainless_steel",
-    "stainless_steel"
-  ],
-  "print_host": "http://192.168.x.x:7125",
-  "host_type": "moonraker",
-  "default_print_profile": "0.30 Antigravity Optimized (0.6 Nozzle)",
-  "name": "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN",
-  "from": "User",
-  "version": "2.5.0.0"
+    "inherits": "Snapmaker U1 (0.6 nozzle)",
+    "printer_extruder_id": [
+        "1",
+        "1",
+        "2",
+        "2",
+        "3",
+        "3",
+        "4",
+        "4"
+    ],
+    "printer_extruder_variant": [
+        "Direct Drive Standard",
+        "Direct Drive High Flow",
+        "Direct Drive Standard",
+        "Direct Drive High Flow",
+        "Direct Drive Standard",
+        "Direct Drive High Flow",
+        "Direct Drive Standard",
+        "Direct Drive High Flow"
+    ],
+    "nozzle_type": [
+        "stainless_steel",
+        "stainless_steel",
+        "stainless_steel",
+        "stainless_steel",
+        "stainless_steel",
+        "stainless_steel",
+        "stainless_steel",
+        "stainless_steel"
+    ],
+    "print_host": "http://192.168.x.x:7125",
+    "host_type": "moonraker",
+    "default_print_profile": "U1 Functional (0.6 Nozzle)",
+    "name": "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN",
+    "from": "User",
+    "version": "2.5.0.0"
 }

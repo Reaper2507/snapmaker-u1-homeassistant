@@ -1,0 +1,20 @@
+{
+    "inherits": "Elegoo PLA Matte @System",
+    "compatible_printers": [
+        "Snapmaker U1 (0.4 nozzle)",
+        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "name": "ELEGOO PLA Matte",
+    "from": "User",
+    "version": "2.5.0.0",
+    "additional_cooling_fan_speed": [
+        "0",
+        "0"
+    ],
+    "dont_slow_down_outer_wall": [
+        "1"
+    ],
+    "description": "ELEGOO PLA Matte general preset for Snapmaker U1. AUX fan disabled."
+}

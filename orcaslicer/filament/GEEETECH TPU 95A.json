@@ -1,0 +1,13 @@
+{
+    "inherits": "Snapmaker TPU 95A @U1",
+    "compatible_printers": [
+        "Snapmaker U1 (0.4 nozzle)",
+        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "name": "GEEETECH TPU 95A",
+    "from": "User",
+    "version": "2.5.0.0",
+    "description": "GEEETECH TPU 95A flexible filament preset for Snapmaker U1."
+}
