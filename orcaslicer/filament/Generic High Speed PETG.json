@@ -17,5 +17,25 @@
     "filament_max_volumetric_speed": [
         "16",
         "30"
+    ],
+    "nozzle_temperature": [
+        "245",
+        "245"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "245",
+        "245"
+    ],
+    "textured_plate_temp": [
+        "70"
+    ],
+    "textured_plate_temp_initial_layer": [
+        "70"
+    ],
+    "hot_plate_temp": [
+        "70"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "70"
     ]
 }
