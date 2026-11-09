@@ -3,6 +3,7 @@
     "print_settings_id": "U1 Fast (0.4 Nozzle)",
     "from": "User",
     "inherits": "0.28 Extra Draft @Snapmaker U1 (0.4 nozzle)",
+    "description": "Recommended: Everyday utility prints, organizer boxes, trays, Gridfinity, and household helpers.\n\u2022 Defaults: 0.28 mm layer, 2 walls (Inner/Outer), 0.45 mm outer / 0.48 mm inner width, 12% Cubic infill.\n\u2022 Speed: 200 mm/s outer wall, 300 mm/s inner wall, 270 mm/s infill.\n\u2022 WHEN TO TWEAK:\n  - Large solid objects: Switch to Adaptive Cubic to save internal filament.\n  - Sharp warping corners: Add brim or mouse ears. Default is no brim.",
     "compatible_printers": [
         "Snapmaker U1 (0.4 nozzle)",
         "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN"
@@ -121,6 +122,5 @@
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
-    ],
-    "description": "Empfohlen f\u00fcr: Alltags-Standard f\u00fcr Boxen, Schalen, Trays, Gridfinity und Organizer.\n\u2022 Setup: 0.28 mm Schicht, 2 W\u00e4nde (Inner/Outer), 0.45 mm Au\u00dfen- / 0.48 mm Innenbreite, 12% Cubic.\n\u2022 Tempo: 200 mm/s Au\u00dfenwand, 300 mm/s Innenwand, 270 mm/s Infill.\n\u2022 Praxistipps:\n  - Hervorragender Kompromiss aus hoher Druckgeschwindigkeit und Alltagshaltbarkeit.\n  - Brim ist standardm\u00e4\u00dfig AUS."
+    ]
 }

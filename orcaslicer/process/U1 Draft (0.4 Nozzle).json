@@ -3,6 +3,7 @@
     "print_settings_id": "U1 Draft (0.4 Nozzle)",
     "from": "User",
     "inherits": "0.28 Extra Draft @Snapmaker U1 (0.4 nozzle)",
+    "description": "Recommended: Rapid prototypes, dimensional checks, and quick fitment tests.\n\u2022 Defaults: 0.28 mm layer, 2 walls (Inner/Outer), 8% Support Cubic infill, travel detour disabled (reduce_crossing_wall = 0).\n\u2022 Speed: 220 mm/s outer wall, 300 mm/s inner wall, 300 mm/s infill.\n\u2022 WHEN TO TWEAK:\n  - Hollow non-structural mockups: Use Extreme Draft (Lightning) for lowest filament use.\n  - Functional load tests: Step up to Functional (0.24 mm, 3 walls).",
     "compatible_printers": [
         "Snapmaker U1 (0.4 nozzle)",
         "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN"
@@ -117,6 +118,5 @@
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
-    ],
-    "description": "Empfohlen f\u00fcr: Schnelle Prototypen, Ma\u00dfpr\u00fcfungen, Passform-Checks und Entw\u00fcrfe.\n\u2022 Setup: 0.28 mm Schicht, 2 W\u00e4nde, 8% Support Cubic, Leerweg-Optimierung (reduce_crossing_wall = 0).\n\u2022 Tempo: 220 mm/s Au\u00dfenwand, 300 mm/s Innenwand, 300 mm/s Infill.\n\u2022 Praxistipps:\n  - Minimaler Filamentverbrauch und k\u00fcrzeste Druckzeit.\n  - Nicht f\u00fcr wasserdichte oder mechanisch hochbelastete Bauteile."
+    ]
 }

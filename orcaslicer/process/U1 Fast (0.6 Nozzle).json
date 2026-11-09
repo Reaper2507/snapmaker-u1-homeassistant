@@ -3,7 +3,7 @@
     "print_settings_id": "U1 Fast (0.6 Nozzle)",
     "from": "User",
     "inherits": "0.36 Standard @Snapmaker U1 (0.6 nozzle)",
-    "description": "Empfohlen f\u00fcr: Gro\u00dfe Schalen, Kisten, Wannen und Organizer mit maximalem Durchsatz.\n\u2022 Setup: 0.38 mm Schicht (63% D\u00fcsendurchmesser - Sweetspot!), 2 W\u00e4nde, 12% Cubic.\n\u2022 Tempo: 120 mm/s Au\u00dfenwand, 150 mm/s Innenwand, 160 mm/s Infill.\n\u2022 Praxistipps:\n  - Nutzt das volle volumetrische Hotend-Potenzial des U1 (~25-30 mm\u00b3/s) voll aus!",
+    "description": "Recommended: Large storage bins, crates, tubs, and organizers with maximum volumetric flow.\n\u2022 Defaults: 0.38 mm layer, 2 walls (Inner/Outer), 0.62 mm outer / 0.68 mm inner width, 12% Cubic infill.\n\u2022 Speed: 120 mm/s outer wall, 150 mm/s inner wall, 160 mm/s infill (maximizes U1 ~25\u201330 mm\u00b3/s hotend capacity).\n\u2022 WHEN TO TWEAK:\n  - Heavy structural demands: Step up to Functional (3 walls).\n  - Tapering/spherical geometries: Enable Variable Layer Height for top curves.",
     "compatible_printers": [
         "Snapmaker U1 (0.6 nozzle)",
         "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"

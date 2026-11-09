@@ -76,5 +76,5 @@
     "elefant_foot_compensation": "0.1",
     "wall_infill_order": "inner-outer-inner wall/infill",
     "brim_type": "no_brim",
-    "description": "Baseline-Referenzprofil f\u00fcr Snapmaker U1 (0.4 mm D\u00fcse).\n\u2022 Setup: 0.20 mm Schicht, 3 W\u00e4nde, 15% Gyroid.\n\u2022 Dient als stabiler, konservativer Vergleichsma\u00dfstab."
+    "description": "Baseline reference preset for Snapmaker U1 (0.4 mm nozzle).\n\u2022 Defaults: 0.20 mm layer, 3 walls, 15% Gyroid infill.\n\u2022 Serves as the historical baseline for comparing custom speed and cooling optimizations."
 }

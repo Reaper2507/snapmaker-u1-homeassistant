@@ -3,7 +3,7 @@
     "print_settings_id": "U1 Draft (0.6 Nozzle)",
     "from": "User",
     "inherits": "0.42 Standard @Snapmaker U1 (0.6 nozzle)",
-    "description": "Empfohlen f\u00fcr: Extrem schneller Druck riesiger Volumenk\u00f6rper und Formenbau.\n\u2022 Setup: 0.42 mm Schicht, 2 W\u00e4nde, 0.65 mm Au\u00dfen- / 0.70 mm Innenbreite, 8% Support Cubic.\n\u2022 Tempo: 120 mm/s Au\u00dfenwand, 150 mm/s Innenwand, 160 mm/s Infill, reduce_crossing_wall = 0.\n\u2022 Praxistipps:\n  - Maximaler Materialdurchsatz. Sichtbare Schichtstufen konstruktiv einkalkulieren.",
+    "description": "Recommended: High-speed large volume prototypes and rapid concept mockups.\n\u2022 Defaults: 0.42 mm layer, 2 walls, 0.65 mm outer / 0.70 mm inner width, 8% Support Cubic infill, reduce_crossing_wall = 0.\n\u2022 Speed: 120 mm/s outer wall, 150 mm/s inner wall, 160 mm/s infill.\n\u2022 WHEN TO TWEAK:\n  - Non-structural volume bodies: Use Extreme Draft (Lightning) for minimal material use.\n  - Visible stair-stepping: Design bevels and chamfers accordingly or lower layer height.",
     "compatible_printers": [
         "Snapmaker U1 (0.6 nozzle)",
         "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"

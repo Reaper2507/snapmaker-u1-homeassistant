@@ -55,5 +55,5 @@
         "10000"
     ],
     "print_settings_id": "0.20 U1 Mehrfarbe Kompakt",
-    "description": "Optimiert f\u00fcr Mehrfarbdrucke mit Toolchanger & Sp\u00fclung.\n\u2022 Setup: 0.20 mm Schicht, Type-2 kompakter Wipe-Tower mit Rippen-Purge-Wand.\n\u2022 Spart Sp\u00fclvolumen und Bettfl\u00e4che bei Farbwechseln."
+    "description": "Optimized for multi-material toolchanger prints with prime tower savings.\n\u2022 Defaults: 0.20 mm layer, Type-2 compact wipe tower with ribbed purge wall.\n\u2022 Saves purge volume and bed real estate on multi-color toolhead changes."
 }

@@ -3,6 +3,7 @@
     "print_settings_id": "U1 Quality (0.4 Nozzle)",
     "from": "User",
     "inherits": "0.20 Standard @Snapmaker U1 (0.4 nozzle)",
+    "description": "Recommended: Visible surfaces, figurines, display models, smooth cylinders, and enclosures.\n\u2022 Defaults: 0.20 mm layer, 3 walls (Inner/Outer/Inner), 0.40 mm symmetric wall width, 15% Gyroid infill.\n\u2022 U1 VFA Suppression: 210 mm/s wall speed bypasses U1 CoreXY stepper resonance (120\u2013170 mm/s).\n\u2022 WHEN TO TWEAK:\n  - Steep overhangs (>45\u00b0): Switch wall order to 'Inner/Outer' for better perimeter support.\n  - Tiny features/antennas: Ensure layer cooling slowdown is enabled in filament cooling settings.\n  - Large flat parts: Switch to Cubic or Adaptive Cubic for faster print times.",
     "compatible_printers": [
         "Snapmaker U1 (0.4 nozzle)",
         "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN"
@@ -122,6 +123,5 @@
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
-    ],
-    "description": "Empfohlen f\u00fcr: Sichtfl\u00e4chen, Deko, Figuren, glatte Geh\u00e4use und Zylinder.\n\u2022 Setup: 0.20 mm Schicht, 3 W\u00e4nde (Inner/Outer/Inner), 0.40 mm symmetrische Linienbreite, 15% Gyroid.\n\u2022 VFA-Tuning: 210 mm/s Wandgeschwindigkeit \u00fcberspringt U1-Schrittmotor-Resonanzen (120-170 mm/s).\n\u2022 Praxistipps:\n  - Bei steilen \u00dcberh\u00e4ngen (>45\u00b0): Wandreihenfolge auf 'Inner/Outer' umschalten.\n  - Bei winzigen Turmspitzen/Antennen: Schichtzeitk\u00fchlung im Filament erlauben."
+    ]
 }
