@@ -22,7 +22,7 @@
     "dont_slow_down_outer_wall": "1",
     "reduce_crossing_wall": "1",
     "outer_wall_line_width": "0.40",
-    "inner_wall_line_width": "0.42",
+    "inner_wall_line_width": "0.40",
     "outer_wall_speed": [
         "210",
         "500",
