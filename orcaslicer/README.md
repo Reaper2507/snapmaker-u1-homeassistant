@@ -7,13 +7,19 @@ These [OrcaSlicer 2.5](https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/v2.
 
 | Nozzle | Preset | When to use it |
 | --- | --- | --- |
-| 0.4 mm | [0.20 Quality](process/0.20%20Quality%20%280.4%20Nozzle%29.json) | Decorative parts, smooth curves, visible surfaces (3 walls, 15% Crosshatch). |
-| 0.4 mm | [0.20 Antigravity Optimized](process/0.20%20Antigravity%20Optimized.json) | Baseline reference profile (3 walls, Gyroid infill, Type-2 prime tower). |
-| 0.4 mm | [0.24 Functional](process/0.24%20Functional%20%280.4%20Nozzle%29.json) | Load-bearing brackets, adapters, functional parts (3 walls, 15% Adaptive Cubic, 4 top layers). |
-| 0.4 mm | [0.28 Fast](process/0.28%20Fast%20%280.4%20Nozzle%29.json) | Organizers, boxes, trays and household utility prints (2 walls with 0.48 mm inner line, 12% Adaptive Cubic). |
-| 0.4 mm | [0.28 Prototype](process/0.28%20Prototype%20%280.4%20Nozzle%29.json) | Rapid fitment and dimensional check prints (2 walls, 10% Support Cubic, 2 bottom / 3 top layers). |
-| 0.6 mm | [0.38 Functional](process/0.38%20Functional%20%280.6%20Nozzle%29.json) | High-strength mechanical parts with true 0.6 mm throughput (3 walls, 15% Adaptive Cubic). |
-| 0.6 mm | [0.42 Fast](process/0.42%20Fast%20%280.6%20Nozzle%29.json) | Fast drafts and large-volume utility prints (2 walls, 10% Adaptive Cubic). |
+| 0.4 mm | [U1 Quality](process/U1%20Quality%20%280.4%20Nozzle%29.json) | Decorative parts, figurines, visible curves (0.20 mm, 3 walls `inner-outer-inner`, 210 mm/s outer wall for VFA suppression, 15% Gyroid). |
+| 0.4 mm | [U1 Functional](process/U1%20Functional%20%280.4%20Nozzle%29.json) | Brackets, adapters, rigid mechanical parts (0.24 mm, 3 walls `inner-outer`, 200 mm/s outer / 260 mm/s inner, 15% Adaptive Cubic). |
+| 0.4 mm | [U1 Fast](process/U1%20Fast%20%280.4%20Nozzle%29.json) | Everyday organizers, boxes, trays (0.28 mm, 2 walls `inner-outer`, 200 mm/s outer / 300 mm/s inner, 12% Cubic). |
+| 0.4 mm | [U1 Draft](process/U1%20Draft%20%280.4%20Nozzle%29.json) | Rapid dimensional tests, quick mockups (0.28 mm, 2 walls, 220 mm/s outer / 300 mm/s inner, 8% Support Cubic). |
+| 0.4 mm | [0.20 U1 Mehrfarbe Kompakt](process/0.20%20U1%20Mehrfarbe%20Kompakt.json) | Multi-material prints with Type-2 compact prime tower & rib purge wall. |
+| 0.4 mm | [0.20 Antigravity Optimized](process/0.20%20Antigravity%20Optimized.json) | Baseline reference preset (0.20 mm, 3 walls, 15% Gyroid). |
+
+### Community-validated U1 Tuning Highlights
+- **VFA Ripple Suppression:** CoreXY stepper resonance on the U1 occurs noticeably in the 120–170 mm/s range. Running outer walls at **200–210 mm/s** (`dont_slow_down_outer_wall: 1`) skips this resonance window, producing significantly smoother surface walls.
+- **Nozzle Dragging Fix:** `reduce_infill_retraction = 0` is set to ensure the nozzle does not scrape or drag across printed infill patterns during high-speed travel moves.
+- **True Layer Count:** `top_shell_thickness = 0` avoids unwanted extra top solid layers enforced by hardcoded minimum millimetre thicknesses.
+- **First Layer Reliability:** `initial_layer_print_height = 0.20 mm` (down from 0.25 mm) ensures optimal first-layer squish on smooth build plates (e.g. BIQU Glacier/Frostbite).
+- **AUX Fan Warping Warning:** The U1 auxiliary fan blows unilaterally from the left side. For PLA and PETG, keep AUX fan speed at **0%** in filament presets to prevent bed warping on the left side.
 
 Compare the time and material estimates in **Preview** after slicing your model. The result depends on the geometry, material, support and tool changes.
 
