@@ -74,6 +74,7 @@ Select the printer illustration in **Tools & material** to open the control pane
 
 ## Optional extras
 
+- **Hardware mods.** [Auxiliary Fan Deflector](hardware/aux-fan-deflector/README.md) prevents left-bed warping by redirecting the chamber airflow upward.
 - **OrcaSlicer profiles.** [Install the U1 process presets](orcaslicer/README.md#install-the-presets) for everyday prints, faster drafts and compact multicolor jobs. [Browse 19 filament presets](orcaslicer/README.md#filament-presets) for matching spools, including SUNLU PLA+ 2.0 and eSUN PETG Matte.
 - **Set & Send.** Thanks to LayerLab for bringing the U1’s pre-print setup to OrcaSlicer. Their add-on lets you match filaments to toolheads and choose U1 print options before sending a job. [LayerLab download and guide](https://layerlab.store/pages/set-and-send) · [Quick setup](orcaslicer/README.md#set--send-by-layerlab)
 - **Helpful Home Assistant scripts.** [Optional printer controls](homeassistant/README.md#optional-controls-and-notifications) for tool changes and filament handling, plus a [microwave-style print completion ding and a brief chamber-light pulse](homeassistant/automations/README.md).

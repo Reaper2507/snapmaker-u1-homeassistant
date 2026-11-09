@@ -43,12 +43,13 @@ All presets include integrated **in-slicer hover descriptions (tooltips)** in Or
   The auxiliary side fan on the U1 blows a high-velocity, unilateral stream of air directly across the print bed from the left side. For PLA and especially PETG, this asymmetric airflow creates rapid localized thermal shrinkage: the left side of the part cools much faster than the heated bed and the rest of the model, generating violent mechanical tension that curls the bottom corners upward (**left-side bed warping**). On PETG, excess cooling also ruins interlayer bonding (delamination).
 - **Default Recommendation (0% AUX Fan):**  
   In all our tuned PLA and PETG presets, `additional_cooling_fan_speed` is set to **0%**. The dual symmetrical part cooling fans directly on the toolhead provide more than enough airflow for 95%+ of typical overhangs, bridges, and quality prints without risking bed detachment or unnecessary fan noise.
-- **The Alternative: Printable Fan Deflector / Diffuser:**  
-  If you frequently print ultra-fast PLA models (layer times under 3–4 seconds) or steep overhangs facing left, you can print a community-designed **Auxiliary Fan Deflector** (searchable on MakerWorld and Printables for *Snapmaker U1*).
-  - **What it does:** The louvers redirect the airflow 30°–45° upward towards the print ceiling rather than flat onto the build plate, transforming the harsh directional jet into gentle ambient circulation.
-  - **Filament Choice:** Print the deflector in **Black PETG or PETG-CF** (or ABS/ASA). Do not use PLA (it softens near the heated bed), and prefer matte black over bright colors to avoid optical glare with the U1's AI chamber camera.
-  - **Recommended Profile:** Slice the deflector using **`U1 Functional (0.4 Nozzle)`** with 3 walls and 15% Adaptive Cubic for heat and vibration resistance.
-  - **Slicer Setting with Deflector:** Once installed, you can safely re-enable the AUX fan at **20–40%** in filament cooling settings for high-speed PLA runs without causing warping.
+- **The Community Deflector Mod (Mirrored & Backed up):**  
+  We have mirrored and backed up the model and full print instructions directly in this repository:
+  👉 **[Snapmaker U1 Auxiliary Fan Deflector Guide & STL](../hardware/aux-fan-deflector/README.md)** (MakerWorld #3107806).
+  - **What it does:** The louvers redirect the airflow upward towards the chamber ceiling rather than flat onto the build plate, transforming the harsh directional jet into gentle ambient circulation.
+  - **Filament Choice:** Print the deflector in **Black PETG** (or PETG-CF / ABS). Do not use PLA (it softens near the heated bed), and prefer matte black over bright colors to avoid optical glare with the U1's AI chamber camera.
+  - **Recommended Profile:** Slice the deflector using **U1 Functional (0.4) - Halterungen, Mechanik** with 6 walls and 35% Gyroid infill for maximum snap retention and heat resistance.
+  - **Slicer Setting with Deflector:** Once installed, the AUX fan is pre-configured to **30%** in our PLA filament cooling settings for high-speed runs without risking warping.
 - **Verdict: Disable (0%) vs. Deflector Mod:**  
   For 90% of everyday printing, keeping the AUX fan at **0%** is the simplest, quietest, and zero-risk solution. A deflector is a worthwhile hardware upgrade only if you regularly print high-speed PLA speed runs with rapid layer turnover.
 
