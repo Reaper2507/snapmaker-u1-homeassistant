@@ -16,5 +16,9 @@
     "dont_slow_down_outer_wall": [
         "1"
     ],
-    "description": "ELEGOO PLA Matte general preset for Snapmaker U1. AUX fan disabled. (Tuned with 30% AUX fan for deflector diffuser)."
+    "description": "ELEGOO PLA Matte general preset for Snapmaker U1. AUX fan disabled. (Tuned with 30% AUX fan for deflector diffuser).",
+    "filament_max_volumetric_speed": [
+        "22",
+        "38"
+    ]
 }

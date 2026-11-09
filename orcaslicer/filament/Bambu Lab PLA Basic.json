@@ -16,5 +16,9 @@
     "dont_slow_down_outer_wall": [
         "1"
     ],
-    "description": "Bambu Lab PLA Basic general preset for Snapmaker U1 (0.4 & 0.6 mm nozzles). AUX fan disabled to eliminate left-bed warping. (Tuned with 30% AUX fan for deflector diffuser)."
+    "description": "Bambu Lab PLA Basic general preset for Snapmaker U1 (0.4 & 0.6 mm nozzles). AUX fan disabled to eliminate left-bed warping. (Tuned with 30% AUX fan for deflector diffuser).",
+    "filament_max_volumetric_speed": [
+        "22",
+        "38"
+    ]
 }

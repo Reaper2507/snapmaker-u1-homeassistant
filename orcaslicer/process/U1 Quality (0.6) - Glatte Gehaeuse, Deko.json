@@ -3,7 +3,7 @@
     "print_settings_id": "U1 Quality (0.6) - Glatte Gehaeuse, Deko",
     "from": "User",
     "inherits": "0.24 Standard @Snapmaker U1 (0.6 nozzle)",
-    "description": "Recommended: Display models and robust decorative enclosures with double wall thickness.\n\u2022 Defaults: 0.24 mm layer, 3 walls (Inner/Outer/Inner), 0.60 mm symmetric wall width, 15% Gyroid infill.\n\u2022 Speed: 160 mm/s outer wall, 200 mm/s inner wall, 220 mm/s infill.\n\u2022 WHEN TO TWEAK:\n  - Steep overhangs: Switch wall order to 'Inner/Outer'.\n  - Fine horizontal holes/details: Prefer a 0.4 mm nozzle instead.",
+    "description": "Recommended: Display models and robust decorative enclosures with double wall thickness.\n• Defaults: 0.24 mm layer, 3 walls (Inner/Outer/Inner), 0.60 mm symmetric wall width, 15% Gyroid infill.\n• Speed: 160 mm/s outer wall, 200 mm/s inner wall, 220 mm/s infill.\n• WHEN TO TWEAK:\n  - Steep overhangs: Switch wall order to 'Inner/Outer'.\n  - Fine horizontal holes/details: Prefer a 0.4 mm nozzle instead.",
     "compatible_printers": [
         "Snapmaker U1 (0.6 nozzle)",
         "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
@@ -77,14 +77,14 @@
         "3000"
     ],
     "travel_acceleration": [
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000"
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000"
     ],
     "initial_layer_acceleration": [
         "1000",
@@ -123,5 +123,6 @@
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
-    ]
+    ],
+    "default_acceleration": "10000"
 }

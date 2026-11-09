@@ -3,7 +3,7 @@
     "print_settings_id": "U1 Functional (0.4) - Halterungen, Mechanik",
     "from": "User",
     "inherits": "0.24 Draft @Snapmaker U1 (0.4 nozzle)",
-    "description": "Recommended: Load-bearing brackets, adapters, tools, and mechanical assemblies.\n\u2022 Defaults: 0.24 mm layer, 3 walls (Inner/Outer), 0.44 mm outer / 0.48 mm inner width, 15% Adaptive Cubic infill.\n\u2022 Speed: 200 mm/s outer wall, 260 mm/s inner wall, 270 mm/s infill.\n\u2022 WHEN TO TWEAK:\n  - Heavy mechanical loads: Increase wall loops to 4\u20135 rather than adding infill.\n  - Uniform small objects: Switch infill to Cubic for consistent density.\n  - Extreme overhangs: Switch support to Tree Hybrid if Tree Slim lacks contact area.",
+    "description": "Recommended: Load-bearing brackets, adapters, tools, and mechanical assemblies.\n• Defaults: 0.24 mm layer, 3 walls (Inner/Outer), 0.44 mm outer / 0.48 mm inner width, 15% Adaptive Cubic infill.\n• Speed: 200 mm/s outer wall, 260 mm/s inner wall, 270 mm/s infill.\n• WHEN TO TWEAK:\n  - Heavy mechanical loads: Increase wall loops to 4–5 rather than adding infill.\n  - Uniform small objects: Switch infill to Cubic for consistent density.\n  - Extreme overhangs: Switch support to Tree Hybrid if Tree Slim lacks contact area.",
     "compatible_printers": [
         "Snapmaker U1 (0.4 nozzle)",
         "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN"
@@ -25,47 +25,47 @@
     "outer_wall_line_width": "0.44",
     "inner_wall_line_width": "0.48",
     "outer_wall_speed": [
-        "200",
+        "210",
         "500",
-        "200",
+        "210",
         "500",
-        "200",
+        "210",
         "500",
-        "200",
+        "210",
         "500"
     ],
     "inner_wall_speed": [
-        "260",
+        "300",
         "600",
-        "260",
+        "300",
         "600",
-        "260",
+        "300",
         "600",
-        "260",
+        "300",
         "600"
     ],
     "sparse_infill_speed": [
-        "270",
+        "300",
         "600",
-        "270",
+        "300",
         "600",
-        "270",
+        "300",
         "600",
-        "270",
+        "300",
         "600"
     ],
     "internal_solid_infill_speed": [
-        "250",
+        "280",
         "600",
-        "250",
+        "280",
         "600",
-        "250",
+        "280",
         "600",
-        "250",
+        "280",
         "600"
     ],
-    "top_surface_speed": "160",
-    "outer_wall_acceleration": "5000",
+    "top_surface_speed": "180",
+    "outer_wall_acceleration": "7000",
     "top_surface_acceleration": [
         "3000",
         "3000",
@@ -77,14 +77,14 @@
         "3000"
     ],
     "travel_acceleration": [
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000"
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000"
     ],
     "initial_layer_acceleration": [
         "1000",
@@ -122,5 +122,6 @@
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
-    ]
+    ],
+    "default_acceleration": "12000"
 }

@@ -11,21 +11,22 @@ All presets include integrated **in-slicer hover descriptions (tooltips)** in Or
 
 | Preset | Layer | Walls / Infill | Speeds (Outer/Inner/Infill) | Best For |
 | --- | --- | --- | --- | --- |
-| [U1 Quality (0.4) - Deko, Figuren, Sicht](process/U1%20Quality%20%280.4%29%20-%20Deko%2C%20Figuren%2C%20Sicht.json) | 0.20 mm | 3 (`inner-outer-inner`) · 15% Gyroid | 210 / 210 / 270 mm/s | Display models, figurines, smooth cylinders (VFA suppression via symmetric 0.40 mm perimeters). |
-| [U1 Functional (0.4) - Halterungen, Mechanik](process/U1%20Functional%20%280.4%29%20-%20Halterungen%2C%20Mechanik.json) | 0.24 mm | 3 (`inner-outer`) · 15% Adaptive Cubic | 200 / 260 / 270 mm/s | Structural brackets, adapters, tools, and mechanical assemblies. |
-| [U1 Fast (0.4) - Boxen, Organizer](process/U1%20Fast%20%280.4%29%20-%20Boxen%2C%20Organizer.json) | 0.28 mm | 2 (`inner-outer`) · 12% Cubic | 200 / 300 / 270 mm/s | Everyday utility prints, bins, trays, Gridfinity, and household organizers. |
-| [U1 Draft (0.4) - Passform, Prototyp](process/U1%20Draft%20%280.4%29%20-%20Passform%2C%20Prototyp.json) | 0.28 mm | 2 (`inner-outer`) · 8% Support Cubic | 220 / 300 / 300 mm/s | Rapid prototypes, dimensional checks, and quick fitment tests (`reduce_crossing_wall = 0`). |
-| [U1 Extreme Draft (0.4) - Huellen, Lightning](process/U1%20Extreme%20Draft%20%280.4%29%20-%20Huellen%2C%20Lightning.json) | 0.28 mm | 2 (`inner-outer`) · 15% Lightning | 220 / 300 / 300 mm/s | Ultra-fast hollow form models, mockups, and cosmetic shells (minimal material use). |
+| [U1 Quality (0.4) - Deko, Figuren, Sicht](process/U1%20Quality%20%280.4%29%20-%20Deko%2C%20Figuren%2C%20Sicht.json) | 0.20 mm | 3 (inner-outer-inner) · 15% Gyroid | 210 / 250 / 280 mm/s | Display models, figurines, smooth cylinders (VFA suppression via symmetric 0.40 mm perimeters). |
+| [U1 Functional (0.4) - Halterungen, Mechanik](process/U1%20Functional%20%280.4%29%20-%20Halterungen%2C%20Mechanik.json) | 0.24 mm | 3 (inner-outer) · 15% Adaptive Cubic | 210 / 300 / 300 mm/s | Structural brackets, adapters, tools, and mechanical assemblies (12,000 mm/s² accel). |
+| [U1 Fast (0.4) - Boxen, Organizer](process/U1%20Fast%20%280.4%29%20-%20Boxen%2C%20Organizer.json) | 0.28 mm | 2 (inner-outer) · 12% Cubic | 220 / 350 / 350 mm/s | Everyday utility prints, bins, trays, Gridfinity, and household organizers (12,000 mm/s² accel). |
+| [U1 Draft (0.4) - Passform, Prototyp](process/U1%20Draft%20%280.4%29%20-%20Passform%2C%20Prototyp.json) | 0.28 mm | 2 (inner-outer) · 8% Support Cubic | 240 / 380 / 380 mm/s | Rapid prototypes, dimensional checks, and quick fitment tests (14,000 mm/s² accel). |
+| [U1 Extreme Draft (0.4) - Huellen, Lightning](process/U1%20Extreme%20Draft%20%280.4%29%20-%20Huellen%2C%20Lightning.json) | 0.28 mm | 2 (inner-outer) · 15% Lightning | 250 / 400 / 400 mm/s | Ultra-fast hollow form models, mockups, and cosmetic shells (15,000 mm/s² accel). |
 
 ### 0.6 mm Nozzle Lineup (High Volumetric Throughput)
 
 | Preset | Layer | Walls / Infill | Speeds (Outer/Inner/Infill) | Best For |
 | --- | --- | --- | --- | --- |
-| [U1 Quality (0.6) - Glatte Gehaeuse, Deko](process/U1%20Quality%20%280.6%29%20-%20Glatte%20Gehaeuse%2C%20Deko.json) | 0.24 mm | 3 (`inner-outer-inner`) · 15% Gyroid | 160 / 200 / 220 mm/s | Smooth cosmetic shells and enclosures with double the wall strength of 0.4 mm nozzles. |
-| [U1 Functional (0.6) - Stabile Werkstattteile](process/U1%20Functional%20%280.6%29%20-%20Stabile%20Werkstattteile.json) | 0.38 mm | 3 (`inner-outer`) · 15% Adaptive Cubic | 120 / 150 / 160 mm/s | **The Heavy-Duty Standard:** 0.38 mm layer sweetspot (63% ratio) with Arachne for high shear strength. |
-| [U1 Fast (0.6) - Grosse Schalen, Kisten](process/U1%20Fast%20%280.6%29%20-%20Grosse%20Schalen%2C%20Kisten.json) | 0.38 mm | 2 (`inner-outer`) · 12% Cubic | 120 / 150 / 160 mm/s | Large storage bins, crates, tubs, and organizers (pushes U1 25–30 mm³/s hotend flow). |
-| [U1 Draft (0.6) - Grosse Prototypen](process/U1%20Draft%20%280.6%29%20-%20Grosse%20Prototypen.json) | 0.42 mm | 2 (`inner-outer`) · 8% Support Cubic | 120 / 150 / 160 mm/s | High-speed large volume mockups and conceptual molds (`reduce_crossing_wall = 0`). |
-| [U1 Extreme Draft (0.6) - Riesige Huellen, Lightning](process/U1%20Extreme%20Draft%20%280.6%29%20-%20Riesige%20Huellen%2C%20Lightning.json) | 0.42 mm | 2 (`inner-outer`) · 15% Lightning | 120 / 150 / 160 mm/s | Rapid full-scale volumetric models and architectural mockups with minimum material. |
+| [U1 Quality (0.6) - Glatte Gehaeuse, Deko](process/U1%20Quality%20%280.6%29%20-%20Glatte%20Gehaeuse%2C%20Deko.json) | 0.24 mm | 3 (inner-outer-inner) · 15% Gyroid | 160 / 200 / 220 mm/s | Smooth cosmetic shells and enclosures with double the wall strength of 0.4 mm nozzles. |
+| [U1 Functional (0.6) - Stabile Werkstattteile](process/U1%20Functional%20%280.6%29%20-%20Stabile%20Werkstattteile.json) | 0.38 mm | 3 (inner-outer) · 15% Adaptive Cubic | 140 / 180 / 200 mm/s | **The Heavy-Duty Standard:** 0.38 mm layer sweetspot (63% ratio) with Arachne for high shear strength. |
+| [U1 Fast (0.6) - Grosse Schalen, Kisten](process/U1%20Fast%20%280.6%29%20-%20Grosse%20Schalen%2C%20Kisten.json) | 0.38 mm | 2 (inner-outer) · 12% Cubic | 150 / 200 / 220 mm/s | Large storage bins, crates, tubs, and organizers (pushes U1 22–38 mm³/s hotend flow). |
+| [U1 Draft (0.6) - Grosse Prototypen](process/U1%20Draft%20%280.6%29%20-%20Grosse%20Prototypen.json) | 0.42 mm | 2 (inner-outer) · 8% Support Cubic | 160 / 220 / 250 mm/s | High-speed large volume mockups and conceptual molds (
+educe_crossing_wall = 0). |
+| [U1 Extreme Draft (0.6) - Riesige Huellen, Lightning](process/U1%20Extreme%20Draft%20%280.6%29%20-%20Riesige%20Huellen%2C%20Lightning.json) | 0.42 mm | 2 (inner-outer) · 15% Lightning | 180 / 250 / 280 mm/s | Rapid full-scale volumetric models and architectural mockups with minimum material. |
 
 ### Intelligent In-Slicer Decision Matrix (When to tweak)
 - **Steep Overhangs (>45°):** In `Quality` profiles, switch wall sequence from `Inner/Outer/Inner` to `Inner/Outer` to ensure overhanging perimeters have supporting interior bead contact.
@@ -58,7 +59,7 @@ Compare the time and material estimates in **Preview** after slicing your model.
 ---
 ## Filament presets
 
-[Download the 9 material presets](filament/) for the Snapmaker U1 (compatible with both 0.4 mm and 0.6 mm nozzles). Color variants have been intentionally removed from preset names; colors are assigned dynamically per spool/toolhead in OrcaSlicer's **Prepare** tab. All PLA and PETG presets have the auxiliary side fan set to **0%** to eliminate left-bed warping.
+[Download the 9 material presets](filament/) for the Snapmaker U1 (compatible with both 0.4 mm and 0.6 mm nozzles). Color variants have been intentionally removed from preset names; colors are assigned dynamically per spool/toolhead in OrcaSlicer's **Prepare** tab. PLA presets are configured with **30% auxiliary fan speed** tuned for the [Auxiliary Fan Deflector](../hardware/aux-fan-deflector/README.md) (set to 0% if printing without a deflector). PETG presets maintain **0%** auxiliary fan to prevent delamination and preserve maximum layer adhesion.
 
 - **Bambu Lab:** PLA Basic, PETG Basic.
 - **SUNLU:** PLA+ 2.0.

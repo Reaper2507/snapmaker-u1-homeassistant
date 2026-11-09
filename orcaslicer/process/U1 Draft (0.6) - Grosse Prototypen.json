@@ -3,7 +3,7 @@
     "print_settings_id": "U1 Draft (0.6) - Grosse Prototypen",
     "from": "User",
     "inherits": "0.42 Standard @Snapmaker U1 (0.6 nozzle)",
-    "description": "Recommended: High-speed large volume prototypes and rapid concept mockups.\n\u2022 Defaults: 0.42 mm layer, 2 walls, 0.65 mm outer / 0.70 mm inner width, 8% Support Cubic infill, reduce_crossing_wall = 0.\n\u2022 Speed: 120 mm/s outer wall, 150 mm/s inner wall, 160 mm/s infill.\n\u2022 WHEN TO TWEAK:\n  - Non-structural volume bodies: Use Extreme Draft (Lightning) for minimal material use.\n  - Visible stair-stepping: Design bevels and chamfers accordingly or lower layer height.",
+    "description": "Recommended: High-speed large volume prototypes and rapid concept mockups.\n• Defaults: 0.42 mm layer, 2 walls, 0.65 mm outer / 0.70 mm inner width, 8% Support Cubic infill, reduce_crossing_wall = 0.\n• Speed: 120 mm/s outer wall, 150 mm/s inner wall, 160 mm/s infill.\n• WHEN TO TWEAK:\n  - Non-structural volume bodies: Use Extreme Draft (Lightning) for minimal material use.\n  - Visible stair-stepping: Design bevels and chamfers accordingly or lower layer height.",
     "compatible_printers": [
         "Snapmaker U1 (0.6 nozzle)",
         "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
@@ -24,47 +24,47 @@
     "outer_wall_line_width": "0.65",
     "inner_wall_line_width": "0.70",
     "outer_wall_speed": [
-        "120",
+        "160",
         "500",
-        "120",
+        "160",
         "500",
-        "120",
+        "160",
         "500",
-        "120",
+        "160",
         "500"
     ],
     "inner_wall_speed": [
-        "150",
+        "220",
         "600",
-        "150",
+        "220",
         "600",
-        "150",
+        "220",
         "600",
-        "150",
+        "220",
         "600"
     ],
     "sparse_infill_speed": [
-        "160",
+        "250",
         "600",
-        "160",
+        "250",
         "600",
-        "160",
+        "250",
         "600",
-        "160",
+        "250",
         "600"
     ],
     "internal_solid_infill_speed": [
-        "150",
+        "200",
         "600",
-        "150",
+        "200",
         "600",
-        "150",
+        "200",
         "600",
-        "150",
+        "200",
         "600"
     ],
-    "top_surface_speed": "140",
-    "outer_wall_acceleration": "6000",
+    "top_surface_speed": "160",
+    "outer_wall_acceleration": "8500",
     "top_surface_acceleration": [
         "3000",
         "3000",
@@ -76,14 +76,14 @@
         "3000"
     ],
     "travel_acceleration": [
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000",
-        "12000"
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000"
     ],
     "initial_layer_acceleration": [
         "1000",
@@ -118,5 +118,6 @@
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
-    ]
+    ],
+    "default_acceleration": "12000"
 }

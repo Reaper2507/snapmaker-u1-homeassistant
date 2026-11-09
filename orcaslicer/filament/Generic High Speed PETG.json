@@ -13,5 +13,9 @@
         "0",
         "0"
     ],
-    "description": "Generic High Speed Matte PETG baseline preset for Snapmaker U1."
+    "description": "Generic High Speed Matte PETG baseline preset for Snapmaker U1.",
+    "filament_max_volumetric_speed": [
+        "16",
+        "30"
+    ]
 }

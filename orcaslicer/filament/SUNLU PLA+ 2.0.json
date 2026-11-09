@@ -16,5 +16,9 @@
     "dont_slow_down_outer_wall": [
         "1"
     ],
-    "description": "SUNLU PLA+ 2.0 general preset for Snapmaker U1. AUX fan disabled to eliminate left-bed warping. (Tuned with 30% AUX fan for deflector diffuser)."
+    "description": "SUNLU PLA+ 2.0 general preset for Snapmaker U1. AUX fan disabled to eliminate left-bed warping. (Tuned with 30% AUX fan for deflector diffuser).",
+    "filament_max_volumetric_speed": [
+        "22",
+        "38"
+    ]
 }

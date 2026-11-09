@@ -13,5 +13,9 @@
         "0",
         "0"
     ],
-    "description": "eSUN PETG Matte general preset for Snapmaker U1. AUX fan disabled to eliminate warping."
+    "description": "eSUN PETG Matte general preset for Snapmaker U1. AUX fan disabled to eliminate warping.",
+    "filament_max_volumetric_speed": [
+        "16",
+        "28"
+    ]
 }

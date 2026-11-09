@@ -9,5 +9,9 @@
     "name": "GEEETECH TPU 95A",
     "from": "User",
     "version": "2.5.0.0",
-    "description": "GEEETECH TPU 95A flexible filament preset for Snapmaker U1."
+    "description": "GEEETECH TPU 95A flexible filament preset for Snapmaker U1.",
+    "filament_max_volumetric_speed": [
+        "4",
+        "6"
+    ]
 }
