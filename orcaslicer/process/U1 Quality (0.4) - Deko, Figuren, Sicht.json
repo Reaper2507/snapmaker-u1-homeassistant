@@ -1,6 +1,6 @@
 {
-    "name": "U1 Quality (0.4 Nozzle)",
-    "print_settings_id": "U1 Quality (0.4 Nozzle)",
+    "name": "U1 Quality (0.4) - Deko, Figuren, Sicht",
+    "print_settings_id": "U1 Quality (0.4) - Deko, Figuren, Sicht",
     "from": "User",
     "inherits": "0.20 Standard @Snapmaker U1 (0.4 nozzle)",
     "description": "Recommended: Visible surfaces, figurines, display models, smooth cylinders, and enclosures.\n\u2022 Defaults: 0.20 mm layer, 3 walls (Inner/Outer/Inner), 0.40 mm symmetric wall width, 15% Gyroid infill.\n\u2022 U1 VFA Suppression: 210 mm/s wall speed bypasses U1 CoreXY stepper resonance (120\u2013170 mm/s).\n\u2022 WHEN TO TWEAK:\n  - Steep overhangs (>45\u00b0): Switch wall order to 'Inner/Outer' for better perimeter support.\n  - Tiny features/antennas: Ensure layer cooling slowdown is enabled in filament cooling settings.\n  - Large flat parts: Switch to Cubic or Adaptive Cubic for faster print times.",

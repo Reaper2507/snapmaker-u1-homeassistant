@@ -1,28 +1,28 @@
 {
-    "name": "U1 Fast (0.4 Nozzle)",
-    "print_settings_id": "U1 Fast (0.4 Nozzle)",
+    "name": "U1 Functional (0.4) - Halterungen, Mechanik",
+    "print_settings_id": "U1 Functional (0.4) - Halterungen, Mechanik",
     "from": "User",
-    "inherits": "0.28 Extra Draft @Snapmaker U1 (0.4 nozzle)",
-    "description": "Recommended: Everyday utility prints, organizer boxes, trays, Gridfinity, and household helpers.\n\u2022 Defaults: 0.28 mm layer, 2 walls (Inner/Outer), 0.45 mm outer / 0.48 mm inner width, 12% Cubic infill.\n\u2022 Speed: 200 mm/s outer wall, 300 mm/s inner wall, 270 mm/s infill.\n\u2022 WHEN TO TWEAK:\n  - Large solid objects: Switch to Adaptive Cubic to save internal filament.\n  - Sharp warping corners: Add brim or mouse ears. Default is no brim.",
+    "inherits": "0.24 Draft @Snapmaker U1 (0.4 nozzle)",
+    "description": "Recommended: Load-bearing brackets, adapters, tools, and mechanical assemblies.\n\u2022 Defaults: 0.24 mm layer, 3 walls (Inner/Outer), 0.44 mm outer / 0.48 mm inner width, 15% Adaptive Cubic infill.\n\u2022 Speed: 200 mm/s outer wall, 260 mm/s inner wall, 270 mm/s infill.\n\u2022 WHEN TO TWEAK:\n  - Heavy mechanical loads: Increase wall loops to 4\u20135 rather than adding infill.\n  - Uniform small objects: Switch infill to Cubic for consistent density.\n  - Extreme overhangs: Switch support to Tree Hybrid if Tree Slim lacks contact area.",
     "compatible_printers": [
         "Snapmaker U1 (0.4 nozzle)",
         "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN"
     ],
     "version": "2.5.0.0",
-    "layer_height": "0.28",
+    "layer_height": "0.24",
     "initial_layer_print_height": "0.20",
-    "wall_loops": "2",
+    "wall_loops": "3",
     "wall_generator": "arachne",
     "wall_sequence": "inner-outer wall",
-    "sparse_infill_pattern": "cubic",
-    "sparse_infill_density": "12%",
+    "sparse_infill_pattern": "adaptivecubic",
+    "sparse_infill_density": "15%",
     "top_shell_layers": "4",
-    "bottom_shell_layers": "3",
+    "bottom_shell_layers": "4",
     "top_shell_thickness": "0",
     "reduce_infill_retraction": "0",
     "dont_slow_down_outer_wall": "1",
     "reduce_crossing_wall": "1",
-    "outer_wall_line_width": "0.45",
+    "outer_wall_line_width": "0.44",
     "inner_wall_line_width": "0.48",
     "outer_wall_speed": [
         "200",
@@ -35,13 +35,13 @@
         "500"
     ],
     "inner_wall_speed": [
-        "300",
+        "260",
         "600",
-        "300",
+        "260",
         "600",
-        "300",
+        "260",
         "600",
-        "300",
+        "260",
         "600"
     ],
     "sparse_infill_speed": [
@@ -64,8 +64,8 @@
         "250",
         "600"
     ],
-    "top_surface_speed": "180",
-    "outer_wall_acceleration": "6500",
+    "top_surface_speed": "160",
+    "outer_wall_acceleration": "5000",
     "top_surface_acceleration": [
         "3000",
         "3000",
@@ -114,7 +114,7 @@
     "enable_support": "0",
     "support_type": "tree(auto)",
     "support_style": "tree_slim",
-    "support_threshold_angle": "20",
+    "support_threshold_angle": "25",
     "prime_volume": "12",
     "wipe_tower_max_purge_speed": "150",
     "plugins": [

@@ -1,6 +1,6 @@
 {
-    "name": "U1 Quality (0.6 Nozzle)",
-    "print_settings_id": "U1 Quality (0.6 Nozzle)",
+    "name": "U1 Quality (0.6) - Glatte Gehaeuse, Deko",
+    "print_settings_id": "U1 Quality (0.6) - Glatte Gehaeuse, Deko",
     "from": "User",
     "inherits": "0.24 Standard @Snapmaker U1 (0.6 nozzle)",
     "description": "Recommended: Display models and robust decorative enclosures with double wall thickness.\n\u2022 Defaults: 0.24 mm layer, 3 walls (Inner/Outer/Inner), 0.60 mm symmetric wall width, 15% Gyroid infill.\n\u2022 Speed: 160 mm/s outer wall, 200 mm/s inner wall, 220 mm/s infill.\n\u2022 WHEN TO TWEAK:\n  - Steep overhangs: Switch wall order to 'Inner/Outer'.\n  - Fine horizontal holes/details: Prefer a 0.4 mm nozzle instead.",
