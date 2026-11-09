@@ -7,13 +7,13 @@ These [OrcaSlicer 2.5](https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/v2.
 
 | Nozzle | Preset | When to use it |
 | --- | --- | --- |
-| 0.4 mm | [0.20 Antigravity Optimized](process/0.20%20Antigravity%20Optimized.json) | Everyday prints with three walls and a compact Type 2 prime tower. |
-| 0.4 mm | [0.20 Antigravity Speed](process/0.20%20Antigravity%20Speed%20%280.4%20Nozzle%29.json) | High-speed everyday prints with two walls, 0.48 mm inner line width and Adaptive Cubic infill. |
-| 0.4 mm | [0.20 U1 Mehrfarbe Kompakt](process/0.20%20U1%20Mehrfarbe%20Kompakt.json) | Multicolor jobs with a ribbed Type 2 prime tower and 15 mm³ prime volume. |
-| 0.4 mm | [0.24 U1 Quick & Solid](process/0.24%20U1%20Quick%20%26%20Solid%20%280.4%20Nozzle%29.json) | A quicker starting point with 0.24 mm layers, three walls and 12% infill. |
-| 0.4 mm | [0.28 Antigravity Solid & Fast](process/0.28%20Antigravity%20Solid%20%26%20Fast%20%280.4%20Nozzle%29.json) | Heavy-duty functional speed profile: 4 solid top layers, 3 bottom layers, precise outer wall and Adaptive Cubic. |
-| 0.4 mm | [0.28 Antigravity Prototype](process/0.28%20Antigravity%20Prototype%20%280.4%20Nozzle%29.json) | Drafts with thicker layers, two walls and 10% infill. |
-| 0.6 mm | [0.24, 0.30 and 0.40 mm layer presets](process/) | Start with 0.24 mm for finer layers, 0.30 mm for general use or 0.40 mm for drafts. |
+| 0.4 mm | [0.20 Quality](process/0.20%20Quality%20%280.4%20Nozzle%29.json) | Decorative parts, smooth curves, visible surfaces (3 walls, 15% Crosshatch). |
+| 0.4 mm | [0.20 Antigravity Optimized](process/0.20%20Antigravity%20Optimized.json) | Baseline reference profile (3 walls, Gyroid infill, Type-2 prime tower). |
+| 0.4 mm | [0.24 Functional](process/0.24%20Functional%20%280.4%20Nozzle%29.json) | Load-bearing brackets, adapters, functional parts (3 walls, 15% Adaptive Cubic, 4 top layers). |
+| 0.4 mm | [0.28 Fast](process/0.28%20Fast%20%280.4%20Nozzle%29.json) | Organizers, boxes, trays and household utility prints (2 walls with 0.48 mm inner line, 12% Adaptive Cubic). |
+| 0.4 mm | [0.28 Prototype](process/0.28%20Prototype%20%280.4%20Nozzle%29.json) | Rapid fitment and dimensional check prints (2 walls, 10% Support Cubic, 2 bottom / 3 top layers). |
+| 0.6 mm | [0.38 Functional](process/0.38%20Functional%20%280.6%20Nozzle%29.json) | High-strength mechanical parts with true 0.6 mm throughput (3 walls, 15% Adaptive Cubic). |
+| 0.6 mm | [0.42 Fast](process/0.42%20Fast%20%280.6%20Nozzle%29.json) | Fast drafts and large-volume utility prints (2 walls, 10% Adaptive Cubic). |
 
 Compare the time and material estimates in **Preview** after slicing your model. The result depends on the geometry, material, support and tool changes.
 
