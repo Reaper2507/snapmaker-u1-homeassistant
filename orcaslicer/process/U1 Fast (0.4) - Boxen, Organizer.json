@@ -1,80 +1,32 @@
 {
-    "name": "U1 Fast (0.4) - Boxen, Organizer",
-    "print_settings_id": "U1 Fast (0.4) - Boxen, Organizer",
     "from": "User",
-    "inherits": "0.28 Extra Draft @Snapmaker U1 (0.4 nozzle)",
-    "description": "Recommended: Everyday utility prints, organizer boxes, trays, Gridfinity, and household helpers.\n• Defaults: 0.28 mm layer, 2 walls (Inner/Outer), 0.45 mm outer / 0.48 mm inner width, 12% Cubic infill.\n• Speed: 200 mm/s outer wall, 300 mm/s inner wall, 270 mm/s infill.\n• WHEN TO TWEAK:\n  - Large solid objects: Switch to Adaptive Cubic to save internal filament.\n  - Sharp warping corners: Add brim or mouse ears. Default is no brim.",
+    "inherits": "0.20 Standard @Snapmaker U1 (0.4 nozzle)",
     "compatible_printers": [
         "Snapmaker U1 (0.4 nozzle)",
         "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN"
     ],
     "version": "2.5.0.0",
-    "layer_height": "0.28",
     "initial_layer_print_height": "0.20",
-    "wall_loops": "2",
     "wall_generator": "arachne",
-    "wall_sequence": "inner-outer wall",
-    "sparse_infill_pattern": "cubic",
-    "sparse_infill_density": "12%",
-    "top_shell_layers": "4",
-    "bottom_shell_layers": "3",
-    "top_shell_thickness": "0",
-    "reduce_infill_retraction": "0",
+    "wall_sequence": "inner-outer-inner wall",
+    "reduce_infill_retraction": "1",
     "dont_slow_down_outer_wall": "1",
     "reduce_crossing_wall": "1",
-    "outer_wall_line_width": "0.45",
-    "inner_wall_line_width": "0.48",
-    "outer_wall_speed": [
-        "220",
-        "500",
-        "220",
-        "500",
-        "220",
-        "500",
-        "220",
-        "500"
-    ],
-    "inner_wall_speed": [
-        "350",
-        "600",
-        "350",
-        "600",
-        "350",
-        "600",
-        "350",
-        "600"
-    ],
-    "sparse_infill_speed": [
-        "350",
-        "600",
-        "350",
-        "600",
-        "350",
-        "600",
-        "350",
-        "600"
-    ],
-    "internal_solid_infill_speed": [
-        "300",
-        "600",
-        "300",
-        "600",
-        "300",
-        "600",
-        "300",
-        "600"
-    ],
-    "top_surface_speed": "200",
-    "outer_wall_acceleration": "8500",
+    "outer_wall_line_width": "0.42",
+    "inner_wall_line_width": "0.45",
+    "top_surface_line_width": "0.40",
+    "sparse_infill_line_width": "0.45",
+    "outer_wall_acceleration": "5000",
+    "inner_wall_acceleration": "8000",
     "top_surface_acceleration": [
-        "3000",
-        "3000",
-        "3000",
-        "3000",
-        "3000",
-        "3000",
-        "3000",
-        "3000"
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500"
     ],
     "travel_acceleration": [
         "15000",
@@ -87,14 +39,14 @@
         "15000"
     ],
     "initial_layer_acceleration": [
-        "1000",
-        "1000",
-        "1000",
-        "1000",
-        "1000",
-        "1000",
-        "1000",
-        "1000"
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200"
     ],
     "initial_layer_travel_acceleration": [
         "10000",
@@ -106,7 +58,7 @@
         "10000",
         "10000"
     ],
-    "elefant_foot_compensation": "0.1",
+    "elefant_foot_compensation": "0.12",
     "seam_slope_conditional": "1",
     "seam_slope_type": "external",
     "wipe_before_external_loop": "1",
@@ -114,24 +66,79 @@
     "enable_support": "0",
     "support_type": "tree(auto)",
     "support_style": "tree_slim",
-    "support_threshold_angle": "20",
-    "prime_volume": "12",
+    "support_threshold_angle": "25",
+    "prime_volume": "40",
     "wipe_tower_max_purge_speed": "150",
+    "wipe_tower_wall_type": "rib",
+    "prime_tower_width": "30",
+    "prime_tower_brim_width": "8",
     "plugins": [
         "set_and_send;;U1 print setup"
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
     ],
-    "default_acceleration": "12000",
-    "internal_bridge_speed": [
-        "100%",
-        "100%",
-        "100%",
-        "100%",
-        "100%",
-        "100%",
-        "100%",
-        "100%"
-    ]
+    "default_acceleration": "10000",
+    "travel_speed": [
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500"
+    ],
+    "name": "U1 Fast (0.4) - Boxen, Organizer",
+    "print_settings_id": "U1 Fast (0.4) - Boxen, Organizer",
+    "description": "Maximaler Durchsatz für Behälter, Schalen, Gridfinity und Organizer ohne Qualitätsabstriche.\n• 0.24 mm Layer, 2 Wände, 10% Adaptive Cubic Infill.\n• 220 mm/s Außenwand, 380 mm/s Innenwand, 400 mm/s Infill.\n• Narrow Solid Infill Optimierung spart unnötige massive Füllzonen.",
+    "layer_height": "0.24",
+    "wall_loops": "2",
+    "sparse_infill_pattern": "adaptivecubic",
+    "sparse_infill_density": "10%",
+    "top_shell_layers": "4",
+    "bottom_shell_layers": "3",
+    "detect_narrow_internal_solid_infill": "1",
+    "ensure_vertical_shell_thickness": "0",
+    "outer_wall_speed": [
+        "220",
+        "500",
+        "220",
+        "500",
+        "220",
+        "500",
+        "220",
+        "500"
+    ],
+    "inner_wall_speed": [
+        "380",
+        "600",
+        "380",
+        "600",
+        "380",
+        "600",
+        "380",
+        "600"
+    ],
+    "sparse_infill_speed": [
+        "400",
+        "600",
+        "400",
+        "600",
+        "400",
+        "600",
+        "400",
+        "600"
+    ],
+    "internal_solid_infill_speed": [
+        "320",
+        "600",
+        "320",
+        "600",
+        "320",
+        "600",
+        "320",
+        "600"
+    ],
+    "top_surface_speed": "140"
 }

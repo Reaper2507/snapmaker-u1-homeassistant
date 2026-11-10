@@ -1,80 +1,32 @@
 {
-    "name": "U1 Fast (0.6) - Grosse Schalen, Kisten",
-    "print_settings_id": "U1 Fast (0.6) - Grosse Schalen, Kisten",
     "from": "User",
-    "inherits": "0.36 Standard @Snapmaker U1 (0.6 nozzle)",
-    "description": "Recommended: Large storage bins, crates, tubs, and organizers with maximum volumetric flow.\n• Defaults: 0.38 mm layer, 2 walls (Inner/Outer), 0.62 mm outer / 0.68 mm inner width, 12% Cubic infill.\n• Speed: 120 mm/s outer wall, 150 mm/s inner wall, 160 mm/s infill (maximizes U1 ~25–30 mm³/s hotend capacity).\n• WHEN TO TWEAK:\n  - Heavy structural demands: Step up to Functional (3 walls).\n  - Tapering/spherical geometries: Enable Variable Layer Height for top curves.",
+    "inherits": "0.20 Standard @Snapmaker U1 (0.6 nozzle)",
     "compatible_printers": [
         "Snapmaker U1 (0.6 nozzle)",
         "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
     ],
     "version": "2.5.0.0",
-    "layer_height": "0.38",
-    "initial_layer_print_height": "0.28",
-    "wall_loops": "2",
+    "initial_layer_print_height": "0.25",
     "wall_generator": "arachne",
-    "wall_sequence": "inner-outer wall",
-    "sparse_infill_pattern": "cubic",
-    "sparse_infill_density": "12%",
-    "top_shell_layers": "3",
-    "bottom_shell_layers": "2",
-    "top_shell_thickness": "0",
-    "reduce_infill_retraction": "0",
+    "wall_sequence": "inner-outer-inner wall",
+    "reduce_infill_retraction": "1",
     "dont_slow_down_outer_wall": "1",
     "reduce_crossing_wall": "1",
     "outer_wall_line_width": "0.62",
-    "inner_wall_line_width": "0.68",
-    "outer_wall_speed": [
-        "150",
-        "500",
-        "150",
-        "500",
-        "150",
-        "500",
-        "150",
-        "500"
-    ],
-    "inner_wall_speed": [
-        "200",
-        "600",
-        "200",
-        "600",
-        "200",
-        "600",
-        "200",
-        "600"
-    ],
-    "sparse_infill_speed": [
-        "220",
-        "600",
-        "220",
-        "600",
-        "220",
-        "600",
-        "220",
-        "600"
-    ],
-    "internal_solid_infill_speed": [
-        "180",
-        "600",
-        "180",
-        "600",
-        "180",
-        "600",
-        "180",
-        "600"
-    ],
-    "top_surface_speed": "160",
-    "outer_wall_acceleration": "7000",
+    "inner_wall_line_width": "0.65",
+    "top_surface_line_width": "0.58",
+    "sparse_infill_line_width": "0.65",
+    "outer_wall_acceleration": "5000",
+    "inner_wall_acceleration": "8000",
     "top_surface_acceleration": [
-        "3000",
-        "3000",
-        "3000",
-        "3000",
-        "3000",
-        "3000",
-        "3000",
-        "3000"
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500"
     ],
     "travel_acceleration": [
         "15000",
@@ -87,14 +39,14 @@
         "15000"
     ],
     "initial_layer_acceleration": [
-        "1000",
-        "1000",
-        "1000",
-        "1000",
-        "1000",
-        "1000",
-        "1000",
-        "1000"
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200"
     ],
     "initial_layer_travel_acceleration": [
         "10000",
@@ -106,7 +58,7 @@
         "10000",
         "10000"
     ],
-    "elefant_foot_compensation": "0.15",
+    "elefant_foot_compensation": "0.12",
     "seam_slope_conditional": "1",
     "seam_slope_type": "external",
     "wipe_before_external_loop": "1",
@@ -114,24 +66,76 @@
     "enable_support": "0",
     "support_type": "tree(auto)",
     "support_style": "tree_slim",
-    "support_threshold_angle": "20",
-    "prime_volume": "20",
+    "support_threshold_angle": "25",
+    "prime_volume": "50",
     "wipe_tower_max_purge_speed": "150",
+    "wipe_tower_wall_type": "rib",
+    "prime_tower_width": "32",
+    "prime_tower_brim_width": "8",
     "plugins": [
         "set_and_send;;U1 print setup"
     ],
     "slicing_pipeline_plugin": [
         "U1 print setup"
     ],
-    "default_acceleration": "12000",
-    "internal_bridge_speed": [
-        "100%",
-        "100%",
-        "100%",
-        "100%",
-        "100%",
-        "100%",
-        "100%",
-        "100%"
-    ]
+    "default_acceleration": "10000",
+    "travel_speed": [
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500"
+    ],
+    "name": "U1 Fast (0.6) - Grosse Schalen, Kisten",
+    "print_settings_id": "U1 Fast (0.6) - Grosse Schalen, Kisten",
+    "description": "Unglaublicher Kunststoffdurchsatz für große Werkstattkisten, Kisten und Schalen.\n• 0.32 mm Layer, 2 Wände (1.25 mm Panzer!), 10% Adaptive Cubic Infill.",
+    "layer_height": "0.32",
+    "wall_loops": "2",
+    "sparse_infill_pattern": "adaptivecubic",
+    "sparse_infill_density": "10%",
+    "detect_narrow_internal_solid_infill": "1",
+    "outer_wall_speed": [
+        "180",
+        "450",
+        "180",
+        "450",
+        "180",
+        "450",
+        "180",
+        "450"
+    ],
+    "inner_wall_speed": [
+        "280",
+        "550",
+        "280",
+        "550",
+        "280",
+        "550",
+        "280",
+        "550"
+    ],
+    "sparse_infill_speed": [
+        "320",
+        "550",
+        "320",
+        "550",
+        "320",
+        "550",
+        "320",
+        "550"
+    ],
+    "internal_solid_infill_speed": [
+        "260",
+        "550",
+        "260",
+        "550",
+        "260",
+        "550",
+        "260",
+        "550"
+    ],
+    "top_surface_speed": "120"
 }

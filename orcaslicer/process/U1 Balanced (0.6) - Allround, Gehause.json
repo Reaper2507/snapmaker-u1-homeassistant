@@ -1,0 +1,141 @@
+{
+    "from": "User",
+    "inherits": "0.20 Standard @Snapmaker U1 (0.6 nozzle)",
+    "compatible_printers": [
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "version": "2.5.0.0",
+    "initial_layer_print_height": "0.25",
+    "wall_generator": "arachne",
+    "wall_sequence": "inner-outer-inner wall",
+    "reduce_infill_retraction": "1",
+    "dont_slow_down_outer_wall": "1",
+    "reduce_crossing_wall": "1",
+    "outer_wall_line_width": "0.62",
+    "inner_wall_line_width": "0.65",
+    "top_surface_line_width": "0.58",
+    "sparse_infill_line_width": "0.65",
+    "outer_wall_acceleration": "5000",
+    "inner_wall_acceleration": "8000",
+    "top_surface_acceleration": [
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500",
+        "3500"
+    ],
+    "travel_acceleration": [
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000",
+        "15000"
+    ],
+    "initial_layer_acceleration": [
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200",
+        "1200"
+    ],
+    "initial_layer_travel_acceleration": [
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000",
+        "10000"
+    ],
+    "elefant_foot_compensation": "0.12",
+    "seam_slope_conditional": "1",
+    "seam_slope_type": "external",
+    "wipe_before_external_loop": "1",
+    "brim_type": "no_brim",
+    "enable_support": "0",
+    "support_type": "tree(auto)",
+    "support_style": "tree_slim",
+    "support_threshold_angle": "25",
+    "prime_volume": "50",
+    "wipe_tower_max_purge_speed": "150",
+    "wipe_tower_wall_type": "rib",
+    "prime_tower_width": "32",
+    "prime_tower_brim_width": "8",
+    "plugins": [
+        "set_and_send;;U1 print setup"
+    ],
+    "slicing_pipeline_plugin": [
+        "U1 print setup"
+    ],
+    "default_acceleration": "10000",
+    "travel_speed": [
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500"
+    ],
+    "name": "U1 Balanced (0.6) - Allround, Gehause",
+    "print_settings_id": "U1 Balanced (0.6) - Allround, Gehause",
+    "description": "Der tägliche Allrounder mit 0.6 mm Nozzle: Massive Zeiteinsparung bei hervorragender Optik.\n• 0.28 mm Layer, 3 Wände (1.9 mm Wandstärke!), 15% Adaptive Cubic Infill.",
+    "layer_height": "0.28",
+    "wall_loops": "3",
+    "sparse_infill_pattern": "adaptivecubic",
+    "sparse_infill_density": "15%",
+    "detect_narrow_internal_solid_infill": "1",
+    "outer_wall_speed": [
+        "170",
+        "450",
+        "170",
+        "450",
+        "170",
+        "450",
+        "170",
+        "450"
+    ],
+    "inner_wall_speed": [
+        "260",
+        "550",
+        "260",
+        "550",
+        "260",
+        "550",
+        "260",
+        "550"
+    ],
+    "sparse_infill_speed": [
+        "300",
+        "550",
+        "300",
+        "550",
+        "300",
+        "550",
+        "300",
+        "550"
+    ],
+    "internal_solid_infill_speed": [
+        "240",
+        "550",
+        "240",
+        "550",
+        "240",
+        "550",
+        "240",
+        "550"
+    ],
+    "top_surface_speed": "110"
+}
