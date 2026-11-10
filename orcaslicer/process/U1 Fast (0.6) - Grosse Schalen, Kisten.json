@@ -16,8 +16,8 @@
     "wall_sequence": "inner-outer wall",
     "sparse_infill_pattern": "cubic",
     "sparse_infill_density": "12%",
-    "top_shell_layers": "4",
-    "bottom_shell_layers": "3",
+    "top_shell_layers": "3",
+    "bottom_shell_layers": "2",
     "top_shell_thickness": "0",
     "reduce_infill_retraction": "0",
     "dont_slow_down_outer_wall": "1",
@@ -123,5 +123,15 @@
     "slicing_pipeline_plugin": [
         "U1 print setup"
     ],
-    "default_acceleration": "12000"
+    "default_acceleration": "12000",
+    "internal_bridge_speed": [
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%"
+    ]
 }

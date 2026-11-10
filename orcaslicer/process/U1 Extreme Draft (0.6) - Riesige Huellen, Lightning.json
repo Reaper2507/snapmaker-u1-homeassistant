@@ -16,7 +16,7 @@
     "wall_sequence": "inner-outer wall",
     "sparse_infill_pattern": "lightning",
     "sparse_infill_density": "15%",
-    "top_shell_layers": "3",
+    "top_shell_layers": "2",
     "bottom_shell_layers": "2",
     "top_shell_thickness": "0",
     "reduce_infill_retraction": "0",
@@ -119,5 +119,15 @@
     "slicing_pipeline_plugin": [
         "U1 print setup"
     ],
-    "default_acceleration": "14000"
+    "default_acceleration": "14000",
+    "internal_bridge_speed": [
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%"
+    ]
 }

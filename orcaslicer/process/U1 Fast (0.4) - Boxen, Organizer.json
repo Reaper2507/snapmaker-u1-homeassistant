@@ -123,5 +123,15 @@
     "slicing_pipeline_plugin": [
         "U1 print setup"
     ],
-    "default_acceleration": "12000"
+    "default_acceleration": "12000",
+    "internal_bridge_speed": [
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%",
+        "100%"
+    ]
 }
