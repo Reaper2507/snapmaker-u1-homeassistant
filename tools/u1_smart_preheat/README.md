@@ -1,51 +1,49 @@
 # Snapmaker U1 Smart Preheat Optimizer
 
-Ein intelligenter, nativer Post-Processing-Optimizer für **OrcaSlicer 2.5+** und den **Snapmaker U1** (4-Kopf CoreXY Toolchanger).
+An intelligent, lightweight post-processing optimizer for **OrcaSlicer 2.5+** and the **Snapmaker U1** (4-toolhead CoreXY).
 
 ---
 
-## Warum dieses Tool?
+## The Problem
+By default, idle Snapmaker U1 toolheads cool down toward ~65 °C (`standby_temperature_delta = -150`). On every multi-color tool change, the printer pauses for roughly 8–12 seconds at the dock waiting for the nozzle to reheat to 215 °C. 
 
-Ab Werk kühlt OrcaSlicer inaktive Toolheads auf dem Snapmaker U1 auf unter 65 °C ab (`standby_temperature_delta = -150`). Dadurch muss jeder Kopf bei jedem Werkzeugwechsel erst wieder mühsam hochheizen, was ca. **8 bis 12 Sekunden Stillstand pro Wechsel** verursacht. Bei einem 4-Farben-Modell mit 500 Wechseln gehen so **über 60 Minuten** reine Wartezeit verloren!
-
-Dieses Tool analysiert den geslicten G-Code und bietet zwei praxiserprobte Lösungen:
-
-1. **⚡ Voll-Automatisch (20s Dynamischer Lookahead):**
-   - Das Tool berechnet anhand der G-Code-Fahrzeiten exakt, wann der nächste Wechsel stattfindet.
-   - Genau **20 Sekunden vor dem Wechsel** wird die Düse per `M104` angewiesen auf Zieltemperatur zu heizen.
-   - Wenn der Werkzeugkopf angefahren wird, hat er exakt Betriebstemperatur: **Null Wartezeit, aber auch kein Oozing/Drip im Dock**, weil die Düse dazwischen kühl bleibt!
-2. **🔥 Statischer Dauer-Standby (190 °C Halten):**
-   - Hält inaktive Köpfe im Dock konstant auf 190 °C (bekannt aus dem 247printing YouTube-Video).
-   - Von 190 °C auf 215 °C braucht der U1-Keramikheizer nur ca. **1,5 Sekunden**.
-   - Ideal für 90% aller Drucke mit sauberem Marken-PLA (z. B. SUNLU PLA+ 2.0, Bambu Lab Basic).
-3. **⚠️ Intelligente Schichtpausen-Erkennung:**
-   - Druckt ein Kopf nur ganz unten (Layer 2) und ganz oben (Layer 280), warnt das Tool mit einem gelben Badge `⚠️ PAUSE (278L)`.
-   - In solchen Fällen empfiehlt das Tool automatisch den `Auto`-Modus oder `Kalt lassen`, damit der Kopf nicht 5 Stunden lang unnötig auf 190 °C vor sich hin kocht.
+Across a typical multi-color print with 500 swaps, that adds **over an hour** of unproductive idle waiting.
 
 ---
 
-## Benutzeroberfläche (OrcaSlicer Dark Theme)
-
-- **4 Toolhead-Karten (T0 – T3):** Zeigt sofort an, welche Köpfe aktiv sind, wie viele Wechsel anfallen und wie groß die maximale Schichtpause ist.
-- **Globales Schnellwahl-Preset:**
-  - `[⚡ Alle Automatisch (20s)]`
-  - `[🔥 Alle Dauer-Standby (190°C)]`
-  - `[❄️ Alle Kalt lassen]`
-- **Ersparnis-Rechner:** Berechnet vor dem Druck die exakt eingesparten Druckminuten.
-- **First-Run Modal:** Erklärt beim ersten Start die thermischen Hintergründe (PLA-Weichmacher, Heat-Creep, 190 °C vs. 20s). Kann mit einer Checkbox dauerhaft stummgeschaltet werden.
-- **Zero-Noise bei Single-Color:** Druckst du einfarbig (<= 1 Wechsel), beendet sich das Skript lautlos in 10 Millisekunden ohne GUI-Popup.
+## How Smart Preheat Solves It
+1. **Dynamic ~20s Lead Time:** Parses G-code motion paths and injects `M104 S[temp] T[x]` approximately 20 seconds before the tool change occurs.
+2. **Reduced Dwell Time:** Unlike older scripts using 40-second lookahead, 20 seconds is matched to the U1's high-speed 360° ring ceramic heater, minimizing hot nozzle idle dwell in the dock.
+3. **Preserved Geometry:** Leaves all slicing parameters, path geometry, speeds, and extrusion volumes completely intact.
+4. **Zero Interruption on Single-Color:** Exits silently within 10 milliseconds whenever 1 or fewer tool swaps are detected.
 
 ---
 
-## Einrichtung in OrcaSlicer
+## Recommended Materials & When to Keep 'Off'
 
-1. Öffne OrcaSlicer.
-2. Gehe auf **Druckeinstellungen (Process)** -> **Ausgabeoptionen (Output options)**.
-3. Trage unter **Nachbearbeitungsskripte (Post-processing scripts)** Folgendes ein:
+- **Recommended:** Standard quality PLA, PLA+, and PETG in active multi-color rotation.
+- **Set to 'Off (Stock)' for:**
+  - **Water-soluble support materials (PVA / BVOH):** These materials degrade and crystallize quickly when subjected to repeated heating in the dock.
+  - **Budget / low-temperature PLA:** Filaments with heavy plasticizers or unusually low glass transition temperatures ($T_g$) can soften prematurely inside the heatbreak.
+  - **Flexible filaments (TPU):** Tend to buckle or swell if preheated while stationary.
+- **Rule of thumb:** If you are unsure about a specific specialty filament, simply leave that individual toolhead toggled to **Off (Stock)**.
+
+---
+
+## OrcaSlicer Setup (1 Minute)
+
+1. Open **OrcaSlicer**.
+2. Navigate to **Print Settings (Process)** -> **Output options** -> **Post-processing scripts**.
+3. Add the following line:
    ```text
    python "C:\Users\torst\Antigravity\Workspace\Snapmaker_U1\tools\u1_smart_preheat\u1_smart_preheat.py";
    ```
-   *(Semikolon am Ende nicht vergessen!)*
-4. Klicke auf **Speichern**.
+   *(Ensure the trailing semicolon is included).*
+4. Save your preset.
 
-Sobald du auf **Slicen** klickst, öffnet sich bei Mehrfarbdrucken das Optimierungsfenster. Nach Klick auf **✅ Optimieren & Weiter** wird der G-Code in Sekundenbruchteilen optimiert und direkt an den Drucker übergeben.
+When slicing a multi-color model, the clean optimizer window will appear. Click **✅ Optimize & Proceed** to apply the lookahead and send the job to your printer.
+
+---
+
+## Disclaimer
+*This software is an independent open-source community tool and is not affiliated with Snapmaker or OrcaSlicer. Provided 'as is' without warranties of any kind. 3D printing results depend heavily on material properties, ambient temperature, and printer condition. The author assumes no liability for print defects, nozzle clogging, or hardware wear.*

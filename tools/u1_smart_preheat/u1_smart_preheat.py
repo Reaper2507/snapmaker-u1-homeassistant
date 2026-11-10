@@ -3,10 +3,11 @@
 u1_smart_preheat.py - Snapmaker U1 Smart Preheat Optimizer
 Native OrcaSlicer 2.5+ Post-Processing & Interactive Optimizer
 
-Modes:
-- Automated: 20s dynamic look-ahead preheat injection (heats just in time, no oozing in dock).
-- Static Standby: Constant 190 °C holding temperature in dock (covers 90% of prints, 247printing style).
-- Cold: Standard OrcaSlicer cooldown (recommended for tools with massive layer pauses >30 layers).
+Features:
+- Analyzes multi-color G-code for Snapmaker U1 (Toolheads 1-4).
+- 20-second dynamic look-ahead preheat injection (M104 S[temp] T[x]).
+- Prevents nozzle oozing and heat creep while saving ~8-10 seconds per tool swap.
+- Minimalist, distraction-free OrcaSlicer dark theme GUI with visual toolhead cards.
 """
 
 import sys
@@ -18,20 +19,19 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 
 # Default Configuration
-DEFAULT_PREHEAT_SECONDS = 20    # 20s dynamic lookahead
-DEFAULT_STANDBY_TEMP = 190       # 190°C static standby
+DEFAULT_PREHEAT_SECONDS = 20
 CONFIG_FILE = os.path.join(os.path.expanduser("~"), ".u1_smart_preheat_config.json")
 
-# Theme Palette (OrcaSlicer Dark Mode)
-BG_COLOR = "#232326"
-CARD_BG = "#2e2e33"
-CARD_BORDER = "#404048"
+# Minimalist Dark Theme (OrcaSlicer Palette)
+BG_COLOR = "#1e1e22"
+CARD_BG = "#28282d"
+CARD_BORDER = "#3a3a42"
 ACCENT_COLOR = "#00bfa5"        # Orca Teal
 ACCENT_HOVER = "#00897b"
-WARN_COLOR = "#ff9800"          # Warning Orange
 TEXT_MAIN = "#f0f0f2"
-TEXT_MUTED = "#9e9ea6"
-BORDER_RADIUS = 6
+TEXT_MUTED = "#9898a0"
+DISABLED_COLOR = "#505058"
+NOZZLE_BRASS = "#c89f48"
 
 def load_user_config():
     """Load persistent settings."""
@@ -41,12 +41,7 @@ def load_user_config():
                 return json.load(f)
         except Exception:
             pass
-    return {
-        "first_run_done": False,
-        "default_mode": "automated",
-        "preheat_seconds": DEFAULT_PREHEAT_SECONDS,
-        "default_standby": DEFAULT_STANDBY_TEMP
-    }
+    return {"first_run_done": False, "preheat_seconds": DEFAULT_PREHEAT_SECONDS}
 
 def save_user_config(cfg):
     """Save persistent settings."""
@@ -59,21 +54,19 @@ def save_user_config(cfg):
 def parse_gcode_toolpaths(file_path):
     """
     Parse OrcaSlicer G-code to detect:
-    - Tool changes (T0-T3)
-    - Layer timeline (Z height and layer markers)
+    - Tool changes (T0-T3 -> Toolheads 1-4)
     - Estimated time per line for lookahead
     """
     tools_stats = {
-        0: {"used": False, "swaps": 0, "layers": set(), "target_temp": 215, "max_gap_layers": 0},
-        1: {"used": False, "swaps": 0, "layers": set(), "target_temp": 215, "max_gap_layers": 0},
-        2: {"used": False, "swaps": 0, "layers": set(), "target_temp": 215, "max_gap_layers": 0},
-        3: {"used": False, "swaps": 0, "layers": set(), "target_temp": 215, "max_gap_layers": 0}
+        0: {"used": False, "swaps": 0, "target_temp": 215},
+        1: {"used": False, "swaps": 0, "target_temp": 215},
+        2: {"used": False, "swaps": 0, "target_temp": 215},
+        3: {"used": False, "swaps": 0, "target_temp": 215}
     }
 
     toolchange_events = []
     line_durations = []
     current_tool = None
-    current_layer = 0
     total_swaps = 0
 
     lx, ly, le, current_f = 0.0, 0.0, 0.0, 1200.0
@@ -82,19 +75,12 @@ def parse_gcode_toolpaths(file_path):
         with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
             lines = f.readlines()
     except Exception as e:
-        return None, f"Datei konnte nicht gelesen werden: {e}"
+        return None, f"Could not read G-code file: {e}"
 
     for idx, line in enumerate(lines):
-        # Track layer changes
-        if line.startswith(";AFTER_LAYER_CHANGE") or line.startswith(";LAYER_CHANGE"):
-            current_layer += 1
-        elif line.startswith(";LAYER:"):
-            m = re.search(r";LAYER:(\d+)", line)
-            if m: current_layer = int(m.group(1))
-
-        # Estimate time for moves
+        # Estimate move time for lookahead calculation
         dt = 0.0
-        if line.startswith("G1") or line.startswith("G0"):
+        if line.startswith(("G1 ", "G0 ")):
             xm = re.search(r'X([-+]?\d*\.\d+|\d+)', line)
             ym = re.search(r'Y([-+]?\d*\.\d+|\d+)', line)
             em = re.search(r'E([-+]?\d*\.\d+|\d+)', line)
@@ -114,7 +100,7 @@ def parse_gcode_toolpaths(file_path):
             lx, ly, le = nx, ny, ne
         line_durations.append(dt)
 
-        # Track target temperatures
+        # Track target print temperatures
         tm_m109 = re.search(r'M109\s+S(\d+)\s+T(\d+)', line)
         if tm_m109:
             temp = int(tm_m109.group(1))
@@ -127,26 +113,15 @@ def parse_gcode_toolpaths(file_path):
         if t_match:
             new_tool = int(t_match.group(1))
             tools_stats[new_tool]["used"] = True
-            tools_stats[new_tool]["layers"].add(current_layer)
             if current_tool != new_tool:
                 total_swaps += 1
                 tools_stats[new_tool]["swaps"] += 1
                 toolchange_events.append({
                     "line_idx": idx,
                     "tool": new_tool,
-                    "layer": current_layer,
                     "target_temp": tools_stats[new_tool]["target_temp"]
                 })
                 current_tool = new_tool
-
-    # Analyze layer gaps per tool
-    for t_num, stats in tools_stats.items():
-        if stats["used"] and stats["layers"]:
-            sorted_layers = sorted(list(stats["layers"]))
-            gaps = [sorted_layers[i] - sorted_layers[i-1] for i in range(1, len(sorted_layers))]
-            stats["max_gap_layers"] = max(gaps) if gaps else 0
-            stats["first_layer"] = sorted_layers[0]
-            stats["last_layer"] = sorted_layers[-1]
 
     return {
         "file_path": file_path,
@@ -165,234 +140,201 @@ class SmartPreheatGUI:
         self.cfg = user_cfg
         self.on_apply = on_apply
         self.selected_modes = {}
-        self.temp_entries = {}
 
         self.root.title("Snapmaker U1 Smart Preheat Optimizer")
         self.root.configure(bg=BG_COLOR)
         self.root.resizable(False, False)
 
-        # Main container
-        main_frame = tk.Frame(self.root, bg=BG_COLOR, padx=20, pady=15)
+        # Main frame
+        main_frame = tk.Frame(self.root, bg=BG_COLOR, padx=22, pady=18)
         main_frame.pack(fill="both", expand=True)
 
-        # Header
-        header_frame = tk.Frame(main_frame, bg=BG_COLOR)
-        header_frame.pack(fill="x", pady=(0, 10))
+        # Header Bar
+        header = tk.Frame(main_frame, bg=BG_COLOR)
+        header.pack(fill="x", pady=(0, 6))
 
-        title_lbl = tk.Label(header_frame, text="⚡ U1 Smart Preheat Optimizer", font=("Segoe UI", 14, "bold"), fg=TEXT_MAIN, bg=BG_COLOR)
+        title_lbl = tk.Label(header, text="⚡ U1 Smart Preheat Optimizer", font=("Segoe UI", 13, "bold"), fg=TEXT_MAIN, bg=BG_COLOR)
         title_lbl.pack(side="left")
 
-        info_btn = tk.Button(header_frame, text="ℹ️ Wie funktioniert das?", font=("Segoe UI", 9), bg=CARD_BG, fg=ACCENT_COLOR,
-                             activebackground=ACCENT_HOVER, activeforeground=TEXT_MAIN, bd=0, padx=8, pady=3, cursor="hand2", command=self.show_explanation_modal)
+        info_btn = tk.Button(header, text="ℹ️ How it works", font=("Segoe UI", 9), bg=CARD_BG, fg=ACCENT_COLOR,
+                             activebackground=ACCENT_HOVER, activeforeground="#ffffff", bd=0, padx=10, pady=3,
+                             cursor="hand2", command=self.show_explanation_modal)
         info_btn.pack(side="right")
 
-        # Summary Subtitle
+        # Subtitle
         used_count = sum(1 for t in self.data["tools_stats"].values() if t["used"])
         swaps = self.data["total_swaps"]
-        sub_text = f"Erkannt: {used_count} aktive Werkzeuge · {swaps} Werkzeugwechsel gesamt"
-        sub_lbl = tk.Label(main_frame, text=sub_text, font=("Segoe UI", 10), fg=TEXT_MUTED, bg=BG_COLOR)
-        sub_lbl.pack(anchor="w", pady=(0, 10))
+        sub_text = f"{used_count} active toolheads detected  ·  {swaps} tool swaps total"
+        sub_lbl = tk.Label(main_frame, text=sub_text, font=("Segoe UI", 9), fg=TEXT_MUTED, bg=BG_COLOR)
+        sub_lbl.pack(anchor="w", pady=(0, 16))
 
-        # Global Quick Preset Bar
-        preset_frame = tk.Frame(main_frame, bg=CARD_BG, highlightbackground=CARD_BORDER, highlightthickness=1, padx=10, pady=8)
-        preset_frame.pack(fill="x", pady=(0, 15))
-
-        tk.Label(preset_frame, text="Globales Preset:", font=("Segoe UI", 9, "bold"), fg=TEXT_MAIN, bg=CARD_BG).pack(side="left", padx=(0, 10))
-
-        btn_all_auto = tk.Button(preset_frame, text="⚡ Alle Automatisch (20s)", font=("Segoe UI", 8, "bold"), bg="#1c1c1f", fg=ACCENT_COLOR,
-                                 activebackground=ACCENT_COLOR, activeforeground="#000000", bd=1, relief="solid", padx=8, pady=2, cursor="hand2",
-                                 command=lambda: self.apply_global_preset("automated"))
-        btn_all_auto.pack(side="left", padx=4)
-
-        btn_all_static = tk.Button(preset_frame, text="🔥 Alle Dauer-Standby (190°C)", font=("Segoe UI", 8), bg="#1c1c1f", fg=TEXT_MAIN,
-                                   activebackground=ACCENT_COLOR, activeforeground="#000000", bd=1, relief="solid", padx=8, pady=2, cursor="hand2",
-                                   command=lambda: self.apply_global_preset("static"))
-        btn_all_static.pack(side="left", padx=4)
-
-        btn_all_cold = tk.Button(preset_frame, text="❄️ Alle Kalt lassen", font=("Segoe UI", 8), bg="#1c1c1f", fg=TEXT_MUTED,
-                                 activebackground="#3e3e44", activeforeground=TEXT_MAIN, bd=1, relief="solid", padx=8, pady=2, cursor="hand2",
-                                 command=lambda: self.apply_global_preset("cold"))
-        btn_all_cold.pack(side="left", padx=4)
-
-        # Cards Frame (4 Toolheads)
+        # Cards Container (Toolheads 1 to 4)
         cards_frame = tk.Frame(main_frame, bg=BG_COLOR)
-        cards_frame.pack(fill="x", pady=(0, 15))
+        cards_frame.pack(fill="x", pady=(0, 16))
 
         for t_idx in range(4):
-            self.create_tool_card(cards_frame, t_idx)
+            self.create_toolhead_card(cards_frame, t_idx)
 
-        # Savings Banner
-        self.savings_lbl = tk.Label(main_frame, text="⚡ Berechnete Ersparnis: ~0 Minuten", font=("Segoe UI", 11, "bold"), fg=ACCENT_COLOR, bg=BG_COLOR)
-        self.savings_lbl.pack(fill="x", pady=(5, 15))
+        # Time Savings Banner
+        self.savings_lbl = tk.Label(main_frame, text="⚡ Estimated Time Saved: ~0 Minutes",
+                                    font=("Segoe UI", 10, "bold"), fg=ACCENT_COLOR, bg=BG_COLOR)
+        self.savings_lbl.pack(fill="x", pady=(2, 16))
 
         # Action Buttons
         btn_frame = tk.Frame(main_frame, bg=BG_COLOR)
         btn_frame.pack(fill="x")
 
-        skip_btn = tk.Button(btn_frame, text="Überspringen (Standard belassen)", font=("Segoe UI", 10), bg=CARD_BG, fg=TEXT_MUTED,
-                             activebackground="#3e3e44", activeforeground=TEXT_MAIN, bd=0, padx=15, pady=8, cursor="hand2", command=self.on_skip)
+        skip_btn = tk.Button(btn_frame, text="Skip (Keep Stock G-code)", font=("Segoe UI", 9), bg=CARD_BG, fg=TEXT_MUTED,
+                             activebackground="#35353c", activeforeground=TEXT_MAIN, bd=0, padx=16, pady=8,
+                             cursor="hand2", command=self.on_skip)
         skip_btn.pack(side="left")
 
-        apply_btn = tk.Button(btn_frame, text="✅ Optimieren & Weiter", font=("Segoe UI", 10, "bold"), bg=ACCENT_COLOR, fg="#000000",
-                              activebackground=ACCENT_HOVER, activeforeground="#ffffff", bd=0, padx=20, pady=8, cursor="hand2", command=self.on_submit)
+        apply_btn = tk.Button(btn_frame, text="✅ Optimize & Proceed", font=("Segoe UI", 10, "bold"), bg=ACCENT_COLOR, fg="#000000",
+                              activebackground=ACCENT_HOVER, activeforeground="#ffffff", bd=0, padx=22, pady=8,
+                              cursor="hand2", command=self.on_submit)
         apply_btn.pack(side="right")
 
         self.update_savings()
 
-        # Check first-run modal
+        # First-run modal check
         if not self.cfg.get("first_run_done", False):
-            self.root.after(200, self.show_explanation_modal)
+            self.root.after(150, self.show_explanation_modal)
 
-    def apply_global_preset(self, target_mode):
-        """Quickly switch all active tools to the chosen preset."""
-        for t_idx, var in self.selected_modes.items():
-            if self.data["tools_stats"][t_idx]["used"]:
-                # If tool has huge layer gap (>30) and user clicks static, we still respect user or recommend auto
-                var.set(target_mode)
-        self.update_savings()
+    def draw_toolhead_icon(self, canvas, tool_num, is_used):
+        """Draw a sleek, modern vector toolhead illustration on canvas."""
+        canvas.delete("all")
+        body_color = "#36363e" if is_used else "#28282c"
+        border_color = ACCENT_COLOR if is_used else DISABLED_COLOR
+        nozzle_color = NOZZLE_BRASS if is_used else DISABLED_COLOR
+        text_color = "#ffffff" if is_used else DISABLED_COLOR
 
-    def create_tool_card(self, parent, t_idx):
+        # Heatsink / Extruder Body
+        canvas.create_rectangle(14, 8, 54, 46, fill=body_color, outline=border_color, width=1.5)
+        # Cooling Fins
+        canvas.create_line(18, 16, 50, 16, fill="#454550", width=1)
+        canvas.create_line(18, 22, 50, 22, fill="#454550", width=1)
+        # Heatblock
+        canvas.create_rectangle(20, 46, 48, 55, fill="#40404a", outline=border_color, width=1)
+        # Brass Nozzle Tip
+        canvas.create_polygon(26, 55, 42, 55, 36, 65, 32, 65, fill=nozzle_color, outline="")
+        # Status LED
+        led_color = ACCENT_COLOR if is_used else "#404045"
+        canvas.create_oval(44, 12, 48, 16, fill=led_color, outline="")
+        # Toolhead Number
+        canvas.create_text(34, 34, text=str(tool_num), fill=text_color, font=("Segoe UI", 12, "bold"))
+
+    def create_toolhead_card(self, parent, t_idx):
         stats = self.data["tools_stats"][t_idx]
-        used = stats["used"]
+        is_used = stats["used"]
+        tool_display_num = t_idx + 1  # Display as Toolhead 1, 2, 3, 4!
 
-        card = tk.Frame(parent, bg=CARD_BG, highlightbackground=CARD_BORDER, highlightthickness=1, padx=10, pady=10)
+        card = tk.Frame(parent, bg=CARD_BG, highlightbackground=CARD_BORDER, highlightthickness=1, padx=12, pady=12)
         card.pack(side="left", padx=5, fill="both", expand=True)
 
-        # Header Badge
-        header = tk.Frame(card, bg=CARD_BG)
-        header.pack(fill="x", pady=(0, 5))
+        # Header Title
+        title_color = TEXT_MAIN if is_used else DISABLED_COLOR
+        t_title = tk.Label(card, text=f"Toolhead {tool_display_num}", font=("Segoe UI", 10, "bold"), fg=title_color, bg=CARD_BG)
+        t_title.pack(anchor="center", pady=(0, 6))
 
-        t_title = tk.Label(header, text=f"Toolhead T{t_idx}", font=("Segoe UI", 10, "bold"), fg=TEXT_MAIN, bg=CARD_BG)
-        t_title.pack(side="left")
+        # Vector Toolhead Graphic
+        cv = tk.Canvas(card, width=68, height=70, bg=CARD_BG, highlightthickness=0)
+        cv.pack(anchor="center", pady=(0, 6))
+        self.draw_toolhead_icon(cv, tool_display_num, is_used)
 
-        if not used:
-            status_badge = tk.Label(header, text="INAKTIV", font=("Segoe UI", 7, "bold"), fg="#707078", bg="#1f1f22", padx=4, pady=1)
-            status_badge.pack(side="right")
-            card_msg = tk.Label(card, text="Im aktuellen Druck\nnicht verwendet.", font=("Segoe UI", 8), fg="#707078", bg=CARD_BG, justify="center")
-            card_msg.pack(pady=28)
+        if not is_used:
+            msg = tk.Label(card, text="Unused\nin this print", font=("Segoe UI", 8), fg=DISABLED_COLOR, bg=CARD_BG, justify="center")
+            msg.pack(pady=12)
             self.selected_modes[t_idx] = tk.StringVar(value="off")
             return
 
-        # Status badge for active tool
-        gap = stats.get("max_gap_layers", 0)
-        if gap > 30:
-            status_badge = tk.Label(header, text=f"⚠️ PAUSE ({gap}L)", font=("Segoe UI", 7, "bold"), fg="#000000", bg=WARN_COLOR, padx=4, pady=1)
-            default_mode = "automated"  # automated is much safer than static when idle for 30+ layers!
-        else:
-            status_badge = tk.Label(header, text="🔥 DAUERHAFT", font=("Segoe UI", 7, "bold"), fg="#ffffff", bg=ACCENT_COLOR, padx=4, pady=1)
-            default_mode = "automated"
-        status_badge.pack(side="right")
-
-        # Stats info
+        # Usage Info
         swaps = stats["swaps"]
-        first_l = stats.get("first_layer", 0)
-        last_l = stats.get("last_layer", 0)
-        info_str = f"• {swaps} Wechsel\n• Layer {first_l} bis {last_l}"
-        if gap > 1:
-            info_str += f"\n• Max. Pause: {gap} Schichten"
-        info_lbl = tk.Label(card, text=info_str, font=("Segoe UI", 8), fg=TEXT_MUTED, bg=CARD_BG, justify="left")
-        info_lbl.pack(anchor="w", pady=(2, 6))
+        info_lbl = tk.Label(card, text=f"{swaps} swaps", font=("Segoe UI", 8, "bold"), fg=TEXT_MUTED, bg=CARD_BG)
+        info_lbl.pack(anchor="center", pady=(0, 8))
 
-        # Mode Selection Radio Buttons
-        mode_var = tk.StringVar(value=default_mode)
+        # Clean Toggle: Auto (20s) vs Off
+        mode_var = tk.StringVar(value="auto")
         self.selected_modes[t_idx] = mode_var
 
-        r_auto = tk.Radiobutton(card, text="⚡ Auto (20s Vorlauf)", variable=mode_var, value="automated",
-                                font=("Segoe UI", 8, "bold"), fg=ACCENT_COLOR, bg=CARD_BG, selectcolor="#1c1c1f", activebackground=CARD_BG,
-                                activeforeground=ACCENT_COLOR, command=self.update_savings)
-        r_auto.pack(anchor="w")
+        r_auto = tk.Radiobutton(card, text="⚡ Auto (20s)", variable=mode_var, value="auto",
+                                font=("Segoe UI", 9, "bold"), fg=ACCENT_COLOR, bg=CARD_BG, selectcolor="#1c1c1f",
+                                activebackground=CARD_BG, activeforeground=ACCENT_COLOR, command=self.update_savings)
+        r_auto.pack(anchor="w", padx=4)
 
-        r_static = tk.Radiobutton(card, text="🔥 Dauer-Standby", variable=mode_var, value="static",
-                                  font=("Segoe UI", 8), fg=TEXT_MAIN, bg=CARD_BG, selectcolor="#1c1c1f", activebackground=CARD_BG,
-                                  activeforeground=TEXT_MAIN, command=self.update_savings)
-        r_static.pack(anchor="w")
-
-        r_cold = tk.Radiobutton(card, text="❄️ Kalt lassen", variable=mode_var, value="cold",
-                                font=("Segoe UI", 8), fg=TEXT_MUTED, bg=CARD_BG, selectcolor="#1c1c1f", activebackground=CARD_BG,
-                                activeforeground=TEXT_MAIN, command=self.update_savings)
-        r_cold.pack(anchor="w")
-
-        # Custom Standby Temp Field
-        temp_frame = tk.Frame(card, bg=CARD_BG)
-        temp_frame.pack(fill="x", pady=(6, 0))
-        tk.Label(temp_frame, text="Standby:", font=("Segoe UI", 8), fg=TEXT_MUTED, bg=CARD_BG).pack(side="left")
-        
-        temp_ent = tk.Entry(temp_frame, font=("Segoe UI", 8), width=5, bg="#1c1c1f", fg=TEXT_MAIN, bd=1, relief="solid")
-        temp_ent.insert(0, str(self.cfg.get("default_standby", DEFAULT_STANDBY_TEMP)))
-        temp_ent.pack(side="left", padx=4)
-        tk.Label(temp_frame, text="°C", font=("Segoe UI", 8), fg=TEXT_MUTED, bg=CARD_BG).pack(side="left")
-        self.temp_entries[t_idx] = temp_ent
+        r_off = tk.Radiobutton(card, text="Off (Stock)", variable=mode_var, value="off",
+                               font=("Segoe UI", 8), fg=TEXT_MUTED, bg=CARD_BG, selectcolor="#1c1c1f",
+                               activebackground=CARD_BG, activeforeground=TEXT_MAIN, command=self.update_savings)
+        r_off.pack(anchor="w", padx=4, pady=(2, 0))
 
     def update_savings(self):
-        """Calculate minutes saved based on chosen preheated tools."""
-        total_fast_swaps = 0
+        """Calculate exact minutes saved."""
+        active_fast_swaps = 0
         for t_idx, mode_var in self.selected_modes.items():
-            mode = mode_var.get()
-            if mode in ("automated", "static"):
-                total_fast_swaps += self.data["tools_stats"][t_idx]["swaps"]
+            if mode_var.get() == "auto":
+                active_fast_swaps += self.data["tools_stats"][t_idx]["swaps"]
 
-        # Average saving per swap when preheated: ~7.5 seconds
-        saved_seconds = total_fast_swaps * 7.5
+        # 7.5 seconds average saved per tool change
+        saved_seconds = active_fast_swaps * 7.5
         mins = int(round(saved_seconds / 60.0))
-        self.savings_lbl.config(text=f"⚡ Berechnete Ersparnis: ca. {mins} Minuten Wartezeit gespart!")
+        self.savings_lbl.config(text=f"⚡ Estimated Time Saved: ~{mins} Minutes (Stock Quality Preserved)")
 
     def show_explanation_modal(self):
-        """First run / info modal explaining PLA plasticizers, temperature and oozing."""
+        """Clean information modal with liability disclaimer."""
         modal = tk.Toplevel(self.root)
-        modal.title("Wie funktioniert Smart Preheat?")
+        modal.title("How Smart Preheat Works")
         modal.configure(bg=BG_COLOR)
         modal.resizable(False, False)
         modal.grab_set()
 
-        f = tk.Frame(modal, bg=BG_COLOR, padx=20, pady=15)
+        f = tk.Frame(modal, bg=BG_COLOR, padx=22, pady=18)
         f.pack(fill="both", expand=True)
 
-        tk.Label(f, text="ℹ️ Intelligente Aufheiz-Optimierung", font=("Segoe UI", 12, "bold"), fg=ACCENT_COLOR, bg=BG_COLOR).pack(anchor="w", pady=(0, 8))
+        tk.Label(f, text="⚡ Intelligent Toolhead Preheating", font=("Segoe UI", 12, "bold"), fg=ACCENT_COLOR, bg=BG_COLOR).pack(anchor="w", pady=(0, 10))
 
         explanation = (
-            "Warum stehen die Köpfe ab Werk auf eiskalt (-150 °C)?\n"
-            "Snapmaker schaltet inaktive Toolheads ab Werk komplett aus, um Support-Tickets bei billigstem "
-            "Filament oder wasserlöslichem PVA zu verhindern. Bei jedem Werkzeugwechsel muss der Kopf von "
-            "65 °C mühsam wieder auf 215 °C hochheizen (kostet ~10 Sekunden Wartezeit am Dock).\n\n"
-            "Zwei Optimierungs-Modi zur Auswahl:\n\n"
-            "1. ⚡ Automatisch (20s Vorlauf):\n"
-            "Das Tool analysiert die Druckpfade und schaltet die Heizung genau ~20 Sekunden vor dem nächsten "
-            "Werkzeugwechsel ein. Erreicht der Toolhead die Parkposition, hat er exakt Drucktemperatur. Dazwischen "
-            "bleibt er kühl. Absolut kein Oozing/Drip-Risiko im Dock!\n\n"
-            "2. 🔥 Dauer-Standby (190 °C Halten):\n"
-            "Der Toolhead bleibt während des gesamten Drucks konstant auf 190 °C Standby. Beim Wechsel müssen "
-            "nur 25 °C nachgeheizt werden (~1.5s). Perfekt für 90% aller Drucke mit gutem Qualitäts-PLA.\n\n"
-            "⚠️ Große Schichtpausen:\n"
-            "Druckt ein Toolhead z. B. nur auf Schicht 2 und Schicht 280, warnt dich das Tool automatisch! "
-            "Hier empfiehlt sich 'Auto' oder 'Kalt', damit kein Filament stundenlang unnötig geheizt wird."
+            "Why is the stock profile slow?\n"
+            "By default, idle Snapmaker U1 toolheads cool down toward ~65 °C. "
+            "During multi-color tool changes, the printer pauses for roughly 8–12 seconds at the dock to reheat to target temperature. "
+            "Across hundreds of tool swaps, this idle time accumulates quickly.\n\n"
+            "What does 'Auto (20s)' do?\n"
+            "The optimizer parses estimated motion time in your G-code and triggers M104 heating approximately 20 seconds "
+            "ahead of each tool swap. By the time the printer docks to pick up the tool, the nozzle is already reaching extrusion temperature.\n"
+            "• Substantially reduces dock wait time on each swap.\n"
+            "• Optimized for U1 ceramic heaters: A conservative ~20s window helps minimize nozzle dwell time in the dock compared to older 40s scripts.\n"
+            "• Preserves original slicing geometry, toolpaths, and extrusion speeds.\n\n"
+            "Recommended Materials & When to Keep 'Off':\n"
+            "• Best for: Standard quality PLA, PLA+, and PETG in active rotation.\n"
+            "• Caution / Keep Off: Water-soluble supports (PVA/BVOH) degrade rapidly under heat; ultra-low-temp or budget PLA with high plasticizer content may soften prematurely; flexible filaments (TPU) should remain at stock temperatures.\n"
+            "• If in doubt: Leave that specific toolhead set to 'Off (Stock)'.\n\n"
+            "Notice & Disclaimer:\n"
+            "This software is an independent open-source tool and is not affiliated with Snapmaker or OrcaSlicer. "
+            "Provided 'as is' without warranties of any kind. 3D printing results depend heavily on material properties, "
+            "ambient conditions, and printer state. The author assumes no liability for print defects, nozzle clogging, "
+            "or hardware wear."
         )
-        msg_lbl = tk.Label(f, text=explanation, font=("Segoe UI", 9), fg=TEXT_MAIN, bg=BG_COLOR, justify="left", wraplength=520)
-        msg_lbl.pack(pady=(0, 15))
+        msg_lbl = tk.Label(f, text=explanation, font=("Segoe UI", 9), fg=TEXT_MAIN, bg=BG_COLOR, justify="left", wraplength=480)
+        msg_lbl.pack(pady=(0, 16))
 
         dont_show_var = tk.BooleanVar(value=self.cfg.get("first_run_done", False))
-        chk = tk.Checkbutton(f, text="Diese Erklärung nicht mehr automatisch anzeigen", variable=dont_show_var,
-                             font=("Segoe UI", 8), fg=TEXT_MUTED, bg=BG_COLOR, selectcolor="#1c1c1f", activebackground=BG_COLOR, activeforeground=TEXT_MAIN)
-        chk.pack(anchor="w", pady=(0, 10))
+        chk = tk.Checkbutton(f, text="Do not show this explanation again", variable=dont_show_var,
+                             font=("Segoe UI", 8), fg=TEXT_MUTED, bg=BG_COLOR, selectcolor="#1c1c1f",
+                             activebackground=BG_COLOR, activeforeground=TEXT_MAIN)
+        chk.pack(anchor="w", pady=(0, 14))
 
         def close_modal():
             self.cfg["first_run_done"] = dont_show_var.get()
             save_user_config(self.cfg)
             modal.destroy()
 
-        btn = tk.Button(f, text="Verstanden", font=("Segoe UI", 9, "bold"), bg=ACCENT_COLOR, fg="#000000",
-                        activebackground=ACCENT_HOVER, activeforeground="#ffffff", bd=0, padx=15, pady=5, cursor="hand2", command=close_modal)
+        btn = tk.Button(f, text="Got it", font=("Segoe UI", 9, "bold"), bg=ACCENT_COLOR, fg="#000000",
+                        activebackground=ACCENT_HOVER, activeforeground="#ffffff", bd=0, padx=18, pady=6,
+                        cursor="hand2", command=close_modal)
         btn.pack(side="right")
 
     def on_submit(self):
         plan = {}
         for t_idx in range(4):
-            mode = self.selected_modes[t_idx].get()
-            t_str = self.temp_entries.get(t_idx, None)
-            try:
-                temp_val = int(t_str.get()) if t_str else DEFAULT_STANDBY_TEMP
-            except ValueError:
-                temp_val = DEFAULT_STANDBY_TEMP
-            plan[t_idx] = {"mode": mode, "temp": temp_val}
+            plan[t_idx] = (self.selected_modes[t_idx].get() == "auto")
         self.root.destroy()
         self.on_apply(plan)
 
@@ -403,10 +345,8 @@ class SmartPreheatGUI:
 
 def inject_smart_preheat_gcode(file_path, parsed_data, plan, preheat_time=20):
     """
-    Rewrite G-code with intelligent preheat commands and standby temperatures:
-    - Automated mode: 20-second dynamic look-ahead preheat injection (M104 S{target_temp} T{tool}).
-    - Static mode: Overrides dock cooldown M104 to keep standby temp at e.g. 190 °C.
-    - Cold mode: Leaves default OrcaSlicer behavior.
+    Inject dynamic 20-second lookahead preheating (M104 S[temp] T[tool])
+    ahead of tool changes for approved toolheads.
     """
     lines = parsed_data["lines"]
     line_durations = parsed_data["line_durations"]
@@ -416,14 +356,12 @@ def inject_smart_preheat_gcode(file_path, parsed_data, plan, preheat_time=20):
     tc_ptr = 0
 
     for i, line in enumerate(lines):
-        # 1. Automated Lookahead Preheat Injection
         if tc_ptr < len(toolchange_events) and i == toolchange_events[tc_ptr]["line_idx"]:
             tc = toolchange_events[tc_ptr]
             target_tool = tc["tool"]
-            tool_plan = plan.get(target_tool, {})
-            mode = tool_plan.get("mode", "cold")
             
-            if mode == "automated":
+            # If Auto (20s) is enabled for this toolhead:
+            if plan.get(target_tool, False):
                 target_temp = tc["target_temp"]
                 preheat_cmd = f"M104 S{target_temp} T{target_tool} ; [SmartPreheat: {preheat_time}s dynamic lookahead]\n"
 
@@ -437,18 +375,6 @@ def inject_smart_preheat_gcode(file_path, parsed_data, plan, preheat_time=20):
                         break
                 new_lines.insert(insert_idx, preheat_cmd)
             tc_ptr += 1
-
-        # 2. Modify Standby Temp Commands (Static Standby Mode)
-        m_cool = re.search(r'M104\s+S(\d+)\s+T([0-3])', line)
-        if m_cool:
-            cool_temp = int(m_cool.group(1))
-            cool_tool = int(m_cool.group(2))
-            tool_plan = plan.get(cool_tool, {})
-            mode = tool_plan.get("mode", "cold")
-
-            if mode == "static" and cool_temp < 160:
-                desired_standby = tool_plan.get("temp", DEFAULT_STANDBY_TEMP)
-                line = f"M104 S{desired_standby} T{cool_tool} ; [SmartPreheat: static standby maintained at {desired_standby}°C]\n"
 
         new_lines.append(line)
 
