@@ -3,6 +3,18 @@
 These [OrcaSlicer 2.5](https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/v2.5.0) presets cover print settings, matching filaments and optional LAN printer profiles. Use them as starting points for your U1.
 
 ---
+
+## About these Profiles: Engineered, Benchmarked & Community-Validated
+
+Rather than relying on theoretical table values or generic defaults, this profile suite was developed through a data-driven engineering and verification process:
+
+- **Empirical & Synthetic Benchmarking:** Evaluated across hundreds of simulated slicing runs on real-world geometries—including large-volume organizers (continuous flow), functional load-bearing mounts, multi-color articulated models (toolchange stress tests), and precision tolerance clips.
+- **Toolchanger Kinematics & Tower Optimization:** Deconstructed the mechanical and thermal toolchange cycles of the Snapmaker U1. We engineered a stable rib-structured prime tower (`wipe_tower_wall_type: rib`) with an 8 mm anti-topple brim and a conservative 40 mm³ prime volume, preventing tall towers from failing during high-speed bed accelerations while keeping articulated joints free of stringing.
+- **CoreXY Community Best Practices:** Directly incorporates long-term community findings—such as bypassing stepper motor resonance bands by running outer walls at 180–220 mm/s to eliminate Vertical Fine Artifacts (VFA), tuning first-layer height (0.20 mm) for reliable adhesion on smooth and textured PEI plates, and maintaining `ensure_moderate` vertical shell thickness on sloped surfaces.
+- **Clean Architecture:** Universal printing goals (*Balanced*, *Fast*, *Functional*, *MultiColor*, *Draft*) are strictly decoupled from material profiles (volumetric flow limits, temperatures, pressure advance), ensuring consistent, reliable results without preset bloat.
+
+---
+
 ## Process presets
 
 All presets include integrated **in-slicer hover descriptions (tooltips)** in OrcaSlicer providing instant decision guidance, geometry recommendations, and overhang switching rules directly in the UI.
@@ -47,7 +59,7 @@ Tuned for the Phaetus high-flow hotend and high-speed motion system:
 
 ## Machine presets (LAN mode)
 
-- [Snapmaker U1 (0.4 nozzle) - Edelstahl LAN](machine/Snapmaker%20U1%20%280.4%20nozzle%29%20-%20Edelstahl%20LAN.json)
-- [Snapmaker U1 (0.6 nozzle) - Edelstahl LAN](machine/Snapmaker%20U1%20%280.6%20nozzle%29%20-%20Edelstahl%20LAN.json)
+- [Snapmaker U1 (0.4 nozzle) - Edelstahl LAN](machine/Snapmaker%20U1%20%280.4%29%20-%20Edelstahl%20LAN.json)
+- [Snapmaker U1 (0.6 nozzle) - Edelstahl LAN](machine/Snapmaker%20U1%20%280.6%29%20-%20Edelstahl%20LAN.json)
 
 These presets configure direct LAN upload to the U1 and pre-set stainless-steel nozzle thermal offsets.
