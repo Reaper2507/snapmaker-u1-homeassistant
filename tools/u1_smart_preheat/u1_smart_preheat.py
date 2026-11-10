@@ -435,7 +435,14 @@ class SmartPreheatGUI:
         f = tk.Frame(modal, bg=th["bg"], padx=22, pady=18)
         f.pack(fill="both", expand=True)
 
-        tk.Label(f, text="⚙️ Optimizer Settings", font=("Segoe UI", 12, "bold"), fg=th["accent"], bg=th["bg"]).pack(anchor="w", pady=(0, 12))
+        tk.Label(f, text="⚙️ Optimizer Settings", font=("Segoe UI", 12, "bold"), fg=th["accent"], bg=th["bg"]).pack(anchor="w", pady=(0, 6))
+
+        # Risk Warning Banner
+        warn_box = tk.Frame(f, bg="#2d1b1b" if th == THEMES["dark"] else "#fff1f1", highlightbackground="#882222", highlightthickness=1, padx=8, pady=6)
+        warn_box.pack(fill="x", pady=(0, 10))
+        tk.Label(warn_box, text="⚠️ Warning: Improper temperatures can damage your toolhead!", font=("Segoe UI", 8, "bold"), fg="#f87171", bg=warn_box["bg"]).pack(anchor="w")
+        tk.Label(warn_box, text="Holding nozzles hot in the dock risks heat creep, severe clogs, and nozzle wear.\nOnly change values if you know your specific filament's thermal tolerance.",
+                 font=("Segoe UI", 8), fg=th["text_main"], bg=warn_box["bg"], justify="left").pack(anchor="w", pady=(2, 0))
 
         # Standby Temp Field
         st_frame = tk.Frame(f, bg=th["bg"])
@@ -443,9 +450,9 @@ class SmartPreheatGUI:
         tk.Label(st_frame, text="Hold Standby Temperature (°C):", font=("Segoe UI", 9, "bold"), fg=th["text_main"], bg=th["bg"]).pack(anchor="w")
 
         info_temp = (
-            "• 175 °C: Ultra-safe non-melting threshold for PLA (zero risk of oozing in dock).\n"
-            "• 190 °C: Fast pickup (heats to 215 °C in ~1.2s on U1 ceramic nozzles).\n"
-            "• Factory Stock: Drops idle nozzles all the way down to 70 °C."
+            "• 175 °C: Lower standby baseline for quality PLA (significantly reduced flow).\n"
+            "• 190 °C: Fast recovery baseline (reaches 215 °C in ~1.2s on U1 ceramic nozzles).\n"
+            "• 70 °C: Factory stock cooldown (safe, but adds 8–12s delay per tool change)."
         )
         tk.Label(st_frame, text=info_temp, font=("Segoe UI", 8), fg=th["text_muted"], bg=th["bg"], justify="left").pack(anchor="w", pady=(2, 6))
 
