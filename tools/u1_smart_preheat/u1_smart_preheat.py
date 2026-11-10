@@ -4,10 +4,13 @@ u1_smart_preheat.py - Snapmaker U1 Smart Preheat Optimizer
 Native OrcaSlicer 2.5+ Post-Processing & Interactive Optimizer
 
 Features:
-- Analyzes multi-color G-code for Snapmaker U1 (Toolheads 1-4).
-- 20-second dynamic look-ahead preheat injection (M104 S[temp] T[x]).
-- Prevents nozzle oozing and heat creep while saving ~8-10 seconds per tool swap.
-- Minimalist, distraction-free OrcaSlicer dark theme GUI with visual toolhead cards.
+- Extracts actual loaded filament color and material type directly from OrcaSlicer G-code.
+- Minimalist, high-end dark UI with vector toolhead graphics tinted with the loaded filament color.
+- 3 clean modes per toolhead:
+    1. Auto (20s) - dynamic lookahead preheating (heats 20s before pickup, cools in dock).
+    2. Hold 190°C - keeps steady standby in dock (fastest pickup, ideal for standard PLA/PETG).
+    3. Off (Stock) - default cool down behavior (recommended for PVA/BVOH, TPU, budget filaments).
+- Human-engineered UX: Flat segmented pill buttons (no ugly circles), crystal clear labels.
 """
 
 import sys
@@ -20,18 +23,22 @@ from tkinter import ttk, messagebox
 
 # Default Configuration
 DEFAULT_PREHEAT_SECONDS = 20
+DEFAULT_STANDBY_TEMP = 190
 CONFIG_FILE = os.path.join(os.path.expanduser("~"), ".u1_smart_preheat_config.json")
 
-# Minimalist Dark Theme (OrcaSlicer Palette)
-BG_COLOR = "#1e1e22"
-CARD_BG = "#28282d"
-CARD_BORDER = "#3a3a42"
-ACCENT_COLOR = "#00bfa5"        # Orca Teal
+# Premium High-End Dark Palette
+BG_COLOR = "#141416"            # Deep sleek charcoal
+CARD_BG = "#1c1c20"             # Card slate
+CARD_BORDER = "#2c2c34"         # Subtle divider
+BTN_INACTIVE_BG = "#24242a"     # Unselected toggle
+BTN_INACTIVE_FG = "#9e9ea8"     # Muted option text
+ACCENT_COLOR = "#00bfa5"        # OrcaSlicer Teal
 ACCENT_HOVER = "#00897b"
-TEXT_MAIN = "#f0f0f2"
-TEXT_MUTED = "#9898a0"
-DISABLED_COLOR = "#505058"
-NOZZLE_BRASS = "#c89f48"
+ACCENT_SELECTED = "#00897b"
+TEXT_MAIN = "#f4f4f6"
+TEXT_MUTED = "#8e8e98"
+DISABLED_COLOR = "#44444c"
+NOZZLE_BRASS = "#d4af37"
 
 def load_user_config():
     """Load persistent settings."""
@@ -54,15 +61,40 @@ def save_user_config(cfg):
 def parse_gcode_toolpaths(file_path):
     """
     Parse OrcaSlicer G-code to detect:
+    - Filament colors and materials
     - Tool changes (T0-T3 -> Toolheads 1-4)
-    - Estimated time per line for lookahead
+    - Motion times per line for lookahead
     """
     tools_stats = {
-        0: {"used": False, "swaps": 0, "target_temp": 215},
-        1: {"used": False, "swaps": 0, "target_temp": 215},
-        2: {"used": False, "swaps": 0, "target_temp": 215},
-        3: {"used": False, "swaps": 0, "target_temp": 215}
+        0: {"used": False, "swaps": 0, "target_temp": 215, "color": "#00bfa5", "type": "PLA", "name": "Toolhead 1"},
+        1: {"used": False, "swaps": 0, "target_temp": 215, "color": "#00bfa5", "type": "PLA", "name": "Toolhead 2"},
+        2: {"used": False, "swaps": 0, "target_temp": 215, "color": "#00bfa5", "type": "PLA", "name": "Toolhead 3"},
+        3: {"used": False, "swaps": 0, "target_temp": 215, "color": "#00bfa5", "type": "PLA", "name": "Toolhead 4"}
     }
+
+    try:
+        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+            lines = f.readlines()
+    except Exception as e:
+        return None, f"Could not read G-code file: {e}"
+
+    # Extract filament metadata from OrcaSlicer header/footer
+    file_content = "".join(lines[-1500:]) + "".join(lines[:500])
+    m_col = re.search(r';\s*filament_colour\s*=\s*(.+)', file_content)
+    m_typ = re.search(r';\s*filament_type\s*=\s*(.+)', file_content)
+    m_name = re.search(r';\s*filament_settings_id\s*=\s*(.+)', file_content)
+
+    colors = [c.strip()[:7] for c in m_col.group(1).split(';')] if m_col else []
+    types = [t.strip() for t in m_typ.group(1).split(';')] if m_typ else []
+    names = [n.strip(' \";') for n in m_name.group(1).split(';')] if m_name else []
+
+    for t_idx in range(4):
+        if t_idx < len(colors) and colors[t_idx].startswith('#'):
+            tools_stats[t_idx]["color"] = colors[t_idx]
+        if t_idx < len(types) and types[t_idx]:
+            tools_stats[t_idx]["type"] = types[t_idx]
+        if t_idx < len(names) and names[t_idx]:
+            tools_stats[t_idx]["name"] = names[t_idx]
 
     toolchange_events = []
     line_durations = []
@@ -71,14 +103,8 @@ def parse_gcode_toolpaths(file_path):
 
     lx, ly, le, current_f = 0.0, 0.0, 0.0, 1200.0
 
-    try:
-        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
-            lines = f.readlines()
-    except Exception as e:
-        return None, f"Could not read G-code file: {e}"
-
     for idx, line in enumerate(lines):
-        # Estimate move time for lookahead calculation
+        # Calculate move durations
         dt = 0.0
         if line.startswith(("G1 ", "G0 ")):
             xm = re.search(r'X([-+]?\d*\.\d+|\d+)', line)
@@ -100,7 +126,7 @@ def parse_gcode_toolpaths(file_path):
             lx, ly, le = nx, ny, ne
         line_durations.append(dt)
 
-        # Track target print temperatures
+        # Target print temperatures
         tm_m109 = re.search(r'M109\s+S(\d+)\s+T(\d+)', line)
         if tm_m109:
             temp = int(tm_m109.group(1))
@@ -140,12 +166,12 @@ class SmartPreheatGUI:
         self.cfg = user_cfg
         self.on_apply = on_apply
         self.selected_modes = {}
+        self.mode_buttons = {}
 
         self.root.title("Snapmaker U1 Smart Preheat Optimizer")
         self.root.configure(bg=BG_COLOR)
         self.root.resizable(False, False)
 
-        # Main frame
         main_frame = tk.Frame(self.root, bg=BG_COLOR, padx=22, pady=18)
         main_frame.pack(fill="both", expand=True)
 
@@ -176,7 +202,7 @@ class SmartPreheatGUI:
             self.create_toolhead_card(cards_frame, t_idx)
 
         # Time Savings Banner
-        self.savings_lbl = tk.Label(main_frame, text="⚡ Estimated Time Saved: ~0 Minutes",
+        self.savings_lbl = tk.Label(main_frame, text="⚡ Estimated Time Saved: ~0 Minutes (Stock Quality Preserved)",
                                     font=("Segoe UI", 10, "bold"), fg=ACCENT_COLOR, bg=BG_COLOR)
         self.savings_lbl.pack(fill="x", pady=(2, 16))
 
@@ -184,8 +210,8 @@ class SmartPreheatGUI:
         btn_frame = tk.Frame(main_frame, bg=BG_COLOR)
         btn_frame.pack(fill="x")
 
-        skip_btn = tk.Button(btn_frame, text="Skip (Keep Stock G-code)", font=("Segoe UI", 9), bg=CARD_BG, fg=TEXT_MUTED,
-                             activebackground="#35353c", activeforeground=TEXT_MAIN, bd=0, padx=16, pady=8,
+        skip_btn = tk.Button(btn_frame, text="Skip (Keep Stock Settings)", font=("Segoe UI", 9), bg=CARD_BG, fg=TEXT_MUTED,
+                             activebackground="#33333a", activeforeground=TEXT_MAIN, bd=0, padx=16, pady=8,
                              cursor="hand2", command=self.on_skip)
         skip_btn.pack(side="left")
 
@@ -196,81 +222,121 @@ class SmartPreheatGUI:
 
         self.update_savings()
 
-        # First-run modal check
+        # First-run modal
         if not self.cfg.get("first_run_done", False):
             self.root.after(150, self.show_explanation_modal)
 
-    def draw_toolhead_icon(self, canvas, tool_num, is_used):
-        """Draw a sleek, modern vector toolhead illustration on canvas."""
+    def draw_toolhead_icon(self, canvas, tool_num, is_used, filament_color):
+        """Draw a sleek vector toolhead showing the actual loaded filament color."""
         canvas.delete("all")
-        body_color = "#36363e" if is_used else "#28282c"
-        border_color = ACCENT_COLOR if is_used else DISABLED_COLOR
+        body_color = "#2a2a30" if is_used else "#1e1e22"
+        border_color = "#3d3d46" if is_used else DISABLED_COLOR
         nozzle_color = NOZZLE_BRASS if is_used else DISABLED_COLOR
-        text_color = "#ffffff" if is_used else DISABLED_COLOR
+        stripe_color = filament_color if is_used else DISABLED_COLOR
 
-        # Heatsink / Extruder Body
-        canvas.create_rectangle(14, 8, 54, 46, fill=body_color, outline=border_color, width=1.5)
+        # Filament Strand entering extruder top
+        if is_used:
+            canvas.create_line(34, 0, 34, 10, fill=filament_color, width=3)
+
+        # Extruder Body
+        canvas.create_rectangle(14, 10, 54, 48, fill=body_color, outline=border_color, width=1.5)
         # Cooling Fins
-        canvas.create_line(18, 16, 50, 16, fill="#454550", width=1)
-        canvas.create_line(18, 22, 50, 22, fill="#454550", width=1)
+        canvas.create_line(18, 18, 50, 18, fill="#36363e", width=1)
+        canvas.create_line(18, 24, 50, 24, fill="#36363e", width=1)
+
+        # Filament Color Identification Stripe on Toolhead Front
+        canvas.create_rectangle(15, 29, 53, 35, fill=stripe_color, outline="")
+
         # Heatblock
-        canvas.create_rectangle(20, 46, 48, 55, fill="#40404a", outline=border_color, width=1)
+        canvas.create_rectangle(20, 48, 48, 56, fill="#383842", outline=border_color, width=1)
         # Brass Nozzle Tip
-        canvas.create_polygon(26, 55, 42, 55, 36, 65, 32, 65, fill=nozzle_color, outline="")
-        # Status LED
-        led_color = ACCENT_COLOR if is_used else "#404045"
-        canvas.create_oval(44, 12, 48, 16, fill=led_color, outline="")
+        canvas.create_polygon(26, 56, 42, 56, 36, 66, 32, 66, fill=nozzle_color, outline="")
+
         # Toolhead Number
-        canvas.create_text(34, 34, text=str(tool_num), fill=text_color, font=("Segoe UI", 12, "bold"))
+        canvas.create_text(34, 41, text=str(tool_num), fill="#ffffff" if is_used else DISABLED_COLOR, font=("Segoe UI", 10, "bold"))
 
     def create_toolhead_card(self, parent, t_idx):
         stats = self.data["tools_stats"][t_idx]
         is_used = stats["used"]
-        tool_display_num = t_idx + 1  # Display as Toolhead 1, 2, 3, 4!
+        tool_display_num = t_idx + 1
+        fil_color = stats.get("color", "#00bfa5")
+        fil_type = stats.get("type", "PLA")
 
-        card = tk.Frame(parent, bg=CARD_BG, highlightbackground=CARD_BORDER, highlightthickness=1, padx=12, pady=12)
-        card.pack(side="left", padx=5, fill="both", expand=True)
+        card = tk.Frame(parent, bg=CARD_BG, highlightbackground=CARD_BORDER, highlightthickness=1, padx=10, pady=12)
+        card.pack(side="left", padx=4, fill="both", expand=True)
 
         # Header Title
         title_color = TEXT_MAIN if is_used else DISABLED_COLOR
         t_title = tk.Label(card, text=f"Toolhead {tool_display_num}", font=("Segoe UI", 10, "bold"), fg=title_color, bg=CARD_BG)
-        t_title.pack(anchor="center", pady=(0, 6))
+        t_title.pack(anchor="center", pady=(0, 4))
 
-        # Vector Toolhead Graphic
+        # Vector Toolhead Graphic with actual filament color
         cv = tk.Canvas(card, width=68, height=70, bg=CARD_BG, highlightthickness=0)
-        cv.pack(anchor="center", pady=(0, 6))
-        self.draw_toolhead_icon(cv, tool_display_num, is_used)
+        cv.pack(anchor="center", pady=(0, 4))
+        self.draw_toolhead_icon(cv, tool_display_num, is_used, fil_color)
 
         if not is_used:
             msg = tk.Label(card, text="Unused\nin this print", font=("Segoe UI", 8), fg=DISABLED_COLOR, bg=CARD_BG, justify="center")
-            msg.pack(pady=12)
-            self.selected_modes[t_idx] = tk.StringVar(value="off")
+            msg.pack(pady=20)
+            self.selected_modes[t_idx] = "off"
             return
 
-        # Usage Info
-        swaps = stats["swaps"]
-        info_lbl = tk.Label(card, text=f"{swaps} swaps", font=("Segoe UI", 8, "bold"), fg=TEXT_MUTED, bg=CARD_BG)
-        info_lbl.pack(anchor="center", pady=(0, 8))
+        # Filament Material & Color Swatch Pill
+        fil_frame = tk.Frame(card, bg="#141416", padx=6, pady=2, highlightbackground="#2c2c34", highlightthickness=1)
+        fil_frame.pack(anchor="center", pady=(0, 6))
 
-        # Clean Toggle: Auto (20s) vs Off
-        mode_var = tk.StringVar(value="auto")
-        self.selected_modes[t_idx] = mode_var
+        # Color dot swatch
+        dot_cv = tk.Canvas(fil_frame, width=10, height=10, bg="#141416", highlightthickness=0)
+        dot_cv.pack(side="left", padx=(0, 4))
+        dot_cv.create_oval(1, 1, 9, 9, fill=fil_color, outline="#ffffff" if fil_color.lower() in ("#000000", "#000000ff") else "")
 
-        r_auto = tk.Radiobutton(card, text="⚡ Auto (20s)", variable=mode_var, value="auto",
-                                font=("Segoe UI", 9, "bold"), fg=ACCENT_COLOR, bg=CARD_BG, selectcolor="#1c1c1f",
-                                activebackground=CARD_BG, activeforeground=ACCENT_COLOR, command=self.update_savings)
-        r_auto.pack(anchor="w", padx=4)
+        mat_lbl = tk.Label(fil_frame, text=f"{fil_type} · {stats['swaps']} swaps", font=("Segoe UI", 8), fg=TEXT_MAIN, bg="#141416")
+        mat_lbl.pack(side="left")
 
-        r_off = tk.Radiobutton(card, text="Off (Stock)", variable=mode_var, value="off",
-                               font=("Segoe UI", 8), fg=TEXT_MUTED, bg=CARD_BG, selectcolor="#1c1c1f",
-                               activebackground=CARD_BG, activeforeground=TEXT_MAIN, command=self.update_savings)
-        r_off.pack(anchor="w", padx=4, pady=(2, 0))
+        # 3 Clean Segmented Options: Auto, Hold, Off
+        self.selected_modes[t_idx] = "auto"
+        self.mode_buttons[t_idx] = {}
+
+        seg_frame = tk.Frame(card, bg=CARD_BG)
+        seg_frame.pack(fill="x", pady=(2, 0))
+
+        options = [
+            ("auto", "⚡ Auto (20s)"),
+            ("hold", "🔥 Hold 190°C"),
+            ("off",  "❄️ Off (Stock)")
+        ]
+
+        for val, label in options:
+            btn = tk.Button(
+                seg_frame, text=label, font=("Segoe UI", 8),
+                bd=0, padx=6, pady=4, cursor="hand2", relief="flat",
+                command=lambda t=t_idx, m=val: self.set_mode(t, m)
+            )
+            btn.pack(fill="x", pady=1)
+            self.mode_buttons[t_idx][val] = btn
+
+        self.refresh_card_buttons(t_idx)
+
+    def set_mode(self, t_idx, mode):
+        """Update selected mode for toolhead."""
+        self.selected_modes[t_idx] = mode
+        self.refresh_card_buttons(t_idx)
+        self.update_savings()
+
+    def refresh_card_buttons(self, t_idx):
+        """Update active button styling in segmented control."""
+        current = self.selected_modes[t_idx]
+        for val, btn in self.mode_buttons[t_idx].items():
+            if val == current:
+                btn.config(bg=ACCENT_COLOR, fg="#000000", font=("Segoe UI", 8, "bold"))
+            else:
+                btn.config(bg=BTN_INACTIVE_BG, fg=BTN_INACTIVE_FG, font=("Segoe UI", 8))
 
     def update_savings(self):
         """Calculate exact minutes saved."""
         active_fast_swaps = 0
-        for t_idx, mode_var in self.selected_modes.items():
-            if mode_var.get() == "auto":
+        for t_idx, mode in self.selected_modes.items():
+            if mode in ("auto", "hold"):
                 active_fast_swaps += self.data["tools_stats"][t_idx]["swaps"]
 
         # 7.5 seconds average saved per tool change
@@ -296,12 +362,10 @@ class SmartPreheatGUI:
             "By default, idle Snapmaker U1 toolheads cool down toward ~65 °C. "
             "During multi-color tool changes, the printer pauses for roughly 8–12 seconds at the dock to reheat to target temperature. "
             "Across hundreds of tool swaps, this idle time accumulates quickly.\n\n"
-            "What does 'Auto (20s)' do?\n"
-            "The optimizer parses estimated motion time in your G-code and triggers M104 heating approximately 20 seconds "
-            "ahead of each tool swap. By the time the printer docks to pick up the tool, the nozzle is already reaching extrusion temperature.\n"
-            "• Substantially reduces dock wait time on each swap.\n"
-            "• Optimized for U1 ceramic heaters: A conservative ~20s window helps minimize nozzle dwell time in the dock compared to older 40s scripts.\n"
-            "• Preserves original slicing geometry, toolpaths, and extrusion speeds.\n\n"
+            "The 3 Modes Explained:\n"
+            "1. ⚡ Auto (20s): Injects heating approximately 20 seconds before pickup. The nozzle reaches extrusion temperature right as it undocks, leaving it cool in between. (Best all-rounder).\n"
+            "2. 🔥 Hold 190°C: Holds active nozzles constantly at 190 °C in dock. From 190 °C to 215 °C takes only ~1.5s on the U1 ceramic heater. (Ideal for fast rotating standard PLA prints).\n"
+            "3. ❄️ Off (Stock): Default factory cooldown behavior.\n\n"
             "Recommended Materials & When to Keep 'Off':\n"
             "• Best for: Standard quality PLA, PLA+, and PETG in active rotation.\n"
             "• Caution / Keep Off: Water-soluble supports (PVA/BVOH) degrade rapidly under heat; ultra-low-temp or budget PLA with high plasticizer content may soften prematurely; flexible filaments (TPU) should remain at stock temperatures.\n"
@@ -332,9 +396,7 @@ class SmartPreheatGUI:
         btn.pack(side="right")
 
     def on_submit(self):
-        plan = {}
-        for t_idx in range(4):
-            plan[t_idx] = (self.selected_modes[t_idx].get() == "auto")
+        plan = dict(self.selected_modes)
         self.root.destroy()
         self.on_apply(plan)
 
@@ -343,10 +405,12 @@ class SmartPreheatGUI:
         self.on_apply(None)
 
 
-def inject_smart_preheat_gcode(file_path, parsed_data, plan, preheat_time=20):
+def inject_smart_preheat_gcode(file_path, parsed_data, plan, preheat_time=20, standby_temp=190):
     """
-    Inject dynamic 20-second lookahead preheating (M104 S[temp] T[tool])
-    ahead of tool changes for approved toolheads.
+    Rewrite G-code based on per-toolhead selection:
+    - 'auto': Injects dynamic 20-second lookahead preheating (M104 S[temp] T[tool]).
+    - 'hold': Modifies dock cooldown M104 to keep nozzle at 190 °C standby.
+    - 'off': Preserves original stock behavior.
     """
     lines = parsed_data["lines"]
     line_durations = parsed_data["line_durations"]
@@ -356,16 +420,16 @@ def inject_smart_preheat_gcode(file_path, parsed_data, plan, preheat_time=20):
     tc_ptr = 0
 
     for i, line in enumerate(lines):
+        # 1. Auto Lookahead Preheat Injection
         if tc_ptr < len(toolchange_events) and i == toolchange_events[tc_ptr]["line_idx"]:
             tc = toolchange_events[tc_ptr]
             target_tool = tc["tool"]
-            
-            # If Auto (20s) is enabled for this toolhead:
-            if plan.get(target_tool, False):
+            mode = plan.get(target_tool, "off")
+
+            if mode == "auto":
                 target_temp = tc["target_temp"]
                 preheat_cmd = f"M104 S{target_temp} T{target_tool} ; [SmartPreheat: {preheat_time}s dynamic lookahead]\n"
 
-                # Look back in time to inject preheat command ~20 seconds prior
                 accum_time = 0.0
                 insert_idx = len(new_lines)
                 for k in range(len(new_lines) - 1, -1, -1):
@@ -375,6 +439,16 @@ def inject_smart_preheat_gcode(file_path, parsed_data, plan, preheat_time=20):
                         break
                 new_lines.insert(insert_idx, preheat_cmd)
             tc_ptr += 1
+
+        # 2. Hold 190°C Standby Injection
+        m_cool = re.search(r'M104\s+S(\d+)\s+T([0-3])', line)
+        if m_cool:
+            cool_temp = int(m_cool.group(1))
+            cool_tool = int(m_cool.group(2))
+            mode = plan.get(cool_tool, "off")
+
+            if mode == "hold" and cool_temp < 160:
+                line = f"M104 S{standby_temp} T{cool_tool} ; [SmartPreheat: held at {standby_temp}°C standby]\n"
 
         new_lines.append(line)
 
@@ -407,7 +481,13 @@ def run_optimizer(file_path):
     root.mainloop()
 
     if applied_plan[0]:
-        inject_smart_preheat_gcode(file_path, parsed_data, applied_plan[0], cfg.get("preheat_seconds", DEFAULT_PREHEAT_SECONDS))
+        inject_smart_preheat_gcode(
+            file_path,
+            parsed_data,
+            applied_plan[0],
+            cfg.get("preheat_seconds", DEFAULT_PREHEAT_SECONDS),
+            DEFAULT_STANDBY_TEMP
+        )
 
 
 if __name__ == "__main__":
