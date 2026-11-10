@@ -48,7 +48,11 @@ def load_user_config():
                 return json.load(f)
         except Exception:
             pass
-    return {"first_run_done": False, "preheat_seconds": DEFAULT_PREHEAT_SECONDS}
+    return {
+        "first_run_done": False,
+        "preheat_seconds": DEFAULT_PREHEAT_SECONDS,
+        "standby_temp": DEFAULT_STANDBY_TEMP
+    }
 
 def save_user_config(cfg):
     """Save persistent settings."""
@@ -182,10 +186,18 @@ class SmartPreheatGUI:
         title_lbl = tk.Label(header, text="⚡ U1 Smart Preheat Optimizer", font=("Segoe UI", 13, "bold"), fg=TEXT_MAIN, bg=BG_COLOR)
         title_lbl.pack(side="left")
 
-        info_btn = tk.Button(header, text="ℹ️ How it works", font=("Segoe UI", 9), bg=CARD_BG, fg=ACCENT_COLOR,
+        btn_box = tk.Frame(header, bg=BG_COLOR)
+        btn_box.pack(side="right")
+
+        settings_btn = tk.Button(btn_box, text="⚙️ Settings", font=("Segoe UI", 9), bg=CARD_BG, fg=TEXT_MAIN,
+                                 activebackground=CARD_BORDER, activeforeground="#ffffff", bd=0, padx=10, pady=3,
+                                 cursor="hand2", command=self.show_settings_modal)
+        settings_btn.pack(side="left", padx=(0, 6))
+
+        info_btn = tk.Button(btn_box, text="ℹ️ How it works", font=("Segoe UI", 9), bg=CARD_BG, fg=ACCENT_COLOR,
                              activebackground=ACCENT_HOVER, activeforeground="#ffffff", bd=0, padx=10, pady=3,
                              cursor="hand2", command=self.show_explanation_modal)
-        info_btn.pack(side="right")
+        info_btn.pack(side="left")
 
         # Subtitle
         used_count = sum(1 for t in self.data["tools_stats"].values() if t["used"])
@@ -293,6 +305,19 @@ class SmartPreheatGUI:
         mat_lbl = tk.Label(fil_frame, text=f"{fil_type} · {stats['swaps']} swaps", font=("Segoe UI", 8), fg=TEXT_MAIN, bg="#141416")
         mat_lbl.pack(side="left")
 
+        # Material Safety Check: Lockout for heat-sensitive / flexible filaments
+        unsafe_materials = ("PVA", "BVOH", "TPU", "TPE", "HIPS", "SUPPORT")
+        is_unsafe = any(bad in fil_type.upper() for bad in unsafe_materials)
+
+        if is_unsafe:
+            lock_frame = tk.Frame(card, bg="#201818", highlightbackground="#552222", highlightthickness=1, padx=6, pady=8)
+            lock_frame.pack(fill="x", pady=(4, 0))
+
+            tk.Label(lock_frame, text=f"🔒 Locked to Stock", font=("Segoe UI", 8, "bold"), fg="#ff6b6b", bg="#201818").pack(anchor="center")
+            tk.Label(lock_frame, text=f"{fil_type} is sensitive to\nrepeated idle heating.", font=("Segoe UI", 7), fg="#c09090", bg="#201818", justify="center").pack(anchor="center", pady=(2, 0))
+            self.selected_modes[t_idx] = "off"
+            return
+
         # 3 Clean Segmented Options: Auto, Hold, Off
         self.selected_modes[t_idx] = "auto"
         self.mode_buttons[t_idx] = {}
@@ -300,9 +325,12 @@ class SmartPreheatGUI:
         seg_frame = tk.Frame(card, bg=CARD_BG)
         seg_frame.pack(fill="x", pady=(2, 0))
 
+        standby_t = self.cfg.get("standby_temp", DEFAULT_STANDBY_TEMP)
+        lead_s = self.cfg.get("preheat_seconds", DEFAULT_PREHEAT_SECONDS)
+
         options = [
-            ("auto", "⚡ Auto (20s)"),
-            ("hold", "🔥 Hold 190°C"),
+            ("auto", f"⚡ Auto ({lead_s}s)"),
+            ("hold", f"🔥 Hold {standby_t}°C"),
             ("off",  "❄️ Off (Stock)")
         ]
 
@@ -343,6 +371,86 @@ class SmartPreheatGUI:
         saved_seconds = active_fast_swaps * 7.5
         mins = int(round(saved_seconds / 60.0))
         self.savings_lbl.config(text=f"⚡ Estimated Time Saved: ~{mins} Minutes (Stock Quality Preserved)")
+
+    def show_settings_modal(self):
+        """Settings modal to adjust standby temperature and lookahead lead time."""
+        modal = tk.Toplevel(self.root)
+        modal.title("Settings")
+        modal.configure(bg=BG_COLOR)
+        modal.resizable(False, False)
+        modal.grab_set()
+
+        f = tk.Frame(modal, bg=BG_COLOR, padx=22, pady=18)
+        f.pack(fill="both", expand=True)
+
+        tk.Label(f, text="⚙️ Optimizer Settings", font=("Segoe UI", 12, "bold"), fg=ACCENT_COLOR, bg=BG_COLOR).pack(anchor="w", pady=(0, 12))
+
+        # Standby Temp Field
+        st_frame = tk.Frame(f, bg=BG_COLOR)
+        st_frame.pack(fill="x", pady=(0, 10))
+        tk.Label(st_frame, text="Hold Standby Temperature (°C):", font=("Segoe UI", 9, "bold"), fg=TEXT_MAIN, bg=BG_COLOR).pack(anchor="w")
+        
+        info_temp = (
+            "• 175 °C: Ultra-safe non-melting threshold for PLA (zero risk of oozing in dock).\n"
+            "• 190 °C: Fast pickup (heats to 215 °C in ~1.2s on U1 ceramic nozzles).\n"
+            "• Factory Stock: Drops idle nozzles all the way down to 70 °C."
+        )
+        tk.Label(st_frame, text=info_temp, font=("Segoe UI", 8), fg=TEXT_MUTED, bg=BG_COLOR, justify="left").pack(anchor="w", pady=(2, 6))
+
+        curr_temp = self.cfg.get("standby_temp", DEFAULT_STANDBY_TEMP)
+        temp_var = tk.StringVar(value=str(curr_temp))
+        temp_ent = tk.Entry(st_frame, textvariable=temp_var, font=("Segoe UI", 9), width=8, bg=CARD_BG, fg=TEXT_MAIN, bd=1, relief="solid")
+        temp_ent.pack(anchor="w")
+
+        # Lookahead seconds field
+        la_frame = tk.Frame(f, bg=BG_COLOR)
+        la_frame.pack(fill="x", pady=(0, 14))
+        tk.Label(la_frame, text="Lookahead Lead Time (seconds):", font=("Segoe UI", 9, "bold"), fg=TEXT_MAIN, bg=BG_COLOR).pack(anchor="w")
+        tk.Label(la_frame, text="How many seconds prior to tool swap M104 heating begins (default: 20s).", font=("Segoe UI", 8), fg=TEXT_MUTED, bg=BG_COLOR).pack(anchor="w", pady=(2, 6))
+
+        curr_lead = self.cfg.get("preheat_seconds", DEFAULT_PREHEAT_SECONDS)
+        lead_var = tk.StringVar(value=str(curr_lead))
+        lead_ent = tk.Entry(la_frame, textvariable=lead_var, font=("Segoe UI", 9), width=8, bg=CARD_BG, fg=TEXT_MAIN, bd=1, relief="solid")
+        lead_ent.pack(anchor="w")
+
+        # Buttons
+        btn_box = tk.Frame(f, bg=BG_COLOR)
+        btn_box.pack(fill="x", pady=(8, 0))
+
+        cancel_btn = tk.Button(btn_box, text="Cancel", font=("Segoe UI", 9), bg=CARD_BG, fg=TEXT_MUTED,
+                               bd=0, padx=14, pady=5, cursor="hand2", command=modal.destroy)
+        cancel_btn.pack(side="left")
+
+        def save_settings():
+            try:
+                t_val = int(temp_var.get())
+                t_val = max(130, min(220, t_val))
+            except ValueError:
+                t_val = DEFAULT_STANDBY_TEMP
+
+            try:
+                l_val = int(lead_var.get())
+                l_val = max(5, min(60, l_val))
+            except ValueError:
+                l_val = DEFAULT_PREHEAT_SECONDS
+
+            self.cfg["standby_temp"] = t_val
+            self.cfg["preheat_seconds"] = l_val
+            save_user_config(self.cfg)
+
+            # Update button labels across cards live
+            for t_idx, btns in self.mode_buttons.items():
+                if "hold" in btns:
+                    btns["hold"].config(text=f"🔥 Hold {t_val}°C")
+                if "auto" in btns:
+                    btns["auto"].config(text=f"⚡ Auto ({l_val}s)")
+
+            modal.destroy()
+
+        save_btn = tk.Button(btn_box, text="Save & Apply", font=("Segoe UI", 9, "bold"), bg=ACCENT_COLOR, fg="#000000",
+                             activebackground=ACCENT_HOVER, activeforeground="#ffffff", bd=0, padx=16, pady=5,
+                             cursor="hand2", command=save_settings)
+        save_btn.pack(side="right")
 
     def show_explanation_modal(self):
         """Clean information modal with liability disclaimer."""
@@ -486,7 +594,7 @@ def run_optimizer(file_path):
             parsed_data,
             applied_plan[0],
             cfg.get("preheat_seconds", DEFAULT_PREHEAT_SECONDS),
-            DEFAULT_STANDBY_TEMP
+            cfg.get("standby_temp", DEFAULT_STANDBY_TEMP)
         )
 
 
