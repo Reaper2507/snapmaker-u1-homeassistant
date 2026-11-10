@@ -4,13 +4,16 @@ u1_smart_preheat.py - Snapmaker U1 Smart Preheat Optimizer
 Native OrcaSlicer 2.5+ Post-Processing & Interactive Optimizer
 
 Features:
+- Dual Theme Engine: Adapts automatically to Windows / OrcaSlicer Dark Mode and Light Mode.
+- Professional System UI: Standard Professional Blue (#2563eb), no experimental neon/mint colors.
 - Extracts actual loaded filament color and material type directly from OrcaSlicer G-code.
-- Minimalist, high-end dark UI with vector toolhead graphics tinted with the loaded filament color.
+- Minimalist, distraction-free cards with vector toolhead graphics.
 - 3 clean modes per toolhead:
     1. Auto (20s) - dynamic lookahead preheating (heats 20s before pickup, cools in dock).
     2. Hold 190°C - keeps steady standby in dock (fastest pickup, ideal for standard PLA/PETG).
-    3. Off (Stock) - default cool down behavior (recommended for PVA/BVOH, TPU, budget filaments).
-- Human-engineered UX: Flat segmented pill buttons (no ugly circles), crystal clear labels.
+    3. Off (Stock) - default cooldown behavior (recommended for PVA/BVOH, TPU, budget filaments).
+- Automatic Safety Lockout: Automatically locks heat-sensitive materials (PVA, BVOH, TPU, etc.) to Stock.
+- Settings Modal: Allows adjusting Standby Temperature (e.g. 175°C vs 190°C) and Lookahead seconds.
 """
 
 import sys
@@ -26,19 +29,54 @@ DEFAULT_PREHEAT_SECONDS = 20
 DEFAULT_STANDBY_TEMP = 190
 CONFIG_FILE = os.path.join(os.path.expanduser("~"), ".u1_smart_preheat_config.json")
 
-# Premium High-End Dark Palette
-BG_COLOR = "#141416"            # Deep sleek charcoal
-CARD_BG = "#1c1c20"             # Card slate
-CARD_BORDER = "#2c2c34"         # Subtle divider
-BTN_INACTIVE_BG = "#24242a"     # Unselected toggle
-BTN_INACTIVE_FG = "#9e9ea8"     # Muted option text
-ACCENT_COLOR = "#00bfa5"        # OrcaSlicer Teal
-ACCENT_HOVER = "#00897b"
-ACCENT_SELECTED = "#00897b"
-TEXT_MAIN = "#f4f4f6"
-TEXT_MUTED = "#8e8e98"
-DISABLED_COLOR = "#44444c"
-NOZZLE_BRASS = "#d4af37"
+def detect_system_is_dark():
+    """Detect whether Windows is currently using Dark Mode."""
+    try:
+        import winreg
+        key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize")
+        val, _ = winreg.QueryValueEx(key, "AppsUseLightTheme")
+        return (val == 0)
+    except Exception:
+        return True
+
+THEMES = {
+    "dark": {
+        "bg": "#18181b",               # Clean Charcoal (Zinc 900)
+        "card_bg": "#232328",          # Elevated card
+        "card_border": "#32323a",      # Subtle border
+        "btn_inactive_bg": "#2b2b32",  # Segmented inactive
+        "btn_inactive_fg": "#9ca3af",  # Muted option text
+        "accent": "#2563eb",           # Standard Professional Blue (Blue 600)
+        "accent_hover": "#1d4ed8",     # Blue 700
+        "text_main": "#f4f4f5",        # High contrast white
+        "text_muted": "#9ca3af",       # Zinc 400
+        "disabled": "#4b5563",
+        "nozzle_brass": "#d4af37",
+        "pill_bg": "#141416",
+        "pill_border": "#2c2c34",
+        "lock_bg": "#261a1a",
+        "lock_border": "#552222",
+        "lock_fg": "#f87171"
+    },
+    "light": {
+        "bg": "#f1f3f5",               # Light Slate Gray
+        "card_bg": "#ffffff",          # Pure white card
+        "card_border": "#e2e8f0",      # Clean light border
+        "btn_inactive_bg": "#f1f5f9",  # Segmented inactive light
+        "btn_inactive_fg": "#64748b",  # Inactive text
+        "accent": "#2563eb",           # Standard Professional Blue
+        "accent_hover": "#1d4ed8",
+        "text_main": "#0f172a",        # Slate 900
+        "text_muted": "#64748b",       # Slate 500
+        "disabled": "#cbd5e1",
+        "nozzle_brass": "#b45309",
+        "pill_bg": "#f8fafc",
+        "pill_border": "#e2e8f0",
+        "lock_bg": "#fef2f2",
+        "lock_border": "#fecaca",
+        "lock_fg": "#dc2626"
+    }
+}
 
 def load_user_config():
     """Load persistent settings."""
@@ -50,6 +88,7 @@ def load_user_config():
             pass
     return {
         "first_run_done": False,
+        "theme": "auto",
         "preheat_seconds": DEFAULT_PREHEAT_SECONDS,
         "standby_temp": DEFAULT_STANDBY_TEMP
     }
@@ -70,10 +109,10 @@ def parse_gcode_toolpaths(file_path):
     - Motion times per line for lookahead
     """
     tools_stats = {
-        0: {"used": False, "swaps": 0, "target_temp": 215, "color": "#00bfa5", "type": "PLA", "name": "Toolhead 1"},
-        1: {"used": False, "swaps": 0, "target_temp": 215, "color": "#00bfa5", "type": "PLA", "name": "Toolhead 2"},
-        2: {"used": False, "swaps": 0, "target_temp": 215, "color": "#00bfa5", "type": "PLA", "name": "Toolhead 3"},
-        3: {"used": False, "swaps": 0, "target_temp": 215, "color": "#00bfa5", "type": "PLA", "name": "Toolhead 4"}
+        0: {"used": False, "swaps": 0, "target_temp": 215, "color": "#2563eb", "type": "PLA", "name": "Toolhead 1"},
+        1: {"used": False, "swaps": 0, "target_temp": 215, "color": "#2563eb", "type": "PLA", "name": "Toolhead 2"},
+        2: {"used": False, "swaps": 0, "target_temp": 215, "color": "#2563eb", "type": "PLA", "name": "Toolhead 3"},
+        3: {"used": False, "swaps": 0, "target_temp": 215, "color": "#2563eb", "type": "PLA", "name": "Toolhead 4"}
     }
 
     try:
@@ -108,7 +147,6 @@ def parse_gcode_toolpaths(file_path):
     lx, ly, le, current_f = 0.0, 0.0, 0.0, 1200.0
 
     for idx, line in enumerate(lines):
-        # Calculate move durations
         dt = 0.0
         if line.startswith(("G1 ", "G0 ")):
             xm = re.search(r'X([-+]?\d*\.\d+|\d+)', line)
@@ -130,7 +168,6 @@ def parse_gcode_toolpaths(file_path):
             lx, ly, le = nx, ny, ne
         line_durations.append(dt)
 
-        # Target print temperatures
         tm_m109 = re.search(r'M109\s+S(\d+)\s+T(\d+)', line)
         if tm_m109:
             temp = int(tm_m109.group(1))
@@ -138,7 +175,6 @@ def parse_gcode_toolpaths(file_path):
             if t_num in tools_stats:
                 tools_stats[t_num]["target_temp"] = temp
 
-        # Detect tool changes
         t_match = re.match(r'^\s*T([0-3])\b', line)
         if t_match:
             new_tool = int(t_match.group(1))
@@ -172,30 +208,39 @@ class SmartPreheatGUI:
         self.selected_modes = {}
         self.mode_buttons = {}
 
+        # Resolve Theme
+        theme_choice = self.cfg.get("theme", "auto")
+        if theme_choice == "dark":
+            self.theme = THEMES["dark"]
+        elif theme_choice == "light":
+            self.theme = THEMES["light"]
+        else:
+            self.theme = THEMES["dark"] if detect_system_is_dark() else THEMES["light"]
+
         self.root.title("Snapmaker U1 Smart Preheat Optimizer")
-        self.root.configure(bg=BG_COLOR)
+        self.root.configure(bg=self.theme["bg"])
         self.root.resizable(False, False)
 
-        main_frame = tk.Frame(self.root, bg=BG_COLOR, padx=22, pady=18)
+        main_frame = tk.Frame(self.root, bg=self.theme["bg"], padx=22, pady=18)
         main_frame.pack(fill="both", expand=True)
 
         # Header Bar
-        header = tk.Frame(main_frame, bg=BG_COLOR)
+        header = tk.Frame(main_frame, bg=self.theme["bg"])
         header.pack(fill="x", pady=(0, 6))
 
-        title_lbl = tk.Label(header, text="⚡ U1 Smart Preheat Optimizer", font=("Segoe UI", 13, "bold"), fg=TEXT_MAIN, bg=BG_COLOR)
+        title_lbl = tk.Label(header, text="⚡ U1 Smart Preheat Optimizer", font=("Segoe UI", 13, "bold"), fg=self.theme["text_main"], bg=self.theme["bg"])
         title_lbl.pack(side="left")
 
-        btn_box = tk.Frame(header, bg=BG_COLOR)
+        btn_box = tk.Frame(header, bg=self.theme["bg"])
         btn_box.pack(side="right")
 
-        settings_btn = tk.Button(btn_box, text="⚙️ Settings", font=("Segoe UI", 9), bg=CARD_BG, fg=TEXT_MAIN,
-                                 activebackground=CARD_BORDER, activeforeground="#ffffff", bd=0, padx=10, pady=3,
+        settings_btn = tk.Button(btn_box, text="⚙️ Settings", font=("Segoe UI", 9), bg=self.theme["card_bg"], fg=self.theme["text_main"],
+                                 activebackground=self.theme["card_border"], activeforeground=self.theme["text_main"], bd=0, padx=10, pady=3,
                                  cursor="hand2", command=self.show_settings_modal)
         settings_btn.pack(side="left", padx=(0, 6))
 
-        info_btn = tk.Button(btn_box, text="ℹ️ How it works", font=("Segoe UI", 9), bg=CARD_BG, fg=ACCENT_COLOR,
-                             activebackground=ACCENT_HOVER, activeforeground="#ffffff", bd=0, padx=10, pady=3,
+        info_btn = tk.Button(btn_box, text="ℹ️ How it works", font=("Segoe UI", 9), bg=self.theme["card_bg"], fg=self.theme["accent"],
+                             activebackground=self.theme["accent_hover"], activeforeground="#ffffff", bd=0, padx=10, pady=3,
                              cursor="hand2", command=self.show_explanation_modal)
         info_btn.pack(side="left")
 
@@ -203,11 +248,11 @@ class SmartPreheatGUI:
         used_count = sum(1 for t in self.data["tools_stats"].values() if t["used"])
         swaps = self.data["total_swaps"]
         sub_text = f"{used_count} active toolheads detected  ·  {swaps} tool swaps total"
-        sub_lbl = tk.Label(main_frame, text=sub_text, font=("Segoe UI", 9), fg=TEXT_MUTED, bg=BG_COLOR)
+        sub_lbl = tk.Label(main_frame, text=sub_text, font=("Segoe UI", 9), fg=self.theme["text_muted"], bg=self.theme["bg"])
         sub_lbl.pack(anchor="w", pady=(0, 16))
 
         # Cards Container (Toolheads 1 to 4)
-        cards_frame = tk.Frame(main_frame, bg=BG_COLOR)
+        cards_frame = tk.Frame(main_frame, bg=self.theme["bg"])
         cards_frame.pack(fill="x", pady=(0, 16))
 
         for t_idx in range(4):
@@ -215,36 +260,39 @@ class SmartPreheatGUI:
 
         # Time Savings Banner
         self.savings_lbl = tk.Label(main_frame, text="⚡ Estimated Time Saved: ~0 Minutes (Stock Quality Preserved)",
-                                    font=("Segoe UI", 10, "bold"), fg=ACCENT_COLOR, bg=BG_COLOR)
+                                    font=("Segoe UI", 10, "bold"), fg=self.theme["accent"], bg=self.theme["bg"])
         self.savings_lbl.pack(fill="x", pady=(2, 16))
 
         # Action Buttons
-        btn_frame = tk.Frame(main_frame, bg=BG_COLOR)
+        btn_frame = tk.Frame(main_frame, bg=self.theme["bg"])
         btn_frame.pack(fill="x")
 
-        skip_btn = tk.Button(btn_frame, text="Skip (Keep Stock Settings)", font=("Segoe UI", 9), bg=CARD_BG, fg=TEXT_MUTED,
-                             activebackground="#33333a", activeforeground=TEXT_MAIN, bd=0, padx=16, pady=8,
+        skip_btn = tk.Button(btn_frame, text="Skip (Keep Stock Settings)", font=("Segoe UI", 9), bg=self.theme["card_bg"], fg=self.theme["text_muted"],
+                             activebackground=self.theme["card_border"], activeforeground=self.theme["text_main"], bd=0, padx=16, pady=8,
                              cursor="hand2", command=self.on_skip)
         skip_btn.pack(side="left")
 
-        apply_btn = tk.Button(btn_frame, text="✅ Optimize & Proceed", font=("Segoe UI", 10, "bold"), bg=ACCENT_COLOR, fg="#000000",
-                              activebackground=ACCENT_HOVER, activeforeground="#ffffff", bd=0, padx=22, pady=8,
+        apply_btn = tk.Button(btn_frame, text="✅ Optimize & Proceed", font=("Segoe UI", 10, "bold"), bg=self.theme["accent"], fg="#ffffff",
+                              activebackground=self.theme["accent_hover"], activeforeground="#ffffff", bd=0, padx=22, pady=8,
                               cursor="hand2", command=self.on_submit)
         apply_btn.pack(side="right")
 
         self.update_savings()
 
-        # First-run modal
+        # First-run modal check
         if not self.cfg.get("first_run_done", False):
             self.root.after(150, self.show_explanation_modal)
 
     def draw_toolhead_icon(self, canvas, tool_num, is_used, filament_color):
         """Draw a sleek vector toolhead showing the actual loaded filament color."""
         canvas.delete("all")
-        body_color = "#2a2a30" if is_used else "#1e1e22"
-        border_color = "#3d3d46" if is_used else DISABLED_COLOR
-        nozzle_color = NOZZLE_BRASS if is_used else DISABLED_COLOR
-        stripe_color = filament_color if is_used else DISABLED_COLOR
+        th = self.theme
+        body_color = "#2a2a30" if th == THEMES["dark"] else "#e8eaed"
+        if not is_used:
+            body_color = th["card_bg"]
+        border_color = th["card_border"] if is_used else th["disabled"]
+        nozzle_color = th["nozzle_brass"] if is_used else th["disabled"]
+        stripe_color = filament_color if is_used else th["disabled"]
 
         # Filament Strand entering extruder top
         if is_used:
@@ -253,68 +301,71 @@ class SmartPreheatGUI:
         # Extruder Body
         canvas.create_rectangle(14, 10, 54, 48, fill=body_color, outline=border_color, width=1.5)
         # Cooling Fins
-        canvas.create_line(18, 18, 50, 18, fill="#36363e", width=1)
-        canvas.create_line(18, 24, 50, 24, fill="#36363e", width=1)
+        fin_color = "#383842" if th == THEMES["dark"] else "#d1d5db"
+        canvas.create_line(18, 18, 50, 18, fill=fin_color, width=1)
+        canvas.create_line(18, 24, 50, 24, fill=fin_color, width=1)
 
         # Filament Color Identification Stripe on Toolhead Front
         canvas.create_rectangle(15, 29, 53, 35, fill=stripe_color, outline="")
 
         # Heatblock
-        canvas.create_rectangle(20, 48, 48, 56, fill="#383842", outline=border_color, width=1)
+        hb_color = "#383842" if th == THEMES["dark"] else "#d1d5db"
+        canvas.create_rectangle(20, 48, 48, 56, fill=hb_color, outline=border_color, width=1)
         # Brass Nozzle Tip
         canvas.create_polygon(26, 56, 42, 56, 36, 66, 32, 66, fill=nozzle_color, outline="")
 
         # Toolhead Number
-        canvas.create_text(34, 41, text=str(tool_num), fill="#ffffff" if is_used else DISABLED_COLOR, font=("Segoe UI", 10, "bold"))
+        num_color = th["text_main"] if is_used else th["disabled"]
+        canvas.create_text(34, 41, text=str(tool_num), fill=num_color, font=("Segoe UI", 10, "bold"))
 
     def create_toolhead_card(self, parent, t_idx):
         stats = self.data["tools_stats"][t_idx]
         is_used = stats["used"]
         tool_display_num = t_idx + 1
-        fil_color = stats.get("color", "#00bfa5")
+        fil_color = stats.get("color", self.theme["accent"])
         fil_type = stats.get("type", "PLA")
+        th = self.theme
 
-        card = tk.Frame(parent, bg=CARD_BG, highlightbackground=CARD_BORDER, highlightthickness=1, padx=10, pady=12)
+        card = tk.Frame(parent, bg=th["card_bg"], highlightbackground=th["card_border"], highlightthickness=1, padx=10, pady=12)
         card.pack(side="left", padx=4, fill="both", expand=True)
 
         # Header Title
-        title_color = TEXT_MAIN if is_used else DISABLED_COLOR
-        t_title = tk.Label(card, text=f"Toolhead {tool_display_num}", font=("Segoe UI", 10, "bold"), fg=title_color, bg=CARD_BG)
+        title_color = th["text_main"] if is_used else th["disabled"]
+        t_title = tk.Label(card, text=f"Toolhead {tool_display_num}", font=("Segoe UI", 10, "bold"), fg=title_color, bg=th["card_bg"])
         t_title.pack(anchor="center", pady=(0, 4))
 
-        # Vector Toolhead Graphic with actual filament color
-        cv = tk.Canvas(card, width=68, height=70, bg=CARD_BG, highlightthickness=0)
+        # Vector Toolhead Graphic
+        cv = tk.Canvas(card, width=68, height=70, bg=th["card_bg"], highlightthickness=0)
         cv.pack(anchor="center", pady=(0, 4))
         self.draw_toolhead_icon(cv, tool_display_num, is_used, fil_color)
 
         if not is_used:
-            msg = tk.Label(card, text="Unused\nin this print", font=("Segoe UI", 8), fg=DISABLED_COLOR, bg=CARD_BG, justify="center")
+            msg = tk.Label(card, text="Unused\nin this print", font=("Segoe UI", 8), fg=th["disabled"], bg=th["card_bg"], justify="center")
             msg.pack(pady=20)
             self.selected_modes[t_idx] = "off"
             return
 
         # Filament Material & Color Swatch Pill
-        fil_frame = tk.Frame(card, bg="#141416", padx=6, pady=2, highlightbackground="#2c2c34", highlightthickness=1)
+        fil_frame = tk.Frame(card, bg=th["pill_bg"], padx=6, pady=2, highlightbackground=th["pill_border"], highlightthickness=1)
         fil_frame.pack(anchor="center", pady=(0, 6))
 
-        # Color dot swatch
-        dot_cv = tk.Canvas(fil_frame, width=10, height=10, bg="#141416", highlightthickness=0)
+        dot_cv = tk.Canvas(fil_frame, width=10, height=10, bg=th["pill_bg"], highlightthickness=0)
         dot_cv.pack(side="left", padx=(0, 4))
         dot_cv.create_oval(1, 1, 9, 9, fill=fil_color, outline="#ffffff" if fil_color.lower() in ("#000000", "#000000ff") else "")
 
-        mat_lbl = tk.Label(fil_frame, text=f"{fil_type} · {stats['swaps']} swaps", font=("Segoe UI", 8), fg=TEXT_MAIN, bg="#141416")
+        mat_lbl = tk.Label(fil_frame, text=f"{fil_type} · {stats['swaps']} swaps", font=("Segoe UI", 8), fg=th["text_main"], bg=th["pill_bg"])
         mat_lbl.pack(side="left")
 
-        # Material Safety Check: Lockout for heat-sensitive / flexible filaments
+        # Material Safety Check
         unsafe_materials = ("PVA", "BVOH", "TPU", "TPE", "HIPS", "SUPPORT")
         is_unsafe = any(bad in fil_type.upper() for bad in unsafe_materials)
 
         if is_unsafe:
-            lock_frame = tk.Frame(card, bg="#201818", highlightbackground="#552222", highlightthickness=1, padx=6, pady=8)
+            lock_frame = tk.Frame(card, bg=th["lock_bg"], highlightbackground=th["lock_border"], highlightthickness=1, padx=6, pady=8)
             lock_frame.pack(fill="x", pady=(4, 0))
 
-            tk.Label(lock_frame, text=f"🔒 Locked to Stock", font=("Segoe UI", 8, "bold"), fg="#ff6b6b", bg="#201818").pack(anchor="center")
-            tk.Label(lock_frame, text=f"{fil_type} is sensitive to\nrepeated idle heating.", font=("Segoe UI", 7), fg="#c09090", bg="#201818", justify="center").pack(anchor="center", pady=(2, 0))
+            tk.Label(lock_frame, text="🔒 Locked to Stock", font=("Segoe UI", 8, "bold"), fg=th["lock_fg"], bg=th["lock_bg"]).pack(anchor="center")
+            tk.Label(lock_frame, text=f"{fil_type} is sensitive to\nrepeated idle heating.", font=("Segoe UI", 7), fg=th["text_muted"], bg=th["lock_bg"], justify="center").pack(anchor="center", pady=(2, 0))
             self.selected_modes[t_idx] = "off"
             return
 
@@ -322,7 +373,7 @@ class SmartPreheatGUI:
         self.selected_modes[t_idx] = "auto"
         self.mode_buttons[t_idx] = {}
 
-        seg_frame = tk.Frame(card, bg=CARD_BG)
+        seg_frame = tk.Frame(card, bg=th["card_bg"])
         seg_frame.pack(fill="x", pady=(2, 0))
 
         standby_t = self.cfg.get("standby_temp", DEFAULT_STANDBY_TEMP)
@@ -354,11 +405,12 @@ class SmartPreheatGUI:
     def refresh_card_buttons(self, t_idx):
         """Update active button styling in segmented control."""
         current = self.selected_modes[t_idx]
+        th = self.theme
         for val, btn in self.mode_buttons[t_idx].items():
             if val == current:
-                btn.config(bg=ACCENT_COLOR, fg="#000000", font=("Segoe UI", 8, "bold"))
+                btn.config(bg=th["accent"], fg="#ffffff", font=("Segoe UI", 8, "bold"))
             else:
-                btn.config(bg=BTN_INACTIVE_BG, fg=BTN_INACTIVE_FG, font=("Segoe UI", 8))
+                btn.config(bg=th["btn_inactive_bg"], fg=th["btn_inactive_fg"], font=("Segoe UI", 8))
 
     def update_savings(self):
         """Calculate exact minutes saved."""
@@ -367,57 +419,70 @@ class SmartPreheatGUI:
             if mode in ("auto", "hold"):
                 active_fast_swaps += self.data["tools_stats"][t_idx]["swaps"]
 
-        # 7.5 seconds average saved per tool change
         saved_seconds = active_fast_swaps * 7.5
         mins = int(round(saved_seconds / 60.0))
         self.savings_lbl.config(text=f"⚡ Estimated Time Saved: ~{mins} Minutes (Stock Quality Preserved)")
 
     def show_settings_modal(self):
-        """Settings modal to adjust standby temperature and lookahead lead time."""
+        """Settings modal to adjust standby temperature, lookahead lead time, and theme."""
+        th = self.theme
         modal = tk.Toplevel(self.root)
         modal.title("Settings")
-        modal.configure(bg=BG_COLOR)
+        modal.configure(bg=th["bg"])
         modal.resizable(False, False)
         modal.grab_set()
 
-        f = tk.Frame(modal, bg=BG_COLOR, padx=22, pady=18)
+        f = tk.Frame(modal, bg=th["bg"], padx=22, pady=18)
         f.pack(fill="both", expand=True)
 
-        tk.Label(f, text="⚙️ Optimizer Settings", font=("Segoe UI", 12, "bold"), fg=ACCENT_COLOR, bg=BG_COLOR).pack(anchor="w", pady=(0, 12))
+        tk.Label(f, text="⚙️ Optimizer Settings", font=("Segoe UI", 12, "bold"), fg=th["accent"], bg=th["bg"]).pack(anchor="w", pady=(0, 12))
 
         # Standby Temp Field
-        st_frame = tk.Frame(f, bg=BG_COLOR)
+        st_frame = tk.Frame(f, bg=th["bg"])
         st_frame.pack(fill="x", pady=(0, 10))
-        tk.Label(st_frame, text="Hold Standby Temperature (°C):", font=("Segoe UI", 9, "bold"), fg=TEXT_MAIN, bg=BG_COLOR).pack(anchor="w")
-        
+        tk.Label(st_frame, text="Hold Standby Temperature (°C):", font=("Segoe UI", 9, "bold"), fg=th["text_main"], bg=th["bg"]).pack(anchor="w")
+
         info_temp = (
             "• 175 °C: Ultra-safe non-melting threshold for PLA (zero risk of oozing in dock).\n"
             "• 190 °C: Fast pickup (heats to 215 °C in ~1.2s on U1 ceramic nozzles).\n"
             "• Factory Stock: Drops idle nozzles all the way down to 70 °C."
         )
-        tk.Label(st_frame, text=info_temp, font=("Segoe UI", 8), fg=TEXT_MUTED, bg=BG_COLOR, justify="left").pack(anchor="w", pady=(2, 6))
+        tk.Label(st_frame, text=info_temp, font=("Segoe UI", 8), fg=th["text_muted"], bg=th["bg"], justify="left").pack(anchor="w", pady=(2, 6))
 
         curr_temp = self.cfg.get("standby_temp", DEFAULT_STANDBY_TEMP)
         temp_var = tk.StringVar(value=str(curr_temp))
-        temp_ent = tk.Entry(st_frame, textvariable=temp_var, font=("Segoe UI", 9), width=8, bg=CARD_BG, fg=TEXT_MAIN, bd=1, relief="solid")
+        temp_ent = tk.Entry(st_frame, textvariable=temp_var, font=("Segoe UI", 9), width=8, bg=th["card_bg"], fg=th["text_main"], bd=1, relief="solid")
         temp_ent.pack(anchor="w")
 
         # Lookahead seconds field
-        la_frame = tk.Frame(f, bg=BG_COLOR)
-        la_frame.pack(fill="x", pady=(0, 14))
-        tk.Label(la_frame, text="Lookahead Lead Time (seconds):", font=("Segoe UI", 9, "bold"), fg=TEXT_MAIN, bg=BG_COLOR).pack(anchor="w")
-        tk.Label(la_frame, text="How many seconds prior to tool swap M104 heating begins (default: 20s).", font=("Segoe UI", 8), fg=TEXT_MUTED, bg=BG_COLOR).pack(anchor="w", pady=(2, 6))
+        la_frame = tk.Frame(f, bg=th["bg"])
+        la_frame.pack(fill="x", pady=(0, 10))
+        tk.Label(la_frame, text="Lookahead Lead Time (seconds):", font=("Segoe UI", 9, "bold"), fg=th["text_main"], bg=th["bg"]).pack(anchor="w")
+        tk.Label(la_frame, text="How many seconds prior to tool swap M104 heating begins (default: 20s).", font=("Segoe UI", 8), fg=th["text_muted"], bg=th["bg"]).pack(anchor="w", pady=(2, 6))
 
         curr_lead = self.cfg.get("preheat_seconds", DEFAULT_PREHEAT_SECONDS)
         lead_var = tk.StringVar(value=str(curr_lead))
-        lead_ent = tk.Entry(la_frame, textvariable=lead_var, font=("Segoe UI", 9), width=8, bg=CARD_BG, fg=TEXT_MAIN, bd=1, relief="solid")
+        lead_ent = tk.Entry(la_frame, textvariable=lead_var, font=("Segoe UI", 9), width=8, bg=th["card_bg"], fg=th["text_main"], bd=1, relief="solid")
         lead_ent.pack(anchor="w")
 
+        # Theme Selector
+        thm_frame = tk.Frame(f, bg=th["bg"])
+        thm_frame.pack(fill="x", pady=(0, 14))
+        tk.Label(thm_frame, text="Appearance Theme:", font=("Segoe UI", 9, "bold"), fg=th["text_main"], bg=th["bg"]).pack(anchor="w")
+        theme_var = tk.StringVar(value=self.cfg.get("theme", "auto"))
+
+        thm_bar = tk.Frame(thm_frame, bg=th["bg"])
+        thm_bar.pack(anchor="w", pady=(4, 0))
+        for mode_val, mode_lbl in [("auto", "System Auto"), ("dark", "Dark Mode"), ("light", "Light Mode")]:
+            rb = tk.Radiobutton(thm_bar, text=mode_lbl, variable=theme_var, value=mode_val, font=("Segoe UI", 8),
+                                fg=th["text_main"], bg=th["bg"], selectcolor=th["card_bg"], activebackground=th["bg"], activeforeground=th["text_main"])
+            rb.pack(side="left", padx=(0, 10))
+
         # Buttons
-        btn_box = tk.Frame(f, bg=BG_COLOR)
+        btn_box = tk.Frame(f, bg=th["bg"])
         btn_box.pack(fill="x", pady=(8, 0))
 
-        cancel_btn = tk.Button(btn_box, text="Cancel", font=("Segoe UI", 9), bg=CARD_BG, fg=TEXT_MUTED,
+        cancel_btn = tk.Button(btn_box, text="Cancel", font=("Segoe UI", 9), bg=th["card_bg"], fg=th["text_muted"],
                                bd=0, padx=14, pady=5, cursor="hand2", command=modal.destroy)
         cancel_btn.pack(side="left")
 
@@ -436,9 +501,10 @@ class SmartPreheatGUI:
 
             self.cfg["standby_temp"] = t_val
             self.cfg["preheat_seconds"] = l_val
+            self.cfg["theme"] = theme_var.get()
             save_user_config(self.cfg)
 
-            # Update button labels across cards live
+            # Live update button labels across cards
             for t_idx, btns in self.mode_buttons.items():
                 if "hold" in btns:
                     btns["hold"].config(text=f"🔥 Hold {t_val}°C")
@@ -447,23 +513,24 @@ class SmartPreheatGUI:
 
             modal.destroy()
 
-        save_btn = tk.Button(btn_box, text="Save & Apply", font=("Segoe UI", 9, "bold"), bg=ACCENT_COLOR, fg="#000000",
-                             activebackground=ACCENT_HOVER, activeforeground="#ffffff", bd=0, padx=16, pady=5,
+        save_btn = tk.Button(btn_box, text="Save & Apply", font=("Segoe UI", 9, "bold"), bg=th["accent"], fg="#ffffff",
+                             activebackground=th["accent_hover"], activeforeground="#ffffff", bd=0, padx=16, pady=5,
                              cursor="hand2", command=save_settings)
         save_btn.pack(side="right")
 
     def show_explanation_modal(self):
         """Clean information modal with liability disclaimer."""
+        th = self.theme
         modal = tk.Toplevel(self.root)
         modal.title("How Smart Preheat Works")
-        modal.configure(bg=BG_COLOR)
+        modal.configure(bg=th["bg"])
         modal.resizable(False, False)
         modal.grab_set()
 
-        f = tk.Frame(modal, bg=BG_COLOR, padx=22, pady=18)
+        f = tk.Frame(modal, bg=th["bg"], padx=22, pady=18)
         f.pack(fill="both", expand=True)
 
-        tk.Label(f, text="⚡ Intelligent Toolhead Preheating", font=("Segoe UI", 12, "bold"), fg=ACCENT_COLOR, bg=BG_COLOR).pack(anchor="w", pady=(0, 10))
+        tk.Label(f, text="⚡ Intelligent Toolhead Preheating", font=("Segoe UI", 12, "bold"), fg=th["accent"], bg=th["bg"]).pack(anchor="w", pady=(0, 10))
 
         explanation = (
             "Why is the stock profile slow?\n"
@@ -472,25 +539,25 @@ class SmartPreheatGUI:
             "Across hundreds of tool swaps, this idle time accumulates quickly.\n\n"
             "The 3 Modes Explained:\n"
             "1. ⚡ Auto (20s): Injects heating approximately 20 seconds before pickup. The nozzle reaches extrusion temperature right as it undocks, leaving it cool in between. (Best all-rounder).\n"
-            "2. 🔥 Hold 190°C: Holds active nozzles constantly at 190 °C in dock. From 190 °C to 215 °C takes only ~1.5s on the U1 ceramic heater. (Ideal for fast rotating standard PLA prints).\n"
+            "2. 🔥 Hold 190°C: Holds active nozzles constantly at 190 °C in dock. From 190 °C to 215 °C takes only ~1.2s on the U1 ceramic heater. (Ideal for fast rotating standard PLA prints).\n"
             "3. ❄️ Off (Stock): Default factory cooldown behavior.\n\n"
             "Recommended Materials & When to Keep 'Off':\n"
             "• Best for: Standard quality PLA, PLA+, and PETG in active rotation.\n"
             "• Caution / Keep Off: Water-soluble supports (PVA/BVOH) degrade rapidly under heat; ultra-low-temp or budget PLA with high plasticizer content may soften prematurely; flexible filaments (TPU) should remain at stock temperatures.\n"
-            "• If in doubt: Leave that specific toolhead set to 'Off (Stock)'.\n\n"
+            "• Safety Lock: Heat-sensitive materials (PVA, TPU, etc.) are automatically locked to Stock by the optimizer.\n\n"
             "Notice & Disclaimer:\n"
             "This software is an independent open-source tool and is not affiliated with Snapmaker or OrcaSlicer. "
             "Provided 'as is' without warranties of any kind. 3D printing results depend heavily on material properties, "
             "ambient conditions, and printer state. The author assumes no liability for print defects, nozzle clogging, "
             "or hardware wear."
         )
-        msg_lbl = tk.Label(f, text=explanation, font=("Segoe UI", 9), fg=TEXT_MAIN, bg=BG_COLOR, justify="left", wraplength=480)
+        msg_lbl = tk.Label(f, text=explanation, font=("Segoe UI", 9), fg=th["text_main"], bg=th["bg"], justify="left", wraplength=480)
         msg_lbl.pack(pady=(0, 16))
 
         dont_show_var = tk.BooleanVar(value=self.cfg.get("first_run_done", False))
         chk = tk.Checkbutton(f, text="Do not show this explanation again", variable=dont_show_var,
-                             font=("Segoe UI", 8), fg=TEXT_MUTED, bg=BG_COLOR, selectcolor="#1c1c1f",
-                             activebackground=BG_COLOR, activeforeground=TEXT_MAIN)
+                             font=("Segoe UI", 8), fg=th["text_muted"], bg=th["bg"], selectcolor=th["card_bg"],
+                             activebackground=th["bg"], activeforeground=th["text_main"])
         chk.pack(anchor="w", pady=(0, 14))
 
         def close_modal():
@@ -498,8 +565,8 @@ class SmartPreheatGUI:
             save_user_config(self.cfg)
             modal.destroy()
 
-        btn = tk.Button(f, text="Got it", font=("Segoe UI", 9, "bold"), bg=ACCENT_COLOR, fg="#000000",
-                        activebackground=ACCENT_HOVER, activeforeground="#ffffff", bd=0, padx=18, pady=6,
+        btn = tk.Button(f, text="Got it", font=("Segoe UI", 9, "bold"), bg=th["accent"], fg="#ffffff",
+                        activebackground=th["accent_hover"], activeforeground="#ffffff", bd=0, padx=18, pady=6,
                         cursor="hand2", command=close_modal)
         btn.pack(side="right")
 
@@ -548,7 +615,7 @@ def inject_smart_preheat_gcode(file_path, parsed_data, plan, preheat_time=20, st
                 new_lines.insert(insert_idx, preheat_cmd)
             tc_ptr += 1
 
-        # 2. Hold 190°C Standby Injection
+        # 2. Hold Standby Injection
         m_cool = re.search(r'M104\s+S(\d+)\s+T([0-3])', line)
         if m_cool:
             cool_temp = int(m_cool.group(1))
