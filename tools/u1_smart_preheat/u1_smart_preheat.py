@@ -39,6 +39,30 @@ def detect_system_is_dark():
     except Exception:
         return True
 
+def get_orcaslicer_theme():
+    """
+    Automatically adopt OrcaSlicer's active theme without asking:
+    - Reads 'dark_color_mode' from %APPDATA%\\OrcaSlicer\\OrcaSlicer.conf
+      '1' -> Dark Mode
+      '2' -> Light Mode
+      '0' -> Follow OS System Theme (AppsUseLightTheme)
+    """
+    try:
+        conf_path = os.path.expandvars(r"%APPDATA%\OrcaSlicer\OrcaSlicer.conf")
+        if os.path.exists(conf_path):
+            with open(conf_path, "r", encoding="utf-8", errors="ignore") as f:
+                content = f.read()
+            m = re.search(r'dark_color_mode.*?(\d+)', content)
+            if m:
+                mode = m.group(1)
+                if mode == "1":
+                    return THEMES["dark"]
+                elif mode == "2":
+                    return THEMES["light"]
+    except Exception:
+        pass
+    return THEMES["dark"] if detect_system_is_dark() else THEMES["light"]
+
 THEMES = {
     "dark": {
         "bg": "#18181b",               # Clean Charcoal (Zinc 900)
@@ -88,7 +112,6 @@ def load_user_config():
             pass
     return {
         "first_run_done": False,
-        "theme": "auto",
         "preheat_seconds": DEFAULT_PREHEAT_SECONDS,
         "standby_temp": DEFAULT_STANDBY_TEMP
     }
@@ -208,14 +231,8 @@ class SmartPreheatGUI:
         self.selected_modes = {}
         self.mode_buttons = {}
 
-        # Resolve Theme
-        theme_choice = self.cfg.get("theme", "auto")
-        if theme_choice == "dark":
-            self.theme = THEMES["dark"]
-        elif theme_choice == "light":
-            self.theme = THEMES["light"]
-        else:
-            self.theme = THEMES["dark"] if detect_system_is_dark() else THEMES["light"]
+        # Automatically adopt OrcaSlicer active theme
+        self.theme = get_orcaslicer_theme()
 
         self.root.title("Snapmaker U1 Smart Preheat Optimizer")
         self.root.configure(bg=self.theme["bg"])
@@ -477,22 +494,9 @@ class SmartPreheatGUI:
         lead_ent = tk.Entry(la_frame, textvariable=lead_var, font=("Segoe UI", 9), width=8, bg=th["card_bg"], fg=th["text_main"], bd=1, relief="solid")
         lead_ent.pack(anchor="w")
 
-        # Theme Selector
-        thm_frame = tk.Frame(f, bg=th["bg"])
-        thm_frame.pack(fill="x", pady=(0, 14))
-        tk.Label(thm_frame, text="Appearance Theme:", font=("Segoe UI", 9, "bold"), fg=th["text_main"], bg=th["bg"]).pack(anchor="w")
-        theme_var = tk.StringVar(value=self.cfg.get("theme", "auto"))
-
-        thm_bar = tk.Frame(thm_frame, bg=th["bg"])
-        thm_bar.pack(anchor="w", pady=(4, 0))
-        for mode_val, mode_lbl in [("auto", "System Auto"), ("dark", "Dark Mode"), ("light", "Light Mode")]:
-            rb = tk.Radiobutton(thm_bar, text=mode_lbl, variable=theme_var, value=mode_val, font=("Segoe UI", 8),
-                                fg=th["text_main"], bg=th["bg"], selectcolor=th["card_bg"], activebackground=th["bg"], activeforeground=th["text_main"])
-            rb.pack(side="left", padx=(0, 10))
-
         # Buttons
         btn_box = tk.Frame(f, bg=th["bg"])
-        btn_box.pack(fill="x", pady=(8, 0))
+        btn_box.pack(fill="x", pady=(10, 0))
 
         cancel_btn = tk.Button(btn_box, text="Cancel", font=("Segoe UI", 9), bg=th["card_bg"], fg=th["text_muted"],
                                bd=0, padx=14, pady=5, cursor="hand2", command=modal.destroy)
@@ -513,7 +517,6 @@ class SmartPreheatGUI:
 
             self.cfg["standby_temp"] = t_val
             self.cfg["preheat_seconds"] = l_val
-            self.cfg["theme"] = theme_var.get()
             save_user_config(self.cfg)
 
             # Live update button labels across cards
