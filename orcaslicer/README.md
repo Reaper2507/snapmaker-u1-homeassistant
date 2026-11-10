@@ -44,16 +44,21 @@ All presets include integrated **in-slicer hover descriptions (tooltips)** in Or
 
 ## Filament presets
 
-Tuned for the Phaetus high-flow hotend and high-speed motion system:
+Tuned for the Phaetus high-flow hotend and high-speed motion system. All presets are compatible with both **0.4 mm** and **0.6 mm** nozzles; volumetric speed limits automatically scale toolhead speeds safely.
 
-| Preset | Flow Ratio | Max Volumetric Speed | Nozzle Temp | Recommended Beds | Notes |
+| Preset | Flow Ratio | Max Volumetric Speed (Std / HF) | Nozzle Temp | Recommended Beds | Notes |
 | --- | --- | --- | --- | --- | --- |
-| **SUNLU PLA+ 2.0** | 0.97 | 22 mm³/s (std) / 38 mm³/s (HF) | 215–220 °C | Textured PEI (60 °C), CryoGrip (35 °C) | PA: 0.022. High-speed flow baseline. |
-| **JAYO High Speed Matte PETG** | 0.94 | 18 mm³/s | 245–250 °C | Textured PEI (75 °C) | PA: 0.038. Fast cooling, low stringing. |
-| **ELEGOO PETG-CF** | 0.95 | 15 mm³/s | 250–255 °C | Textured PEI (75 °C) | PA: 0.032. **Requires Hardened Steel Hotend!** |
-| Bambu Lab PLA Basic | 0.98 | 21 mm³/s | 220 °C | Textured PEI (55 °C) | Standard PLA baseline. |
-| Bambu Lab PETG Basic | 0.95 | 14 mm³/s | 255 °C | Textured PEI (70 °C) | Reliable general-purpose PETG. |
-| GEEETECH TPU 95A | 1.00 | 4.5 mm³/s | 220 °C | Textured PEI (45 °C) | Max volumetric limit prevents jams. |
+| [SUNLU PLA+ 2.0](filament/SUNLU%20PLA%2B%202.0.json) | 0.97 | 22 / 38 mm³/s | 215 °C | Textured PEI (60 °C), CryoGrip (35 °C) | PA: 0.022. High-speed flow baseline. |
+| [Bambu Lab PLA Basic](filament/Bambu%20Lab%20PLA%20Basic.json) | 0.98 | 22 / 35 mm³/s | 220 °C | Textured PEI (55 °C) | Standard PLA baseline. |
+| [ELEGOO PLA Matte](filament/ELEGOO%20PLA%20Matte.json) | 0.96 | 18 / 30 mm³/s | 210 °C | Textured PEI (55 °C) | Low glare finish. |
+| [GEEETECH PLA Matte](filament/GEEETECH%20PLA%20Matte.json) | 0.96 | 18 / 30 mm³/s | 210 °C | Textured PEI (55 °C) | Consistent matte perimeters. |
+| [JAYO High Speed Matte PETG](filament/JAYO%20High%20Speed%20Matte%20PETG.json) | 0.94 | 16 / 28 mm³/s | 245 °C | Textured PEI (75 °C) | PA: 0.038. Fast cooling, low stringing. |
+| [Bambu Lab PETG Basic](filament/Bambu%20Lab%20PETG%20Basic.json) | 0.95 | 16 / 26 mm³/s | 250 °C | Textured PEI (70 °C) | Reliable general-purpose PETG. |
+| [eSUN PETG Matte](filament/eSUN%20PETG%20Matte.json) | 0.94 | 14 / 24 mm³/s | 240 °C | Textured PEI (75 °C) | Satin matte finish. |
+| [ELEGOO PETG-CF](filament/ELEGOO%20PETG-CF.json) | 0.95 | 15 / 24 mm³/s | 250 °C | Textured PEI (75 °C) | PA: 0.032. **Requires Hardened Steel / Stainless Hotend!** |
+| [GEEETECH TPU 95A](filament/GEEETECH%20TPU%2095A.json) | 1.00 | 3.5 / 5.0 mm³/s | 225 °C | Textured PEI (45 °C) | Max volumetric limit prevents toolhead jams. |
+
+> **Note on Colors:** In OrcaSlicer, filament presets manage material physics (temperatures, flow, volumetric limits, cooling). Filament color is assigned dynamically per spool/toolhead in the **Prepare** tab or via Set & Send.
 
 ---
 
@@ -63,3 +68,35 @@ Tuned for the Phaetus high-flow hotend and high-speed motion system:
 - [Snapmaker U1 (0.6 nozzle) - Edelstahl LAN](machine/Snapmaker%20U1%20%280.6%29%20-%20Edelstahl%20LAN.json)
 
 These presets configure direct LAN upload to the U1 and pre-set stainless-steel nozzle thermal offsets.
+
+---
+
+## Install the presets
+
+You can install these presets either manually into your OrcaSlicer user directory (recommended) or via the slicer import dialog.
+
+### Option 1: Copy to your OrcaSlicer User Directory (Recommended)
+
+1. Close OrcaSlicer.
+2. Copy the folders ([`process/`](process/), [`filament/`](filament/), [`machine/`](machine/)) directly into your OrcaSlicer configuration folder:
+   - **Windows:** `%APPDATA%\OrcaSlicer\user\default\`  
+     *(e.g., `C:\Users\<Username>\AppData\Roaming\OrcaSlicer\user\default\`)*
+   - **macOS:** `~/Library/Application Support/OrcaSlicer/user/default/`
+   - **Linux:** `~/.config/OrcaSlicer/user/default/`
+3. Restart OrcaSlicer. The profiles will appear in the **Print**, **Filament**, and **Printer** dropdown lists.
+
+### Option 2: Import via OrcaSlicer UI
+
+1. Open OrcaSlicer.
+2. In the top menu, navigate to **File** → **Import** → **Import Configs...** (or press `Ctrl + I`).
+3. Select the desired `.json` preset files from the cloned repository.
+
+---
+
+## Support & Feedback
+
+If these engineered U1 profiles saved you print time, nozzle swaps, and wasted filament:
+
+[![Support on Ko-fi](https://img.shields.io/badge/Ko--fi-Buy%20me%20a%20coffee-F16061?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/Reaper2507)
+
+Feedback, issues, or filament tuning suggestions are welcome via [GitHub Issues](https://github.com/Reaper2507/snapmaker-u1-homeassistant/issues).

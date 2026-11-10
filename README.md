@@ -2,6 +2,9 @@
 
 A community dashboard by [Reaper2507](https://github.com/Reaper2507) for the Snapmaker U1.
 
+[![Support on Ko-fi](https://img.shields.io/badge/Ko--fi-Support-F16061?style=flat-square&logo=ko-fi&logoColor=white)](https://ko-fi.com/Reaper2507)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+
 ## Built on Ironoxx’s Snapmaker U1 Card
 
 [Ironoxx’s Snapmaker U1 Card](https://github.com/Ironoxx/ha-snapmaker-u1-card) provides the Home Assistant integration and the original printer card, including the layer view and object exclusion. The frontend bundled here is adapted from [Ironoxx’s v2.0.0 release](https://github.com/Ironoxx/ha-snapmaker-u1-card/tree/v2.0.0) and retains the [original copyright notice and MIT license](https://github.com/Ironoxx/ha-snapmaker-u1-card/blob/v2.0.0/LICENSE).
@@ -75,7 +78,7 @@ Select the printer illustration in **Tools & material** to open the control pane
 ## Optional extras
 
 - **Hardware mods.** [Auxiliary Fan Deflector](hardware/aux-fan-deflector/README.md) prevents left-bed warping by redirecting the chamber airflow upward.
-- **OrcaSlicer profiles.** [Install the U1 process presets](orcaslicer/README.md#install-the-presets) for everyday prints, faster drafts and compact multicolor jobs. [Browse 19 filament presets](orcaslicer/README.md#filament-presets) for matching spools, including SUNLU PLA+ 2.0 and eSUN PETG Matte.
+- **OrcaSlicer profiles.** [Install the U1 presets](orcaslicer/README.md#install-the-presets) for everyday prints, high-throughput organizers and compact multicolor jobs. [Browse 9 material presets](orcaslicer/README.md#filament-presets) for matching spools (compatible with 0.4 mm and 0.6 mm nozzles), including SUNLU PLA+ 2.0, JAYO PETG and ELEGOO PETG-CF.
 - **Set & Send.** Thanks to LayerLab for bringing the U1’s pre-print setup to OrcaSlicer. Their add-on lets you match filaments to toolheads and choose U1 print options before sending a job. [LayerLab download and guide](https://layerlab.store/pages/set-and-send) · [Quick setup](orcaslicer/README.md#set--send-by-layerlab)
 - **Helpful Home Assistant scripts.** [Optional printer controls](homeassistant/README.md#optional-controls-and-notifications) for tool changes and filament handling, plus a [microwave-style print completion ding and a brief chamber-light pulse](homeassistant/automations/README.md).
 - [Filament handling and troubleshooting](GUIDE.md).
