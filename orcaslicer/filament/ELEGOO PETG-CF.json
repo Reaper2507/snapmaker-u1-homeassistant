@@ -13,7 +13,7 @@
         "0",
         "0"
     ],
-    "description": "ELEGOO PETG-CF general preset for Snapmaker U1. Hardened / stainless steel nozzle recommended.",
+    "description": "ELEGOO PETG-CF (Schwarz, Grau). Community-tuned: 250°C/255°C for carbon-fiber matrix fusion, 80°C PEI bed against fiber tension warp, 0.95 flow, 0% AUX, hardened nozzle required.",
     "filament_max_volumetric_speed": [
         "15",
         "24"
@@ -23,14 +23,14 @@
         "250"
     ],
     "nozzle_temperature_initial_layer": [
-        "250",
-        "250"
+        "255",
+        "255"
     ],
     "textured_plate_temp": [
-        "75"
+        "80"
     ],
     "textured_plate_temp_initial_layer": [
-        "75"
+        "80"
     ],
     "hot_plate_temp": [
         "75"
@@ -39,7 +39,7 @@
         "75"
     ],
     "nozzle_temperature_range_low": [
-        "230"
+        "235"
     ],
     "nozzle_temperature_range_high": [
         "270"
@@ -55,5 +55,31 @@
     ],
     "eng_plate_temp_initial_layer": [
         "70"
+    ],
+    "filament_type": [
+        "PETG-CF"
+    ],
+    "filament_flow_ratio": [
+        "0.95"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.032"
+    ],
+    "fan_min_speed": [
+        "0",
+        "0"
+    ],
+    "fan_max_speed": [
+        "30",
+        "30"
+    ],
+    "filament_density": [
+        "1.25"
+    ],
+    "filament_retraction_length": [
+        "0.8"
     ]
 }

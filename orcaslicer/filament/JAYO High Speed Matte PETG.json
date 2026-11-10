@@ -6,17 +6,17 @@
         "Snapmaker U1 (0.6 nozzle)",
         "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
     ],
-    "name": "Generic High Speed PETG",
+    "name": "JAYO High Speed Matte PETG",
     "from": "User",
     "version": "2.5.0.0",
     "additional_cooling_fan_speed": [
         "0",
         "0"
     ],
-    "description": "Generic High Speed Matte PETG baseline preset for Snapmaker U1.",
+    "description": "JAYO High Speed Matte PETG (Schwarz, Rot). Community-tuned: 245°C high-speed flow, 75°C PEI bed, 0.94 flow ratio prevents over-extrusion blobs, 0% AUX.",
     "filament_max_volumetric_speed": [
         "16",
-        "30"
+        "28"
     ],
     "nozzle_temperature": [
         "245",
@@ -27,10 +27,10 @@
         "245"
     ],
     "textured_plate_temp": [
-        "70"
+        "75"
     ],
     "textured_plate_temp_initial_layer": [
-        "70"
+        "75"
     ],
     "hot_plate_temp": [
         "70"
@@ -39,10 +39,10 @@
         "70"
     ],
     "nozzle_temperature_range_low": [
-        "220"
+        "225"
     ],
     "nozzle_temperature_range_high": [
-        "270"
+        "260"
     ],
     "cool_plate_temp": [
         "50"
@@ -55,5 +55,28 @@
     ],
     "eng_plate_temp_initial_layer": [
         "70"
+    ],
+    "filament_type": [
+        "PETG"
+    ],
+    "filament_flow_ratio": [
+        "0.94"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.038"
+    ],
+    "fan_min_speed": [
+        "30",
+        "30"
+    ],
+    "fan_max_speed": [
+        "65",
+        "65"
+    ],
+    "filament_density": [
+        "1.25"
     ]
 }

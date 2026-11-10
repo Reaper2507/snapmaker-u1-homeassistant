@@ -9,36 +9,36 @@
     "name": "GEEETECH TPU 95A",
     "from": "User",
     "version": "2.5.0.0",
-    "description": "GEEETECH TPU 95A flexible filament preset for Snapmaker U1.",
+    "description": "GEEETECH TPU 95A (Transparent-Silber). Community-tuned: 225°C clear layer bonding, 50°C PEI bed (use release agent/glue), 3.5 mm³/s flow cap to prevent extruder buckling, 0.5mm retraction.",
     "filament_max_volumetric_speed": [
-        "4",
-        "6"
+        "3.5",
+        "5.0"
     ],
     "nozzle_temperature": [
-        "220",
-        "220"
+        "225",
+        "225"
     ],
     "nozzle_temperature_initial_layer": [
-        "220",
-        "220"
+        "225",
+        "225"
     ],
     "textured_plate_temp": [
-        "55"
+        "50"
     ],
     "textured_plate_temp_initial_layer": [
-        "55"
+        "50"
     ],
     "hot_plate_temp": [
-        "55"
+        "45"
     ],
     "hot_plate_temp_initial_layer": [
-        "55"
+        "45"
     ],
     "nozzle_temperature_range_low": [
         "200"
     ],
     "nozzle_temperature_range_high": [
-        "250"
+        "245"
     ],
     "cool_plate_temp": [
         "30"
@@ -53,7 +53,36 @@
         "30"
     ],
     "additional_cooling_fan_speed": [
-        "70",
-        "70"
+        "0",
+        "0"
+    ],
+    "filament_type": [
+        "TPU"
+    ],
+    "filament_flow_ratio": [
+        "1.00"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.015"
+    ],
+    "fan_min_speed": [
+        "60",
+        "60"
+    ],
+    "fan_max_speed": [
+        "80",
+        "80"
+    ],
+    "filament_retraction_length": [
+        "0.5"
+    ],
+    "filament_deretraction_speed": [
+        "25"
+    ],
+    "filament_density": [
+        "1.24"
     ]
 }

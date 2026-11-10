@@ -13,24 +13,24 @@
         "0",
         "0"
     ],
-    "description": "eSUN PETG Matte general preset for Snapmaker U1. AUX fan disabled to eliminate warping.",
+    "description": "eSUN PETG Matte (Apricot, Betongrau, Blue Brick, Dunkelgrau). Community-tuned: 240°C preserves matte finish without glossy hot spots, 0.94 flow ratio prevents nozzle buildup, 0% AUX.",
     "filament_max_volumetric_speed": [
-        "16",
-        "28"
+        "14",
+        "24"
     ],
     "nozzle_temperature": [
-        "245",
-        "245"
+        "240",
+        "240"
     ],
     "nozzle_temperature_initial_layer": [
         "245",
         "245"
     ],
     "textured_plate_temp": [
-        "70"
+        "75"
     ],
     "textured_plate_temp_initial_layer": [
-        "70"
+        "75"
     ],
     "hot_plate_temp": [
         "70"
@@ -39,10 +39,10 @@
         "70"
     ],
     "nozzle_temperature_range_low": [
-        "220"
+        "225"
     ],
     "nozzle_temperature_range_high": [
-        "270"
+        "255"
     ],
     "cool_plate_temp": [
         "50"
@@ -55,5 +55,28 @@
     ],
     "eng_plate_temp_initial_layer": [
         "70"
+    ],
+    "filament_type": [
+        "PETG"
+    ],
+    "filament_flow_ratio": [
+        "0.94"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.040"
+    ],
+    "fan_min_speed": [
+        "30",
+        "30"
+    ],
+    "fan_max_speed": [
+        "60",
+        "60"
+    ],
+    "filament_density": [
+        "1.25"
     ]
 }

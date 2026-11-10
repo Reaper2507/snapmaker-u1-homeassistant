@@ -61,12 +61,17 @@ Compare the time and material estimates in **Preview** after slicing your model.
 
 [Download the 9 material presets](filament/) for the Snapmaker U1 (compatible with both 0.4 mm and 0.6 mm nozzles). Color variants have been intentionally removed from preset names; colors are assigned dynamically per spool/toolhead in OrcaSlicer's **Prepare** tab. PLA presets are configured with **30% auxiliary fan speed** tuned for the [Auxiliary Fan Deflector](../hardware/aux-fan-deflector/README.md) (set to 0% if printing without a deflector). PETG presets maintain **0%** auxiliary fan to prevent delamination and preserve maximum layer adhesion.
 
-- **Bambu Lab:** PLA Basic, PETG Basic.
-- **SUNLU:** PLA+ 2.0.
-- **eSUN:** PETG Matte.
-- **ELEGOO:** PLA Matte, PETG-CF (hardened / stainless steel nozzle recommended).
-- **GEEETECH:** PLA Matte, TPU 95A.
-- **Generic:** High Speed PETG.
+| Preset | Spool Colors | Temp (Nozzle / Bed) | Flow Ratio | Pressure Advance | Max Flow (Std / HF) | AUX Fan | Community Tuning Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Bambu Lab PLA Basic** | Jade-Weiß | 220 °C / 65 °C | 0.98 | 0.020 | 22 / 35 mm³/s | 30% | 220 °C sweetspot for high-speed layer adhesion. 0.98 flow eliminates top-ridge over-extrusion. |
+| **SUNLU PLA+ 2.0** | Schwarz, Weiß, Knochenweiß, Olivgrün, Sunny Orange, Little Blue | 215 °C / 65 °C | 0.97 | 0.022 | 22 / 38 mm³/s | 30% | 215 °C prevents matte tearing at high speeds. 0.97 flow ratio compensates for dye swell. |
+| **ELEGOO PLA Matte** | Beige | 210 °C / 65 °C | 0.96 | 0.025 | 18 / 30 mm³/s | 30% | 210 °C preserves velvety matte texture without glossy hot spots. 0.96 flow prevents rough build-up. |
+| **GEEETECH PLA Matte** | Grau | 210 °C / 65 °C | 0.96 | 0.025 | 18 / 30 mm³/s | 30% | 210 °C preserves velvety matte sheen. 0.025 PA keeps corner transitions razor sharp. |
+| **Bambu Lab PETG Basic** | Weiß | 250 °C / 75 °C | 0.95 | 0.035 | 16 / 26 mm³/s | 0% | 250 °C / 255 °C initial for maximum layer fusion. 75 °C PEI bed eliminates corner lifting. |
+| **eSUN PETG Matte** | Apricot, Betongrau, Blue Brick, Dunkelgrau | 240 °C / 75 °C | 0.94 | 0.040 | 14 / 24 mm³/s | 0% | 240 °C maintains pure matte texture without sheen. 0.94 flow prevents nozzle oozing/blobs. |
+| **JAYO High Speed Matte PETG** | Schwarz, Rot | 245 °C / 75 °C | 0.94 | 0.038 | 16 / 28 mm³/s | 0% | 245 °C enables smooth high-speed flow. 0.94 flow prevents rough matte ridges. |
+| **ELEGOO PETG-CF** | Schwarz, Grau | 250 °C / 80 °C | 0.95 | 0.032 | 15 / 24 mm³/s | 0% | 250 °C fuses carbon-fiber polymer matrix. 80 °C PEI bed prevents warping. Hardened nozzle required! |
+| **GEEETECH TPU 95A** | Transparent-Silber | 225 °C / 50 °C | 1.00 | 0.015 | 3.5 / 5.0 mm³/s | 0% | 225 °C glassy layer fusion. 3.5 mm³/s flow cap prevents extruder buckling. 0.5 mm retraction. |
 
 ---
 ## Install the presets
