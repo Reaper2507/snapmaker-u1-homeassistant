@@ -32,7 +32,7 @@
     ],
     "print_host": "http://192.168.x.x:7125",
     "host_type": "moonraker",
-    "default_print_profile": "U1 Quality (0.4) - Deko, Figuren, Sicht",
+    "default_print_profile": "U1 Balanced (0.4) - Standard, Allround",
     "name": "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
     "from": "User",
     "version": "2.5.0.0"
