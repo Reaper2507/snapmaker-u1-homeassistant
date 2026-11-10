@@ -137,5 +137,6 @@
         "260",
         "550"
     ],
-    "top_surface_speed": "120"
+    "top_surface_speed": "120",
+    "ensure_vertical_shell_thickness": "ensure_moderate"
 }
