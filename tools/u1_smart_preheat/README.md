@@ -12,8 +12,8 @@ Across a typical multi-color print with 500 swaps, that adds **over an hour** of
 ---
 
 ## How Smart Preheat Solves It
-1. **Dynamic ~20s Lead Time:** Parses G-code motion paths and injects `M104 S[temp] T[x]` approximately 20 seconds before the tool change occurs.
-2. **Reduced Dwell Time:** Unlike older scripts using 40-second lookahead, 20 seconds is matched to the U1's high-speed 360° ring ceramic heater, minimizing hot nozzle idle dwell in the dock.
+1. **Dynamic ~10s Lead Time:** Parses G-code motion paths and injects `M104 S[temp] T[x]` approximately 10 seconds before tool pickup. 
+2. **Cool While Parked:** On the U1 ceramic heater, 10s brings the nozzle to ~190–200 °C right as the carriage docks and mechanically locks. The final jump to printing temp occurs on the prime tower. The nozzle never sits at full melting temperature in the dock!
 3. **Preserved Geometry:** Leaves all slicing parameters, path geometry, speeds, and extrusion volumes completely intact.
 4. **Zero Interruption on Single-Color:** Exits silently within 10 milliseconds whenever 1 or fewer tool swaps are detected.
 

@@ -9,7 +9,7 @@ Features:
 - Extracts actual loaded filament color and material type directly from OrcaSlicer G-code.
 - Minimalist, distraction-free cards with vector toolhead graphics.
 - 3 clean modes per toolhead:
-    1. Auto (20s) - dynamic lookahead preheating (heats 20s before pickup, cools in dock).
+    1. Auto (10s) - dynamic lookahead preheating (heats 10s before pickup, cools in dock).
     2. Hold 190°C - keeps steady standby in dock (fastest pickup, ideal for standard PLA/PETG).
     3. Off (Stock) - default cooldown behavior (recommended for PVA/BVOH, TPU, budget filaments).
 - Automatic Safety Lockout: Automatically locks heat-sensitive materials (PVA, BVOH, TPU, etc.) to Stock.
@@ -25,7 +25,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 
 # Default Configuration
-DEFAULT_PREHEAT_SECONDS = 20
+DEFAULT_PREHEAT_SECONDS = 10
 DEFAULT_STANDBY_TEMP = 190
 CONFIG_FILE = os.path.join(os.path.expanduser("~"), ".u1_smart_preheat_config.json")
 
@@ -465,7 +465,12 @@ class SmartPreheatGUI:
         la_frame = tk.Frame(f, bg=th["bg"])
         la_frame.pack(fill="x", pady=(0, 10))
         tk.Label(la_frame, text="Lookahead Lead Time (seconds):", font=("Segoe UI", 9, "bold"), fg=th["text_main"], bg=th["bg"]).pack(anchor="w")
-        tk.Label(la_frame, text="How many seconds prior to tool swap M104 heating begins (default: 20s).", font=("Segoe UI", 8), fg=th["text_muted"], bg=th["bg"]).pack(anchor="w", pady=(2, 6))
+        
+        info_lead = (
+            "• 10s (Recommended): Nozzle climbs to ~190–200 °C as the carriage docks.\n"
+            "  The final jump to printing temp occurs on the prime tower, keeping the nozzle cool while parked."
+        )
+        tk.Label(la_frame, text=info_lead, font=("Segoe UI", 8), fg=th["text_muted"], bg=th["bg"], justify="left").pack(anchor="w", pady=(2, 6))
 
         curr_lead = self.cfg.get("preheat_seconds", DEFAULT_PREHEAT_SECONDS)
         lead_var = tk.StringVar(value=str(curr_lead))
@@ -545,8 +550,8 @@ class SmartPreheatGUI:
             "During multi-color tool changes, the printer pauses for roughly 8–12 seconds at the dock to reheat to target temperature. "
             "Across hundreds of tool swaps, this idle time accumulates quickly.\n\n"
             "The 3 Modes Explained:\n"
-            "1. ⚡ Auto (20s): Injects heating approximately 20 seconds before pickup. The nozzle reaches extrusion temperature right as it undocks, leaving it cool in between. (Best all-rounder).\n"
-            "2. 🔥 Hold 190°C: Holds active nozzles constantly at 190 °C in dock. From 190 °C to 215 °C takes only ~1.2s on the U1 ceramic heater. (Ideal for fast rotating standard PLA prints).\n"
+            "1. ⚡ Auto (10s): Starts heating ~10 seconds before tool pickup. The nozzle reaches ~190–200 °C as the carriage couples, finishing the final few degrees on the prime tower. (Safest dynamic approach).\n"
+            "2. 🔥 Hold Standby: Holds active nozzles constantly at standby in dock. From 190 °C to 215 °C takes only ~1.2s on the U1 ceramic heater.\n"
             "3. ❄️ Off (Stock): Default factory cooldown behavior.\n\n"
             "Recommended Materials & When to Keep 'Off':\n"
             "• Best for: Standard quality PLA, PLA+, and PETG in active rotation.\n"
@@ -587,11 +592,11 @@ class SmartPreheatGUI:
         self.on_apply(None)
 
 
-def inject_smart_preheat_gcode(file_path, parsed_data, plan, preheat_time=20, standby_temp=190):
+def inject_smart_preheat_gcode(file_path, parsed_data, plan, preheat_time=10, standby_temp=190):
     """
     Rewrite G-code based on per-toolhead selection:
-    - 'auto': Injects dynamic 20-second lookahead preheating (M104 S[temp] T[tool]).
-    - 'hold': Modifies dock cooldown M104 to keep nozzle at 190 °C standby.
+    - 'auto': Injects dynamic ~10-second lookahead preheating (M104 S[temp] T[tool]).
+    - 'hold': Modifies dock cooldown M104 to keep nozzle at standby temp.
     - 'off': Preserves original stock behavior.
     """
     lines = parsed_data["lines"]
