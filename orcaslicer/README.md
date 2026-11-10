@@ -11,84 +11,43 @@ All presets include integrated **in-slicer hover descriptions (tooltips)** in Or
 
 | Preset | Layer | Walls / Infill | Speeds (Outer/Inner/Infill) | Best For |
 | --- | --- | --- | --- | --- |
-| [U1 Quality (0.4) - Deko, Figuren, Sicht](process/U1%20Quality%20%280.4%29%20-%20Deko%2C%20Figuren%2C%20Sicht.json) | 0.20 mm | 3 (inner-outer-inner) · 15% Gyroid | 210 / 250 / 280 mm/s | Display models, figurines, smooth cylinders (VFA suppression via symmetric 0.40 mm perimeters). |
-| [U1 Functional (0.4) - Halterungen, Mechanik](process/U1%20Functional%20%280.4%29%20-%20Halterungen%2C%20Mechanik.json) | 0.24 mm | 3 (inner-outer) · 15% Adaptive Cubic | 210 / 300 / 300 mm/s | Structural brackets, adapters, tools, and mechanical assemblies (12,000 mm/s² accel). |
-| [U1 Fast (0.4) - Boxen, Organizer](process/U1%20Fast%20%280.4%29%20-%20Boxen%2C%20Organizer.json) | 0.28 mm | 2 (inner-outer) · 12% Cubic | 220 / 350 / 350 mm/s | Everyday utility prints, bins, trays, Gridfinity, and household organizers (12,000 mm/s² accel). |
-| [U1 Draft (0.4) - Passform, Prototyp](process/U1%20Draft%20%280.4%29%20-%20Passform%2C%20Prototyp.json) | 0.28 mm | 2 (inner-outer) · 8% Support Cubic | 240 / 380 / 380 mm/s | Rapid prototypes, dimensional checks, and quick fitment tests (14,000 mm/s² accel). |
-| [U1 Extreme Draft (0.4) - Huellen, Lightning](process/U1%20Extreme%20Draft%20%280.4%29%20-%20Huellen%2C%20Lightning.json) | 0.28 mm | 2 (inner-outer) · 15% Lightning | 250 / 400 / 400 mm/s | Ultra-fast hollow form models, mockups, and cosmetic shells (15,000 mm/s² accel). |
+| [U1 Balanced (0.4) - Standard, Allround](process/U1%20Balanced%20%280.4%29%20-%20Standard%2C%20Allround.json) | 0.20 mm | 3 (inner-outer-inner) · 15% Adaptive Cubic | 200 / 300 / 350 mm/s | **The Daily Driver:** Flawless satin outer walls (200 mm/s bypasses CoreXY 120–170 mm/s VFA resonance), high dimensional accuracy. |
+| [U1 Fast (0.4) - Boxen, Organizer](process/U1%20Fast%20%280.4%29%20-%20Boxen%2C%20Organizer.json) | 0.24 mm | 2 · 10% Adaptive Cubic | 220 / 380 / 400 mm/s | **High Throughput:** Bins, trays, Gridfinity, organizers. Saves 20–25% print time with narrow solid infill optimization. |
+| [U1 Functional (0.4) - Halterungen, Mechanik](process/U1%20Functional%20%280.4%29%20-%20Halterungen%2C%20Mechanik.json) | 0.20 mm | 4 (1.70 mm shell) · 20% Adaptive Cubic | 180 / 250 / 300 mm/s | **Structural Strength:** Brackets, mounts, tools. `ensure_vertical_shell_thickness: moderate` active for steep overhang load resistance. |
+| [U1 MultiColor (0.4) - Flexi, Articulated](process/U1%20MultiColor%20%280.4%29%20-%20Flexi%2C%20Articulated.json) | 0.20 mm | 3 · 12% Adaptive Cubic | 190 / 280 / 320 mm/s | **Multi-Material & Articulated:** 40 mm³ prime volume, 30 mm rib-tower with 8 mm brim (anti-topple on 270+ layers), aligned seam & wipe-on-loops. |
+| [U1 Draft (0.4) - Passform, Prototyp](process/U1%20Draft%20%280.4%29%20-%20Passform%2C%20Prototyp.json) | 0.24 mm | 2 · 8% Adaptive Cubic | 240 / 420 / 450 mm/s | **Express Prototyping:** Rapid fitment checks, bolt holes, thread checks. |
+
+---
 
 ### 0.6 mm Nozzle Lineup (High Volumetric Throughput)
 
 | Preset | Layer | Walls / Infill | Speeds (Outer/Inner/Infill) | Best For |
 | --- | --- | --- | --- | --- |
-| [U1 Quality (0.6) - Glatte Gehaeuse, Deko](process/U1%20Quality%20%280.6%29%20-%20Glatte%20Gehaeuse%2C%20Deko.json) | 0.24 mm | 3 (inner-outer-inner) · 15% Gyroid | 160 / 200 / 220 mm/s | Smooth cosmetic shells and enclosures with double the wall strength of 0.4 mm nozzles. |
-| [U1 Functional (0.6) - Stabile Werkstattteile](process/U1%20Functional%20%280.6%29%20-%20Stabile%20Werkstattteile.json) | 0.38 mm | 3 (inner-outer) · 15% Adaptive Cubic | 140 / 180 / 200 mm/s | **The Heavy-Duty Standard:** 0.38 mm layer sweetspot (63% ratio) with Arachne for high shear strength. |
-| [U1 Fast (0.6) - Grosse Schalen, Kisten](process/U1%20Fast%20%280.6%29%20-%20Grosse%20Schalen%2C%20Kisten.json) | 0.38 mm | 2 (inner-outer) · 12% Cubic | 150 / 200 / 220 mm/s | Large storage bins, crates, tubs, and organizers (pushes U1 22–38 mm³/s hotend flow). |
-| [U1 Draft (0.6) - Grosse Prototypen](process/U1%20Draft%20%280.6%29%20-%20Grosse%20Prototypen.json) | 0.42 mm | 2 (inner-outer) · 8% Support Cubic | 160 / 220 / 250 mm/s | High-speed large volume mockups and conceptual molds (
-educe_crossing_wall = 0). |
-| [U1 Extreme Draft (0.6) - Riesige Huellen, Lightning](process/U1%20Extreme%20Draft%20%280.6%29%20-%20Riesige%20Huellen%2C%20Lightning.json) | 0.42 mm | 2 (inner-outer) · 15% Lightning | 180 / 250 / 280 mm/s | Rapid full-scale volumetric models and architectural mockups with minimum material. |
-
-### Intelligent In-Slicer Decision Matrix (When to tweak)
-- **Steep Overhangs (>45°):** In `Quality` profiles, switch wall sequence from `Inner/Outer/Inner` to `Inner/Outer` to ensure overhanging perimeters have supporting interior bead contact.
-- **Tiny Features & Small Peaks:** Ensure minimum layer time cooling slowdown is permitted in filament cooling settings to prevent thermal plastic melting on rapid layers.
-- **Heavy Mechanical Stress:** Add wall loops (4–5 walls) instead of excessively increasing infill density.
-- **Flat Top Ceilings:** If using `Lightning` or `Support Cubic` and top surfaces show sagging, switch to `Cubic` or `Adaptive Cubic` for uniform ceiling scaffolding.
-
-### Community-validated U1 Hardware Highlights
-- **VFA Resonance Suppression:** CoreXY stepper motor resonance on the U1 is prominent between 120 and 170 mm/s. Running outer walls at **200–210 mm/s** with `dont_slow_down_outer_wall: 1` skips this ripple band.
-- **Nozzle Dragging Prevention:** `reduce_infill_retraction = 0` is set to ensure the nozzle does not scrape or drag across printed infill patterns during high-speed travel moves.
-- **Accurate Layer Counts:** `top_shell_thickness = 0` prevents the slicer from forcing unwanted extra top solid layers due to inherited millimeter thickness floors.
-- **First Layer Reliability:** `initial_layer_print_height = 0.20 mm` (down from 0.25 mm) ensures reliable first-layer squish on smooth build plates (e.g., BIQU Glacier / Frostbite).
-### Auxiliary Fan Tuning & Community Deflector Mod
-- **The Problem with the Stock AUX Fan:**  
-  The auxiliary side fan on the U1 blows a high-velocity, unilateral stream of air directly across the print bed from the left side. For PLA and especially PETG, this asymmetric airflow creates rapid localized thermal shrinkage: the left side of the part cools much faster than the heated bed and the rest of the model, generating violent mechanical tension that curls the bottom corners upward (**left-side bed warping**). On PETG, excess cooling also ruins interlayer bonding (delamination).
-- **Default Recommendation (0% AUX Fan):**  
-  In all our tuned PLA and PETG presets, `additional_cooling_fan_speed` is set to **0%**. The dual symmetrical part cooling fans directly on the toolhead provide more than enough airflow for 95%+ of typical overhangs, bridges, and quality prints without risking bed detachment or unnecessary fan noise.
-- **The Community Deflector Mod (Mirrored & Backed up):**  
-  We have mirrored and backed up the model and full print instructions directly in this repository:
-  👉 **[Snapmaker U1 Auxiliary Fan Deflector Guide & STL](../hardware/aux-fan-deflector/README.md)** (MakerWorld #3107806).
-  - **What it does:** The louvers redirect the airflow upward towards the chamber ceiling rather than flat onto the build plate, transforming the harsh directional jet into gentle ambient circulation.
-  - **Filament Choice:** Print the deflector in **Black PETG** (or PETG-CF / ABS). Do not use PLA (it softens near the heated bed), and prefer matte black over bright colors to avoid optical glare with the U1's AI chamber camera.
-  - **Recommended Profile:** Slice the deflector using **U1 Functional (0.4) - Halterungen, Mechanik** with 6 walls and 35% Gyroid infill for maximum snap retention and heat resistance.
-  - **Slicer Setting with Deflector:** Once installed, the AUX fan is pre-configured to **30%** in our PLA filament cooling settings for high-speed runs without risking warping.
-- **Verdict: Disable (0%) vs. Deflector Mod:**  
-  For 90% of everyday printing, keeping the AUX fan at **0%** is the simplest, quietest, and zero-risk solution. A deflector is a worthwhile hardware upgrade only if you regularly print high-speed PLA speed runs with rapid layer turnover.
-
-Compare the time and material estimates in **Preview** after slicing your model. The result depends on the geometry, material, support and tool changes.
+| [U1 Balanced (0.6) - Allround, Gehause](process/U1%20Balanced%20%280.6%29%20-%20Allround%2C%20Gehause.json) | 0.28 mm | 3 (1.9 mm shell) · 15% Adaptive Cubic | 170 / 260 / 300 mm/s | **0.6mm Standard:** Large enclosures and mechanical housings with double wall strength. |
+| [U1 Fast (0.6) - Grosse Schalen, Kisten](process/U1%20Fast%20%280.6%29%20-%20Grosse%20Schalen%2C%20Kisten.json) | 0.32 mm | 2 (1.25 mm shell) · 10% Adaptive Cubic | 180 / 280 / 320 mm/s | **Massive Volume:** Crates, deep storage bins, tool trays. Maximizes 0.6 mm melt zone throughput. |
+| [U1 Functional (0.6) - Stabile Werkstattteile](process/U1%20Functional%20%280.6%29%20-%20Stabile%20Werkstattteile.json) | 0.24 mm | 4 (2.50 mm solid wall!) · 20% Adaptive Cubic | 150 / 220 / 260 mm/s | **Industrial Duty:** Heavy machine adapters, jigs, wall mounts. |
+| [U1 Draft (0.6) - Grosse Prototypen](process/U1%20Draft%20%280.6%29%20-%20Grosse%20Prototypen.json) | 0.36 mm | 2 · 8% Adaptive Cubic | 200 / 320 / 350 mm/s | High-speed large volume mockups and conceptual models. |
 
 ---
+
 ## Filament presets
 
-[Download the 9 material presets](filament/) for the Snapmaker U1 (compatible with both 0.4 mm and 0.6 mm nozzles). Color variants have been intentionally removed from preset names; colors are assigned dynamically per spool/toolhead in OrcaSlicer's **Prepare** tab. PLA presets are configured with **30% auxiliary fan speed** tuned for the [Auxiliary Fan Deflector](../hardware/aux-fan-deflector/README.md) (set to 0% if printing without a deflector). PETG presets maintain **0%** auxiliary fan to prevent delamination and preserve maximum layer adhesion.
+Tuned for the Phaetus high-flow hotend and high-speed motion system:
 
-| Preset | Spool Colors | Temp (Nozzle / Bed) | Flow Ratio | Pressure Advance | Max Flow (Std / HF) | AUX Fan | Community Tuning Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Bambu Lab PLA Basic** | Jade-Weiß | 220 °C / 65 °C | 0.98 | 0.020 | 22 / 35 mm³/s | 30% | 220 °C sweetspot for high-speed layer adhesion. 0.98 flow eliminates top-ridge over-extrusion. |
-| **SUNLU PLA+ 2.0** | Schwarz, Weiß, Knochenweiß, Olivgrün, Sunny Orange, Little Blue | 215 °C / 65 °C | 0.97 | 0.022 | 22 / 38 mm³/s | 30% | 215 °C prevents matte tearing at high speeds. 0.97 flow ratio compensates for dye swell. |
-| **ELEGOO PLA Matte** | Beige | 210 °C / 65 °C | 0.96 | 0.025 | 18 / 30 mm³/s | 30% | 210 °C preserves velvety matte texture without glossy hot spots. 0.96 flow prevents rough build-up. |
-| **GEEETECH PLA Matte** | Grau | 210 °C / 65 °C | 0.96 | 0.025 | 18 / 30 mm³/s | 30% | 210 °C preserves velvety matte sheen. 0.025 PA keeps corner transitions razor sharp. |
-| **Bambu Lab PETG Basic** | Weiß | 250 °C / 75 °C | 0.95 | 0.035 | 16 / 26 mm³/s | 0% | 250 °C / 255 °C initial for maximum layer fusion. 75 °C PEI bed eliminates corner lifting. |
-| **eSUN PETG Matte** | Apricot, Betongrau, Blue Brick, Dunkelgrau | 240 °C / 75 °C | 0.94 | 0.040 | 14 / 24 mm³/s | 0% | 240 °C maintains pure matte texture without sheen. 0.94 flow prevents nozzle oozing/blobs. |
-| **JAYO High Speed Matte PETG** | Schwarz, Rot | 245 °C / 75 °C | 0.94 | 0.038 | 16 / 28 mm³/s | 0% | 245 °C enables smooth high-speed flow. 0.94 flow prevents rough matte ridges. |
-| **ELEGOO PETG-CF** | Schwarz, Grau | 250 °C / 80 °C | 0.95 | 0.032 | 15 / 24 mm³/s | 0% | 250 °C fuses carbon-fiber polymer matrix. 80 °C PEI bed prevents warping. Hardened nozzle required! |
-| **GEEETECH TPU 95A** | Transparent-Silber | 225 °C / 50 °C | 1.00 | 0.015 | 3.5 / 5.0 mm³/s | 0% | 225 °C glassy layer fusion. 3.5 mm³/s flow cap prevents extruder buckling. 0.5 mm retraction. |
+| Preset | Flow Ratio | Max Volumetric Speed | Nozzle Temp | Recommended Beds | Notes |
+| --- | --- | --- | --- | --- | --- |
+| **SUNLU PLA+ 2.0** | 0.97 | 22 mm³/s (std) / 38 mm³/s (HF) | 215–220 °C | Textured PEI (60 °C), CryoGrip (35 °C) | PA: 0.022. High-speed flow baseline. |
+| **JAYO High Speed Matte PETG** | 0.94 | 18 mm³/s | 245–250 °C | Textured PEI (75 °C) | PA: 0.038. Fast cooling, low stringing. |
+| **ELEGOO PETG-CF** | 0.95 | 15 mm³/s | 250–255 °C | Textured PEI (75 °C) | PA: 0.032. **Requires Hardened Steel Hotend!** |
+| Bambu Lab PLA Basic | 0.98 | 21 mm³/s | 220 °C | Textured PEI (55 °C) | Standard PLA baseline. |
+| Bambu Lab PETG Basic | 0.95 | 14 mm³/s | 255 °C | Textured PEI (70 °C) | Reliable general-purpose PETG. |
+| GEEETECH TPU 95A | 1.00 | 4.5 mm³/s | 220 °C | Textured PEI (45 °C) | Max volumetric limit prevents jams. |
 
 ---
-## Install the presets
 
-1. In OrcaSlicer, enable the **Snapmaker U1** system printer for your nozzle size. Open **Help → Show Configuration Folder**, then close OrcaSlicer.
-2. Back up your presets. [Download the repository ZIP](https://github.com/Reaper2507/snapmaker-u1-homeassistant/archive/refs/heads/main.zip) and extract it. Copy the JSON files from `orcaslicer/process/` and `orcaslicer/filament/` into the matching `process/` and `filament/` folders in your Orca user profile. The usual location is `user/default/` when signed out or the account folder under `user/` when using OrcaCloud. The optional stainless-steel LAN printer presets go into `machine/`. Preserve any presets you already customized.
-3. Reopen OrcaSlicer and select the matching **Snapmaker U1** and nozzle in **Prepare**. Open the **Process** dropdown to find the entries under **User presets**, and use each toolhead’s **Filament** dropdown to assign its material. If a preset is missing, check its `inherits` and `compatible_printers` fields against the system printer and nozzle you enabled.
+## Machine presets (LAN mode)
 
----
-![OrcaSlicer Prepare screen showing the U1 filament selections and process user presets](../screenshots/orcaslicer-u1-user-presets.png)
+- [Snapmaker U1 (0.4 nozzle) - Edelstahl LAN](machine/Snapmaker%20U1%20%280.4%20nozzle%29%20-%20Edelstahl%20LAN.json)
+- [Snapmaker U1 (0.6 nozzle) - Edelstahl LAN](machine/Snapmaker%20U1%20%280.6%20nozzle%29%20-%20Edelstahl%20LAN.json)
 
-See the [OrcaSlicer guide to user profile folders](https://github.com/OrcaSlicer/OrcaSlicer/wiki/user_profiles) for platform and account details.
-
-## Set & Send by LayerLab
-
-Thanks to LayerLab for bringing the U1’s print setup to OrcaSlicer. Set & Send adds a pre-print dialog for filament-to-toolhead mapping and supported U1 job options. [Get Set & Send and follow LayerLab’s installation guide](https://layerlab.store/pages/set-and-send).
-
-1. Select the U1 in OrcaSlicer. Use the network icon next to the printer to enter your U1’s local address.
-2. On a plugin-capable OrcaSlicer build, subscribe to Set & Send and activate it in **Plugins**. In each process preset you want to use, enable Advanced or Expert mode and add **U1 print setup — Set & Send** under **Others → Slicing Pipeline Plugin**, then save the preset. Check the printer address when Orca asks for network access.
-3. Slice, choose **Print**, then **Upload & Print**. Review the mapping and options in the Set & Send dialog. For builds without plugin support, LayerLab’s guide covers the separate Python post-processing script. Use one setup method per process preset.
+These presets configure direct LAN upload to the U1 and pre-set stainless-steel nozzle thermal offsets.
