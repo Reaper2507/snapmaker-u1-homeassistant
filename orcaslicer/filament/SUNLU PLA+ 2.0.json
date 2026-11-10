@@ -1,5 +1,5 @@
 {
-    "inherits": "SUNLU PLA+ 2.0 @System",
+    "inherits": "Snapmaker PLA @U1",
     "compatible_printers": [
         "Snapmaker U1 (0.4 nozzle)",
         "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
@@ -46,5 +46,17 @@
     ],
     "cool_plate_temp_initial_layer": [
         "45"
+    ],
+    "nozzle_temperature_range_low": [
+        "190"
+    ],
+    "nozzle_temperature_range_high": [
+        "240"
+    ],
+    "eng_plate_temp": [
+        "60"
+    ],
+    "eng_plate_temp_initial_layer": [
+        "60"
     ]
 }

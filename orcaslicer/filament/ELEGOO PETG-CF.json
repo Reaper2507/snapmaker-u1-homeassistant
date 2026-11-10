@@ -1,5 +1,5 @@
 {
-    "inherits": "Elegoo PETG-CF @System",
+    "inherits": "Snapmaker PETG-CF @U1",
     "compatible_printers": [
         "Snapmaker U1 (0.4 nozzle)",
         "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
@@ -37,5 +37,23 @@
     ],
     "hot_plate_temp_initial_layer": [
         "75"
+    ],
+    "nozzle_temperature_range_low": [
+        "230"
+    ],
+    "nozzle_temperature_range_high": [
+        "270"
+    ],
+    "cool_plate_temp": [
+        "50"
+    ],
+    "cool_plate_temp_initial_layer": [
+        "50"
+    ],
+    "eng_plate_temp": [
+        "70"
+    ],
+    "eng_plate_temp_initial_layer": [
+        "70"
     ]
 }
