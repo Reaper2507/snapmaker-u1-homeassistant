@@ -3612,6 +3612,208 @@ views:
             grid_options:
               columns: full
               rows: auto
+          - type: custom:button-card
+            template: u1_showcase_data
+            entity: input_boolean.snapmaker_u1_cool_after_printing
+            show_name: false
+            show_icon: false
+            show_label: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            double_tap_action:
+              action: none
+            triggers_update:
+            - input_boolean.snapmaker_u1_cool_after_printing
+            - input_number.snapmaker_u1_cool_after_printing_minutes
+            - input_number.snapmaker_u1_cool_after_printing_speed
+            - input_boolean.snapmaker_u1_cool_after_printing_panel
+            - automation.snapmaker_u1_cool_after_printing
+            custom_fields:
+              tune:
+                card:
+                  type: custom:button-card
+                  entity: input_number.snapmaker_u1_cool_after_printing_minutes
+                  name: Cooling after printing
+                  show_name: true
+                  show_icon: false
+                  show_label: true
+                  triggers_update:
+                  - input_number.snapmaker_u1_cool_after_printing_minutes
+                  - input_number.snapmaker_u1_cool_after_printing_speed
+                  - automation.snapmaker_u1_cool_after_printing
+                  label: '[[[
+
+                    const mins = Math.round(Number(states[''input_number.snapmaker_u1_cool_after_printing_minutes'']?.state ?? 5));
+
+                    const pct = Math.round(Number(states[''input_number.snapmaker_u1_cool_after_printing_speed'']?.state ?? 70));
+
+                    const running = Number(states[''automation.snapmaker_u1_cool_after_printing'']?.attributes?.current ?? 0) > 0;
+
+                    return running ? `Active · ${pct} %` : `${mins} min · ${pct} %`;
+
+                    ]]]'
+                  tap_action:
+                    action: perform-action
+                    perform_action: input_boolean.toggle
+                    target:
+                      entity_id: input_boolean.snapmaker_u1_cool_after_printing_panel
+                  styles:
+                    card:
+                    - padding: 4px 0
+                    - border: none
+                    - border-radius: '0'
+                    - background: transparent
+                    - box-shadow: none
+                    - pointer-events: auto
+                    grid:
+                    - grid-template-areas: '"n l"'
+                    - grid-template-columns: 1fr auto
+                    - grid-template-rows: auto
+                    - column-gap: 8px
+                    - align-items: center
+                    name:
+                    - justify-self: start
+                    - font-weight: '650'
+                    - font-size: 13px
+                    label:
+                    - font-size: 12px
+                    - font-weight: '600'
+                    - color: var(--secondary-text-color)
+              switch:
+                card:
+                  type: custom:button-card
+                  entity: input_boolean.snapmaker_u1_cool_after_printing
+                  triggers_update:
+                  - input_boolean.snapmaker_u1_cool_after_printing
+                  show_icon: false
+                  show_name: false
+                  show_label: true
+                  label: '[[[ return states[''input_boolean.snapmaker_u1_cool_after_printing'']?.state === ''on'' ? ''On'' : ''Off''; ]]]'
+                  tap_action:
+                    action: perform-action
+                    perform_action: input_boolean.toggle
+                    target:
+                      entity_id: input_boolean.snapmaker_u1_cool_after_printing
+                  styles:
+                    card:
+                    - padding: 2px 9px
+                    - border-radius: 999px
+                    - box-shadow: none
+                    - pointer-events: auto
+                    - background: '[[[ return states[''input_boolean.snapmaker_u1_cool_after_printing'']?.state === ''on'' ? ''rgba(255, 128, 105, 0.16)'' : ''rgba(255, 255, 255, 0.06)''; ]]]'
+                    - border: '[[[ return states[''input_boolean.snapmaker_u1_cool_after_printing'']?.state === ''on'' ? ''1px solid rgba(255, 128, 105, 0.45)'' : ''1px solid var(--divider-color)''; ]]]'
+                    label:
+                    - font-size: 11px
+                    - font-weight: '700'
+                    - color: '[[[ return states[''input_boolean.snapmaker_u1_cool_after_printing'']?.state === ''on'' ? ''#ff8069'' : ''var(--secondary-text-color)''; ]]]'
+            styles:
+              card:
+              - padding: 4px 10px 4px 12px
+              - boxShadow: none
+              grid:
+              - grid-template-areas: '"tune switch"'
+              - grid-template-columns: 1fr auto
+              - grid-template-rows: auto
+              - column-gap: 8px
+              - align-items: center
+              custom_fields:
+                tune:
+                - pointer-events: auto
+                switch:
+                - pointer-events: auto
+            grid_options:
+              columns: full
+              rows: auto
+          - type: conditional
+            conditions:
+            - condition: state
+              entity: input_boolean.snapmaker_u1_cool_after_printing_panel
+              state: 'on'
+            card:
+              type: custom:vertical-stack-in-card
+              card_mod:
+                style: 'ha-card { border: 1px solid rgba(255, 128, 105, 0.35); border-radius: 14px; background: var(--ha-card-background, var(--card-background-color)); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32); overflow: hidden; }'
+              cards:
+              - type: custom:button-card
+                template: u1_showcase_data
+                name: Cool after printing · Settings
+                show_name: true
+                show_icon: false
+                show_label: true
+                label: ✕
+                tap_action:
+                  action: perform-action
+                  perform_action: input_boolean.turn_off
+                  target:
+                    entity_id: input_boolean.snapmaker_u1_cool_after_printing_panel
+                styles:
+                  card:
+                  - padding: 8px 12px 4px 12px
+                  - border: none
+                  - border-radius: '0'
+                  - background: transparent
+                  grid:
+                  - grid-template-areas: '"n l"'
+                  - grid-template-columns: 1fr auto
+                  - grid-template-rows: auto
+                  name:
+                  - justify-self: start
+                  - font-size: 12px
+                  - font-weight: '700'
+                  - color: '#ff8069'
+                  label:
+                  - font-size: 13px
+                  - font-weight: '700'
+                  - color: var(--secondary-text-color)
+              - type: entities
+                show_header_toggle: false
+                entities:
+                - type: custom:slider-entity-row
+                  entity: input_number.snapmaker_u1_cool_after_printing_minutes
+                  name: Time
+                  min: 1
+                  max: 15
+                  step: 1
+                  hide_state: false
+                - type: custom:slider-entity-row
+                  entity: input_number.snapmaker_u1_cool_after_printing_speed
+                  name: Fan speed
+                  min: 40
+                  max: 100
+                  step: 5
+                  hide_state: false
+                card_mod:
+                  style: 'ha-card { box-shadow: none; --ha-card-border-width: 0px; background: transparent; } .card-content { padding: 2px 12px 6px 12px; }'
+              - type: custom:button-card
+                template: u1_showcase_data
+                name: Cools bed to 36 °C (stops early if reached). Best for PLA · off for ABS / large PETG.
+                show_name: true
+                show_icon: false
+                show_label: false
+                tap_action:
+                  action: none
+                styles:
+                  card:
+                  - padding: 0 12px 10px 12px
+                  - border: none
+                  - border-radius: '0'
+                  - background: transparent
+                  grid:
+                  - grid-template-areas: '"n"'
+                  - grid-template-columns: 1fr
+                  - grid-template-rows: auto
+                  name:
+                  - justify-self: start
+                  - text-align: left
+                  - white-space: normal
+                  - font-size: 11px
+                  - line-height: '1.35'
+                  - color: var(--secondary-text-color)
+            grid_options:
+              columns: full
+              rows: auto
       - type: grid
         column_span: 3
         cards:
