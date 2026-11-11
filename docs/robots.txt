@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reaper2507.github.io/snapmaker-u1-homeassistant/sitemap.xml
