@@ -31,3 +31,4 @@ Install through HACS and verify their Lovelace resources. Spoolman is optional a
 
 - [Moonraker package](packages/u1_control_package.yaml) for direct controls. Enable [Home Assistant packages](https://www.home-assistant.io/docs/configuration/packages/) if needed, substitute **YOUR_PRINTER_IP**, map entities and validate the HA configuration before restarting. Keep the printer API on your LAN. Test movement only with the machine clear and idle. Software state checks cannot replace the printer's safety procedures.
 - [Fanfare and light automation](automations/README.md) with Alexa Media Player. The core dashboard does not need Alexa.
+- [Cool after printing automation](automations/README.md#optional-post-print-bed-cooldown-fan-cavity_fan) (`cool_after_printing.yaml` + 4 UI helpers) to run the side `cavity_fan` after completion for easier bed release.

@@ -405,6 +405,104 @@ actions:
 mode: single
 max_exceeded: silent
 </code></pre><button data-i18n="btn-copy-yaml" class="btn btn-secondary btn-sm" id="btn-copy-yaml">Copy YAML</button></details></details></div></section>
+<section class="features-section" id="cooling"><div class="container"><details><summary data-i18n="cooling-summary">Optional: cool after printing (bed cooldown fan)</summary><p data-i18n="cooling-note">Small cooling helper below Part cooling fan: toggles the side auxiliary fan (cavity_fan) after print completion with configurable duration (min) and speed (%) for easier part removal on PEI sheets. Stops automatically at ≤ 36 °C, on timer expiry, or when disabled. Recommended sweet spot for PLA: 70 % for 5 min (turn off for ABS/ASA or large flat PETG parts).</p>
+<p><a data-i18n="cooling-setup" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/homeassistant/automations/README.md#optional-post-print-bed-cooldown-fan-cavity_fan">Setup and helper entities</a> · <a data-i18n="cooling-file" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/automations/cool_after_printing.yaml">Open YAML</a></p><details><summary data-i18n="cooling-show">Show YAML</summary><pre class="code-block"><code id="cooling-yaml-code">alias: "Snapmaker U1 – Cool After Printing"
+description: &gt;-
+  Runs the Snapmaker U1 side auxiliary fan (cavity_fan) after print completion
+  to cool the print bed for easier part removal. Stops automatically on timer
+  expiry, bed temperature &lt;= 36 °C, manual toggle off, or a new print.
+mode: restart
+triggers:
+  - trigger: state
+    entity_id: sensor.snapmaker_u1_card_druckstatus
+    from: "printing"
+    to: "complete"
+    id: print_complete
+  - trigger: state
+    entity_id: input_boolean.snapmaker_u1_cool_after_printing
+    to: "off"
+    id: toggle_off
+actions:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: print_complete
+          - condition: state
+            entity_id: input_boolean.snapmaker_u1_cool_after_printing
+            state: "on"
+          - condition: state
+            entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+            state: "on"
+          - condition: numeric_state
+            entity_id: sensor.snapmaker_u1_card_betttemperatur
+            above: 38
+        sequence:
+          - delay:
+              seconds: 2
+          - condition: state
+            entity_id: input_boolean.snapmaker_u1_cool_after_printing
+            state: "on"
+          - condition: state
+            entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+            state: "on"
+          - condition: state
+            entity_id: sensor.snapmaker_u1_card_druckstatus
+            state: "complete"
+          - action: snapmaker_u1_card.send_gcode
+            data:
+              script: &gt;-
+                SET_FAN_SPEED FAN=cavity_fan SPEED={{ ((states('input_number.snapmaker_u1_cool_after_printing_speed') | float(70)) / 100) | round(2) }}
+          - wait_for_trigger:
+              - trigger: numeric_state
+                entity_id: sensor.snapmaker_u1_card_betttemperatur
+                below: 36.5
+              - trigger: state
+                entity_id: input_boolean.snapmaker_u1_cool_after_printing
+                to: "off"
+              - trigger: state
+                entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+                to: "off"
+              - trigger: state
+                entity_id: sensor.snapmaker_u1_card_druckstatus
+                to:
+                  - "printing"
+                  - "paused"
+            timeout:
+              minutes: "{{ states('input_number.snapmaker_u1_cool_after_printing_minutes') | int(5) }}"
+            continue_on_timeout: true
+          - if:
+              - condition: not
+                conditions:
+                  - condition: state
+                    entity_id: sensor.snapmaker_u1_card_druckstatus
+                    state:
+                      - "printing"
+                      - "paused"
+              - condition: state
+                entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+                state: "on"
+            then:
+              - action: snapmaker_u1_card.send_gcode
+                data:
+                  script: "SET_FAN_SPEED FAN=cavity_fan SPEED=0"
+      - conditions:
+          - condition: trigger
+            id: toggle_off
+          - condition: state
+            entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+            state: "on"
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: sensor.snapmaker_u1_card_druckstatus
+                state:
+                  - "printing"
+                  - "paused"
+        sequence:
+          - action: snapmaker_u1_card.send_gcode
+            data:
+              script: "SET_FAN_SPEED FAN=cavity_fan SPEED=0"
+</code></pre><button data-i18n="btn-copy-yaml" class="btn btn-secondary btn-sm" id="btn-copy-cooling-yaml">Copy YAML</button></details></details></div></section>
 <dialog class="controls-preview-dialog" id="controls-preview-dialog" aria-labelledby="controls-preview-title">
   <div class="controls-preview-header"><h2 data-i18n="controls-preview-title" id="controls-preview-title">Printer controls</h2><form method="dialog"><button data-i18n="controls-preview-close" class="btn btn-secondary btn-sm">Close</button></form></div>
   <p data-i18n="controls-preview-caption">Screenshot from Home Assistant. The controls in this preview are illustrative.</p>

@@ -100,6 +100,7 @@ const i18n = {
     "extra-orca": "OrcaSlicer profiles",
     "extra-layer": "LayerLab Set &amp; Send",
     "extra-tone": "Print completion chime and light",
+    "extra-cooling": "Cool after printing (bed cooldown fan)",
     "extra-guide": "Filament guide and FAQ",
     "support-note": "Report a bug, share feedback or buy a coffee if the project helped you.",
     "feedback": "Report an issue",
@@ -124,6 +125,11 @@ const i18n = {
     "fanfare-setup": "Setup and entity mapping",
     "fanfare-file": "Open YAML",
     "fanfare-show": "Show YAML",
+    "cooling-summary": "Optional: cool after printing (bed cooldown fan)",
+    "cooling-note": "Small cooling function below Part cooling fan: toggles the side auxiliary fan (cavity_fan) after print completion with configurable time (min) and speed (%) for easier bed removal. Stops automatically at ≤ 36 °C, on timeout, or when switched off. Best for PLA (70 %, 5 min); disable for ABS or large flat PETG.",
+    "cooling-setup": "Setup and helper entities",
+    "cooling-file": "Open YAML",
+    "cooling-show": "Show YAML",
     "btn-copy-yaml": "Copy YAML",
     "preset-install": "Install presets",
     "preset-setup": "Use OrcaSlicer 2.5 with the matching Snapmaker U1 nozzle preset. Close OrcaSlicer and back up your user presets before copying files. Restart and slice a small test model before sending it to the printer.",
@@ -344,6 +350,7 @@ const i18n = {
     "extra-orca": "OrcaSlicer-Profile",
     "extra-layer": "LayerLab Set &amp; Send",
     "extra-tone": "Druckende-Ton und Lichtimpuls",
+    "extra-cooling": "Nachkühlen nach Druckende (Bettlüfter)",
     "extra-guide": "Filament-Bedienhilfe und FAQ",
     "support-note": "Melde einen Fehler, teile Feedback oder spendiere einen Kaffee, wenn dir das Projekt geholfen hat.",
     "feedback": "Problem melden",
@@ -368,6 +375,11 @@ const i18n = {
     "fanfare-setup": "Einrichtung und Entitäten",
     "fanfare-file": "YAML öffnen",
     "fanfare-show": "YAML anzeigen",
+    "cooling-summary": "Optional: Nachkühlen nach Druckende (Bettlüfter)",
+    "cooling-note": "Kleine Nachkühl-Funktion direkt unter Part cooling fan: steuert nach Druckende den seitlichen Zusatzlüfter (cavity_fan) mit einstellbarer Laufzeit (min) und Drehzahl (%) für leichteres Ablösen von der PEI-Platte. Stoppt automatisch bei ≤ 36 °C, nach Ablauf oder beim Ausschalten. Empfohlen für PLA (70 %, 5 min); bei ABS oder großflächigem PETG auslassen.",
+    "cooling-setup": "Einrichtung und Helfer-Entitäten",
+    "cooling-file": "YAML öffnen",
+    "cooling-show": "YAML anzeigen",
     "btn-copy-yaml": "YAML kopieren",
     "preset-install": "Profile installieren",
     "preset-setup": "Nutze OrcaSlicer 2.5 mit dem passenden Snapmaker-U1-Düsenprofil. Beende OrcaSlicer und sichere deine Benutzerprofile vor dem Kopieren. Starte neu und slice ein kleines Testmodell, bevor du es an den Drucker sendest.",
@@ -708,24 +720,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Copy YAML Code Button
-  const btnCopyYaml = document.getElementById('btn-copy-yaml');
-  const yamlCodeEl = document.getElementById('fanfare-yaml-code');
-
-  if (btnCopyYaml && yamlCodeEl) {
-    btnCopyYaml.addEventListener('click', () => {
-      navigator.clipboard.writeText(yamlCodeEl.textContent).then(() => {
-        const originalText = btnCopyYaml.innerHTML;
-        btnCopyYaml.textContent = currentLang === 'de' ? 'YAML kopiert' : 'YAML copied';
-        btnCopyYaml.style.background = '#238636';
-        setTimeout(() => {
-          btnCopyYaml.innerHTML = originalText;
-          btnCopyYaml.style.background = '';
-        }, 2000);
-      }).catch(err => {
-        console.error('Failed to copy YAML: ', err);
+  // Copy YAML Code Buttons
+  [
+    ['btn-copy-yaml', 'fanfare-yaml-code'],
+    ['btn-copy-cooling-yaml', 'cooling-yaml-code']
+  ].forEach(([btnId, codeId]) => {
+    const btn = document.getElementById(btnId);
+    const code = document.getElementById(codeId);
+    if (btn && code) {
+      btn.addEventListener('click', () => {
+        navigator.clipboard.writeText(code.textContent).then(() => {
+          const originalText = btn.innerHTML;
+          btn.textContent = currentLang === 'de' ? 'YAML kopiert' : 'YAML copied';
+          btn.style.background = '#238636';
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+          }, 2000);
+        }).catch(err => {
+          console.error('Failed to copy YAML: ', err);
+        });
       });
-    });
-  }
+    }
+  });
 
 });
