@@ -13,7 +13,7 @@
   <meta property="og:title" content="Snapmaker U1 Dashboard for Home Assistant · Reaper2507">
   <meta property="og:description" content="Snapmaker U1 Home Assistant Community Hub by Reaper2507: Studio &amp; Cutaway live rendering, 3 Lovelace views, post-print bed cooling, hardware mod, and 26 tuned OrcaSlicer presets.">
   <meta property="og:url" content="https://reaper2507.github.io/snapmaker-u1-homeassistant/">
-  <meta property="og:image" content="https://reaper2507.github.io/snapmaker-u1-homeassistant/assets/studio-dashboard.png">
+  <meta property="og:image" content="https://reaper2507.github.io/snapmaker-u1-homeassistant/assets/dashboard-main.jpg">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -69,63 +69,59 @@
 
   <main id="main-content" tabindex="-1">
 
-    <!-- Compact Hub Hero -->
+    <!-- Compact Hero -->
     <section class="hero-section">
       <div class="container hero-container">
         <div class="hero-content">
-          <div class="pill-badge" data-i18n="hero-badge">Home Assistant · Snapmaker U1</div>
           <h1 data-i18n="hero-title-hub">Snapmaker U1 Dashboard</h1>
-          <p class="hero-lead" data-i18n="hero-lead-hub">A complete Home Assistant hub for the 4-toolhead Snapmaker U1: live Studio &amp; Cutaway printer graphics, tap-to-control popups, three Lovelace views, post-print bed cooling, hardware airflow mod, and tuned OrcaSlicer 2.5 presets.</p>
-          <p class="dashboard-credit" data-i18n="main-credit">Community hub by <a href="https://github.com/Reaper2507" target="_blank" rel="noopener noreferrer">Reaper2507</a>, built on <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card" target="_blank" rel="noopener noreferrer">Ironoxx’s Snapmaker U1 integration</a>.</p>
+          <p class="hero-lead" data-i18n="hero-lead-hub">Home Assistant dashboard, post-print bed cooling, and OrcaSlicer presets for the Snapmaker U1 — built on Ironoxx’s integration.</p>
+          <p class="dashboard-credit" data-i18n="main-credit">Community collection by <a href="https://github.com/Reaper2507" target="_blank" rel="noopener noreferrer">Reaper2507</a>, built on <a href="https://github.com/Ironoxx/ha-snapmaker-u1-card" target="_blank" rel="noopener noreferrer">Ironoxx’s Snapmaker U1 integration</a>.</p>
           <div class="hero-actions">
-            <a data-i18n="install-cta" href="install.html" class="btn btn-primary">Install dashboard</a>
-            <a data-i18n="dash-cta" href="#showcase" class="btn btn-secondary">Screenshots &amp; Views</a>
+            <a data-i18n="install-cta" href="install.html" class="btn btn-primary">Install</a>
+            <a data-i18n="nav-orcaslicer" href="orcaslicer.html" class="btn btn-secondary">OrcaSlicer</a>
             <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub Repo</a>
           </div>
         </div>
 
         <div class="hero-image">
-          <a href="assets/printer-controls.png" class="controls-preview-trigger" aria-haspopup="dialog">
-            <img src="assets/studio-card.png" alt="Studio view of the Snapmaker U1 showing the four filament spool positions, tool temperatures and axes" class="preview-card studio-hero-card">
-            <span data-i18n="controls-preview-open" class="controls-preview-label">Tap the printer to see its controls</span>
-          </a>
+          <button type="button" class="hero-preview-btn" data-lightbox-src="assets/dashboard-main.jpg" data-lightbox-title="Snapmaker U1 Dashboard">
+            <img src="assets/dashboard-main.jpg" alt="Snapmaker U1 Home Assistant dashboard showing Studio view, camera, last print, Cooling after printing, and 4 toolheads">
+          </button>
         </div>
-
-        <ul class="hero-features" aria-label="Dashboard highlights">
-          <li>
-            <strong data-i18n="home-feature-filament-title">Live Studio &amp; Cutaway rendering</strong>
-            <span data-i18n="home-feature-filament-desc">T0–T3 spool colors update live alongside mounted toolhead, XYZ axes, and nozzle/bed temperatures.</span>
-          </li>
-          <li>
-            <strong data-i18n="home-feature-heat-title">Tap printer for Controls &amp; Heat</strong>
-            <span data-i18n="home-feature-heat-desc">Open Print speed, Flow, Cooling after printing, and per-head Filament &amp; heat sliders straight from the graphic.</span>
-          </li>
-          <li>
-            <strong data-i18n="home-feature-printing-title">Cool after printing &amp; automations</strong>
-            <span data-i18n="home-feature-printing-desc">Side cavity_fan cooldown (5 min · 70 %, auto-off ≤ 36 °C), completion chime, and chamber light pulse.</span>
-          </li>
-          <li>
-            <strong data-i18n="home-feature-maintenance-title">OrcaSlicer 2.5 suite &amp; Hardware mod</strong>
-            <span data-i18n="home-feature-maintenance-desc">9 tuned 0.4/0.6 mm process profiles, 17 material presets, LAN machine profiles, and Aux Fan Deflector STL.</span>
-          </li>
-        </ul>
       </div>
     </section>
 
-    <!-- Clear Credit Split: Built on Ironoxx vs What I Added -->
+    <!-- Credit Split: Reaper2507 (left) vs Ironoxx (right) -->
     <section class="features-section" id="built-on">
       <div class="container">
         <div class="section-header">
-          <span class="badge-tag" data-i18n="split-badge">Transparent credits</span>
-          <h2 data-i18n="split-title">Upstream foundation · Curated hub by Reaper2507</h2>
-          <p class="section-intro" data-i18n="split-intro">Transparent credit matters: Ironoxx built the underlying integration and core card features. Reaper2507 curates, tests, and combines genuinely useful daily-driver tools into one clean setup — no gimmicks, no bloat.</p>
+          <h2 data-i18n="split-title">Reaper2507 &amp; Ironoxx</h2>
+          <p class="section-intro" data-i18n="split-intro">Ironoxx built the integration and core card. Reaper2507 puts the dashboard layouts, post-print cooling, and OrcaSlicer presets together.</p>
         </div>
 
         <div class="split-credit-grid">
-          <!-- Left: Ironoxx -->
+          <!-- Left: Reaper2507 -->
+          <article class="split-card reaper-card">
+            <div class="split-card-header">
+              <h3 data-i18n="split-reaper-title">Curated, tested &amp; assembled by Reaper2507</h3>
+              <span class="badge-tag" data-i18n="split-reaper-badge">Community Hub</span>
+            </div>
+            <ul class="split-list">
+              <li data-i18n="split-reaper-1"><strong>Studio &amp; Cutaway layouts:</strong> Clear view with T0–T3 spools, live XYZ &amp; temperatures, and Controls &amp; Filament &amp; Heat popups.</li>
+              <li data-i18n="split-reaper-2"><strong>Three dashboard views + control package:</strong> Dashboard, Minimal, and Maintenance &amp; Diagnostics paired with <code>u1_control_package.yaml</code>.</li>
+              <li data-i18n="split-reaper-3"><strong>Post-print bed cooling:</strong> Compact <code>Cooling after printing</code> row (<code>cavity_fan</code>, 5 min · 70 %, auto-off ≤ 36 °C) plus optional completion signal.</li>
+              <li data-i18n="split-reaper-4"><strong>OrcaSlicer presets &amp; fan deflector:</strong> 9 process profiles, 17 filament presets, LAN configs, and the archived MakerWorld #3107806 Aux Fan Deflector.</li>
+            </ul>
+            <div class="split-card-actions">
+              <a href="https://ko-fi.com/Reaper2507" target="_blank" rel="noopener noreferrer" class="coffee-link" data-i18n="coffee-maintainer">☕ Support Reaper2507 on Ko-fi</a>
+              <a href="credits.html" class="extra-card-link" data-i18n="nav-credits">Credits →</a>
+            </div>
+          </article>
+
+          <!-- Right: Ironoxx -->
           <article class="split-card ironoxx-card">
             <div class="split-card-header">
-              <h3 data-i18n="split-iron-title">Built on Ironoxx’s Snapmaker U1 Card</h3>
+              <h3 data-i18n="split-iron-title">Upstream: Ironoxx’s Snapmaker U1 Card</h3>
               <span class="badge-tag" data-i18n="credit-primary">Core integration</span>
             </div>
             <ul class="split-list">
@@ -138,171 +134,116 @@
               <a href="https://ko-fi.com/ironoxx" target="_blank" rel="noopener noreferrer" class="coffee-link" data-i18n="coffee-ironoxx">☕ Coffee for Ironoxx</a>
             </div>
           </article>
-
-          <!-- Right: Reaper2507 -->
-          <article class="split-card reaper-card">
-            <div class="split-card-header">
-              <h3 data-i18n="split-reaper-title">Curated, tested &amp; assembled by Reaper2507</h3>
-              <span class="badge-tag" data-i18n="split-reaper-badge">Community Hub</span>
-            </div>
-            <ul class="split-list">
-              <li data-i18n="split-reaper-1"><strong>Structured Studio &amp; Cutaway layout:</strong> Clean visual presentation with T0–T3 spool colors, live XYZ &amp; temperatures, and direct access to Controls &amp; Filament &amp; Heat.</li>
-              <li data-i18n="split-reaper-2"><strong>Three practical Lovelace views + control package:</strong> Organized Full, Minimal, and Maintenance &amp; Diagnostics layouts ready to drop in, paired with <code>u1_control_package.yaml</code>.</li>
-              <li data-i18n="split-reaper-3"><strong>Useful post-print automation:</strong> Compact <code>Cool after printing</code> row (<code>cavity_fan</code>, 5 min · 70 %, auto-off ≤ 36 °C) for effortless PEI part removal, plus optional completion cues.</li>
-              <li data-i18n="split-reaper-4"><strong>Curated OrcaSlicer presets &amp; tested hardware fix:</strong> 9 process profiles, 17 material baselines across 9 filaments, LAN configs, and the archived MakerWorld #3107806 Aux Fan Deflector.</li>
-            </ul>
-            <div class="split-card-actions">
-              <a href="https://ko-fi.com/Reaper2507" target="_blank" rel="noopener noreferrer" class="coffee-link" data-i18n="coffee-maintainer">☕ Support Reaper2507 on Ko-fi</a>
-              <a href="credits.html" class="extra-card-link" data-i18n="nav-credits">Full credits →</a>
-            </div>
-          </article>
         </div>
       </div>
     </section>
 
-    <!-- Visual Showcase Gallery (click any image to zoom) -->
+    <!-- Visual Showcase: Show, don't hype -->
     <section class="features-section" id="showcase">
       <div class="container">
         <div class="section-header">
-          <span class="badge-tag" data-i18n="gallery-badge">Screenshots</span>
-          <h2 data-i18n="showcase-title">Inside the Dashboard</h2>
-          <p class="section-intro" data-i18n="showcase-intro">Click any screenshot to inspect it full-size, or test the interactive Studio / Cutaway switcher on the <a href="homeassistant.html#telemetry">Dashboard page</a>.</p>
+          <h2 data-i18n="showcase-title">What’s inside — shown in screenshots</h2>
+          <p class="section-intro" data-i18n="showcase-intro">Click any screenshot to zoom in.</p>
         </div>
 
         <div class="showcase-grid">
-          <!-- Wide Full Dashboard -->
           <article class="showcase-card showcase-wide">
-            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/studio-dashboard.png" data-lightbox-title="Full Studio Dashboard" data-i18n-title="sc-full-title">
-              <img src="assets/studio-dashboard.png" alt="Full Snapmaker U1 Home Assistant dashboard showing Studio view, camera, progress, speed/flow and all 4 toolheads" loading="lazy">
+            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/dashboard-main.jpg" data-lightbox-title="Dashboard">
+              <img src="assets/dashboard-main.jpg" alt="Main Snapmaker U1 dashboard showing tools and material, camera, last print, cooling after printing, toolheads, and motion controls" loading="lazy">
             </button>
             <div class="showcase-card-body">
-              <h3 data-i18n="sc-full-title">Full Dashboard · Studio, Camera, Speed &amp; 4 Toolheads</h3>
-              <p data-i18n="sc-full-desc">Upper control deck with live T0–T3 spool colors, camera stream with light toggle, ETA/progress, and per-head filament controls.</p>
+              <h3 data-i18n="sc-full-title">Dashboard (Main View)</h3>
+              <p data-i18n="sc-full-desc">Top: printer graphic with T0–T3 spools, camera with light toggle, and job card. Below: speed, flow, Cooling after printing, all four toolheads, and axis controls.</p>
             </div>
           </article>
 
-          <!-- Tap Printer: Filament & Heat Popup -->
           <article class="showcase-card">
-            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/printer-controls-filament-heat.png" data-lightbox-title="Filament &amp; Heat popup">
-              <img src="assets/printer-controls-filament-heat.png" alt="Filament and heat dialog opened by tapping the printer card" loading="lazy">
+            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/cooling-settings.png" data-lightbox-title="Cooling after printing">
+              <img src="assets/cooling-settings.png" alt="Cooling after printing toggle row with expanded Time and Fan speed sliders" loading="lazy">
             </button>
             <div class="showcase-card-body">
-              <h3 data-i18n="sc-heat-title">Tap the Printer → Controls &amp; Filament &amp; Heat</h3>
-              <p data-i18n="sc-heat-desc">Tapping the U1 graphic opens Controls (speed, flow, pause) and Filament &amp; Heat for all four toolheads.</p>
+              <h3 data-i18n="sc-cool-title">Cooling after printing</h3>
+              <p data-i18n="sc-cool-desc">Switch below Part cooling fan: when On, the side fan runs after printing finishes until the bed reaches 36 °C (or time runs out). Tapping the row opens Time and Fan speed sliders. <a href="homeassistant.html#cooling">YAML →</a></p>
             </div>
           </article>
 
-          <!-- Cutaway Live Mode -->
           <article class="showcase-card">
-            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/tools-material-cutaway-printing.png" data-lightbox-title="Cutaway live axes mode">
-              <img src="assets/tools-material-cutaway-printing.png" alt="Cutaway telemetry mode with wireframe axes X, Y, Z and mounted T3 indicator" loading="lazy">
+            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/minimal-view.png" data-lightbox-title="Minimal View">
+              <img src="assets/minimal-view.png" alt="Minimal dashboard view with tools, camera, last print, Cooling after printing, files and layer view" loading="lazy">
             </button>
             <div class="showcase-card-body">
-              <h3 data-i18n="sc-cutaway-title">Alternative Cutaway View · Live XYZ &amp; Dock State</h3>
-              <p data-i18n="sc-cutaway-desc">Switch between Studio and technical Cutaway in one toggle — showing live X/Y/Z coordinates and docked/mounted heads.</p>
+              <h3 data-i18n="sc-minimal-title">Minimal View</h3>
+              <p data-i18n="sc-minimal-desc">Compact daily view without the full head and motion panels: printer graphic, camera, last print, Emergency stop, Cooling after printing, files, and layer view.</p>
             </div>
           </article>
 
-          <!-- Files & Layer View -->
           <article class="showcase-card">
-            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/dashboard-full-files.png" data-lightbox-title="Files, History &amp; Object Exclusion">
-              <img src="assets/dashboard-full-files.png" alt="Lower dashboard showing print files, history, timelapse and Ironoxx layer view with object exclusion" loading="lazy">
+            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/dashboard-files.jpg" data-lightbox-title="Files &amp; Layer View">
+              <img src="assets/dashboard-files.jpg" alt="Files, history, timelapse tabs and live layer view card" loading="lazy">
             </button>
             <div class="showcase-card-body">
-              <h3 data-i18n="sc-files-title">Files, History &amp; Layer View (Ironoxx Object Exclusion)</h3>
-              <p data-i18n="sc-files-desc">Queue prints directly, browse timelapses, and skip individual objects in Ironoxx’s live layer view mid-print.</p>
+              <h3 data-i18n="sc-files-title">Files, History &amp; Layer View</h3>
+              <p data-i18n="sc-files-desc">Start prints directly from the list, browse timelapses, and skip individual objects mid-print using Ironoxx’s live layer view.</p>
             </div>
           </article>
 
-          <!-- Maintenance & Bed Mesh -->
           <article class="showcase-card">
-            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/maintenance-detail.png" data-lightbox-title="Maintenance &amp; Diagnostics View">
-              <img src="assets/maintenance-detail.png" alt="Maintenance view with 11x11 bed leveling mesh, Klipper console, temperature history and service intervals" loading="lazy">
+            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/maintenance-view.jpg" data-lightbox-title="Maintenance &amp; Diagnostics">
+              <img src="assets/maintenance-view.jpg" alt="Maintenance view with G-code console, temperature history, 11x11 bed leveling mesh, maintenance timers and diagnostics" loading="lazy">
             </button>
             <div class="showcase-card-body">
-              <h3 data-i18n="sc-maint-title">Maintenance &amp; Diagnostics · 11×11 Bed Mesh &amp; Console</h3>
-              <p data-i18n="sc-maint-desc">Dedicated diagnostics view uniting Klipper G-code console, temperature curves, bed mesh, MCU load, and service intervals.</p>
+              <h3 data-i18n="sc-maint-title">Maintenance &amp; Diagnostics</h3>
+              <p data-i18n="sc-maint-desc">Klipper G-code console, temperature graph, 11×11 bed mesh, system diagnostics, and maintenance counters on one page.</p>
             </div>
           </article>
-        </div>
 
-        <!-- 3 Views quick row -->
-        <div class="views-grid-3">
-          <article class="feature-card">
-            <a class="dashboard-view-link" href="homeassistant.html#showcase">
-              <img src="assets/studio-dashboard.png" alt="Full dashboard view" loading="lazy">
-              <h3 data-i18n="home-view-dashboard">Full View</h3>
-            </a>
-            <p data-i18n="home-view-dashboard-desc">Printer controls, filament management, camera, files and layer view.</p>
+          <article class="showcase-card">
+            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/printer-controls-filament-heat.png" data-lightbox-title="Tap Printer: Controls &amp; Heat">
+              <img src="assets/printer-controls-filament-heat.png" alt="Popup with speed, flow, pause and Filament and heat settings for all four toolheads" loading="lazy">
+            </button>
+            <div class="showcase-card-body">
+              <h3 data-i18n="sc-heat-title">Tap the Printer → Controls &amp; Heat</h3>
+              <p data-i18n="sc-heat-desc">Tapping the printer card opens speed, flow, pause, and per-head filament and temperature controls.</p>
+            </div>
           </article>
-          <article class="feature-card">
-            <a class="dashboard-view-link" href="homeassistant.html?view=minimal#showcase">
-              <img src="assets/minimal-printing.png" alt="Minimal dashboard view" loading="lazy">
-              <h3 data-i18n="home-view-minimal">Minimal View</h3>
-            </a>
-            <p data-i18n="home-view-minimal-desc">Compact status view with live camera, ETA, recent files and current layer.</p>
-          </article>
-          <article class="feature-card">
-            <a class="dashboard-view-link" href="homeassistant.html?view=mobile#showcase">
-              <img src="assets/dashboard-mobile.jpg" alt="Mobile layout" loading="lazy">
-              <h3 data-i18n="tab-mobile">Phone View</h3>
-            </a>
-            <p data-i18n="gallery-phone-note">Clean vertical stack for checking progress and pausing on the go.</p>
+
+          <article class="showcase-card">
+            <button type="button" class="showcase-thumb-btn" data-lightbox-src="assets/tools-material-cutaway-printing.png" data-lightbox-title="Cutaway View">
+              <img src="assets/tools-material-cutaway-printing.png" alt="Cutaway printer graphic showing live X/Y/Z coordinates and mounted toolhead" loading="lazy">
+            </button>
+            <div class="showcase-card-body">
+              <h3 data-i18n="sc-cutaway-title">Studio / Cutaway Toggle</h3>
+              <p data-i18n="sc-cutaway-desc">Optional Cutaway graphic showing live X/Y/Z coordinates and which toolhead is mounted or parked. <a href="homeassistant.html#telemetry">Preview →</a></p>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Everything Included in the Hub (Reaper2507 Additions Showcase) -->
+    <!-- Plain links for non-dashboard repo files -->
     <section class="features-section" id="extras">
       <div class="container">
         <div class="section-header">
-          <span class="badge-tag" data-i18n="extras-badge">Included in the package</span>
-          <h2 data-i18n="extras-title">Automations, Slicer Profiles &amp; Hardware Mod</h2>
-          <p class="section-intro" data-i18n="extras-intro">Beyond the dashboard itself, this repository ships ready-to-use automations, a complete OrcaSlicer preset suite, and a tested chamber airflow upgrade.</p>
+          <h2 data-i18n="extras-title">Also in this repository</h2>
         </div>
 
         <div class="extras-showcase-grid">
-          <article class="extra-feature-card extra-highlight">
-            <div class="extra-card-icon">🌬️</div>
-            <h3 data-i18n="ex-cool-title">Cool after printing (cavity_fan)</h3>
-            <p data-i18n="ex-cool-desc">Compact toggle &amp; slider panel right below Part cooling fan: cools the PEI bed after completion (default 5 min at 70 %) and stops automatically at ≤ 36 °C or next print. Included in <code>u1_control_package.yaml</code> or standalone.</p>
-            <a class="extra-card-link" href="homeassistant.html#cooling" data-i18n="ex-cool-link">Open YAML &amp; settings →</a>
-          </article>
-
-          <article class="extra-feature-card extra-highlight">
-            <div class="extra-card-icon">🎛️</div>
-            <h3 data-i18n="ex-proc-title">9 OrcaSlicer Process Profiles (0.4 &amp; 0.6 mm)</h3>
-            <p data-i18n="ex-proc-desc">Standardized profiles for every job: Balanced (0.20 / 0.28 mm, VFA-free 200 mm/s), Fast for organizers, Functional for brackets, Draft for rapid fit checks, plus QR-Code &amp; Schild (0.4 mm).</p>
-            <a class="extra-card-link" href="orcaslicer.html#process-profiles" data-i18n="ex-proc-link">Browse all 9 process profiles →</a>
-          </article>
-
-          <article class="extra-feature-card extra-highlight">
-            <div class="extra-card-icon">🧵</div>
-            <h3 data-i18n="ex-fil-title">17 Verified Filament Presets &amp; LAN Machines</h3>
-            <p data-i18n="ex-fil-desc">Tuned flow, pressure advance, and volumetric limits for 9 materials (SUNLU PLA+ 2.0, Bambu PLA/PETG, ELEGOO PLA Matte &amp; PETG-CF, eSUN PETG Matte, GEEETECH PLA/TPU 95A, JAYO HS PETG) for 0.4 &amp; 0.6 mm nozzles + LAN printer profiles.</p>
-            <a class="extra-card-link" href="orcaslicer.html#filaments" data-i18n="ex-fil-link">Download filament presets →</a>
+          <article class="extra-feature-card">
+            <h3 data-i18n="ex-slicer-title">OrcaSlicer 2.5 Profiles &amp; Filaments</h3>
+            <p data-i18n="ex-slicer-desc">9 process profiles (0.4 &amp; 0.6 mm nozzles), 17 tested filament presets, and 2 LAN machine configs ready to download.</p>
+            <a class="extra-card-link" href="orcaslicer.html" data-i18n="ex-slicer-link">Open OrcaSlicer page →</a>
           </article>
 
           <article class="extra-feature-card">
-            <div class="extra-card-icon">🌀</div>
-            <h3 data-i18n="ex-mod-title">Hardware Mod: Auxiliary Fan Deflector (MakerWorld #3107806)</h3>
-            <p data-i18n="ex-mod-desc">Archived MakerWorld #3107806 model (<code>U1-Fan_Deflector-Smooth.stl</code>): clips onto the side AUX fan and redirects airflow upward — stopping left-bed PLA/PETG warping so 30 % AUX stays usable.</p>
-            <a class="extra-card-link" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/tree/main/hardware/aux-fan-deflector" target="_blank" rel="noopener noreferrer" data-i18n="ex-mod-link">View STL &amp; print guide →</a>
+            <h3 data-i18n="ex-mod-title">Aux Fan Deflector (MakerWorld #3107806)</h3>
+            <p data-i18n="ex-mod-desc">Clips onto the side AUX fan and directs airflow upward so PLA/PETG prints on the left side of the bed don’t warp.</p>
+            <a class="extra-card-link" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/tree/main/hardware/aux-fan-deflector" target="_blank" rel="noopener noreferrer" data-i18n="ex-mod-link">STL &amp; print notes →</a>
           </article>
 
           <article class="extra-feature-card">
-            <div class="extra-card-icon">🔔</div>
-            <h3 data-i18n="ex-bell-title">Optional: Print Completion Cue</h3>
-            <p data-i18n="ex-bell-desc">Practical notification via <code>fertigdruck_fanfare.yaml</code>: brief 1.2 s chamber-light signal on completion plus optional Alexa chime when you are in another room.</p>
-            <a class="extra-card-link" href="homeassistant.html#fanfare" data-i18n="ex-bell-link">Show automation YAML →</a>
-          </article>
-
-          <article class="extra-feature-card">
-            <div class="extra-card-icon">🤖</div>
-            <h3 data-i18n="ex-guide-title">Quick &amp; AI Install</h3>
-            <p data-i18n="ex-guide-desc">Step-by-step HACS setup for all 6 frontend cards, raw YAML import, plus a 1-click installation prompt for Home Assistant AI setups.</p>
-            <a class="extra-card-link" href="install.html" data-i18n="ex-guide-link">Go to Install →</a>
+            <h3 data-i18n="ex-install-title">Completion Cue &amp; Install</h3>
+            <p data-i18n="ex-install-desc">Optional 1.2 s chamber-light signal and Alexa chime (<code>fertigdruck_fanfare.yaml</code>), plus step-by-step &amp; AI install instructions.</p>
+            <a class="extra-card-link" href="install.html" data-i18n="ex-install-link">Install &amp; YAML →</a>
           </article>
         </div>
       </div>
