@@ -71,13 +71,22 @@
         "0"
     ],
     "fan_max_speed": [
-        "30",
-        "30"
+        "55",
+        "55"
     ],
     "filament_density": [
         "1.25"
     ],
     "filament_retraction_length": [
         "0.8"
+    ],
+    "slow_down_layer_time": [
+        "8"
+    ],
+    "slow_down_min_speed": [
+        "20"
+    ],
+    "overhang_fan_speed": [
+        "80"
     ]
 }
