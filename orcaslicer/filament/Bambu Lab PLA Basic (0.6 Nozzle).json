@@ -1,0 +1,83 @@
+{
+    "inherits": "Snapmaker PLA @U1",
+    "compatible_printers": [
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "name": "Bambu Lab PLA Basic (0.6 Nozzle)",
+    "from": "User",
+    "version": "2.5.0.0",
+    "additional_cooling_fan_speed": [
+        "30",
+        "30"
+    ],
+    "dont_slow_down_outer_wall": [
+        "1"
+    ],
+    "description": "Bambu Lab PLA Basic (Jade-Weiß). Community-tuned: 220°C sweetspot, 0.98 flow ratio, 0.020 PA, 30% AUX with deflector.\n• Optimiert für 0.6 mm Düse (reduzierter Gegendruck: 28 mm³/s Standard / 40 mm³/s HighFlow).",
+    "filament_max_volumetric_speed": [
+        "28",
+        "40"
+    ],
+    "nozzle_temperature": [
+        "225",
+        "225"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "220",
+        "220"
+    ],
+    "textured_plate_temp": [
+        "65"
+    ],
+    "textured_plate_temp_initial_layer": [
+        "65"
+    ],
+    "hot_plate_temp": [
+        "60"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "60"
+    ],
+    "cool_plate_temp": [
+        "45"
+    ],
+    "cool_plate_temp_initial_layer": [
+        "45"
+    ],
+    "nozzle_temperature_range_low": [
+        "190"
+    ],
+    "nozzle_temperature_range_high": [
+        "240"
+    ],
+    "eng_plate_temp": [
+        "60"
+    ],
+    "eng_plate_temp_initial_layer": [
+        "60"
+    ],
+    "filament_type": [
+        "PLA"
+    ],
+    "filament_flow_ratio": [
+        "0.98"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.020"
+    ],
+    "fan_min_speed": [
+        "100",
+        "100"
+    ],
+    "fan_max_speed": [
+        "100",
+        "100"
+    ],
+    "filament_density": [
+        "1.24"
+    ]
+}

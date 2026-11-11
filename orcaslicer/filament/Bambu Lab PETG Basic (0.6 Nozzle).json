@@ -1,0 +1,80 @@
+{
+    "inherits": "Snapmaker PETG @U1",
+    "compatible_printers": [
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "name": "Bambu Lab PETG Basic (0.6 Nozzle)",
+    "from": "User",
+    "version": "2.5.0.0",
+    "additional_cooling_fan_speed": [
+        "0",
+        "0"
+    ],
+    "description": "Bambu Lab PETG Basic (Weiß). Community-tuned: 250°C/255°C for max layer fusion and zero delamination, 75°C PEI bed, 0.95 flow ratio, 0% AUX.\n• Optimiert für 0.6 mm Düse (reduzierter Gegendruck: 22 mm³/s Standard / 30 mm³/s HighFlow).",
+    "filament_max_volumetric_speed": [
+        "22",
+        "30"
+    ],
+    "nozzle_temperature": [
+        "255",
+        "255"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "255",
+        "255"
+    ],
+    "textured_plate_temp": [
+        "75"
+    ],
+    "textured_plate_temp_initial_layer": [
+        "75"
+    ],
+    "hot_plate_temp": [
+        "70"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "70"
+    ],
+    "nozzle_temperature_range_low": [
+        "230"
+    ],
+    "nozzle_temperature_range_high": [
+        "265"
+    ],
+    "cool_plate_temp": [
+        "50"
+    ],
+    "cool_plate_temp_initial_layer": [
+        "50"
+    ],
+    "eng_plate_temp": [
+        "70"
+    ],
+    "eng_plate_temp_initial_layer": [
+        "70"
+    ],
+    "filament_type": [
+        "PETG"
+    ],
+    "filament_flow_ratio": [
+        "0.95"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.035"
+    ],
+    "fan_min_speed": [
+        "20",
+        "20"
+    ],
+    "fan_max_speed": [
+        "50",
+        "50"
+    ],
+    "filament_density": [
+        "1.25"
+    ]
+}
