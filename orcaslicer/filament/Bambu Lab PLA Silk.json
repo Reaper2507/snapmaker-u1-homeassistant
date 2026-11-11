@@ -1,0 +1,82 @@
+{
+    "inherits": "Snapmaker PLA Silk @U1",
+    "compatible_printers": [
+        "Snapmaker U1 (0.4 nozzle)",
+        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "name": "Bambu Lab PLA Silk",
+    "from": "User",
+    "version": "2.5.0.0",
+    "additional_cooling_fan_speed": [
+        "30",
+        "30"
+    ],
+    "description": "Bambu Lab PLA Silk. OrcaFilamentLibrary baseline tuned for U1 gloss finish: 230°C (235°C on 0.6 mm), 12 mm³/s (0.4) / 18 mm³/s (0.6) to preserve shine.",
+    "filament_max_volumetric_speed": [
+        "12",
+        "16"
+    ],
+    "nozzle_temperature": [
+        "230",
+        "230"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "230",
+        "230"
+    ],
+    "textured_plate_temp": [
+        "60"
+    ],
+    "textured_plate_temp_initial_layer": [
+        "60"
+    ],
+    "hot_plate_temp": [
+        "55"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "55"
+    ],
+    "cool_plate_temp": [
+        "35"
+    ],
+    "cool_plate_temp_initial_layer": [
+        "35"
+    ],
+    "eng_plate_temp": [
+        "55"
+    ],
+    "eng_plate_temp_initial_layer": [
+        "55"
+    ],
+    "nozzle_temperature_range_low": [
+        "210"
+    ],
+    "nozzle_temperature_range_high": [
+        "240"
+    ],
+    "filament_type": [
+        "PLA"
+    ],
+    "filament_flow_ratio": [
+        "0.98"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.025"
+    ],
+    "fan_min_speed": [
+        "80",
+        "80"
+    ],
+    "fan_max_speed": [
+        "100",
+        "100"
+    ],
+    "filament_density": [
+        "1.25"
+    ]
+}

@@ -13,11 +13,11 @@ const i18n = {
     "ha-banner-lead": "The dashboard brings together the live printer card, filament management, print controls, job and camera views, and maintenance. It builds on <a href=\"https://github.com/Ironoxx/ha-snapmaker-u1-card\">Ironoxx’s Snapmaker U1 integration</a>.",
     "slicer-banner-badge": "OrcaSlicer 2.5 Suite",
     "slicer-banner-title": "OrcaSlicer Profiles &amp; Filament Presets",
-    "slicer-banner-lead": "Tested, curated presets for the Snapmaker U1 in OrcaSlicer 2.5: 9 process profiles for 0.4 &amp; 0.6 mm nozzles, 17 verified filament presets across 9 materials, and stainless LAN machine profiles.",
+    "slicer-banner-lead": "Tested &amp; community-ready presets for the Snapmaker U1 in OrcaSlicer 2.5: 9 process profiles for 0.4 &amp; 0.6 mm nozzles, 40 community filaments (79 JSON presets with multi-select ZIP download), and stainless LAN machine profiles.",
     "jump-slicer-install": "📦 Quick Install",
     "jump-set-and-send": "🧩 Set &amp; Send + LAN",
     "jump-profiles": "🎛️ 9 Process Profiles",
-    "jump-filaments": "🧵 17 Filament Presets",
+    "jump-filaments": "🧵 40 Filaments (79 Presets)",
     "credits-banner-badge": "Credits",
     "credits-banner-title": "Credits and dependencies",
     "credits-banner-lead": "Thanks to the projects and maintainers whose work this dashboard and its extras build on.",
@@ -153,8 +153,25 @@ const i18n = {
     "filament-9-3": "Black",
     "filament-9-4": "Sunny Orange",
     "filament-9-5": "White",
-    "all-filaments": "17 Verified Filament Presets (0.4 &amp; 0.6 mm)",
-    "filament-note": "Tuned for the Snapmaker U1’s hotend and motion system. Always verify temperatures and nozzle hardware requirements (for PETG-CF use hardened/stainless hotends).",
+    "all-filaments": "40 Community Filaments · 79 Presets (0.4 &amp; 0.6 mm)",
+    "filament-note": "Filter by brand or material, tick the spools you actually own, and download everything as one ready-to-import ZIP archive (or grab single JSON files). Tested presets are proven on the U1; OrcaLib &amp; Datasheet profiles use verified manufacturer values. For PETG-CF / PLA-CF use hardened or stainless nozzles.",
+    "fil-nozzle-all": "0.4 + 0.6 mm",
+    "fil-brand-lbl": "Brand:",
+    "fil-mat-lbl": "Material:",
+    "fil-all": "All",
+    "fil-search-ph": "Search brand, material, e.g. Prusament PETG...",
+    "fil-select-visible": "Select visible",
+    "fil-clear": "Clear selection",
+    "fil-dl-zip": "⬇ Download selected (.zip)",
+    "fil-selected-tpl": "{n} selected",
+    "fil-empty": "No filaments match your current filter.",
+    "fil-downloading": "Fetching {n} preset files…",
+    "fil-zip-ready": "Downloaded snapmaker-u1-filaments.zip ({n} JSON files + README).",
+    "fil-zip-error": "Download failed for some files — check connection or use single JSON links.",
+    "fil-badge-verified": "U1 Tested",
+    "fil-badge-library": "OrcaLib",
+    "fil-badge-datasheet": "Datasheet",
+    "fil-ext-tools": "Need hundreds more niche or spool-specific profiles? Community converters such as <a href=\"https://bedready.io/\" target=\"_blank\" rel=\"noopener noreferrer\">BedReady (bedready.io)</a> and <a href=\"https://github.com/snapmaker-tools/snapmaker-orca-filament-importer\" target=\"_blank\" rel=\"noopener noreferrer\">snapmaker-orca-filament-importer</a> can convert Bambu / Orca community databases directly for the Snapmaker U1.",
     "credit-detail-0": "Provides the original Snapmaker U1 integration and frontend card. The adapted card retains the upstream MIT notice.",
     "credit-detail-1": "Spoolman provides optional filament inventory through the upstream integration.",
     "credit-detail-2": "Develops and distributes the optional Set &amp; Send plugin separately.",
@@ -242,7 +259,7 @@ const i18n = {
     "ha-maintenance-cta": "Maintenance",
     "split-badge": "Transparent credits",
     "split-title": "Reaper2507 &amp; Ironoxx",
-    "split-intro": "Ironoxx built the integration and core card. Reaper2507 puts the dashboard layouts, post-print cooling, and OrcaSlicer presets together.",
+    "split-intro": "Ironoxx built the integration and core card. I spend time with the Snapmaker and collect things here that are useful and efficient in daily printing — no fluff.",
     "split-iron-title": "Upstream: Ironoxx’s Snapmaker U1 Card",
     "split-iron-1": "<strong>Home Assistant integration &amp; entities:</strong> Moonraker/Klipper telemetry, firmware status, self-test, maintenance counters, and spool data (incl. optional Spoolman link).",
     "split-iron-2": "<strong>Original printer card &amp; core controls:</strong> Baseline toolhead card adapted from <code>v2.0.0</code> with the upstream MIT copyright notice preserved.",
@@ -252,7 +269,7 @@ const i18n = {
     "split-reaper-1": "<strong>Studio &amp; Cutaway layouts:</strong> Clear view with T0–T3 spools, live XYZ &amp; temperatures, and Controls &amp; Filament &amp; Heat popups.",
     "split-reaper-2": "<strong>Three dashboard views + control package:</strong> Dashboard, Minimal, and Maintenance &amp; Diagnostics paired with <code>u1_control_package.yaml</code>.",
     "split-reaper-3": "<strong>Post-print bed cooling:</strong> Compact <code>Cooling after printing</code> row (<code>cavity_fan</code>, 5 min · 70 %, auto-off ≤ 36 °C) plus optional completion signal.",
-    "split-reaper-4": "<strong>OrcaSlicer presets &amp; fan deflector:</strong> 9 process profiles, 17 filament presets, LAN configs, and the archived MakerWorld #3107806 Aux Fan Deflector.",
+    "split-reaper-4": "<strong>OrcaSlicer presets &amp; fan deflector:</strong> 9 process profiles, 79 filament presets (40 community brands/materials), LAN configs, and the archived MakerWorld #3107806 Aux Fan Deflector.",
     "showcase-title": "What’s inside — shown in screenshots",
     "showcase-intro": "Click any screenshot to zoom in.",
     "sc-full-title": "Dashboard (Main View)",
@@ -270,7 +287,7 @@ const i18n = {
     "sc-maint-title": "Maintenance &amp; Diagnostics",
     "sc-maint-desc": "Klipper G-code console, temperature graph, 11×11 bed mesh, system diagnostics, and maintenance counters on one page.",
     "ex-slicer-title": "OrcaSlicer 2.5 Profiles &amp; Filaments",
-    "ex-slicer-desc": "9 process profiles (0.4 &amp; 0.6 mm nozzles), 17 tested filament presets, and 2 LAN machine configs ready to download.",
+    "ex-slicer-desc": "9 process profiles (0.4 &amp; 0.6 mm nozzles), 40 community filaments (79 presets with selective ZIP download), and 2 LAN machine configs.",
     "ex-slicer-link": "Open OrcaSlicer page →",
     "ex-mod-title": "Aux Fan Deflector (MakerWorld #3107806)",
     "ex-mod-desc": "Clips onto the side AUX fan and directs airflow upward so PLA/PETG prints on the left side of the bed don’t warp.",
@@ -303,11 +320,11 @@ const i18n = {
     "ha-banner-lead": "Das Dashboard vereint die Live-Druckerkarte, Filamentverwaltung, Drucksteuerung, Druckauftrag, Kamera und Wartung. Es baut auf <a href=\"https://github.com/Ironoxx/ha-snapmaker-u1-card\">Ironoxx’ Snapmaker-U1-Integration</a> auf.",
     "slicer-banner-badge": "OrcaSlicer 2.5 Suite",
     "slicer-banner-title": "OrcaSlicer Profile &amp; Filament-Presets",
-    "slicer-banner-lead": "Praxiserprobte Presets für den Snapmaker U1 in OrcaSlicer 2.5: 9 Prozessprofile für 0,4- &amp; 0,6-mm-Düsen, 17 verifizierte Filament-Presets aus 9 Materialien sowie LAN-Maschinenprofile.",
+    "slicer-banner-lead": "Erprobte &amp; Community-fertige Presets für den Snapmaker U1 in OrcaSlicer 2.5: 9 Prozessprofile für 0,4- &amp; 0,6-mm-Düsen, 40 Community-Filamente (79 JSON-Presets mit Auswahl-ZIP-Download) sowie LAN-Maschinenprofile.",
     "jump-slicer-install": "📦 Schnell-Installation",
     "jump-set-and-send": "🧩 Set &amp; Send + LAN",
     "jump-profiles": "🎛️ 9 Prozessprofile",
-    "jump-filaments": "🧵 17 Filament-Presets",
+    "jump-filaments": "🧵 40 Filamente (79 Presets)",
     "credits-banner-badge": "Danksagung",
     "credits-banner-title": "Danksagung und Abhängigkeiten",
     "credits-banner-lead": "Danke an die Projekte und Maintainer, deren Arbeit dieses Dashboard und seine Extras nutzen.",
@@ -443,8 +460,25 @@ const i18n = {
     "filament-9-3": "Schwarz",
     "filament-9-4": "Sunny Orange",
     "filament-9-5": "Weiß",
-    "all-filaments": "17 verifizierte Filament-Presets (0,4 &amp; 0,6 mm)",
-    "filament-note": "Abgestimmt auf Hotend und Kinematik des Snapmaker U1. Prüfe Temperaturen und Düsen-Vorgaben (für PETG-CF gehärtete/Edelstahl-Düse verwenden).",
+    "all-filaments": "40 Community-Filamente · 79 Presets (0,4 &amp; 0,6 mm)",
+    "filament-note": "Nach Marke oder Material filtern, die eigenen Spulen anhaken und alles zusammen als fertiges ZIP-Archiv herunterladen (oder einzeln als JSON). „U1 Erprobt“ sind am Drucker getestet; OrcaLib &amp; Datenblatt nutzen verifizierte Herstellerwerte. Für PETG-CF / PLA-CF gehärtete oder Edelstahl-Düse verwenden.",
+    "fil-nozzle-all": "0,4 + 0,6 mm",
+    "fil-brand-lbl": "Marke:",
+    "fil-mat-lbl": "Material:",
+    "fil-all": "Alle",
+    "fil-search-ph": "Suche nach Marke, Material, z. B. Prusament PETG...",
+    "fil-select-visible": "Sichtbare auswählen",
+    "fil-clear": "Auswahl leeren",
+    "fil-dl-zip": "⬇ Auswahl als ZIP laden",
+    "fil-selected-tpl": "{n} ausgewählt",
+    "fil-empty": "Keine Filamente passend zum aktuellen Filter gefunden.",
+    "fil-downloading": "Lade {n} Preset-Dateien…",
+    "fil-zip-ready": "snapmaker-u1-filaments.zip heruntergeladen ({n} JSON-Dateien + README).",
+    "fil-zip-error": "Einzelne Dateien konnten nicht geladen werden — nutze ggf. die direkten JSON-Links.",
+    "fil-badge-verified": "U1 Erprobt",
+    "fil-badge-library": "OrcaLib",
+    "fil-badge-datasheet": "Datenblatt",
+    "fil-ext-tools": "Du brauchst noch hunderte exotische Spulen oder Spezialmarken? Community-Tools wie <a href=\"https://bedready.io/\" target=\"_blank\" rel=\"noopener noreferrer\">BedReady (bedready.io)</a> oder <a href=\"https://github.com/snapmaker-tools/snapmaker-orca-filament-importer\" target=\"_blank\" rel=\"noopener noreferrer\">snapmaker-orca-filament-importer</a> konvertieren Bambu-/Orca-Datenbanken direkt für den Snapmaker U1.",
     "credit-detail-0": "Stellt die ursprüngliche Snapmaker-U1-Integration und Frontend-Karte bereit. Die angepasste Karte enthält weiterhin den MIT-Lizenzhinweis.",
     "credit-detail-1": "Spoolman ermöglicht optional die Filament-Inventarverwaltung über die Integration.",
     "credit-detail-2": "Entwickelt und vertreibt das optionale Plugin Set &amp; Send separat.",
@@ -532,7 +566,7 @@ const i18n = {
     "ha-maintenance-cta": "Wartung",
     "split-badge": "Klare Aufteilung",
     "split-title": "Reaper2507 &amp; Ironoxx",
-    "split-intro": "Ironoxx liefert Integration und Basiskarte. Reaper2507 stellt die Ansichten, das Nachkühlen und die Profile dazu zusammen.",
+    "split-intro": "Ironoxx liefert Integration und Basiskarte. Ich beschäftige mich mit dem Snapmaker und sammle hier Dinge, die im Alltag nützlich und effizient sind — ohne Schnickschnack.",
     "split-iron-title": "Basis: Ironoxx’ Snapmaker U1 Card",
     "split-iron-1": "<strong>Home-Assistant-Integration &amp; Entitäten:</strong> Moonraker-/Klipper-Telemetrie, Firmware-Status, Selbsttest, Wartungszähler und Spulendaten (inkl. optionalem Spoolman-Link).",
     "split-iron-2": "<strong>Original-Druckerkarte &amp; Kernfunktionen:</strong> Aus <code>v2.0.0</code> adaptierte Basis-Karte unter Beibehaltung des originalen MIT-Copyright-Hinweises.",
@@ -542,7 +576,7 @@ const i18n = {
     "split-reaper-1": "<strong>Klare Studio- &amp; Cutaway-Darstellung:</strong> Übersichtliche Live-Ansicht mit T0–T3 Spulenfarben, XYZ-Positionen, Temperaturen und direktem Zugriff auf Controls &amp; Filament &amp; Heat.",
     "split-reaper-2": "<strong>Drei praxistaugliche Lovelace-Ansichten + Steuerpaket:</strong> Fertig strukturierte Dashboard-, Minimal- und Maintenance-&amp;-Diagnostics-Layouts plus <code>u1_control_package.yaml</code>.",
     "split-reaper-3": "<strong>Nützliche Nachlauf-Automationen:</strong> Kompakte <code>Cooling after printing</code>-Zeile (<code>cavity_fan</code>, 5 min · 70 %, Auto-Aus ≤ 36 °C) zum leichteren Lösen von der PEI-Platte, plus optionale Fertigmeldung.",
-    "split-reaper-4": "<strong>Kuratierte OrcaSlicer-Profile &amp; erprobter Hardware-Fix:</strong> 9 Prozessprofile, 17 Material-Presets aus 9 Filamenten, LAN-Konfigs sowie der archivierte MakerWorld-#3107806-Lüfterdeflektor.",
+    "split-reaper-4": "<strong>Kuratierte OrcaSlicer-Profile &amp; erprobter Hardware-Fix:</strong> 9 Prozessprofile, 79 Material-Presets aus 40 Community-Filamenten, LAN-Konfigs sowie der archivierte MakerWorld-#3107806-Lüfterdeflektor.",
     "showcase-title": "Was drin steckt — einfach gezeigt",
     "showcase-intro": "Klick auf ein Bild öffnet die Großansicht.",
     "sc-full-title": "Dashboard (Hauptansicht)",
@@ -560,7 +594,7 @@ const i18n = {
     "sc-maint-title": "Wartung &amp; Diagnose",
     "sc-maint-desc": "Klipper-G-Code-Konsole, Temperaturkurven, 11×11-Bett-Mesh, Systemwerte und Wartungszähler auf einer Seite.",
     "ex-slicer-title": "OrcaSlicer 2.5 Profile &amp; Filamente",
-    "ex-slicer-desc": "9 Prozessprofile (0,4 &amp; 0,6 mm Düsen), 17 Material-Presets und 2 LAN-Maschinenprofile zum direkten Download.",
+    "ex-slicer-desc": "9 Prozessprofile (0,4 &amp; 0,6 mm Düsen), 40 Community-Filamente (79 Presets per Auswahl-ZIP) und 2 LAN-Maschinenprofile.",
     "ex-slicer-link": "Zur OrcaSlicer-Seite →",
     "ex-mod-title": "Aux Fan Deflector (MakerWorld #3107806)",
     "ex-mod-desc": "Klemmt auf den seitlichen AUX-Lüfter und lenkt die Luft nach oben um, damit PLA/PETG-Drucke links auf dem Bett nicht hochbiegen.",
@@ -623,6 +657,9 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleBtn.addEventListener('click', () => {
       setLanguage(currentLang === 'en' ? 'de' : 'en');
       document.querySelector('.sim-chip.active')?.click();
+      if (typeof window.__rerenderFilamentPicker === 'function') {
+        window.__rerenderFilamentPicker();
+      }
     });
   }
 
@@ -841,4 +878,315 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  initFilamentPicker();
 });
+
+// Pure-JS CRC32 + Uncompressed Store ZIP builder (no external dependencies)
+const CRC_TABLE = (() => {
+  const t = new Uint32Array(256);
+  for (let i = 0; i < 256; i++) {
+    let c = i;
+    for (let k = 0; k < 8; k++) c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
+    t[i] = c >>> 0;
+  }
+  return t;
+})();
+
+function crc32(bytes) {
+  let c = 0xffffffff;
+  for (let i = 0; i < bytes.length; i++) {
+    c = CRC_TABLE[(c ^ bytes[i]) & 0xff] ^ (c >>> 8);
+  }
+  return (c ^ 0xffffffff) >>> 0;
+}
+
+function buildStoreZip(entries) {
+  const enc = new TextEncoder();
+  const localParts = [];
+  const centralParts = [];
+  let offset = 0;
+
+  for (const { name, data } of entries) {
+    const nameBytes = enc.encode(name);
+    const dataBytes = typeof data === 'string' ? enc.encode(data) : data;
+    const sum = crc32(dataBytes);
+
+    const lh = new ArrayBuffer(30 + nameBytes.length);
+    const lv = new DataView(lh);
+    lv.setUint32(0, 0x04034b50, true);
+    lv.setUint16(4, 20, true);
+    lv.setUint16(6, 0x0800, true); // UTF-8 flag
+    lv.setUint16(8, 0, true);      // Store (no compression)
+    lv.setUint16(10, 0, true);
+    lv.setUint16(12, 0x5421, true);
+    lv.setUint32(14, sum, true);
+    lv.setUint32(18, dataBytes.length, true);
+    lv.setUint32(22, dataBytes.length, true);
+    lv.setUint16(26, nameBytes.length, true);
+    lv.setUint16(28, 0, true);
+    new Uint8Array(lh, 30).set(nameBytes);
+    localParts.push(new Uint8Array(lh), dataBytes);
+
+    const cd = new ArrayBuffer(46 + nameBytes.length);
+    const cv = new DataView(cd);
+    cv.setUint32(0, 0x02014b50, true);
+    cv.setUint16(4, 20, true);
+    cv.setUint16(6, 20, true);
+    cv.setUint16(8, 0x0800, true);
+    cv.setUint16(10, 0, true);
+    cv.setUint16(12, 0, true);
+    cv.setUint16(14, 0x5421, true);
+    cv.setUint32(16, sum, true);
+    cv.setUint32(20, dataBytes.length, true);
+    cv.setUint32(24, dataBytes.length, true);
+    cv.setUint16(28, nameBytes.length, true);
+    cv.setUint16(30, 0, true);
+    cv.setUint16(32, 0, true);
+    cv.setUint16(34, 0, true);
+    cv.setUint16(36, 0, true);
+    cv.setUint32(38, 0, true);
+    cv.setUint32(42, offset, true);
+    new Uint8Array(cd, 46).set(nameBytes);
+    centralParts.push(new Uint8Array(cd));
+
+    offset += 30 + nameBytes.length + dataBytes.length;
+  }
+
+  const cdSize = centralParts.reduce((s, p) => s + p.length, 0);
+  const eocd = new ArrayBuffer(22);
+  const ev = new DataView(eocd);
+  ev.setUint32(0, 0x06054b50, true);
+  ev.setUint16(4, 0, true);
+  ev.setUint16(6, 0, true);
+  ev.setUint16(8, entries.length, true);
+  ev.setUint16(10, entries.length, true);
+  ev.setUint32(12, cdSize, true);
+  ev.setUint32(16, offset, true);
+  ev.setUint16(20, 0, true);
+
+  return new Blob([...localParts, ...centralParts, new Uint8Array(eocd)], { type: 'application/zip' });
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[c]);
+}
+
+function initFilamentPicker() {
+  const grid = document.getElementById('filament-picker-grid');
+  if (!grid) return;
+
+  const RAW_BASE = 'https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/';
+  const searchInput = document.getElementById('fil-search');
+  const brandPillsEl = document.getElementById('fil-brand-pills');
+  const catPillsEl = document.getElementById('fil-cat-pills');
+  const nozzlePillsEl = document.getElementById('fil-nozzle-pills');
+  const countEl = document.getElementById('fil-selected-count');
+  const statusEl = document.getElementById('fil-zip-status');
+  const btnSelectVisible = document.getElementById('btn-fil-select-visible');
+  const btnClear = document.getElementById('btn-fil-clear');
+  const btnDownloadZip = document.getElementById('btn-download-zip');
+
+  let catalog = [];
+  let brandFilter = 'ALL';
+  let catFilter = 'ALL';
+  let nozzleFilter = 'all';
+  let query = '';
+  const selected = new Set();
+
+  function getFiltered() {
+    const q = query.trim().toLowerCase();
+    return catalog.filter(item => {
+      if (brandFilter !== 'ALL' && item.brand !== brandFilter) return false;
+      if (catFilter !== 'ALL' && item.category !== catFilter) return false;
+      if (nozzleFilter === '04' && !item.file04) return false;
+      if (nozzleFilter === '06' && !item.file06) return false;
+      if (q && !(`${item.name} ${item.brand} ${item.material} ${item.category}`).toLowerCase().includes(q)) return false;
+      return true;
+    });
+  }
+
+  function renderPills(container, values, current, onPick) {
+    if (!container) return;
+    const allLabel = i18n[currentLang]['fil-all'] || 'All';
+    const items = ['ALL', ...values];
+    container.innerHTML = items.map(val => {
+      const label = val === 'ALL' ? allLabel : val;
+      const active = val === current ? ' active' : '';
+      return `<button type="button" class="filter-pill${active}" data-val="${escapeHtml(val)}">${escapeHtml(label)}</button>`;
+    }).join('');
+    container.querySelectorAll('.filter-pill').forEach(btn => {
+      btn.addEventListener('click', () => onPick(btn.getAttribute('data-val')));
+    });
+  }
+
+  function updateSummary() {
+    const tpl = i18n[currentLang]['fil-selected-tpl'] || '{n} selected';
+    if (countEl) countEl.textContent = tpl.replace('{n}', String(selected.size));
+    if (btnDownloadZip) btnDownloadZip.disabled = selected.size === 0;
+  }
+
+  function render() {
+    const t = i18n[currentLang];
+    if (searchInput) searchInput.placeholder = t['fil-search-ph'] || searchInput.placeholder;
+
+    const brands = [...new Set(catalog.map(i => i.brand))].sort((a, b) => a.localeCompare(b));
+    const cats = ['PLA', 'PLA+ / Matte / Silk', 'PETG', 'TPU', 'ABS / ASA', 'CF (PLA-CF / PETG-CF)'].filter(c => catalog.some(i => i.category === c));
+
+    renderPills(brandPillsEl, brands, brandFilter, val => { brandFilter = val; render(); });
+    renderPills(catPillsEl, cats, catFilter, val => { catFilter = val; render(); });
+
+    const list = getFiltered();
+    if (list.length === 0) {
+      grid.innerHTML = `<p class="picker-status">${escapeHtml(t['fil-empty'] || 'No matching filaments.')}</p>`;
+      updateSummary();
+      return;
+    }
+
+    const badgeMap = {
+      verified: { cls: 'source-verified', lbl: t['fil-badge-verified'] || 'U1 Tested' },
+      library: { cls: 'source-library', lbl: t['fil-badge-library'] || 'OrcaLib' },
+      datasheet: { cls: 'source-datasheet', lbl: t['fil-badge-datasheet'] || 'Datasheet' }
+    };
+
+    grid.innerHTML = list.map((item, idx) => {
+      const isSel = selected.has(item.name);
+      const badge = badgeMap[item.source] || badgeMap.datasheet;
+      const mvsStr = [item.mvs04 ? `${item.mvs04}` : null, item.mvs06 ? `${item.mvs06}` : null].filter(Boolean).join('/');
+      const url04 = item.file04 ? RAW_BASE + encodeURIComponent(item.file04) : null;
+      const url06 = item.file06 ? RAW_BASE + encodeURIComponent(item.file06) : null;
+      const cid = `fil-chk-${idx}`;
+
+      return `
+        <div class="filament-card-row${isSel ? ' selected' : ''}">
+          <input type="checkbox" class="filament-check" id="${cid}" data-name="${escapeHtml(item.name)}" ${isSel ? 'checked' : ''}>
+          <div class="filament-row-body">
+            <div class="filament-row-head">
+              <label class="filament-row-title" for="${cid}">${escapeHtml(item.name)}</label>
+              <span class="source-badge ${badge.cls}">${escapeHtml(badge.lbl)}</span>
+            </div>
+            <div class="filament-row-specs">Flow ${escapeHtml(item.flow)} · ${escapeHtml(item.temp)} °C · Bed ${escapeHtml(item.bed)} °C · ${escapeHtml(mvsStr)} mm³/s</div>
+            <div class="filament-row-links">
+              ${url04 ? `<a href="${url04}" download="${escapeHtml(item.file04)}">0.4 mm JSON</a>` : ''}
+              ${url06 ? `<a href="${url06}" download="${escapeHtml(item.file06)}">0.6 mm JSON</a>` : ''}
+            </div>
+          </div>
+        </div>`;
+    }).join('');
+
+    grid.querySelectorAll('.filament-check').forEach(chk => {
+      chk.addEventListener('change', () => {
+        const name = chk.getAttribute('data-name');
+        if (chk.checked) selected.add(name);
+        else selected.delete(name);
+        chk.closest('.filament-card-row')?.classList.toggle('selected', chk.checked);
+        updateSummary();
+      });
+    });
+    updateSummary();
+  }
+
+  window.__rerenderFilamentPicker = render;
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      query = searchInput.value;
+      render();
+    });
+  }
+
+  if (nozzlePillsEl) {
+    nozzlePillsEl.querySelectorAll('.filter-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        nozzleFilter = btn.getAttribute('data-nozzle') || 'all';
+        nozzlePillsEl.querySelectorAll('.filter-pill').forEach(b => b.classList.toggle('active', b === btn));
+        render();
+      });
+    });
+  }
+
+  if (btnSelectVisible) {
+    btnSelectVisible.addEventListener('click', () => {
+      getFiltered().forEach(item => selected.add(item.name));
+      render();
+    });
+  }
+
+  if (btnClear) {
+    btnClear.addEventListener('click', () => {
+      selected.clear();
+      if (statusEl) statusEl.textContent = '';
+      render();
+    });
+  }
+
+  if (btnDownloadZip) {
+    btnDownloadZip.addEventListener('click', async () => {
+      const files = [];
+      catalog.forEach(item => {
+        if (!selected.has(item.name)) return;
+        if (nozzleFilter !== '06' && item.file04) files.push(item.file04);
+        if (nozzleFilter !== '04' && item.file06) files.push(item.file06);
+      });
+      if (!files.length) return;
+
+      const t = i18n[currentLang];
+      btnDownloadZip.disabled = true;
+      if (statusEl) statusEl.textContent = (t['fil-downloading'] || 'Fetching {n} files…').replace('{n}', String(files.length));
+
+      try {
+        const fetched = await Promise.all(files.map(async fn => {
+          const res = await fetch(RAW_BASE + encodeURIComponent(fn));
+          if (!res.ok) throw new Error(`${fn}: HTTP ${res.status}`);
+          const buf = new Uint8Array(await res.arrayBuffer());
+          return { name: fn, data: buf };
+        }));
+
+        const readme = [
+          'Snapmaker U1 Community Filament Presets (OrcaSlicer 2.5)',
+          '=========================================================',
+          'Copy the .json files from this ZIP into your OrcaSlicer user filament folder:',
+          '  Windows: %APPDATA%\\OrcaSlicer\\user\\default\\filament\\',
+          '  macOS:   ~/Library/Application Support/OrcaSlicer/user/default/filament/',
+          '  Linux:   ~/.config/OrcaSlicer/user/default/filament/',
+          '',
+          'Restart OrcaSlicer and verify nozzle hardware (hardened/stainless for CF).',
+          `Included presets (${fetched.length}):`,
+          ...fetched.map(f => ` - ${f.name}`)
+        ].join('\n');
+
+        const blob = buildStoreZip([{ name: 'INSTALL_README.txt', data: readme }, ...fetched]);
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'snapmaker-u1-filaments.zip';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+
+        if (statusEl) statusEl.textContent = (t['fil-zip-ready'] || 'Downloaded ZIP ({n} JSON files).').replace('{n}', String(fetched.length));
+      } catch (err) {
+        console.error(err);
+        if (statusEl) statusEl.textContent = t['fil-zip-error'] || 'Download failed.';
+      } finally {
+        btnDownloadZip.disabled = selected.size === 0;
+      }
+    });
+  }
+
+  fetch('filaments.json')
+    .then(r => {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(data => {
+      catalog = data;
+      render();
+    })
+    .catch(err => {
+      console.error('Failed to load filaments.json', err);
+      grid.innerHTML = '<p class="picker-status">Could not load filament catalog.</p>';
+    });
+}

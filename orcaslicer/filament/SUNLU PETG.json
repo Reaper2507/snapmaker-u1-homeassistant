@@ -1,0 +1,82 @@
+{
+    "inherits": "Snapmaker PETG @U1",
+    "compatible_printers": [
+        "Snapmaker U1 (0.4 nozzle)",
+        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "name": "SUNLU PETG",
+    "from": "User",
+    "version": "2.5.0.0",
+    "additional_cooling_fan_speed": [
+        "0",
+        "0"
+    ],
+    "description": "SUNLU PETG. OrcaFilamentLibrary baseline tuned for U1: 245°C (250°C initial layer), 75°C PEI bed, 0.95 flow, 14 mm³/s (0.4) / 20 mm³/s (0.6).",
+    "filament_max_volumetric_speed": [
+        "14",
+        "19"
+    ],
+    "nozzle_temperature": [
+        "245",
+        "245"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "250",
+        "250"
+    ],
+    "textured_plate_temp": [
+        "75"
+    ],
+    "textured_plate_temp_initial_layer": [
+        "75"
+    ],
+    "hot_plate_temp": [
+        "70"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "70"
+    ],
+    "cool_plate_temp": [
+        "75"
+    ],
+    "cool_plate_temp_initial_layer": [
+        "75"
+    ],
+    "eng_plate_temp": [
+        "70"
+    ],
+    "eng_plate_temp_initial_layer": [
+        "70"
+    ],
+    "nozzle_temperature_range_low": [
+        "230"
+    ],
+    "nozzle_temperature_range_high": [
+        "260"
+    ],
+    "filament_type": [
+        "PETG"
+    ],
+    "filament_flow_ratio": [
+        "0.95"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.032"
+    ],
+    "fan_min_speed": [
+        "15",
+        "15"
+    ],
+    "fan_max_speed": [
+        "40",
+        "40"
+    ],
+    "filament_density": [
+        "1.27"
+    ]
+}

@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="page-orcaslicer">Optional OrcaSlicer presets · Snapmaker U1</title>
-  <meta name="description" content="Tuned OrcaSlicer 2.5 process profiles (0.4 &amp; 0.6 mm), 17 verified filament presets across 9 materials, and LAN machine profiles for the Snapmaker U1 4-toolhead 3D printer by Reaper2507 (snapmaker-u1-homeassistant).">
+  <meta name="description" content="Tuned OrcaSlicer 2.5 process profiles (0.4 &amp; 0.6 mm), 40 community filament presets (79 JSON files, selectable ZIP builder), and LAN machine profiles for the Snapmaker U1 4-toolhead 3D printer by Reaper2507.">
   <meta name="author" content="Reaper2507">
   <link rel="canonical" href="https://reaper2507.github.io/snapmaker-u1-homeassistant/orcaslicer.html">
-  <link rel="stylesheet" href="styles.css?v=20261111_01">
+  <link rel="stylesheet" href="styles.css?v=20261111_02">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -48,11 +48,11 @@
       <div class="container">
         <div class="pill-badge" data-i18n="slicer-banner-badge">OrcaSlicer 2.5 Suite</div>
         <h1 data-i18n="slicer-banner-title">OrcaSlicer Profiles &amp; Filament Presets</h1>
-        <p class="banner-lead" data-i18n="slicer-banner-lead">Tested, curated presets for the Snapmaker U1 in OrcaSlicer 2.5: 9 process profiles for 0.4 &amp; 0.6 mm nozzles, 17 verified filament presets across 9 materials, and stainless LAN machine profiles.</p>
+        <p class="banner-lead" data-i18n="slicer-banner-lead">Tested &amp; community-ready presets for the Snapmaker U1 in OrcaSlicer 2.5: 9 process profiles for 0.4 &amp; 0.6 mm nozzles, 40 community filaments (79 JSON presets with multi-select ZIP download), and stainless LAN machine profiles.</p>
         <div class="quick-jump-bar">
           <a href="#install-slicer" class="jump-pill" data-i18n="jump-slicer-install">📦 Quick Install</a>
           <a href="#process-profiles" class="jump-pill" data-i18n="jump-profiles">🎛️ 9 Process Profiles</a>
-          <a href="#filaments" class="jump-pill" data-i18n="jump-filaments">🧵 17 Filament Presets</a>
+          <a href="#filaments" class="jump-pill" data-i18n="jump-filaments">🧵 40 Filaments (79 Presets)</a>
           <a href="#set-and-send" class="jump-pill" data-i18n="jump-set-and-send">🧩 Set &amp; Send + LAN</a>
         </div>
       </div>
@@ -159,22 +159,52 @@
       </div>
     </section>
 
-    <!-- 17 Filament Presets -->
+    <!-- 40 Filaments / 79 Interactive Presets -->
     <section class="features-section" id="filaments">
       <div class="container">
-        <h2 data-i18n="all-filaments">17 Verified Filament Presets (0.4 &amp; 0.6 mm)</h2>
-        <p data-i18n="filament-note">Tuned for the Snapmaker U1’s hotend and motion system. Always verify temperatures and nozzle hardware requirements (for PETG-CF use hardened/stainless hotends).</p>
-        <ul class="preset-list">
-          <li><strong>SUNLU PLA+ 2.0</strong> (Flow 0.97 · 215 °C · 22/38 mm³/s) · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0.json" download>0.4 mm JSON</a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/SUNLU%20PLA%2B%202.0%20(0.6%20Nozzle).json" download>0.6 mm JSON</a></li>
-          <li><strong>Bambu Lab PLA Basic</strong> (Flow 0.98 · 220 °C · 22/35 mm³/s) · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/Bambu%20Lab%20PLA%20Basic.json" download>0.4 mm JSON</a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/Bambu%20Lab%20PLA%20Basic%20(0.6%20Nozzle).json" download>0.6 mm JSON</a></li>
-          <li><strong>ELEGOO PLA Matte</strong> (Flow 0.96 · 210 °C · 18/30 mm³/s) · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/ELEGOO%20PLA%20Matte.json" download>0.4 mm JSON</a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/ELEGOO%20PLA%20Matte%20(0.6%20Nozzle).json" download>0.6 mm JSON</a></li>
-          <li><strong>GEEETECH PLA Matte</strong> (Flow 0.96 · 210 °C · 18/30 mm³/s) · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/GEEETECH%20PLA%20Matte.json" download>0.4 mm JSON</a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/GEEETECH%20PLA%20Matte%20(0.6%20Nozzle).json" download>0.6 mm JSON</a></li>
-          <li><strong>JAYO High Speed Matte PETG</strong> (Flow 0.94 · 245 °C · 16/28 mm³/s) · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/JAYO%20High%20Speed%20Matte%20PETG.json" download>0.4 mm JSON</a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/JAYO%20High%20Speed%20Matte%20PETG%20(0.6%20Nozzle).json" download>0.6 mm JSON</a></li>
-          <li><strong>Bambu Lab PETG Basic</strong> (Flow 0.95 · 250 °C · 16/26 mm³/s) · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/Bambu%20Lab%20PETG%20Basic.json" download>0.4 mm JSON</a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/Bambu%20Lab%20PETG%20Basic%20(0.6%20Nozzle).json" download>0.6 mm JSON</a></li>
-          <li><strong>eSUN PETG Matte</strong> (Flow 0.94 · 240 °C · 14/24 mm³/s) · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/eSUN%20PETG%20Matte.json" download>0.4 mm JSON</a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/eSUN%20PETG%20Matte%20(0.6%20Nozzle).json" download>0.6 mm JSON</a></li>
-          <li><strong>ELEGOO PETG-CF</strong> (Flow 0.95 · 250 °C · 15/24 mm³/s) · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/ELEGOO%20PETG-CF.json" download>0.4 mm JSON</a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/ELEGOO%20PETG-CF%20(0.6%20Nozzle).json" download>0.6 mm JSON</a></li>
-          <li><strong>GEEETECH TPU 95A</strong> (Flow 1.00 · 225 °C · 3.5/5.0 mm³/s) · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/orcaslicer/filament/GEEETECH%20TPU%2095A.json" download>0.4 mm JSON</a></li>
-        </ul>
+        <div class="section-header">
+          <h2 data-i18n="all-filaments">40 Community Filaments · 79 Presets (0.4 &amp; 0.6 mm)</h2>
+          <p class="section-intro" data-i18n="filament-note">Filter by brand or material, tick the spools you actually own, and download everything as one ready-to-import ZIP archive (or grab single JSON files). Tested presets are proven on the U1; OrcaLib &amp; Datasheet profiles use verified manufacturer values. For PETG-CF / PLA-CF use hardened or stainless nozzles.</p>
+        </div>
+
+        <div class="filament-toolbar">
+          <div class="filament-search-row">
+            <input type="search" id="fil-search" class="filament-search-input" placeholder="Search brand, material, e.g. Prusament PETG..." aria-label="Search filaments">
+            <div class="filament-nozzle-pills" id="fil-nozzle-pills" role="group" aria-label="Nozzle size">
+              <button type="button" class="filter-pill active" data-nozzle="all" data-i18n="fil-nozzle-all">0.4 + 0.6 mm</button>
+              <button type="button" class="filter-pill" data-nozzle="04">0.4 mm</button>
+              <button type="button" class="filter-pill" data-nozzle="06">0.6 mm</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-label" data-i18n="fil-brand-lbl">Brand:</span>
+            <div class="filter-pills" id="fil-brand-pills"></div>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-label" data-i18n="fil-mat-lbl">Material:</span>
+            <div class="filter-pills" id="fil-cat-pills"></div>
+          </div>
+        </div>
+
+        <div class="picker-actions-bar">
+          <div class="picker-select-controls">
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-fil-select-visible" data-i18n="fil-select-visible">Select visible</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-fil-clear" data-i18n="fil-clear">Clear selection</button>
+            <span class="picker-count" id="fil-selected-count">0 selected</span>
+          </div>
+          <div class="picker-download-controls">
+            <span class="picker-status" id="fil-zip-status" aria-live="polite"></span>
+            <button type="button" class="btn btn-primary" id="btn-download-zip" disabled data-i18n="fil-dl-zip">⬇ Download selected (.zip)</button>
+          </div>
+        </div>
+
+        <div class="filament-picker-grid" id="filament-picker-grid" aria-live="polite"></div>
+
+        <p class="community-tools-note" data-i18n="fil-ext-tools">
+          Need hundreds more niche or spool-specific profiles? Community converters such as <a href="https://bedready.io/" target="_blank" rel="noopener noreferrer">BedReady (bedready.io)</a> and <a href="https://github.com/snapmaker-tools/snapmaker-orca-filament-importer" target="_blank" rel="noopener noreferrer">snapmaker-orca-filament-importer</a> can convert Bambu / Orca community databases directly for the Snapmaker U1.
+        </p>
       </div>
     </section>
 
@@ -202,6 +232,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=20261111_01"></script>
+  <script src="app.js?v=20261111_02"></script>
 </body>
 </html>

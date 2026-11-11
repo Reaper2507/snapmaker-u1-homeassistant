@@ -1,0 +1,80 @@
+{
+    "inherits": "Snapmaker PLA @U1",
+    "compatible_printers": [
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "name": "Polymaker PolyLite PLA Pro (0.6 Nozzle)",
+    "from": "User",
+    "version": "2.5.0.0",
+    "additional_cooling_fan_speed": [
+        "30",
+        "30"
+    ],
+    "description": "Polymaker PolyLite PLA Pro. OrcaFilamentLibrary tough PLA baseline for U1: 220°C, 60°C bed, 0.95 flow, 16 mm³/s (0.4) / 24 mm³/s (0.6).",
+    "filament_max_volumetric_speed": [
+        "24",
+        "33"
+    ],
+    "nozzle_temperature": [
+        "225",
+        "225"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "225",
+        "225"
+    ],
+    "textured_plate_temp": [
+        "60"
+    ],
+    "textured_plate_temp_initial_layer": [
+        "60"
+    ],
+    "hot_plate_temp": [
+        "55"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "55"
+    ],
+    "cool_plate_temp": [
+        "35"
+    ],
+    "cool_plate_temp_initial_layer": [
+        "35"
+    ],
+    "eng_plate_temp": [
+        "55"
+    ],
+    "eng_plate_temp_initial_layer": [
+        "55"
+    ],
+    "nozzle_temperature_range_low": [
+        "190"
+    ],
+    "nozzle_temperature_range_high": [
+        "230"
+    ],
+    "filament_type": [
+        "PLA"
+    ],
+    "filament_flow_ratio": [
+        "0.95"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.014"
+    ],
+    "fan_min_speed": [
+        "80",
+        "80"
+    ],
+    "fan_max_speed": [
+        "100",
+        "100"
+    ],
+    "filament_density": [
+        "1.22"
+    ]
+}
