@@ -2,10 +2,16 @@
 # Snapmaker U1 Control & Telemetry Package for Home Assistant
 # Community Edition
 #
+# INCLUDES:
+# - Moonraker direct control (rest_command, input_select, input_text, script)
+# - Cool After Printing post-print side fan (cavity_fan) helpers & automation
+#   (defaults: On, 5 min at 70 %)
+#
 # INSTRUCTIONS:
 # 1. Place this file in your Home Assistant 'packages/' or 'integrations/' folder.
 # 2. Replace 'YOUR_PRINTER_IP' with your Snapmaker U1's local IP.
-# 3. Validate the configuration, then restart Home Assistant.
+# 3. Enable Home Assistant packages if needed (homeassistant: packages: ...).
+# 4. Validate the configuration, then restart Home Assistant.
 # ==============================================================================
 
 {
@@ -28,7 +34,7 @@
       "icon": "mdi:ruler"
     },
     "u1_fusion_v2_selected_head": {
-      "name": "U1 Kopf fÃ¼r Steuerzentrale",
+      "name": "U1 Kopf für Steuerzentrale",
       "options": [
         "Kopf 1",
         "Kopf 2",
@@ -40,8 +46,8 @@
   },
   "script": {
     "u1_fusion_v2_control": {
-      "alias": "U1 Fusion v2 Â· Maschine und Filament",
-      "description": "Erlaubt feste Lab-v2-Aktionen mit aktueller Moonraker-Sperre und RÃ¼ckmeldung.",
+      "alias": "U1 Fusion v2 · Maschine und Filament",
+      "description": "Erlaubt feste Lab-v2-Aktionen mit aktueller Moonraker-Sperre und Rückmeldung.",
       "mode": "single",
       "max_exceeded": "error",
       "fields": {
@@ -76,7 +82,7 @@
           }
         },
         "tool": {
-          "name": "Werkzeugindex (T0â€“T3)",
+          "name": "Werkzeugindex (T0–T3)",
           "selector": {
             "number": {
               "min": 0,
@@ -272,12 +278,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "Zuerst â€žAchsen referenzierenâ€œ. Die Achsen sind nicht referenziert."
+                "value": "Zuerst „Achsen referenzieren“. Die Achsen sind nicht referenziert."
               },
               "continue_on_error": true
             },
             {
-              "stop": "Zuerst â€žAchsen referenzierenâ€œ. Die Achsen sind nicht referenziert.",
+              "stop": "Zuerst „Achsen referenzieren“. Die Achsen sind nicht referenziert.",
               "error": true
             }
           ]
@@ -303,12 +309,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "U1-Fahrt gesperrt. Schritt, Koordinaten oder Softlimit ungÃ¼ltig."
+                "value": "U1-Fahrt gesperrt. Schritt, Koordinaten oder Softlimit ungültig."
               },
               "continue_on_error": true
             },
             {
-              "stop": "U1-Fahrt gesperrt. Schritt, Koordinaten oder Softlimit ungÃ¼ltig.",
+              "stop": "U1-Fahrt gesperrt. Schritt, Koordinaten oder Softlimit ungültig.",
               "error": true
             }
           ]
@@ -327,12 +333,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "U1-Filamentaktion gesperrt. Feeder, Filamentzustand oder Sensor des gewÃ¤hlten Kopfes prÃ¼fen."
+                "value": "U1-Filamentaktion gesperrt. Feeder, Filamentzustand oder Sensor des gewählten Kopfes prüfen."
               },
               "continue_on_error": true
             },
             {
-              "stop": "U1-Filamentaktion gesperrt. Feeder, Filamentzustand oder Sensor des gewÃ¤hlten Kopfes prÃ¼fen.",
+              "stop": "U1-Filamentaktion gesperrt. Feeder, Filamentzustand oder Sensor des gewählten Kopfes prüfen.",
               "error": true
             }
           ]
@@ -396,12 +402,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "U1-Preset gesperrt. FÃ¼r diese Position muss genau ein Druckkopf am Schlitten sein."
+                "value": "U1-Preset gesperrt. Für diese Position muss genau ein Druckkopf am Schlitten sein."
               },
               "continue_on_error": true
             },
             {
-              "stop": "U1-Preset gesperrt. FÃ¼r diese Position muss genau ein Druckkopf am Schlitten sein.",
+              "stop": "U1-Preset gesperrt. Für diese Position muss genau ein Druckkopf am Schlitten sein.",
               "error": true
             }
           ]
@@ -420,12 +426,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "U1-Preset gesperrt. Ziel, Achsgrenzen oder aktuelle Position ungÃ¼ltig."
+                "value": "U1-Preset gesperrt. Ziel, Achsgrenzen oder aktuelle Position ungültig."
               },
               "continue_on_error": true
             },
             {
-              "stop": "U1-Preset gesperrt. Ziel, Achsgrenzen oder aktuelle Position ungÃ¼ltig.",
+              "stop": "U1-Preset gesperrt. Ziel, Achsgrenzen oder aktuelle Position ungültig.",
               "error": true
             }
           ]
@@ -449,12 +455,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "U1 steht bereits am gewÃ¤hlten Ziel."
+                "value": "U1 steht bereits am gewählten Ziel."
               },
               "continue_on_error": true
             },
             {
-              "stop": "U1 steht bereits am gewÃ¤hlten Ziel.",
+              "stop": "U1 steht bereits am gewählten Ziel.",
               "response_variable": "result"
             }
           ]
@@ -473,12 +479,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "U1-Kopfaufnahme gesperrt. Werkzeugindex oder Dock-/Schlittenposition ungÃ¼ltig."
+                "value": "U1-Kopfaufnahme gesperrt. Werkzeugindex oder Dock-/Schlittenposition ungültig."
               },
               "continue_on_error": true
             },
             {
-              "stop": "U1-Kopfaufnahme gesperrt. Werkzeugindex oder Dock-/Schlittenposition ungÃ¼ltig.",
+              "stop": "U1-Kopfaufnahme gesperrt. Werkzeugindex oder Dock-/Schlittenposition ungültig.",
               "error": true
             }
           ]
@@ -502,12 +508,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "Der gewÃ¤hlte Druckkopf ist bereits am Schlitten."
+                "value": "Der gewählte Druckkopf ist bereits am Schlitten."
               },
               "continue_on_error": true
             },
             {
-              "stop": "Der gewÃ¤hlte Druckkopf ist bereits am Schlitten.",
+              "stop": "Der gewählte Druckkopf ist bereits am Schlitten.",
               "response_variable": "result"
             }
           ]
@@ -555,12 +561,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "Alle DruckkÃ¶pfe sind bereits im Dock."
+                "value": "Alle Druckköpfe sind bereits im Dock."
               },
               "continue_on_error": true
             },
             {
-              "stop": "Alle DruckkÃ¶pfe sind bereits im Dock.",
+              "stop": "Alle Druckköpfe sind bereits im Dock.",
               "response_variable": "result"
             }
           ]
@@ -586,12 +592,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "U1-Zustand hat sich geÃ¤ndert. Aktion gesperrt."
+                "value": "U1-Zustand hat sich geändert. Aktion gesperrt."
               },
               "continue_on_error": true
             },
             {
-              "stop": "U1-Zustand hat sich geÃ¤ndert. Aktion gesperrt.",
+              "stop": "U1-Zustand hat sich geändert. Aktion gesperrt.",
               "error": true
             }
           ]
@@ -599,7 +605,6 @@
         {
           "action": "snapmaker_u1_card.send_gcode",
           "data": {
-            "config_entry_id": "01M6MDP9BERJF8APQZST7BRDAK",
             "script": "{{ gcode }}"
           },
           "response_variable": "command_result",
@@ -619,12 +624,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "U1-Befehl fehlgeschlagen oder ZeitÃ¼berschreitung. Vor Wiederholung Druckerzustand und G-Code-Konsole prÃ¼fen."
+                "value": "U1-Befehl fehlgeschlagen oder Zeitüberschreitung. Vor Wiederholung Druckerzustand und G-Code-Konsole prüfen."
               },
               "continue_on_error": true
             },
             {
-              "stop": "U1-Befehl fehlgeschlagen oder ZeitÃ¼berschreitung. Vor Wiederholung Druckerzustand und G-Code-Konsole prÃ¼fen.",
+              "stop": "U1-Befehl fehlgeschlagen oder Zeitüberschreitung. Vor Wiederholung Druckerzustand und G-Code-Konsole prüfen.",
               "error": true
             }
           ]
@@ -671,12 +676,12 @@
                 "entity_id": "input_text.u1_fusion_v2_action_status"
               },
               "data": {
-                "value": "U1 hat den erwarteten Endzustand nicht bestÃ¤tigt. Druckerzustand vor einer Wiederholung prÃ¼fen."
+                "value": "U1 hat den erwarteten Endzustand nicht bestätigt. Druckerzustand vor einer Wiederholung prüfen."
               },
               "continue_on_error": true
             },
             {
-              "stop": "U1 hat den erwarteten Endzustand nicht bestÃ¤tigt. Druckerzustand vor einer Wiederholung prÃ¼fen.",
+              "stop": "U1 hat den erwarteten Endzustand nicht bestätigt. Druckerzustand vor einer Wiederholung prüfen.",
               "error": true
             }
           ]
@@ -692,12 +697,12 @@
             "entity_id": "input_text.u1_fusion_v2_action_status"
           },
           "data": {
-            "value": "{% set m = {'home':'Achsen referenziert.', 'preset':'Zielposition erreicht.', 'jog':'Feinbewegung abgeschlossen.', 'pick':'Druckkopf am Schlitten bestÃ¤tigt.', 'park':'Druckkopf im Dock bestÃ¤tigt.', 'load':'Filament geladen.', 'unload':'Filament entladen.'} %}{{ m.get(op, 'Aktion abgeschlossen.') }}"
+            "value": "{% set m = {'home':'Achsen referenziert.', 'preset':'Zielposition erreicht.', 'jog':'Feinbewegung abgeschlossen.', 'pick':'Druckkopf am Schlitten bestätigt.', 'park':'Druckkopf im Dock bestätigt.', 'load':'Filament geladen.', 'unload':'Filament entladen.'} %}{{ m.get(op, 'Aktion abgeschlossen.') }}"
           },
           "continue_on_error": true
         },
         {
-          "stop": "U1-Aktion und RÃ¼ckmeldung bestÃ¤tigt.",
+          "stop": "U1-Aktion und Rückmeldung bestätigt.",
           "response_variable": "result"
         }
       ]
@@ -705,9 +710,218 @@
   },
   "input_text": {
     "u1_fusion_v2_action_status": {
-      "name": "U1 Steuerzentrale RÃ¼ckmeldung",
+      "name": "U1 Steuerzentrale Rückmeldung",
       "initial": "Bereit",
       "max": 160
     }
-  }
+  },
+  "input_boolean": {
+    "snapmaker_u1_cool_after_printing": {
+      "name": "Snapmaker U1 Cool After Printing",
+      "initial": true,
+      "icon": "mdi:fan-clock"
+    },
+    "snapmaker_u1_cool_after_printing_panel": {
+      "name": "Snapmaker U1 Cool After Printing Panel",
+      "initial": false,
+      "icon": "mdi:tune"
+    }
+  },
+  "input_number": {
+    "snapmaker_u1_cool_after_printing_minutes": {
+      "name": "Snapmaker U1 Cool After Printing Minutes",
+      "min": 1,
+      "max": 15,
+      "step": 1,
+      "initial": 5,
+      "mode": "slider",
+      "unit_of_measurement": "min",
+      "icon": "mdi:timer-outline"
+    },
+    "snapmaker_u1_cool_after_printing_speed": {
+      "name": "Snapmaker U1 Cool After Printing Speed",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "initial": 70,
+      "mode": "slider",
+      "unit_of_measurement": "%",
+      "icon": "mdi:fan"
+    }
+  },
+  "automation": [
+    {
+      "id": "snapmaker_u1_cool_after_printing",
+      "alias": "Snapmaker U1 – Cool After Printing",
+      "description": "Runs the Snapmaker U1 side auxiliary fan (cavity_fan) after print completion to cool the print bed for easier part removal. Stops automatically on timer expiry, bed temperature <= 36 °C, manual toggle off, or a new print.",
+      "mode": "restart",
+      "triggers": [
+        {
+          "trigger": "state",
+          "entity_id": "sensor.snapmaker_u1_card_druckstatus",
+          "from": "printing",
+          "to": "complete",
+          "id": "print_complete"
+        },
+        {
+          "trigger": "state",
+          "entity_id": "input_boolean.snapmaker_u1_cool_after_printing",
+          "to": "off",
+          "id": "toggle_off"
+        }
+      ],
+      "actions": [
+        {
+          "choose": [
+            {
+              "conditions": [
+                {
+                  "condition": "trigger",
+                  "id": "print_complete"
+                },
+                {
+                  "condition": "state",
+                  "entity_id": "input_boolean.snapmaker_u1_cool_after_printing",
+                  "state": "on"
+                },
+                {
+                  "condition": "state",
+                  "entity_id": "binary_sensor.snapmaker_u1_card_live_verbindung",
+                  "state": "on"
+                },
+                {
+                  "condition": "numeric_state",
+                  "entity_id": "sensor.snapmaker_u1_card_betttemperatur",
+                  "above": 38
+                }
+              ],
+              "sequence": [
+                {
+                  "delay": {
+                    "seconds": 2
+                  }
+                },
+                {
+                  "condition": "state",
+                  "entity_id": "input_boolean.snapmaker_u1_cool_after_printing",
+                  "state": "on"
+                },
+                {
+                  "condition": "state",
+                  "entity_id": "binary_sensor.snapmaker_u1_card_live_verbindung",
+                  "state": "on"
+                },
+                {
+                  "condition": "state",
+                  "entity_id": "sensor.snapmaker_u1_card_druckstatus",
+                  "state": "complete"
+                },
+                {
+                  "action": "snapmaker_u1_card.send_gcode",
+                  "data": {
+                    "script": "SET_FAN_SPEED FAN=cavity_fan SPEED={{ ((states('input_number.snapmaker_u1_cool_after_printing_speed') | float(70)) / 100) | round(2) }}"
+                  }
+                },
+                {
+                  "wait_for_trigger": [
+                    {
+                      "trigger": "numeric_state",
+                      "entity_id": "sensor.snapmaker_u1_card_betttemperatur",
+                      "below": 36.5
+                    },
+                    {
+                      "trigger": "state",
+                      "entity_id": "input_boolean.snapmaker_u1_cool_after_printing",
+                      "to": "off"
+                    },
+                    {
+                      "trigger": "state",
+                      "entity_id": "binary_sensor.snapmaker_u1_card_live_verbindung",
+                      "to": "off"
+                    },
+                    {
+                      "trigger": "state",
+                      "entity_id": "sensor.snapmaker_u1_card_druckstatus",
+                      "to": [
+                        "printing",
+                        "paused"
+                      ]
+                    }
+                  ],
+                  "timeout": {
+                    "minutes": "{{ states('input_number.snapmaker_u1_cool_after_printing_minutes') | int(5) }}"
+                  },
+                  "continue_on_timeout": true
+                },
+                {
+                  "if": [
+                    {
+                      "condition": "not",
+                      "conditions": [
+                        {
+                          "condition": "state",
+                          "entity_id": "sensor.snapmaker_u1_card_druckstatus",
+                          "state": [
+                            "printing",
+                            "paused"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "condition": "state",
+                      "entity_id": "binary_sensor.snapmaker_u1_card_live_verbindung",
+                      "state": "on"
+                    }
+                  ],
+                  "then": [
+                    {
+                      "action": "snapmaker_u1_card.send_gcode",
+                      "data": {
+                        "script": "SET_FAN_SPEED FAN=cavity_fan SPEED=0"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "conditions": [
+                {
+                  "condition": "trigger",
+                  "id": "toggle_off"
+                },
+                {
+                  "condition": "state",
+                  "entity_id": "binary_sensor.snapmaker_u1_card_live_verbindung",
+                  "state": "on"
+                },
+                {
+                  "condition": "not",
+                  "conditions": [
+                    {
+                      "condition": "state",
+                      "entity_id": "sensor.snapmaker_u1_card_druckstatus",
+                      "state": [
+                        "printing",
+                        "paused"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "sequence": [
+                {
+                  "action": "snapmaker_u1_card.send_gcode",
+                  "data": {
+                    "script": "SET_FAN_SPEED FAN=cavity_fan SPEED=0"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

@@ -18,6 +18,8 @@ Use [fertigdruck_fanfare.yaml](fertigdruck_fanfare.yaml) if you want a short Ech
 
 Use [cool_after_printing.yaml](cool_after_printing.yaml) if you want the Snapmaker U1's side auxiliary fan (`cavity_fan`) to cool the print bed after a print completes for easier part removal on the PEI sheet. It matches the compact **Cooling after printing** row directly below **Part cooling fan** in the dashboard.
 
+> **Package note:** These 4 helpers and `automation.snapmaker_u1_cool_after_printing` (defaulting to **On · 5 min · 70 %**) are already included in [u1_control_package.yaml](../packages/u1_control_package.yaml). Only create them manually below if you do not load that package.
+
 - **How it works:** When status transitions **printing → complete** and bed temperature is above 38 °C, HA sends `SET_FAN_SPEED FAN=cavity_fan SPEED=<pct/100>`. It stops automatically when the timer expires, bed temperature reaches ≤ 36 °C, the toggle is turned off, or a new print starts.
 - **Material tip:** Works best for **PLA** (recommended sweet spot: **70 %** for **5 min**). Turn the toggle off for **ABS/ASA** or large flat **PETG** parts to avoid uneven cooling warp.
 

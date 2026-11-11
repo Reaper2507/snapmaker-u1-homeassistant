@@ -13,7 +13,7 @@ A community dashboard by [Reaper2507](https://github.com/Reaper2507) for the Sna
 
 - **Live printer rendering.** I created the Studio rendering and mapped all four spool and toolhead positions. The rendered filament changes color to match the loaded spool at T0–T3, using data from Ironoxx’s integration. Studio and Cutaway also show live XYZ positions, nozzle and bed temperatures, and which toolhead is mounted.
 - **Controls from the printer graphic.** I made the graphic open the dashboard’s **Controls** and **Filament & heat** panels, so the controls are within reach from the printer view.
-- **Lovelace dashboard YAML.** I wrote the YAML for the Full, Minimal and Maintenance & Diagnostics views. I organized the maintenance view around the G-code console, service intervals, temperature history, bed mesh and system status.
+- **Lovelace dashboard YAML & post-print cooling.** I wrote the YAML for the Full, Minimal and Maintenance & Diagnostics views. I organized the maintenance view around the G-code console, service intervals, temperature history, bed mesh and system status, and included a compact **Cooling after printing** control directly under **Part cooling fan** (default: **On · 5 min · 70 %** on the side `cavity_fan`) to cool the print bed for easier part removal.
 
 [Dashboard views](#dashboard-views) · [Features](#features) · [Install the dashboard](#installation) · [Feedback & Ko-fi](#feedback-and-support)
 
@@ -80,7 +80,7 @@ Select the printer illustration in **Tools & material** to open the control pane
 - **Hardware mods.** [Auxiliary Fan Deflector](hardware/aux-fan-deflector/README.md) prevents left-bed warping by redirecting the chamber airflow upward.
 - **OrcaSlicer profiles.** [Install the U1 presets](orcaslicer/README.md#install-the-presets) for everyday prints, high-throughput organizers and compact multicolor jobs. [Browse 9 material presets](orcaslicer/README.md#filament-presets) for matching spools (compatible with 0.4 mm and 0.6 mm nozzles), including SUNLU PLA+ 2.0, JAYO PETG and ELEGOO PETG-CF.
 - **Set & Send.** Thanks to LayerLab for bringing the U1’s pre-print setup to OrcaSlicer. Their add-on lets you match filaments to toolheads and choose U1 print options before sending a job. [LayerLab download and guide](https://layerlab.store/pages/set-and-send) · [Quick setup](orcaslicer/README.md#set--send-by-layerlab)
-- **Helpful Home Assistant scripts.** [Optional printer controls](homeassistant/README.md#optional-controls-and-notifications) for tool changes and filament handling, plus a [microwave-style print completion ding and a brief chamber-light pulse](homeassistant/automations/README.md).
+- **Helpful Home Assistant scripts & post-print cooling.** The [control package](homeassistant/packages/u1_control_package.yaml) includes direct toolhead/filament controls and the **Cool after printing** helpers + automation (runs the side `cavity_fan` for **5 min at 70 %** after print completion for easier bed removal, or add it standalone via [cool_after_printing.yaml](homeassistant/automations/README.md#optional-post-print-bed-cooldown-fan-cavity_fan)), alongside a [microwave-style print completion ding and a brief chamber-light pulse](homeassistant/automations/README.md).
 - [Filament handling and troubleshooting](GUIDE.md).
 
 ## Feedback and support
