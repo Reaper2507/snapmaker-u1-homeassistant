@@ -930,6 +930,7 @@ views:
                     - font-size: 13px
               - type: custom:button-card
                 template: u1_showcase_data
+                entity: input_boolean.snapmaker_u1_cool_after_printing
                 show_name: false
                 show_icon: false
                 show_label: false
@@ -1000,10 +1001,12 @@ views:
                     card:
                       type: custom:button-card
                       entity: input_boolean.snapmaker_u1_cool_after_printing
+                      triggers_update:
+                      - input_boolean.snapmaker_u1_cool_after_printing
                       show_icon: false
                       show_name: false
                       show_label: true
-                      label: '[[[ return entity?.state === ''on'' ? ''On'' : ''Off''; ]]]'
+                      label: '[[[ return states[''input_boolean.snapmaker_u1_cool_after_printing'']?.state === ''on'' ? ''On'' : ''Off''; ]]]'
                       tap_action:
                         action: perform-action
                         perform_action: input_boolean.toggle
@@ -1015,12 +1018,12 @@ views:
                         - border-radius: 999px
                         - box-shadow: none
                         - pointer-events: auto
-                        - background: '[[[ return entity?.state === ''on'' ? ''rgba(255, 128, 105, 0.16)'' : ''rgba(255, 255, 255, 0.06)''; ]]]'
-                        - border: '[[[ return entity?.state === ''on'' ? ''1px solid rgba(255, 128, 105, 0.45)'' : ''1px solid var(--divider-color)''; ]]]'
+                        - background: '[[[ return states[''input_boolean.snapmaker_u1_cool_after_printing'']?.state === ''on'' ? ''rgba(255, 128, 105, 0.16)'' : ''rgba(255, 255, 255, 0.06)''; ]]]'
+                        - border: '[[[ return states[''input_boolean.snapmaker_u1_cool_after_printing'']?.state === ''on'' ? ''1px solid rgba(255, 128, 105, 0.45)'' : ''1px solid var(--divider-color)''; ]]]'
                         label:
                         - font-size: 11px
                         - font-weight: '700'
-                        - color: '[[[ return entity?.state === ''on'' ? ''#ff8069'' : ''var(--secondary-text-color)''; ]]]'
+                        - color: '[[[ return states[''input_boolean.snapmaker_u1_cool_after_printing'']?.state === ''on'' ? ''#ff8069'' : ''var(--secondary-text-color)''; ]]]'
                 styles:
                   card:
                   - padding: 4px 10px 4px 12px

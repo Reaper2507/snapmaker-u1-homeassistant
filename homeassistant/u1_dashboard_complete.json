@@ -1456,7 +1456,7 @@
                         "show_icon": false,
                         "show_name": false,
                         "show_label": true,
-                        "label": "[[[ return entity?.state === 'on' ? 'On' : 'Off'; ]]]",
+                        "label": "[[[ return states['input_boolean.snapmaker_u1_cool_after_printing']?.state === 'on' ? 'On' : 'Off'; ]]]",
                         "tap_action": {
                           "action": "perform-action",
                           "perform_action": "input_boolean.toggle",
@@ -1479,10 +1479,10 @@
                               "pointer-events": "auto"
                             },
                             {
-                              "background": "[[[ return entity?.state === 'on' ? 'rgba(255, 128, 105, 0.16)' : 'rgba(255, 255, 255, 0.06)'; ]]]"
+                              "background": "[[[ return states['input_boolean.snapmaker_u1_cool_after_printing']?.state === 'on' ? 'rgba(255, 128, 105, 0.16)' : 'rgba(255, 255, 255, 0.06)'; ]]]"
                             },
                             {
-                              "border": "[[[ return entity?.state === 'on' ? '1px solid rgba(255, 128, 105, 0.45)' : '1px solid var(--divider-color)'; ]]]"
+                              "border": "[[[ return states['input_boolean.snapmaker_u1_cool_after_printing']?.state === 'on' ? '1px solid rgba(255, 128, 105, 0.45)' : '1px solid var(--divider-color)'; ]]]"
                             }
                           ],
                           "label": [
@@ -1493,10 +1493,13 @@
                               "font-weight": "700"
                             },
                             {
-                              "color": "[[[ return entity?.state === 'on' ? '#ff8069' : 'var(--secondary-text-color)'; ]]]"
+                              "color": "[[[ return states['input_boolean.snapmaker_u1_cool_after_printing']?.state === 'on' ? '#ff8069' : 'var(--secondary-text-color)'; ]]]"
                             }
                           ]
-                        }
+                        },
+                        "triggers_update": [
+                          "input_boolean.snapmaker_u1_cool_after_printing"
+                        ]
                       }
                     }
                   },
@@ -1538,7 +1541,8 @@
                         }
                       ]
                     }
-                  }
+                  },
+                  "entity": "input_boolean.snapmaker_u1_cool_after_printing"
                 },
                 {
                   "type": "conditional",
