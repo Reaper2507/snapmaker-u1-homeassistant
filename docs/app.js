@@ -106,7 +106,7 @@ const i18n = {
     "three-views": "Three dashboard views",
     "main-credit": "Community collection by <a href=\"https://github.com/Reaper2507\" target=\"_blank\" rel=\"noopener noreferrer\">Reaper2507</a>, built on <a href=\"https://github.com/Ironoxx/ha-snapmaker-u1-card\" target=\"_blank\" rel=\"noopener noreferrer\">Ironoxx’s Snapmaker U1 integration</a>.",
     "quick-title": "Install the Snapmaker U1 dashboard",
-    "quick-intro": "Start here if Home Assistant can reach your U1. Setup time depends on which dependencies you have installed.",
+    "quick-intro": "Everything you need without digging through GitHub: 1-click HACS links, ready-to-import downloads, terminal one-liner, and optional automations.",
     "quick-1": "Install <a href=\"https://my.home-assistant.io/redirect/hacs_repository/?owner=Ironoxx&amp;repository=ha-snapmaker-u1-card&amp;category=integration\">Ironoxx’s integration in HACS</a>, restart HA and add Snapmaker U1 Card under Settings → Devices &amp; services.",
     "quick-2": "Install the six frontend dependencies in HACS: button-card, card-mod, slider-entity-row, vertical-stack-in-card, apexcharts-card, config-template-card.",
     "quick-3": "Copy the three files below to <code>/config/www/media/snapmaker-u1/showcase/</code>. Under Settings → Dashboards → Resources, register <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> as a JavaScript module.",
@@ -275,13 +275,13 @@ const i18n = {
     "sc-full-title": "Dashboard (Main View)",
     "sc-full-desc": "Top: printer graphic with T0–T3 spools, camera with light toggle, and job card. Below: speed, flow, Cooling after printing, all four toolheads, and axis controls.",
     "sc-cool-title": "Cooling after printing",
-    "sc-cool-desc": "Switch below Part cooling fan: when On, the side fan runs after printing finishes until the bed reaches 36 °C (or time runs out). Tapping the row opens Time and Fan speed sliders. <a href=\"homeassistant.html#cooling\">YAML →</a>",
+    "sc-cool-desc": "Switch below Part cooling fan: when On, the side fan runs after printing finishes until the bed reaches 36 °C (or time runs out). Tapping the row opens Time and Fan speed sliders. <a href=\"install.html#cooling\">YAML →</a>",
     "sc-minimal-title": "Minimal View",
     "sc-minimal-desc": "Compact daily view without the full head and motion panels: printer graphic, camera, last print, Emergency stop, Cooling after printing, files, and layer view.",
     "sc-heat-title": "Tap the Printer → Controls &amp; Heat",
     "sc-heat-desc": "Tapping the printer card opens speed, flow, pause, and per-head filament and temperature controls.",
     "sc-cutaway-title": "Studio / Cutaway Toggle",
-    "sc-cutaway-desc": "Optional Cutaway graphic showing live X/Y/Z coordinates and which toolhead is mounted or parked. <a href=\"homeassistant.html#telemetry\">Preview →</a>",
+    "sc-cutaway-desc": "Optional Cutaway graphic showing live X/Y/Z coordinates and which toolhead is mounted or parked.",
     "sc-files-title": "Files, History &amp; Layer View",
     "sc-files-desc": "Start prints directly from the list, browse timelapses, and skip individual objects mid-print using Ironoxx’s live layer view.",
     "sc-maint-title": "Maintenance &amp; Diagnostics",
@@ -304,7 +304,34 @@ const i18n = {
     "proc-bal-06": "0.6 mm standard for enclosures &amp; housings: 3 walls (1.9 mm shell), 15 % Adaptive Cubic, 170/260/300 mm/s.",
     "proc-fast-06": "Massive volume throughput for crates, bins &amp; tool trays: 2 walls (1.25 mm shell), 10 % infill, 180/280/320 mm/s.",
     "proc-func-06": "Heavy-duty jigs &amp; adapters: 4 walls (2.50 mm solid shell), 20 % Adaptive Cubic, 150/220/260 mm/s.",
-    "proc-draft-06": "Rapid large-volume mockups: 2 walls, 8 % Adaptive Cubic, 200/320/350 mm/s."
+    "proc-draft-06": "Rapid large-volume mockups: 2 walls, 8 % Adaptive Cubic, 200/320/350 mm/s.",
+    "jump-hacs": "1. HACS 1-Click (7×)",
+    "jump-files": "2. Downloads / ZIP / CLI",
+    "jump-yaml": "3. Dashboard YAML",
+    "jump-cooling": "Cooling &amp; Cue",
+    "jump-ai": "AI Install",
+    "hacs-cards-title": "Step 1 · Open &amp; install in HACS (1-Click)",
+    "hacs-cards-note": "Each button opens HACS directly in your Home Assistant instance. Install Ironoxx’s integration first (restart HA &amp; add Snapmaker U1 Card under Devices &amp; services), then install the six frontend cards.",
+    "hacs-open": "Open in My HA →",
+    "files-title": "Step 2 · Get the dashboard files (ZIP or Terminal)",
+    "files-subtitle": "Pick whichever is faster for you: download everything bundled as one ZIP with folder layout, or run the one-liner in Home Assistant’s Terminal &amp; SSH add-on.",
+    "zip-box-title": "Option A · Download ZIP or single files",
+    "zip-box-desc": "Copy <code>www/media/snapmaker-u1/showcase/*</code> into <code>/config/www/media/snapmaker-u1/showcase/</code> (and optionally <code>u1_control_package.yaml</code> into <code>/config/packages/</code>).",
+    "ha-dl-zip": "⬇ Download HA package (.zip)",
+    "cli-box-title": "Option B · Terminal &amp; SSH one-liner",
+    "cli-box-desc": "Runs inside Home Assistant’s Terminal &amp; SSH add-on: creates folders, downloads all files, and checks which HACS cards are already installed.",
+    "cli-copy": "Copy command",
+    "yaml-step-title": "Step 3 · Register card resource &amp; import Dashboard YAML",
+    "yaml-step-1": "In Home Assistant: <a href=\"https://my.home-assistant.io/redirect/lovelace_dashboards/\" target=\"_blank\" rel=\"noopener noreferrer\">Settings → Dashboards</a> → three-dot menu → <strong>Resources</strong> → add <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> as a <strong>JavaScript module</strong>.",
+    "yaml-step-2": "Create a new dashboard, open the three-dot menu → <strong>Edit dashboard</strong> → <strong>Raw configuration editor</strong>, and paste the dashboard YAML below. Map the example entity IDs (<code>snapmaker_u1_card_*</code>) if your printer integration uses different names.",
+    "dash-yaml-copy": "📋 Copy Dashboard YAML to clipboard",
+    "dash-yaml-dl": "⬇ Download u1_dashboard_complete.yaml",
+    "ha-zip-fetching": "Building HA package ZIP…",
+    "ha-zip-ready": "Downloaded snapmaker-u1-homeassistant-files.zip ({n} files).",
+    "ha-zip-err": "Could not build ZIP — use the single file links below.",
+    "cli-copy-ok": "Command copied.",
+    "dash-yaml-ok": "Dashboard YAML copied to clipboard.",
+    "dash-yaml-err": "Copy failed — use the download button instead."
   },
   "de": {
     "nav-home": "Übersicht",
@@ -413,7 +440,7 @@ const i18n = {
     "three-views": "Drei Dashboard-Ansichten",
     "main-credit": "Sammlung von <a href=\"https://github.com/Reaper2507\" target=\"_blank\" rel=\"noopener noreferrer\">Reaper2507</a> auf Basis von <a href=\"https://github.com/Ironoxx/ha-snapmaker-u1-card\" target=\"_blank\" rel=\"noopener noreferrer\">Ironoxx’ Snapmaker-U1-Integration</a>.",
     "quick-title": "Snapmaker-U1-Dashboard installieren",
-    "quick-intro": "Starte hier, wenn Home Assistant deinen U1 im Netzwerk erreicht. Die Einrichtungszeit hängt von den bereits installierten Abhängigkeiten ab.",
+    "quick-intro": "Alles ohne GitHub-Umweg: 1-Klick-Links für HACS, fertiges Download-ZIP, Terminal-Einzeiler und optionale Automationen.",
     "quick-1": "Installiere <a href=\"https://my.home-assistant.io/redirect/hacs_repository/?owner=Ironoxx&amp;repository=ha-snapmaker-u1-card&amp;category=integration\">Ironoxx’ Integration in HACS</a>, starte HA neu und füge Snapmaker U1 Card unter Einstellungen → Geräte &amp; Dienste hinzu.",
     "quick-2": "Installiere die sechs Frontend-Abhängigkeiten in HACS: button-card, card-mod, slider-entity-row, vertical-stack-in-card, apexcharts-card, config-template-card.",
     "quick-3": "Kopiere die drei Dateien unten nach <code>/config/www/media/snapmaker-u1/showcase/</code>. Registriere <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> unter Einstellungen → Dashboards → Ressourcen als JavaScript-Modul.",
@@ -582,13 +609,13 @@ const i18n = {
     "sc-full-title": "Dashboard (Hauptansicht)",
     "sc-full-desc": "Oben: Drucker-Grafik mit T0–T3-Spulen, Kamera mit Lichtschalter und Druckstatus. Darunter: Tempo, Flow, Cooling after printing, alle vier Köpfe und Achssteuerung.",
     "sc-cool-title": "Cooling after printing",
-    "sc-cool-desc": "Schalter unter dem Bauteillüfter: Ist er an, läuft der Seitenlüfter nach Druckende mit, bis das Bett auf 36 °C abgekühlt ist (oder die Zeit abläuft). Klick auf die Zeile öffnet Zeit- und Lüfterregler. <a href=\"homeassistant.html#cooling\">YAML →</a>",
+    "sc-cool-desc": "Schalter unter dem Bauteillüfter: Ist er an, läuft der Seitenlüfter nach Druckende mit, bis das Bett auf 36 °C abgekühlt ist (oder die Zeit abläuft). Klick auf die Zeile öffnet Zeit- und Lüfterregler. <a href=\"install.html#cooling\">YAML →</a>",
     "sc-minimal-title": "Minimal-Ansicht",
     "sc-minimal-desc": "Kompakte Alltagsansicht ohne die volle Kopf- und Achssteuerung: Grafik, Kamera, letzter Druck, Not-Aus, Cooling after printing sowie Dateien und Schichtansicht.",
     "sc-heat-title": "Klick auf den Drucker → Controls &amp; Heat",
     "sc-heat-desc": "Ein Tipp auf das Druckerbild öffnet Tempo, Flow, Pause sowie Filament und Temperaturen für alle vier Köpfe.",
     "sc-cutaway-title": "Studio / Cutaway umschaltbar",
-    "sc-cutaway-desc": "Optional zeigt die Cutaway-Grafik den Bauraum mit Live-X/Y/Z-Position und geladenem Werkzeugkopf. <a href=\"homeassistant.html#telemetry\">Vorschau →</a>",
+    "sc-cutaway-desc": "Optional zeigt die Cutaway-Grafik den Bauraum mit Live-X/Y/Z-Position und geladenem Werkzeugkopf.",
     "sc-files-title": "Dateien, Verlauf &amp; Layer View",
     "sc-files-desc": "Druckjobs direkt starten, Zeitraffer ansehen und über Ironoxx’ Schichtansicht während des Drucks einzelne Teile überspringen.",
     "sc-maint-title": "Wartung &amp; Diagnose",
@@ -611,7 +638,34 @@ const i18n = {
     "proc-bal-06": "0,6-mm-Standard für Gehäuse &amp; Abdeckungen: 3 Wände (1,9 mm), 15 % Adaptive Cubic, 170/260/300 mm/s.",
     "proc-fast-06": "Maximaler Volumendurchsatz für große Kisten &amp; Trays: 2 Wände (1,25 mm), 10 % Infill, 180/280/320 mm/s.",
     "proc-func-06": "Robuste Werkstatt-Lehren &amp; Adapter: 4 Wände (2,50 mm massiv), 20 % Adaptive Cubic, 150/220/260 mm/s.",
-    "proc-draft-06": "Schnelle Großvolumen-Prototypen: 2 Wände, 8 % Adaptive Cubic, 200/320/350 mm/s."
+    "proc-draft-06": "Schnelle Großvolumen-Prototypen: 2 Wände, 8 % Adaptive Cubic, 200/320/350 mm/s.",
+    "jump-hacs": "1. HACS 1-Klick (7×)",
+    "jump-files": "2. Downloads / ZIP / CLI",
+    "jump-yaml": "3. Dashboard-YAML",
+    "jump-cooling": "Nachkühlen &amp; Signal",
+    "jump-ai": "KI-Installation",
+    "hacs-cards-title": "Schritt 1 · In HACS per 1-Klick öffnen &amp; installieren",
+    "hacs-cards-note": "Jeder Button öffnet HACS direkt in deiner Home-Assistant-Instanz. Zuerst Ironoxx’ Integration installieren (HA neu starten &amp; Snapmaker U1 Card unter Geräte &amp; Dienste hinzufügen), danach die sechs Frontend-Karten.",
+    "hacs-open": "In My HA öffnen →",
+    "files-title": "Schritt 2 · Dashboard-Dateien laden (ZIP oder Terminal)",
+    "files-subtitle": "Wähle den schnelleren Weg: Alles fertig sortiert als ZIP herunterladen oder den Einzeiler im Terminal-&amp;-SSH-Add-on von Home Assistant ausführen.",
+    "zip-box-title": "Option A · ZIP oder Einzeldateien laden",
+    "zip-box-desc": "Kopiere <code>www/media/snapmaker-u1/showcase/*</code> nach <code>/config/www/media/snapmaker-u1/showcase/</code> (und optional <code>u1_control_package.yaml</code> nach <code>/config/packages/</code>).",
+    "ha-dl-zip": "⬇ HA-Paket herunterladen (.zip)",
+    "cli-box-title": "Option B · Terminal-&amp;-SSH-Einzeiler",
+    "cli-box-desc": "Läuft direkt im Terminal-&amp;-SSH-Add-on von Home Assistant: legt alle Ordner an, lädt alle Dateien herunter und prüft installierte HACS-Karten.",
+    "cli-copy": "Befehl kopieren",
+    "yaml-step-title": "Schritt 3 · Ressource registrieren &amp; Dashboard-YAML einfügen",
+    "yaml-step-1": "In Home Assistant: <a href=\"https://my.home-assistant.io/redirect/lovelace_dashboards/\" target=\"_blank\" rel=\"noopener noreferrer\">Einstellungen → Dashboards</a> → Drei-Punkte-Menü → <strong>Ressourcen</strong> → <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> als <strong>JavaScript-Modul</strong> hinzufügen.",
+    "yaml-step-2": "Neues Dashboard anlegen, Drei-Punkte-Menü → <strong>Dashboard bearbeiten</strong> → <strong>Raw-Konfigurationseditor</strong> öffnen und die Dashboard-YAML unten einfügen. Beispiel-Entitäten (<code>snapmaker_u1_card_*</code>) ggf. an deine Drucker-Instanz anpassen.",
+    "dash-yaml-copy": "📋 Dashboard-YAML in Zwischenablage kopieren",
+    "dash-yaml-dl": "⬇ u1_dashboard_complete.yaml laden",
+    "ha-zip-fetching": "Erstelle HA-Paket-ZIP…",
+    "ha-zip-ready": "snapmaker-u1-homeassistant-files.zip geladen ({n} Dateien).",
+    "ha-zip-err": "ZIP konnte nicht erstellt werden — nutze die Einzellinks darunter.",
+    "cli-copy-ok": "Befehl kopiert.",
+    "dash-yaml-ok": "Dashboard-YAML in die Zwischenablage kopiert.",
+    "dash-yaml-err": "Kopieren fehlgeschlagen — nutze bitte den Download-Button."
   }
 };
 
@@ -879,6 +933,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   initFilamentPicker();
+  initInstallHelpers();
 });
 
 // Pure-JS CRC32 + Uncompressed Store ZIP builder (no external dependencies)
@@ -1189,4 +1244,104 @@ function initFilamentPicker() {
       console.error('Failed to load filaments.json', err);
       grid.innerHTML = '<p class="picker-status">Could not load filament catalog.</p>';
     });
+}
+
+function initInstallHelpers() {
+  const RAW_BASE = 'https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/';
+
+  const btnCli = document.getElementById('btn-copy-cli');
+  const cliCode = document.getElementById('ha-cli-cmd');
+  const cliStatus = document.getElementById('cli-copy-status');
+  if (btnCli && cliCode) {
+    btnCli.addEventListener('click', () => {
+      const t = i18n[currentLang] || i18n.en;
+      navigator.clipboard.writeText(cliCode.textContent.trim()).then(() => {
+        if (cliStatus) cliStatus.textContent = t['cli-copy-ok'] || 'Command copied.';
+        setTimeout(() => { if (cliStatus) cliStatus.textContent = ''; }, 3000);
+      }).catch(() => {
+        if (cliStatus) cliStatus.textContent = cliCode.textContent.trim();
+      });
+    });
+  }
+
+  const btnDashYaml = document.getElementById('btn-copy-dash-yaml');
+  const dashStatus = document.getElementById('dash-yaml-status');
+  if (btnDashYaml) {
+    btnDashYaml.addEventListener('click', async () => {
+      const t = i18n[currentLang] || i18n.en;
+      btnDashYaml.disabled = true;
+      try {
+        const res = await fetch(RAW_BASE + 'u1_dashboard_complete.yaml');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const yamlText = await res.text();
+        await navigator.clipboard.writeText(yamlText);
+        if (dashStatus) dashStatus.textContent = t['dash-yaml-ok'] || 'Dashboard YAML copied.';
+      } catch (err) {
+        console.error(err);
+        if (dashStatus) dashStatus.textContent = t['dash-yaml-err'] || 'Copy failed — use the download button.';
+      } finally {
+        btnDashYaml.disabled = false;
+      }
+    });
+  }
+
+  const btnHaZip = document.getElementById('btn-download-ha-zip');
+  const haZipStatus = document.getElementById('ha-zip-status');
+  if (btnHaZip) {
+    btnHaZip.addEventListener('click', async () => {
+      const t = i18n[currentLang] || i18n.en;
+      btnHaZip.disabled = true;
+      if (haZipStatus) haZipStatus.textContent = t['ha-zip-fetching'] || 'Building HA package ZIP…';
+
+      const manifest = [
+        { src: 'www/u1-fusion-showcase.u1.js', dst: 'www/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js' },
+        { src: 'www/studio.png', dst: 'www/media/snapmaker-u1/showcase/studio.png' },
+        { src: 'www/close-up.png', dst: 'www/media/snapmaker-u1/showcase/close-up.png' },
+        { src: 'packages/u1_control_package.yaml', dst: 'packages/u1_control_package.yaml' },
+        { src: 'u1_dashboard_complete.yaml', dst: 'u1_dashboard_complete.yaml' },
+        { src: 'automations/cool_after_printing.yaml', dst: 'automations/cool_after_printing.yaml' },
+        { src: 'automations/fertigdruck_fanfare.yaml', dst: 'automations/fertigdruck_fanfare.yaml' }
+      ];
+
+      try {
+        const entries = await Promise.all(
+          manifest.map(async item => {
+            const res = await fetch(RAW_BASE + item.src);
+            if (!res.ok) throw new Error('Failed to fetch ' + item.src);
+            return { name: item.dst, data: new Uint8Array(await res.arrayBuffer()) };
+          })
+        );
+
+        const readme = [
+          'Snapmaker U1 Home Assistant Package (by Reaper2507, core integration by Ironoxx)',
+          '',
+          '1. Copy www/media/snapmaker-u1/showcase/* into /config/www/media/snapmaker-u1/showcase/',
+          '2. Register /local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js in Settings -> Dashboards -> Resources (JavaScript module).',
+          '3. Optional: copy packages/u1_control_package.yaml into /config/packages/ (or use automations/*.yaml standalone).',
+          '4. Paste u1_dashboard_complete.yaml into a new dashboard Raw configuration editor.',
+          '',
+          'One-click HACS links & setup details: https://reaper2507.github.io/snapmaker-u1-homeassistant/install.html'
+        ].join('\n');
+
+        const blob = buildStoreZip([{ name: 'INSTALL_README.txt', data: readme }, ...entries]);
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'snapmaker-u1-homeassistant-files.zip';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+
+        if (haZipStatus) {
+          haZipStatus.textContent = (t['ha-zip-ready'] || 'Downloaded snapmaker-u1-homeassistant-files.zip ({n} files).').replace('{n}', String(entries.length));
+        }
+      } catch (err) {
+        console.error(err);
+        if (haZipStatus) haZipStatus.textContent = t['ha-zip-err'] || 'Could not build ZIP — use single file links.';
+      } finally {
+        btnHaZip.disabled = false;
+      }
+    });
+  }
 }

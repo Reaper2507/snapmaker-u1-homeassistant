@@ -4,26 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="page-install">Install the Snapmaker U1 dashboard</title>
-  <meta name="description" content="Quick start and installation guide for the Snapmaker U1 Home Assistant dashboard by Reaper2507 (snapmaker-u1-homeassistant).">
+  <meta name="description" content="Direct downloads, 1-click HACS buttons, HA terminal one-liner, and YAML files for the Snapmaker U1 Home Assistant dashboard by Reaper2507.">
   <meta name="author" content="Reaper2507">
   <link rel="canonical" href="https://reaper2507.github.io/snapmaker-u1-homeassistant/install.html">
-  <link rel="stylesheet" href="styles.css?v=20261111_01">
+  <link rel="stylesheet" href="styles.css?v=20261111_04">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <a href="#main-content" class="skip-link" data-i18n="skip-main">Skip to content</a>
-  <!-- Header / Navigation -->
+
   <header class="site-header">
     <div class="container header-container">
       <a href="index.html" class="brand">
-
         <span class="brand-text">Snapmaker U1 Dashboard</span>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="index.html" class="nav-link" data-i18n="nav-home">Overview</a>
-        <a href="homeassistant.html" class="nav-link" data-i18n="nav-ha">Dashboard</a>
         <a href="install.html" class="nav-link active" data-i18n="nav-install" aria-current="page">Install</a>
         <a href="orcaslicer.html" class="nav-link" data-i18n="nav-orcaslicer">OrcaSlicer</a>
         <a href="credits.html" class="nav-link" data-i18n="nav-credits">Credits</a>
@@ -42,23 +40,433 @@
       </div>
     </div>
   </header>
+
   <main id="main-content" tabindex="-1">
-<section class="page-banner"><div class="container"><h1 data-i18n="quick-title">Install the Snapmaker U1 dashboard</h1><p data-i18n="quick-intro" class="banner-lead">Start here if Home Assistant can reach your U1. Setup time depends on which dependencies you have installed.</p></div></section>
-<section class="features-section" id="quick-steps"><div class="container"><p data-i18n="hacs-note">If HACS is new to you, follow the <a href="https://hacs.xyz/docs/use/download/download/">official setup for your installation type</a>.</p><ol class="quick-steps"><li data-i18n="quick-1">Install <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=Ironoxx&amp;repository=ha-snapmaker-u1-card&amp;category=integration">Ironoxx’s integration in HACS</a>, restart HA and add Snapmaker U1 Card under Settings → Devices &amp; services.</li>
-<li data-i18n="quick-2">Install the six frontend dependencies in HACS: button-card, card-mod, slider-entity-row, vertical-stack-in-card, apexcharts-card, config-template-card.</li>
-<li><span data-i18n="quick-3">Copy the three files below to <code>/config/www/media/snapmaker-u1/showcase/</code>. Under Settings → Dashboards → Resources, register <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> as a JavaScript module.</span><p class="install-downloads"><a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/u1-fusion-showcase.u1.js"><code>u1-fusion-showcase.u1.js</code></a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/studio.png"><code>studio.png</code></a> · <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/close-up.png"><code>close-up.png</code></a></p></li>
-<li data-i18n="quick-4">Paste the <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml">dashboard YAML</a> into the Raw configuration editor of a new dashboard. Map the sample entity IDs before using the controls.</li></ol><p><a data-i18n="ai-install-link" href="#ai-install" class="btn btn-primary">Install with an AI assistant</a> <a data-i18n="quick-repo" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/homeassistant/README.md">Troubleshooting and updates</a></p></div></section>
-<section class="features-section" id="extras"><div class="container"><h2 data-i18n="extras-title">Optional extras</h2><ul class="extra-links"><li><a data-i18n="extra-orca" href="orcaslicer.html">OrcaSlicer profiles</a></li>
-<li><a data-i18n="extra-layer" href="orcaslicer.html#set-and-send">LayerLab Set &amp; Send</a></li>
-<li><a data-i18n="extra-tone" href="homeassistant.html#fanfare">Print completion chime and light</a></li>
-<li><a data-i18n="extra-cooling" href="homeassistant.html#cooling">Cool after printing (bed cooldown fan)</a></li></ul></div></section>
-  <section id="ai-install" class="features-section">
-    <div class="container">
-      <h2 data-i18n="ai-install-heading">Install with an AI assistant</h2>
-      <p data-i18n="ai-install-body">Copy the prompt into an assistant with Home Assistant admin and file access. It installs the dashboard and checks what is running.</p>
-      <p><button type="button" class="btn btn-secondary" id="btn-copy-ai-prompt" data-i18n="ai-install-copy">Copy installation prompt</button> <span id="ai-copy-status" role="status"></span></p>
-      <details class="install-prompt"><summary data-i18n="ai-install-show">Show installation prompt</summary>
-        <pre><code id="ai-install-prompt-text">Install the Snapmaker U1 Community Dashboard and its custom Lovelace card in my Home Assistant. Carry out the installation using the Home Assistant admin/API, HACS and file-access tools available to you. Reply in my language.
+    <section class="page-banner">
+      <div class="container">
+        <h1 data-i18n="quick-title">Install the Snapmaker U1 dashboard</h1>
+        <p data-i18n="quick-intro" class="banner-lead">Everything you need without digging through GitHub: 1-click HACS links, ready-to-import downloads, terminal one-liner, and optional automations.</p>
+        <div class="quick-jump-bar">
+          <a href="#hacs-steps" class="jump-pill" data-i18n="jump-hacs">1. HACS 1-Click (7×)</a>
+          <a href="#quick-steps" class="jump-pill" data-i18n="jump-files">2. Downloads / ZIP / CLI</a>
+          <a href="#dashboard-yaml" class="jump-pill" data-i18n="jump-yaml">3. Dashboard YAML</a>
+          <a href="#cooling" class="jump-pill" data-i18n="jump-cooling">Cooling &amp; Cue</a>
+          <a href="#ai-install" class="jump-pill" data-i18n="jump-ai">AI Install</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 1: 1-Click HACS Dependencies -->
+    <section class="features-section" id="hacs-steps">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="hacs-cards-title">Step 1 · Open &amp; install in HACS (1-Click)</h2>
+          <p class="section-intro" data-i18n="hacs-cards-note">Each button opens HACS directly in your Home Assistant instance. Install Ironoxx’s integration first (restart HA &amp; add Snapmaker U1 Card under Devices &amp; services), then install the six frontend cards.</p>
+        </div>
+
+        <div class="hacs-grid">
+          <a class="hacs-card hacs-primary" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=Ironoxx&amp;repository=ha-snapmaker-u1-card&amp;category=integration" target="_blank" rel="noopener noreferrer">
+            <span class="hacs-tag" data-i18n="credit-primary">Core integration</span>
+            <strong>Snapmaker U1 Card (Ironoxx)</strong>
+            <span class="hacs-cta" data-i18n="hacs-open">Open in My HA →</span>
+          </a>
+          <a class="hacs-card" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=custom-cards&amp;repository=button-card&amp;category=plugin" target="_blank" rel="noopener noreferrer">
+            <span class="hacs-tag">Frontend</span>
+            <strong>button-card</strong>
+            <span class="hacs-cta" data-i18n="hacs-open">Open in My HA →</span>
+          </a>
+          <a class="hacs-card" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=thomasloven&amp;repository=lovelace-card-mod&amp;category=plugin" target="_blank" rel="noopener noreferrer">
+            <span class="hacs-tag">Frontend</span>
+            <strong>card-mod</strong>
+            <span class="hacs-cta" data-i18n="hacs-open">Open in My HA →</span>
+          </a>
+          <a class="hacs-card" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=thomasloven&amp;repository=lovelace-slider-entity-row&amp;category=plugin" target="_blank" rel="noopener noreferrer">
+            <span class="hacs-tag">Frontend</span>
+            <strong>slider-entity-row</strong>
+            <span class="hacs-cta" data-i18n="hacs-open">Open in My HA →</span>
+          </a>
+          <a class="hacs-card" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=ofekashery&amp;repository=vertical-stack-in-card&amp;category=plugin" target="_blank" rel="noopener noreferrer">
+            <span class="hacs-tag">Frontend</span>
+            <strong>vertical-stack-in-card</strong>
+            <span class="hacs-cta" data-i18n="hacs-open">Open in My HA →</span>
+          </a>
+          <a class="hacs-card" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=RomRider&amp;repository=apexcharts-card&amp;category=plugin" target="_blank" rel="noopener noreferrer">
+            <span class="hacs-tag">Frontend</span>
+            <strong>apexcharts-card</strong>
+            <span class="hacs-cta" data-i18n="hacs-open">Open in My HA →</span>
+          </a>
+          <a class="hacs-card" href="https://my.home-assistant.io/redirect/hacs_repository/?owner=iantrich&amp;repository=config-template-card&amp;category=plugin" target="_blank" rel="noopener noreferrer">
+            <span class="hacs-tag">Frontend</span>
+            <strong>config-template-card</strong>
+            <span class="hacs-cta" data-i18n="hacs-open">Open in My HA →</span>
+          </a>
+        </div>
+
+        <p class="path-hint" style="margin-top:12px;" data-i18n="hacs-note">If HACS is new to you, follow the <a href="https://hacs.xyz/docs/use/download/download/">official setup for your installation type</a>.</p>
+      </div>
+    </section>
+
+    <!-- Step 2: Downloads (ZIP / CLI / Individual) -->
+    <section class="features-section" id="quick-steps">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="files-title">Step 2 · Get the dashboard files (ZIP or Terminal)</h2>
+          <p class="section-intro" data-i18n="files-subtitle">Pick whichever is faster for you: download everything bundled as one ZIP with folder layout, or run the one-liner in Home Assistant’s Terminal &amp; SSH add-on.</p>
+        </div>
+
+        <div class="install-methods-grid">
+          <!-- Method A: ZIP & Direct Files -->
+          <div class="install-box">
+            <h3 data-i18n="zip-box-title">Option A · Download ZIP or single files</h3>
+            <p data-i18n="zip-box-desc">Copy <code>www/media/snapmaker-u1/showcase/*</code> into <code>/config/www/media/snapmaker-u1/showcase/</code> (and optionally <code>u1_control_package.yaml</code> into <code>/config/packages/</code>).</p>
+            <div class="install-btn-row">
+              <button type="button" class="btn btn-primary" id="btn-download-ha-zip" data-i18n="ha-dl-zip">⬇ Download HA package (.zip)</button>
+              <span class="picker-status" id="ha-zip-status" aria-live="polite"></span>
+            </div>
+            <p class="install-downloads">
+              <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/u1-fusion-showcase.u1.js" download><code>u1-fusion-showcase.u1.js</code></a> ·
+              <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/studio.png" download><code>studio.png</code></a> ·
+              <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/www/close-up.png" download><code>close-up.png</code></a> ·
+              <a href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/packages/u1_control_package.yaml" download><code>u1_control_package.yaml</code></a>
+            </p>
+          </div>
+
+          <!-- Method B: Terminal One-Liner -->
+          <div class="install-box">
+            <h3 data-i18n="cli-box-title">Option B · Terminal &amp; SSH one-liner</h3>
+            <p data-i18n="cli-box-desc">Runs inside Home Assistant’s Terminal &amp; SSH add-on: creates folders, downloads all files, and checks which HACS cards are already installed.</p>
+            <pre class="code-block" style="margin:10px 0;"><code id="ha-cli-cmd">curl -fsSL https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/install_ha.sh | bash</code></pre>
+            <div class="install-btn-row">
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-copy-cli" data-i18n="cli-copy">Copy command</button>
+              <span class="picker-status" id="cli-copy-status" role="status"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Resource + Dashboard YAML -->
+    <section class="features-section" id="dashboard-yaml">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-i18n="yaml-step-title">Step 3 · Register card resource &amp; import Dashboard YAML</h2>
+        </div>
+        <ol class="quick-steps">
+          <li data-i18n="yaml-step-1">In Home Assistant: <a href="https://my.home-assistant.io/redirect/lovelace_dashboards/" target="_blank" rel="noopener noreferrer">Settings → Dashboards</a> → three-dot menu → <strong>Resources</strong> → add <code>/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js</code> as a <strong>JavaScript module</strong>.</li>
+          <li data-i18n="yaml-step-2">Create a new dashboard, open the three-dot menu → <strong>Edit dashboard</strong> → <strong>Raw configuration editor</strong>, and paste the dashboard YAML below. Map the example entity IDs (<code>snapmaker_u1_card_*</code>) if your printer integration uses different names.</li>
+        </ol>
+        <div class="install-btn-row" style="margin-top:14px;">
+          <button type="button" class="btn btn-primary" id="btn-copy-dash-yaml" data-i18n="dash-yaml-copy">📋 Copy Dashboard YAML to clipboard</button>
+          <a class="btn btn-secondary" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml" download data-i18n="dash-yaml-dl">⬇ Download u1_dashboard_complete.yaml</a>
+          <span class="picker-status" id="dash-yaml-status" role="status"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Optional Cooling & Completion Cue YAMLs -->
+    <section class="features-section" id="cooling">
+      <div class="container">
+        <details open>
+          <summary data-i18n="cooling-summary">Included: Cool after printing (bed cooldown fan)</summary>
+          <p data-i18n="cooling-note">Small cooling helper below Part cooling fan and inside <code>u1_control_package.yaml</code>: runs the side auxiliary fan (<code>cavity_fan</code>) after print completion (default: 5 min at 70 %) for easier part removal on PEI sheets. Stops automatically at ≤ 36 °C or when switched off.</p>
+          <p><a data-i18n="cooling-setup" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/homeassistant/automations/README.md#optional-post-print-bed-cooldown-fan-cavity_fan" target="_blank" rel="noopener noreferrer">Setup &amp; helper entities</a> · <a data-i18n="cooling-file" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/automations/cool_after_printing.yaml" download>Download YAML</a></p>
+          <details>
+            <summary data-i18n="cooling-show">Show standalone automation YAML</summary>
+            <pre class="code-block"><code id="cooling-yaml-code">alias: "Snapmaker U1 – Cool After Printing"
+description: &gt;-
+  Runs the Snapmaker U1 side auxiliary fan (cavity_fan) after print completion
+  to cool the print bed for easier part removal. Stops automatically on timer
+  expiry, bed temperature &lt;= 36 °C, manual toggle off, or a new print.
+mode: restart
+triggers:
+  - trigger: state
+    entity_id: sensor.snapmaker_u1_card_druckstatus
+    from: "printing"
+    to: "complete"
+    id: print_complete
+  - trigger: state
+    entity_id: input_boolean.snapmaker_u1_cool_after_printing
+    to: "off"
+    id: toggle_off
+actions:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: print_complete
+          - condition: state
+            entity_id: input_boolean.snapmaker_u1_cool_after_printing
+            state: "on"
+          - condition: state
+            entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+            state: "on"
+          - condition: numeric_state
+            entity_id: sensor.snapmaker_u1_card_betttemperatur
+            above: 38
+        sequence:
+          - delay:
+              seconds: 2
+          - condition: state
+            entity_id: input_boolean.snapmaker_u1_cool_after_printing
+            state: "on"
+          - condition: state
+            entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+            state: "on"
+          - condition: state
+            entity_id: sensor.snapmaker_u1_card_druckstatus
+            state: "complete"
+          - action: snapmaker_u1_card.send_gcode
+            data:
+              script: &gt;-
+                SET_FAN_SPEED FAN=cavity_fan SPEED={{ ((states('input_number.snapmaker_u1_cool_after_printing_speed') | float(70)) / 100) | round(2) }}
+          - wait_for_trigger:
+              - trigger: numeric_state
+                entity_id: sensor.snapmaker_u1_card_betttemperatur
+                below: 36.5
+              - trigger: state
+                entity_id: input_boolean.snapmaker_u1_cool_after_printing
+                to: "off"
+              - trigger: state
+                entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+                to: "off"
+              - trigger: state
+                entity_id: sensor.snapmaker_u1_card_druckstatus
+                to:
+                  - "printing"
+                  - "paused"
+            timeout:
+              minutes: "{{ states('input_number.snapmaker_u1_cool_after_printing_minutes') | int(5) }}"
+            continue_on_timeout: true
+          - if:
+              - condition: not
+                conditions:
+                  - condition: state
+                    entity_id: sensor.snapmaker_u1_card_druckstatus
+                    state:
+                      - "printing"
+                      - "paused"
+              - condition: state
+                entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+                state: "on"
+            then:
+              - action: snapmaker_u1_card.send_gcode
+                data:
+                  script: "SET_FAN_SPEED FAN=cavity_fan SPEED=0"
+      - conditions:
+          - condition: trigger
+            id: toggle_off
+          - condition: state
+            entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+            state: "on"
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: sensor.snapmaker_u1_card_druckstatus
+                state:
+                  - "printing"
+                  - "paused"
+        sequence:
+          - action: snapmaker_u1_card.send_gcode
+            data:
+              script: "SET_FAN_SPEED FAN=cavity_fan SPEED=0"
+</code></pre>
+            <button data-i18n="btn-copy-yaml" class="btn btn-secondary btn-sm" id="btn-copy-cooling-yaml">Copy YAML</button>
+          </details>
+        </details>
+      </div>
+    </section>
+
+    <section class="features-section" id="fanfare">
+      <div class="container">
+        <details>
+          <summary data-i18n="fanfare-summary">Optional: print completion chime and light</summary>
+          <p data-i18n="fanfare-note">The chamber light reverses state for 1.2 seconds on entry into the last valid layer. Confirmed completion is the fallback. The Alexa bell_02 chime attempts to play near 99.9% or at completion, depending on telemetry.</p>
+          <p><a data-i18n="fanfare-setup" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/homeassistant/automations/README.md" target="_blank" rel="noopener noreferrer">Setup &amp; entity mapping</a> · <a data-i18n="fanfare-file" href="https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/automations/fertigdruck_fanfare.yaml" download>Download YAML</a></p>
+          <details>
+            <summary data-i18n="fanfare-show">Show YAML</summary>
+            <pre class="code-block"><code id="fanfare-yaml-code">alias: "Snapmaker U1 – Fertigdruck-Fanfare &amp; Licht (Letzter Layer &amp; Ende)"
+description: &gt;-
+  Spielt den Alexa-Sound 'bell_02' bei 99,9% bzw. Druckende ab und lässt das
+  Bauraumlicht beim Eintritt in die letzte Schicht (Last Layer) 1,2 Sekunden sichtbar
+  blinken (Gegenphase), damit man das Signal auch bei aktiver nativer Lichtabschaltung sieht.
+triggers:
+  - trigger: numeric_state
+    entity_id: sensor.snapmaker_u1_card_fortschritt
+    above: 99.89
+    id: early_chime
+  - trigger: state
+    entity_id: sensor.snapmaker_u1_card_schicht
+    to: null
+    id: last_layer
+  - trigger: state
+    entity_id: sensor.snapmaker_u1_card_druckstatus
+    from: printing
+    to: complete
+    id: complete
+conditions:
+  - condition: or
+    conditions:
+      - condition: trigger
+        id: complete
+      - condition: and
+        conditions:
+          - condition: trigger
+            id: early_chime
+          - condition: state
+            entity_id: sensor.snapmaker_u1_card_druckstatus
+            state: printing
+          - condition: template
+            value_template: "{{ trigger.from_state is not none and is_number(trigger.from_state.state) }}"
+      - condition: and
+        conditions:
+          - condition: trigger
+            id: last_layer
+          - condition: state
+            entity_id: sensor.snapmaker_u1_card_druckstatus
+            state: printing
+          - condition: state
+            entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+            state: "on"
+          - condition: template
+            value_template: &gt;-
+              {% set before = trigger.from_state %}
+              {% set after = trigger.to_state %}
+              {% if before is none or after is none %}
+                {{ false }}
+              {% else %}
+                {% set total = after.attributes.get('total_layers') | int(0) %}
+                {{ total &gt; 0
+                   and before.attributes.get('total_layers') | int(0) == total
+                   and is_number(before.state) and before.state | int(-1) &lt; total
+                   and is_number(after.state) and after.state | int(-1) == total }}
+              {% endif %}
+actions:
+  - parallel:
+      - alias: "Glocke zum Druckende"
+        sequence:
+          - if:
+              - condition: trigger
+                id: last_layer
+            then:
+              - wait_template: &gt;-
+                  {{ states('sensor.snapmaker_u1_card_druckstatus') not in ['printing', 'paused']
+                     or (is_state('sensor.snapmaker_u1_card_druckstatus', 'printing')
+                         and states('sensor.snapmaker_u1_card_fortschritt') | float(-1) &gt; 99.89) }}
+                timeout: "02:00:00"
+                continue_on_timeout: false
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: sensor.snapmaker_u1_card_druckstatus
+                state: complete
+              - condition: and
+                conditions:
+                  - condition: state
+                    entity_id: sensor.snapmaker_u1_card_druckstatus
+                    state: printing
+                  - condition: numeric_state
+                    entity_id: sensor.snapmaker_u1_card_fortschritt
+                    above: 99.89
+          - action: media_player.play_media
+            target:
+              entity_id: media_player.your_alexa_echo_device
+            data:
+              media_content_type: sound
+              media_content_id: bell_02
+            continue_on_error: true
+          - wait_template: "{{ states('sensor.snapmaker_u1_card_druckstatus') not in ['printing', 'paused'] }}"
+            timeout: "00:15:00"
+            continue_on_timeout: false
+
+      - alias: "Innenraumlicht einmal sichtbar blinken lassen"
+        sequence:
+          - if:
+              - condition: trigger
+                id: early_chime
+            then:
+              - wait_template: "{{ states('sensor.snapmaker_u1_card_druckstatus') not in ['printing', 'paused'] }}"
+                timeout: "00:15:00"
+                continue_on_timeout: false
+          - condition: or
+            conditions:
+              - condition: and
+                conditions:
+                  - condition: trigger
+                    id: last_layer
+                  - condition: state
+                    entity_id: sensor.snapmaker_u1_card_druckstatus
+                    state: printing
+              - condition: state
+                entity_id: sensor.snapmaker_u1_card_druckstatus
+                state: complete
+          - condition: state
+            entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
+            state: "on"
+          - condition: state
+            entity_id: light.snapmaker_u1_card_innenraumlicht
+            state:
+              - "on"
+              - "off"
+          - variables:
+              light_before: "{{ states('light.snapmaker_u1_card_innenraumlicht') }}"
+          - if:
+              - condition: template
+                value_template: "{{ light_before == 'on' }}"
+            then:
+              - action: light.turn_off
+                target:
+                  entity_id: light.snapmaker_u1_card_innenraumlicht
+                continue_on_error: true
+            else:
+              - action: light.turn_on
+                target:
+                  entity_id: light.snapmaker_u1_card_innenraumlicht
+                continue_on_error: true
+          - wait_template: "{{ is_state('light.snapmaker_u1_card_innenraumlicht', 'off' if light_before == 'on' else 'on') }}"
+            timeout: "00:00:04"
+            continue_on_timeout: true
+          - delay:
+              milliseconds: 1200
+          - if:
+              - condition: template
+                value_template: "{{ light_before == 'on' }}"
+              - condition: not
+                conditions:
+                  - condition: and
+                    conditions:
+                      - condition: trigger
+                        id: last_layer
+                      - condition: state
+                        entity_id: sensor.snapmaker_u1_card_druckstatus
+                        state: complete
+                      - condition: state
+                        entity_id: switch.snapmaker_u1_card_licht_aus_nach_dem_druck
+                        state: "on"
+            then:
+              - action: light.turn_on
+                target:
+                  entity_id: light.snapmaker_u1_card_innenraumlicht
+            else:
+              - action: light.turn_off
+                target:
+                  entity_id: light.snapmaker_u1_card_innenraumlicht
+mode: single
+max_exceeded: silent
+</code></pre>
+            <button data-i18n="btn-copy-yaml" class="btn btn-secondary btn-sm" id="btn-copy-yaml">Copy YAML</button>
+          </details>
+        </details>
+      </div>
+    </section>
+
+    <!-- AI Assistant Install Prompt -->
+    <section id="ai-install" class="features-section">
+      <div class="container">
+        <h2 data-i18n="ai-install-heading">Install with an AI assistant</h2>
+        <p data-i18n="ai-install-body">Copy the prompt into an assistant with Home Assistant admin and file access. It installs the dashboard and checks what is running.</p>
+        <p><button type="button" class="btn btn-secondary" id="btn-copy-ai-prompt" data-i18n="ai-install-copy">Copy installation prompt</button> <span id="ai-copy-status" role="status"></span></p>
+        <details class="install-prompt">
+          <summary data-i18n="ai-install-show">Show installation prompt</summary>
+          <pre><code id="ai-install-prompt-text">Install the Snapmaker U1 Community Dashboard and its custom Lovelace card in my Home Assistant. Carry out the installation using the Home Assistant admin/API, HACS and file-access tools available to you. Reply in my language.
 
 1. Read the installation guide: https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/homeassistant/README.md
 2. Check my Home Assistant version, HACS and the Snapmaker U1 Card integration by Ironoxx. Install missing prerequisites when your tools allow it. Discover the configured Snapmaker U1 and its entities. If setup requires the printer address, authentication or an integration step you cannot perform, ask me for that exact item and continue with independent steps.
@@ -71,22 +479,21 @@
 5. Download https://raw.githubusercontent.com/Reaper2507/snapmaker-u1-homeassistant/main/homeassistant/u1_dashboard_complete.yaml
    Map the example entity IDs to my configured Snapmaker U1. Import the three views into a separate Snapmaker U1 dashboard. Reuse this project dashboard on a retry if you can identify it reliably. Back up a dashboard before modifying it and keep unrelated dashboards and resources intact.
 6. Read back the dashboard and resource, then verify the three views and passive telemetry (printer status, temperatures, camera and progress). Do not trigger printer motion, heating or emergency stop during this check. Leave optional extras for a separate request. Report completed steps, verification and any exact manual action still needed.</code></pre>
-      </details>
-    </div>
-  </section>
+        </details>
+      </div>
+    </section>
   </main>
-  <!-- Footer -->
+
   <footer class="site-footer">
     <div class="container footer-content">
       <div class="footer-left">
-        <p>© 2026 Reaper2507 & Community · Released under the <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></p>
+        <p>© 2026 Reaper2507 &amp; Community · Released under the <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></p>
         <p class="footer-sub">Community project — not officially affiliated with Snapmaker. Built for 4-toolhead makers.</p>
       </div>
       <div class="footer-links">
         <a href="index.html" data-i18n="nav-home">Overview</a>
         <a href="install.html" data-i18n="nav-install">Install</a>
-        <a href="homeassistant.html" data-i18n="nav-ha">Dashboard</a>
-        <a href="orcaslicer.html" data-i18n="nav-orcaslicer">Extras</a>
+        <a href="orcaslicer.html" data-i18n="nav-orcaslicer">OrcaSlicer</a>
         <a href="credits.html" data-i18n="nav-credits">Credits</a>
         <a href="https://github.com/Reaper2507/snapmaker-u1-homeassistant" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a class="coffee-link" href="https://ko-fi.com/Reaper2507" data-i18n="coffee-maintainer">Support Reaper2507 on Ko-fi</a>
@@ -94,6 +501,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=20261111_01"></script>
-  </body>
+  <script src="app.js?v=20261111_03"></script>
+</body>
 </html>

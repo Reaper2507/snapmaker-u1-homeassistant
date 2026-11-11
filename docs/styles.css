@@ -2813,3 +2813,108 @@ a { color: var(--link-muted); }
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Streamlined Install Page (Variant A: HACS 1-Click + ZIP/CLI Cards) */
+.hacs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.hacs-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 15px 16px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card, #161b22);
+  border: 1px solid var(--border-muted, #30363d);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.18s ease, transform 0.16s ease, background 0.18s ease;
+}
+
+.hacs-card:hover {
+  border-color: var(--accent-blue, #58a6ff);
+  background: rgba(88, 166, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+.hacs-primary {
+  border-color: rgba(240, 136, 62, 0.55);
+  background: rgba(240, 136, 62, 0.06);
+}
+
+.hacs-primary:hover {
+  border-color: #f0883e;
+  background: rgba(240, 136, 62, 0.11);
+}
+
+.hacs-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8b949e;
+}
+
+.hacs-primary .hacs-tag {
+  color: #f0883e;
+}
+
+.hacs-card strong {
+  font-size: 0.98rem;
+  color: #f0f6fc;
+}
+
+.hacs-cta {
+  margin-top: auto;
+  padding-top: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #79c0ff;
+}
+
+.install-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.install-box {
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card, #161b22);
+  border: 1px solid var(--border-muted, #30363d);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.install-box h3 {
+  margin: 0;
+  font-size: 1.06rem;
+  color: #f0f6fc;
+}
+
+.install-box p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #b8c5d8;
+}
+
+.install-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+@media (max-width: 780px) {
+  .install-methods-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
