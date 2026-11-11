@@ -118,8 +118,8 @@
       <div class="container">
         <div class="section-header">
           <span class="badge-tag" data-i18n="split-badge">Transparent credits</span>
-          <h2 data-i18n="split-title">Built on Ironoxx’s foundation · What Reaper2507 added</h2>
-          <p class="section-intro" data-i18n="split-intro">Great open-source work stands on solid foundations. Here is a clear breakdown of what comes from Ironoxx’s upstream integration and what was engineered and added on top for this hub.</p>
+          <h2 data-i18n="split-title">Upstream foundation · Curated hub by Reaper2507</h2>
+          <p class="section-intro" data-i18n="split-intro">Transparent credit matters: Ironoxx built the underlying integration and core card features. Reaper2507 curates, tests, and combines genuinely useful daily-driver tools into one clean setup — no gimmicks, no bloat.</p>
         </div>
 
         <div class="split-credit-grid">
@@ -143,14 +143,14 @@
           <!-- Right: Reaper2507 -->
           <article class="split-card reaper-card">
             <div class="split-card-header">
-              <h3 data-i18n="split-reaper-title">Added &amp; engineered by Reaper2507</h3>
+              <h3 data-i18n="split-reaper-title">Curated, tested &amp; assembled by Reaper2507</h3>
               <span class="badge-tag" data-i18n="split-reaper-badge">Community Hub</span>
             </div>
             <ul class="split-list">
-              <li data-i18n="split-reaper-1"><strong>Studio &amp; Cutaway live rendering:</strong> Custom artwork with mapped T0–T3 spool colors, live XYZ coordinates, mounted head indicator, and tap-to-open Controls &amp; Filament popups.</li>
-              <li data-i18n="split-reaper-2"><strong>Three complete Lovelace views + control package:</strong> Full, Minimal, and Maintenance &amp; Diagnostics YAML plus <code>u1_control_package.yaml</code> for Moonraker head/filament actions.</li>
-              <li data-i18n="split-reaper-3"><strong>Cool after printing &amp; completion cues:</strong> Compact <code>cavity_fan</code> cooldown row (5 min · 70 % · auto-stop ≤ 36 °C) plus last-layer light pulse &amp; optional Alexa bell.</li>
-              <li data-i18n="split-reaper-4"><strong>OrcaSlicer 2.5 suite &amp; Aux Fan Deflector:</strong> 9 benchmarked process profiles (0.4 &amp; 0.6 mm), 17 filament presets across 9 materials, LAN profiles, and anti-warp hardware STL.</li>
+              <li data-i18n="split-reaper-1"><strong>Structured Studio &amp; Cutaway layout:</strong> Clean visual presentation with T0–T3 spool colors, live XYZ &amp; temperatures, and direct access to Controls &amp; Filament &amp; Heat.</li>
+              <li data-i18n="split-reaper-2"><strong>Three practical Lovelace views + control package:</strong> Organized Full, Minimal, and Maintenance &amp; Diagnostics layouts ready to drop in, paired with <code>u1_control_package.yaml</code>.</li>
+              <li data-i18n="split-reaper-3"><strong>Useful post-print automation:</strong> Compact <code>Cool after printing</code> row (<code>cavity_fan</code>, 5 min · 70 %, auto-off ≤ 36 °C) for effortless PEI part removal, plus optional completion cues.</li>
+              <li data-i18n="split-reaper-4"><strong>Curated OrcaSlicer presets &amp; tested hardware fix:</strong> 9 process profiles, 17 material baselines across 9 filaments, LAN configs, and the archived MakerWorld #3107806 Aux Fan Deflector.</li>
             </ul>
             <div class="split-card-actions">
               <a href="https://ko-fi.com/Reaper2507" target="_blank" rel="noopener noreferrer" class="coffee-link" data-i18n="coffee-maintainer">☕ Support Reaper2507 on Ko-fi</a>
@@ -287,15 +287,15 @@
 
           <article class="extra-feature-card">
             <div class="extra-card-icon">🌀</div>
-            <h3 data-i18n="ex-mod-title">Hardware Mod: Auxiliary Fan Deflector</h3>
-            <p data-i18n="ex-mod-desc"><code>U1-Fan_Deflector-Smooth.stl</code> clips onto the side AUX fan and redirects horizontal airflow upward into the chamber — stopping left-bed PLA/PETG warping so 30 % AUX cooling stays safely usable.</p>
+            <h3 data-i18n="ex-mod-title">Hardware Mod: Auxiliary Fan Deflector (MakerWorld #3107806)</h3>
+            <p data-i18n="ex-mod-desc">Archived MakerWorld #3107806 model (<code>U1-Fan_Deflector-Smooth.stl</code>): clips onto the side AUX fan and redirects airflow upward — stopping left-bed PLA/PETG warping so 30 % AUX stays usable.</p>
             <a class="extra-card-link" href="https://github.com/Reaper2507/snapmaker-u1-homeassistant/tree/main/hardware/aux-fan-deflector" target="_blank" rel="noopener noreferrer" data-i18n="ex-mod-link">View STL &amp; print guide →</a>
           </article>
 
           <article class="extra-feature-card">
             <div class="extra-card-icon">🔔</div>
-            <h3 data-i18n="ex-bell-title">Completion Chime &amp; Light Pulse</h3>
-            <p data-i18n="ex-bell-desc">Optional <code>fertigdruck_fanfare.yaml</code>: pulses the chamber light for 1.2 s on entry into the final layer (visible even with auto light-off enabled) and triggers an optional Alexa <code>bell_02</code> ding.</p>
+            <h3 data-i18n="ex-bell-title">Optional: Print Completion Cue</h3>
+            <p data-i18n="ex-bell-desc">Practical notification via <code>fertigdruck_fanfare.yaml</code>: brief 1.2 s chamber-light signal on completion plus optional Alexa chime when you are in another room.</p>
             <a class="extra-card-link" href="homeassistant.html#fanfare" data-i18n="ex-bell-link">Show automation YAML →</a>
           </article>
 
