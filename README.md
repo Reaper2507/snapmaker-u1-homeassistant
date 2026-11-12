@@ -47,9 +47,14 @@ Maintenance intervals, temperature history, an 11 × 11 bed mesh, the G-code con
 
 ## Features
 
-- **See what’s loaded.** The printer graphic shows the loaded filament color at each of the four spool positions (T0–T3), along with the mounted toolhead, live XYZ position and current and target nozzle and bed temperatures.
-- **Control the printer from the graphic.** Tap it to open printer controls. With the [optional control package](homeassistant/README.md#optional-controls-and-notifications), you can mount or dock a toolhead and load or unload filament when the printer state permits. During a print, check progress and adjust speed and flow from the dashboard.
-- **Follow the job and plan maintenance.** Check the camera, estimated finish time and current layer. The diagnostics view shows maintenance intervals, the bed mesh and temperature history.
+What this dashboard and package add on top of Ironoxx’s integration:
+
+- **Interactive Studio & Cutaway printer graphics.** Live filament colors at all four spool positions (T0–T3), mounted toolhead indicator, live XYZ coordinates, and current/target nozzle and bed temperatures. Tap the printer illustration to jump straight into **Controls** or **Filament & heat**.
+- **Complete print controls & presets.** Adjust **Print speed** (`85 / 100 / 115 %` presets + slider), **Flow rate** (`95 / 100 / 105 %` presets + slider), **Part cooling fan** (`0–100 %`), and **Print actions** (Pause, Resume, Cancel, and **Emergency stop**).
+- **Automatic 5-minute post-print cooling (`Cool After Printing`).** A compact toggle and expandable **duration (`1–15 min`, default `5 min`)** & **speed (`40–100 %`, default `70 %`)** sliders directly below **Part cooling fan** run the side auxiliary fan (`cavity_fan`) after print completion to cool the bed and chamber for easier part removal — automatically stopping on timer expiry, `<= 36.5 °C` bed temp, toggle off, or a new print.
+- **Moonraker-guarded motion & toolhead controls.** With the [control package](homeassistant/packages/u1_control_package.yaml), home all axes, move to bed/head presets, fine-jog X/Y (`0.1 / 1 / 10 mm`), pick/park individual toolheads (`T0–T3`), and load or unload filament with live Moonraker idle/safety checks.
+- **Camera, jobs, history & layer view.** Live camera with chamber light toggle, tabbed **Queue / Files / History / Stats / Timelapse** browser, and layer preview with object exclusion.
+- **Three purpose-built views.** **Dashboard** (full control), **Minimal** (compact job, camera, ETA & layer view for phones/tablets), and **Maintenance & Diagnostics** (G-code console, service intervals, 1-hour nozzle/bed temperature chart, 11 × 11 bed mesh, and system status).
 
 ### Tap the printer to open its controls
 
@@ -77,10 +82,11 @@ Select the printer illustration in **Tools & material** to open the control pane
 
 ## Optional extras
 
-- **Hardware mods.** [Auxiliary Fan Deflector](hardware/aux-fan-deflector/README.md) prevents left-bed warping by redirecting the chamber airflow upward.
-- **OrcaSlicer profiles.** [Install the U1 presets](orcaslicer/README.md#install-the-presets) for everyday prints, high-throughput organizers and compact multicolor jobs. [Browse 9 material presets](orcaslicer/README.md#filament-presets) for matching spools (compatible with 0.4 mm and 0.6 mm nozzles), including SUNLU PLA+ 2.0, JAYO PETG and ELEGOO PETG-CF.
+- **Smart Preheat Optimizer (OrcaSlicer).** [u1_smart_preheat](tools/u1_smart_preheat/README.md) dynamically injects `M104` ~10 s before multi-color tool changes so parked nozzles don’t pause 8–12 s at the dock to reheat (and don’t cook while parked).
+- **Hardware mods.** [Auxiliary Fan Deflector](hardware/aux-fan-deflector/README.md) prevents left-bed warping by redirecting the chamber airflow upward (`U1-Fan_Deflector-Smooth.stl`).
+- **OrcaSlicer profiles.** [Install the U1 presets](orcaslicer/README.md#install-the-presets) for **0.4 mm** & **0.6 mm** nozzles (Balanced, Fast, Functional, Draft, plus **QR-Code & Sign**). [Browse material presets](orcaslicer/README.md#filament-presets) including SUNLU PLA+ 2.0, Bambu Lab PLA/PETG, ELEGOO PLA/PETG-CF, JAYO PETG, eSUN PETG Matte, GEEETECH PLA/TPU 95A.
 - **Set & Send.** Thanks to LayerLab for bringing the U1’s pre-print setup to OrcaSlicer. Their add-on lets you match filaments to toolheads and choose U1 print options before sending a job. [LayerLab download and guide](https://layerlab.store/pages/set-and-send) · [Quick setup](orcaslicer/README.md#set--send-by-layerlab)
-- **Helpful Home Assistant scripts & post-print cooling.** The [control package](homeassistant/packages/u1_control_package.yaml) includes direct toolhead/filament controls and the **Cool after printing** helpers + automation (runs the side `cavity_fan` for **5 min at 70 %** after print completion for easier bed removal, or add it standalone via [cool_after_printing.yaml](homeassistant/automations/README.md#optional-post-print-bed-cooldown-fan-cavity_fan)), alongside a [microwave-style print completion ding and a brief chamber-light pulse](homeassistant/automations/README.md).
+- **Home Assistant control package & automations.** The [control package](homeassistant/packages/u1_control_package.yaml) includes Moonraker direct toolhead/filament controls and the **Cool after printing** helpers + automation (5 min at 70 % on the side `cavity_fan`, or add standalone via [cool_after_printing.yaml](homeassistant/automations/README.md#optional-post-print-bed-cooldown-fan-cavity_fan)), alongside a [microwave-style print completion ding and brief chamber-light pulse](homeassistant/automations/README.md).
 - [Filament handling and troubleshooting](GUIDE.md).
 
 ## Feedback and support
