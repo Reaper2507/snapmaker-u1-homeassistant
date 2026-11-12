@@ -21,6 +21,7 @@ Use [cool_after_printing.yaml](cool_after_printing.yaml) if you want the Snapmak
 > **Package note:** These 4 helpers and `automation.snapmaker_u1_cool_after_printing` (defaulting to **On · 5 min · 70 %**) are already included in [u1_control_package.yaml](../packages/u1_control_package.yaml). Only create them manually below if you do not load that package.
 
 - **How it works:** When status transitions **printing → complete** and bed temperature is above 38 °C, HA sends `SET_FAN_SPEED FAN=cavity_fan SPEED=<pct/100>`. It stops automatically when the timer expires, bed temperature reaches ≤ 36 °C, the toggle is turned off, or a new print starts.
+- **Keep the door closed:** Measured print runs from a `55 °C` bed show that 5 minutes at `70 %` with the door closed cools the print bed roughly **twice as fast** (`-13 to -14 °C` vs. `-7 to -8 °C` passive), and even slightly beats opening the door (`-12 °C`) because the closed enclosure directs the airflow across the plate instead of letting it escape out the front.
 - **Material tip:** Works best for **PLA** (recommended sweet spot: **70 %** for **5 min**). Turn the toggle off for **ABS/ASA** or large flat **PETG** parts to avoid uneven cooling warp.
 
 ## Required helpers (create under Settings → Devices & services → Helpers)
