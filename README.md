@@ -82,7 +82,6 @@ Select the printer illustration in **Tools & material** to open the control pane
 
 ## Optional extras
 
-- **Smart Preheat Optimizer (OrcaSlicer).** [u1_smart_preheat](tools/u1_smart_preheat/README.md) dynamically injects `M104` ~10 s before multi-color tool changes so parked nozzles don’t pause 8–12 s at the dock to reheat (and don’t cook while parked).
 - **Hardware mods.** [Auxiliary Fan Deflector](hardware/aux-fan-deflector/README.md) prevents left-bed warping by redirecting the chamber airflow upward (`U1-Fan_Deflector-Smooth.stl`).
 - **OrcaSlicer profiles.** [Install the U1 presets](orcaslicer/README.md#install-the-presets) for **0.4 mm** & **0.6 mm** nozzles (Balanced, Fast, Functional, Draft, plus **QR-Code & Sign**). [Browse material presets](orcaslicer/README.md#filament-presets) including SUNLU PLA+ 2.0, Bambu Lab PLA/PETG, ELEGOO PLA/PETG-CF, JAYO PETG, eSUN PETG Matte, GEEETECH PLA/TPU 95A.
 - **Set & Send.** Thanks to LayerLab for bringing the U1’s pre-print setup to OrcaSlicer. Their add-on lets you match filaments to toolheads and choose U1 print options before sending a job. [LayerLab download and guide](https://layerlab.store/pages/set-and-send) · [Quick setup](orcaslicer/README.md#set--send-by-layerlab)
