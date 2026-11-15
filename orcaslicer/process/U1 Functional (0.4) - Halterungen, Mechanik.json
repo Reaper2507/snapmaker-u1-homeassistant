@@ -3,22 +3,21 @@
     "inherits": "0.20 Standard @Snapmaker U1 (0.4 nozzle)",
     "compatible_printers": [
         "Snapmaker U1 (0.4 nozzle)",
-        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
-        "Snapmaker U1 (0.4 nozzle) - Carbon-Platte (PLA) LAN"
+        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN"
     ],
     "version": "2.5.0.0",
     "initial_layer_print_height": "0.20",
     "wall_generator": "arachne",
     "wall_sequence": "inner-outer-inner wall",
-    "reduce_infill_retraction": "1",
+    "reduce_infill_retraction": "0",
     "dont_slow_down_outer_wall": "1",
     "reduce_crossing_wall": "1",
     "outer_wall_line_width": "0.42",
     "inner_wall_line_width": "0.45",
     "top_surface_line_width": "0.40",
     "sparse_infill_line_width": "0.45",
-    "outer_wall_acceleration": "5000",
-    "inner_wall_acceleration": "8000",
+    "outer_wall_acceleration": "4500",
+    "inner_wall_acceleration": "7500",
     "top_surface_acceleration": [
         "3500",
         "3500",
@@ -59,6 +58,17 @@
         "10000",
         "10000"
     ],
+    "default_acceleration": "10000",
+    "travel_speed": [
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500"
+    ],
     "elefant_foot_compensation": "0.12",
     "wipe_before_external_loop": "1",
     "brim_type": "no_brim",
@@ -77,20 +87,9 @@
     "slicing_pipeline_plugin": [
         "U1 print setup"
     ],
-    "default_acceleration": "10000",
-    "travel_speed": [
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500"
-    ],
     "name": "U1 Functional (0.4) - Halterungen, Mechanik",
     "print_settings_id": "U1 Functional (0.4) - Halterungen, Mechanik",
-    "description": "Massive Belastbarkeit für Werkstatt-Halterungen, Adapter, Wandbefestigungen und Schraublöcher.\n• 0.20 mm Layer, 4 Wände (1.7 mm Massivhülle!), 20% Adaptive Cubic Infill.\n• Optimierte Wandspeed (180/240 mm/s) für maximale Schweißung der Schichten.\n• Ensure Vertical Shell Thickness aktiv (verhindert Schwachstellen an Schrägen).",
+    "description": "Massive Belastbarkeit fuer Werkstatt-Halterungen, Adapter und mechanische Teile.\n• 0.20 mm Layer, 4 Waende (1.7 mm Massivhuelle!), 20% Gyroid Infill.\n• Isotrope 3D-Festigkeit, kein Duesenschrammen, Anti-Oozing Retract im Infill aktiv.",
     "layer_height": "0.20",
     "wall_loops": "4",
     "sparse_infill_pattern": "gyroid",
@@ -111,33 +110,33 @@
     ],
     "inner_wall_speed": [
         "250",
-        "600",
+        "500",
         "250",
-        "600",
+        "500",
         "250",
-        "600",
+        "500",
         "250",
-        "600"
+        "500"
     ],
     "sparse_infill_speed": [
         "300",
-        "600",
+        "500",
         "300",
-        "600",
+        "500",
         "300",
-        "600",
+        "500",
         "300",
-        "600"
+        "500"
     ],
     "internal_solid_infill_speed": [
         "240",
-        "600",
+        "500",
         "240",
-        "600",
+        "500",
         "240",
-        "600",
+        "500",
         "240",
-        "600"
+        "500"
     ],
     "top_surface_speed": "110"
 }

@@ -3,13 +3,12 @@
     "inherits": "0.20 Standard @Snapmaker U1 (0.6 nozzle)",
     "compatible_printers": [
         "Snapmaker U1 (0.6 nozzle)",
-        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN",
-        "Snapmaker U1 (0.6 nozzle) - Carbon-Platte (PLA) LAN"
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
     ],
     "version": "2.5.0.0",
     "initial_layer_print_height": "0.25",
     "wall_generator": "arachne",
-    "wall_sequence": "inner-outer-inner wall",
+    "wall_sequence": "inner wall/outer wall",
     "reduce_infill_retraction": "1",
     "dont_slow_down_outer_wall": "1",
     "reduce_crossing_wall": "1",
@@ -17,8 +16,8 @@
     "inner_wall_line_width": "0.60",
     "top_surface_line_width": "0.56",
     "sparse_infill_line_width": "0.64",
-    "outer_wall_acceleration": "6500",
-    "inner_wall_acceleration": "8000",
+    "outer_wall_acceleration": "6000",
+    "inner_wall_acceleration": "7500",
     "top_surface_acceleration": [
         "3500",
         "3500",
@@ -50,6 +49,17 @@
         "10000",
         "10000"
     ],
+    "default_acceleration": "12000",
+    "travel_speed": [
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500"
+    ],
     "elefant_foot_compensation": "0.12",
     "wipe_before_external_loop": "1",
     "brim_type": "no_brim",
@@ -68,17 +78,6 @@
     "slicing_pipeline_plugin": [
         "U1 print setup"
     ],
-    "default_acceleration": "12000",
-    "travel_speed": [
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500"
-    ],
     "min_bead_width": "75%",
     "min_feature_size": "20%",
     "wall_transition_filter_deviation": "15%",
@@ -93,7 +92,7 @@
     "overhang_3_4_speed": "30",
     "name": "U1 Draft (0.6) - Grosse Prototypen",
     "print_settings_id": "U1 Draft (0.6) - Grosse Prototypen",
-    "description": "Druckt riesige Volumenbauteile und Passform-Prototypen in Rekordzeit.\n• 0.36 mm Layer, 2 Wände (1.18 mm), 3 Top / 2 Bottom Shells, 8% Crosshatch Infill.",
+    "description": "Druckt riesige Volumenbauteile und Passform-Prototypen in Rekordzeit.\n• 0.36 mm Layer, 2 Waende (1.18 mm), 3 Top / 2 Bottom Shells, 15% Lightning Infill.",
     "layer_height": "0.36",
     "wall_loops": "2",
     "top_shell_layers": "3",
@@ -116,33 +115,33 @@
     ],
     "inner_wall_speed": [
         "380",
-        "600",
+        "500",
         "380",
-        "600",
+        "500",
         "380",
-        "600",
+        "500",
         "380",
-        "600"
+        "500"
     ],
     "sparse_infill_speed": [
         "420",
-        "600",
+        "500",
         "420",
-        "600",
+        "500",
         "420",
-        "600",
+        "500",
         "420",
-        "600"
+        "500"
     ],
     "internal_solid_infill_speed": [
         "340",
-        "600",
+        "500",
         "340",
-        "600",
+        "500",
         "340",
-        "600",
+        "500",
         "340",
-        "600"
+        "500"
     ],
     "top_surface_speed": "150"
 }

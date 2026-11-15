@@ -3,8 +3,7 @@
     "inherits": "0.20 Standard @Snapmaker U1 (0.6 nozzle)",
     "compatible_printers": [
         "Snapmaker U1 (0.6 nozzle)",
-        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN",
-        "Snapmaker U1 (0.6 nozzle) - Carbon-Platte (PLA) LAN"
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
     ],
     "version": "2.5.0.0",
     "initial_layer_print_height": "0.25",
@@ -17,8 +16,8 @@
     "inner_wall_line_width": "0.60",
     "top_surface_line_width": "0.56",
     "sparse_infill_line_width": "0.64",
-    "outer_wall_acceleration": "6000",
-    "inner_wall_acceleration": "8000",
+    "outer_wall_acceleration": "5500",
+    "inner_wall_acceleration": "7500",
     "top_surface_acceleration": [
         "3500",
         "3500",
@@ -50,6 +49,17 @@
         "10000",
         "10000"
     ],
+    "default_acceleration": "12000",
+    "travel_speed": [
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500"
+    ],
     "elefant_foot_compensation": "0.12",
     "wipe_before_external_loop": "1",
     "brim_type": "no_brim",
@@ -68,17 +78,6 @@
     "slicing_pipeline_plugin": [
         "U1 print setup"
     ],
-    "default_acceleration": "12000",
-    "travel_speed": [
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500"
-    ],
     "min_bead_width": "75%",
     "min_feature_size": "20%",
     "wall_transition_filter_deviation": "15%",
@@ -93,16 +92,16 @@
     "overhang_3_4_speed": "30",
     "name": "U1 Fast (0.6) - Grosse Schalen, Kisten",
     "print_settings_id": "U1 Fast (0.6) - Grosse Schalen, Kisten",
-    "description": "Echte 0.6 mm Durchsatz-Power für große Werkstattkisten, Organizer und Schalen.\n• 0.34 mm Layer, 2 Wände (0.58/0.60 = 1.18 mm vs. 0.87 mm bei 0.4 Fast -> +36% dicker!), 3 Top / 2 Bottom Shells.\n• Crosshatch Infill (10%), kein überflüssiges Solid-Infill in Schrägen, schnelle Internal Bridges.\n• Typisch 35-50% schneller als 0.4 Fast bei stabileren Wänden.",
+    "description": "Echte 0.6 mm Durchsatz-Power fuer grosse Werkstattkisten, Organizer und Schalen.\n• 0.34 mm Layer, 2 Waende (1.18 mm), 3 Top / 3 Bottom Shells.\n• 10% Adaptive Cubic Infill fuer Formstabilitaet bei geringstem Materialeinsatz.",
     "layer_height": "0.34",
     "wall_loops": "2",
     "top_shell_layers": "3",
-    "bottom_shell_layers": "2",
+    "bottom_shell_layers": "3",
     "top_shell_thickness": "0.95",
     "only_one_wall_top": "1",
     "sparse_infill_pattern": "adaptivecubic",
     "sparse_infill_density": "10%",
-    "ensure_vertical_shell_thickness": "none",
+    "ensure_vertical_shell_thickness": "ensure_moderate",
     "detect_narrow_internal_solid_infill": "0",
     "outer_wall_speed": [
         "220",
@@ -116,33 +115,33 @@
     ],
     "inner_wall_speed": [
         "360",
-        "600",
+        "500",
         "360",
-        "600",
+        "500",
         "360",
-        "600",
+        "500",
         "360",
-        "600"
+        "500"
     ],
     "sparse_infill_speed": [
         "400",
-        "600",
+        "500",
         "400",
-        "600",
+        "500",
         "400",
-        "600",
+        "500",
         "400",
-        "600"
+        "500"
     ],
     "internal_solid_infill_speed": [
         "320",
-        "600",
+        "500",
         "320",
-        "600",
+        "500",
         "320",
-        "600",
+        "500",
         "320",
-        "600"
+        "500"
     ],
     "top_surface_speed": "150"
 }

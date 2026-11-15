@@ -3,14 +3,13 @@
     "inherits": "0.20 Standard @Snapmaker U1 (0.6 nozzle)",
     "compatible_printers": [
         "Snapmaker U1 (0.6 nozzle)",
-        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN",
-        "Snapmaker U1 (0.6 nozzle) - Carbon-Platte (PLA) LAN"
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
     ],
     "version": "2.5.0.0",
     "initial_layer_print_height": "0.25",
     "wall_generator": "arachne",
     "wall_sequence": "inner-outer-inner wall",
-    "reduce_infill_retraction": "1",
+    "reduce_infill_retraction": "0",
     "dont_slow_down_outer_wall": "1",
     "reduce_crossing_wall": "1",
     "outer_wall_line_width": "0.62",
@@ -18,7 +17,7 @@
     "top_surface_line_width": "0.56",
     "sparse_infill_line_width": "0.65",
     "outer_wall_acceleration": "5000",
-    "inner_wall_acceleration": "8000",
+    "inner_wall_acceleration": "7500",
     "top_surface_acceleration": [
         "3500",
         "3500",
@@ -50,6 +49,17 @@
         "10000",
         "10000"
     ],
+    "default_acceleration": "10000",
+    "travel_speed": [
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500",
+        "500"
+    ],
     "elefant_foot_compensation": "0.12",
     "wipe_before_external_loop": "1",
     "brim_type": "no_brim",
@@ -68,17 +78,6 @@
     "slicing_pipeline_plugin": [
         "U1 print setup"
     ],
-    "default_acceleration": "10000",
-    "travel_speed": [
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500",
-        "500"
-    ],
     "min_bead_width": "75%",
     "min_feature_size": "20%",
     "wall_transition_filter_deviation": "15%",
@@ -93,7 +92,7 @@
     "overhang_3_4_speed": "30",
     "name": "U1 Functional (0.6) - Stabile Werkstattteile",
     "print_settings_id": "U1 Functional (0.6) - Stabile Werkstattteile",
-    "description": "Industrielle Stabilität für Schwerlasthalter, Maschinenadapter und Hebel.\n• 0.28 mm Layer, 3 dicke Wände (0.62/0.64 = 1.90 mm -> stärker als 4-Wall auf 0.4 mm!), 4 Top / 3 Bottom Shells.\n• 18% Adaptive Cubic Infill + volle 0.6 mm Geschwindigkeit.",
+    "description": "Industrielle Stabilitaet fuer Schwerlasthalter und Maschinenadapter.\n• 0.28 mm Layer, 3 dicke Waende (1.90 mm Massivwand!), 4 Top / 3 Bottom Shells.\n• 18% Gyroid Infill fuer multidirektionale Festigkeit und Schwingungsdaempfung.",
     "layer_height": "0.28",
     "wall_loops": "3",
     "top_shell_layers": "4",
@@ -115,33 +114,33 @@
     ],
     "inner_wall_speed": [
         "280",
-        "550",
+        "500",
         "280",
-        "550",
+        "500",
         "280",
-        "550",
+        "500",
         "280",
-        "550"
+        "500"
     ],
     "sparse_infill_speed": [
         "320",
-        "550",
+        "500",
         "320",
-        "550",
+        "500",
         "320",
-        "550",
+        "500",
         "320",
-        "550"
+        "500"
     ],
     "internal_solid_infill_speed": [
         "280",
-        "550",
+        "500",
         "280",
-        "550",
+        "500",
         "280",
-        "550",
+        "500",
         "280",
-        "550"
+        "500"
     ],
     "top_surface_speed": "130"
 }
