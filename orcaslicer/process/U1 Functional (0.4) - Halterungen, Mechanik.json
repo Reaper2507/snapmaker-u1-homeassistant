@@ -3,7 +3,8 @@
     "inherits": "0.20 Standard @Snapmaker U1 (0.4 nozzle)",
     "compatible_printers": [
         "Snapmaker U1 (0.4 nozzle)",
-        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN"
+        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
+        "Snapmaker U1 (0.4 nozzle) - Carbon-Platte (PLA) LAN"
     ],
     "version": "2.5.0.0",
     "initial_layer_print_height": "0.20",
@@ -92,7 +93,7 @@
     "description": "Massive Belastbarkeit für Werkstatt-Halterungen, Adapter, Wandbefestigungen und Schraublöcher.\n• 0.20 mm Layer, 4 Wände (1.7 mm Massivhülle!), 20% Adaptive Cubic Infill.\n• Optimierte Wandspeed (180/240 mm/s) für maximale Schweißung der Schichten.\n• Ensure Vertical Shell Thickness aktiv (verhindert Schwachstellen an Schrägen).",
     "layer_height": "0.20",
     "wall_loops": "4",
-    "sparse_infill_pattern": "adaptivecubic",
+    "sparse_infill_pattern": "gyroid",
     "sparse_infill_density": "20%",
     "top_shell_layers": "6",
     "bottom_shell_layers": "5",

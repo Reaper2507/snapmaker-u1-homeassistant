@@ -3,7 +3,8 @@
     "inherits": "0.20 Standard @Snapmaker U1 (0.4 nozzle)",
     "compatible_printers": [
         "Snapmaker U1 (0.4 nozzle)",
-        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN"
+        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
+        "Snapmaker U1 (0.4 nozzle) - Carbon-Platte (PLA) LAN"
     ],
     "version": "2.5.0.0",
     "initial_layer_print_height": "0.20",
@@ -93,7 +94,7 @@
     "layer_height": "0.20",
     "wall_loops": "2",
     "only_one_wall_top": "1",
-    "sparse_infill_pattern": "crosshatch",
+    "sparse_infill_pattern": "gyroid",
     "sparse_infill_density": "12%",
     "top_shell_layers": "4",
     "bottom_shell_layers": "3",
