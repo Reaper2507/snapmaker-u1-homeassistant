@@ -7,13 +7,7 @@ A community dashboard by [Reaper2507](https://github.com/Reaper2507) for the Sna
 
 ## Built on Ironoxx’s Snapmaker U1 Card
 
-[Ironoxx’s Snapmaker U1 Card](https://github.com/Ironoxx/ha-snapmaker-u1-card) provides the Home Assistant integration and the original printer card, including the layer view and object exclusion. The frontend bundled here is adapted from [Ironoxx’s v2.0.0 release](https://github.com/Ironoxx/ha-snapmaker-u1-card/tree/v2.0.0) and retains the [original copyright notice and MIT license](https://github.com/Ironoxx/ha-snapmaker-u1-card/blob/v2.0.0/LICENSE).
-
-### What I added
-
-- **Live printer rendering.** I created the Studio rendering and mapped all four spool and toolhead positions. The rendered filament changes color to match the loaded spool at T0–T3, using data from Ironoxx’s integration. Studio and Cutaway also show live XYZ positions, nozzle and bed temperatures, and which toolhead is mounted.
-- **Controls from the printer graphic.** I made the graphic open the dashboard’s **Controls** and **Filament & heat** panels, so the controls are within reach from the printer view.
-- **Lovelace dashboard YAML & post-print cooling.** I wrote the YAML for the Full, Minimal and Maintenance & Diagnostics views. I organized the maintenance view around the G-code console, service intervals, temperature history, bed mesh and system status, and included a compact **Cooling after printing** control directly under **Part cooling fan** (default: **On · 5 min · 70 %** on the side `cavity_fan`) to cool the print bed for easier part removal.
+[Ironoxx’s Snapmaker U1 Card](https://github.com/Ironoxx/ha-snapmaker-u1-card) provides the Home Assistant integration and the original printer card, including the layer view and object exclusion. The frontend bundled here is adapted from [Ironoxx’s v2.0.0 release](https://github.com/Ironoxx/ha-snapmaker-u1-card/tree/v2.0.0) and retains the [original copyright notice and MIT license](https://github.com/Ironoxx/ha-snapmaker-u1-card/blob/v2.0.0/LICENSE). Everything built on top of that foundation is listed in [Features](#features) below.
 
 [Dashboard views](#dashboard-views) · [Features](#features) · [Install the dashboard](#installation) · [Feedback & Ko-fi](#feedback-and-support)
 
@@ -49,7 +43,7 @@ Maintenance intervals, temperature history, an 11 × 11 bed mesh, the G-code con
 
 What this dashboard and package add on top of Ironoxx’s integration:
 
-- **Interactive Studio & Cutaway printer graphics.** Live filament colors at all four spool positions (T0–T3), mounted toolhead indicator, live XYZ coordinates, and current/target nozzle and bed temperatures. Tap the printer illustration to jump straight into **Controls** or **Filament & heat**.
+- **Interactive Studio & Cutaway printer graphics.** Live filament colors at all four spool positions (T0–T3), mounted toolhead indicator with live print/travel speed (`mm/s`) and flow rate (`%`) during printing, live XYZ coordinates, and current/target nozzle and bed temperatures. Tap the printer illustration to jump straight into **Controls** or **Filament & heat**.
 - **Complete print controls & presets.** Adjust **Print speed** (`85 / 100 / 115 %` presets + slider), **Flow rate** (`95 / 100 / 105 %` presets + slider), **Part cooling fan** (`0–100 %`), and **Print actions** (Pause, Resume, Cancel, and **Emergency stop**).
 - **Automatic 5-minute post-print cooling (`Cool After Printing`).** A compact toggle and expandable **duration (`1–15 min`, default `5 min`)** & **speed (`40–100 %`, default `70 %`)** sliders directly below **Part cooling fan** run the side auxiliary fan (`cavity_fan`) after print completion to cool the bed and chamber for easier part removal — automatically stopping on timer expiry, `<= 36.5 °C` bed temp, toggle off, or a new print. **Keep the door closed:** in real print tests from a `55 °C` bed, 5 minutes at `70 %` with the door closed cooled the bed roughly **twice as fast** (`-13 to -14 °C` vs. `-7 to -8 °C` passive) — and even slightly outperformed opening the door (`-12 °C`), since the closed enclosure channels the airflow directly across the build plate.
 - **Moonraker-guarded motion & toolhead controls.** With the [control package](homeassistant/packages/u1_control_package.yaml), home all axes, move to bed/head presets, fine-jog X/Y (`0.1 / 1 / 10 mm`), pick/park individual toolheads (`T0–T3`), and load or unload filament with live Moonraker idle/safety checks.

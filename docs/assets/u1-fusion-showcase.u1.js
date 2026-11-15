@@ -7702,6 +7702,9 @@ function getTelemetry(states) {
     profile?.used === true && profile.index === active &&
     typeof profile.name === "string" && profile.name.trim()
   ) : null;
+  const printSpeed = online ? number(printer?.attributes?.values?.print_speed) : null;
+  const speedFactor = online ? number(printer?.attributes?.values?.speed_factor ?? state("geschwindigkeit","number")?.state) : null;
+  const flowRate = online ? number(state("flussrate","number")?.state) : null;
   return {
     heads: [0,1,2,3].map(i => {
       const slot = slots.find(slot => slot?.index === i);
@@ -7719,6 +7722,10 @@ function getTelemetry(states) {
     axes: axes.map(axis => online ? number(printer.attributes?.values?.["toolhead_position_" + axis]) : null),
     slicerProfile,
     printAction: commandState && commandState !== "unavailable" ? command : null,
+    printSpeed,
+    speedFactor,
+    flowRate,
+    printStatus,
   };
 }
 
@@ -7777,7 +7784,7 @@ const markup = `
   .reading.selected{border-color:#76bcf0}
   .selection-caption{position:absolute;left:50%;top:calc(100% + 1px);transform:translateX(-50%);
     padding:1px 3px;border-radius:3px;background:#14232fef;color:#a6d7ff;font-size:9px;line-height:1.05}
-  .mounted-label{border-color:#ff8b7480;font-weight:650}
+  .mounted-label{border-color:#ff8b7480;font-weight:650;padding:2px 6px}
   .mounted-label b{color:#ffb29e}
   .cutaway{display:none}
   figure[data-preset=cutaway]{aspect-ratio:640/372}
@@ -7890,10 +7897,21 @@ function headOverlay(head,i,preset,clean) {
   return dock + reading;
 }
 
-function mountLabel(heads,preset) {
+function mountLabel(heads,preset,telemetry) {
   const mounted = heads.findIndex(head => head.active);
-  return mounted < 0 ? "" : '<span class="pill mounted-label" style="' + point(preset.mounted) +
-    '"><b>T' + mounted + '</b> · Mounted</span>';
+  if (mounted < 0) return "";
+  const parts = ['<b>T' + mounted + '</b> · Mounted'];
+  const isPrinting = telemetry && ["printing","paused"].includes(telemetry.printStatus);
+  if (isPrinting) {
+    if (telemetry.printSpeed !== null && telemetry.printSpeed !== undefined) {
+      parts.push('<b>' + telemetry.printSpeed + '</b> mm/s');
+    }
+    if (telemetry.flowRate !== null && telemetry.flowRate !== undefined) {
+      parts.push('Flow <b>' + Math.round(telemetry.flowRate) + '%</b>');
+    }
+  }
+  return '<span class="pill mounted-label" style="' + point(preset.mounted) +
+    '">' + parts.join(' · ') + '</span>';
 }
 
 function renderStudioFilament(heads,enabled) {
@@ -8190,7 +8208,7 @@ class U1FusionShowcaseHero extends HTMLElement {
       const overlay = (clean ? guides(preset) : "") + heads + bed;
       if (this.lastOverlay !== overlay) this.overlay.innerHTML = this.lastOverlay = overlay;
     }
-    const positions = renderAxes(data.axes,this.limits,preset) + mountLabel(data.heads,preset);
+    const positions = renderAxes(data.axes,this.limits,preset) + mountLabel(data.heads,preset,data);
     if (this.lastPositions !== positions) this.axisOverlay.innerHTML = this.lastPositions = positions;
     const spools = renderSpools(data.heads,preset);
     if (this.lastSpools !== spools) this.spoolLabels.innerHTML = this.lastSpools = spools;
@@ -8204,8 +8222,11 @@ class U1FusionShowcaseHero extends HTMLElement {
   }
 }
 
+if (!customElements.get("u1-fusion-showcase-hero-v18")) {
+  customElements.define("u1-fusion-showcase-hero-v18", U1FusionShowcaseHero);
+}
 if (!customElements.get("u1-fusion-showcase-hero-v17")) {
-  customElements.define("u1-fusion-showcase-hero-v17", U1FusionShowcaseHero);
+  customElements.define("u1-fusion-showcase-hero-v17", class extends U1FusionShowcaseHero {});
 }
 if (!customElements.get("u1-fusion-showcase-hero-v16")) {
   customElements.define("u1-fusion-showcase-hero-v16", class extends U1FusionShowcaseHero {});
