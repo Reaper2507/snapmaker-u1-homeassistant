@@ -93,7 +93,7 @@
     "description": "Torstens Alltags-Standard: Perfekte Balance aus High-Speed CoreXY und makelloser Oberfläche.\n• 0.20 mm Layer, 3 Wände, 15% Adaptive Cubic Infill.\n• 200 mm/s Außenwand (über dem VFA-Resonanzbereich für seidenweiche Wände).\n• 300 mm/s Innenwand, 350 mm/s Infill, 120 mm/s Deckschicht.",
     "layer_height": "0.20",
     "wall_loops": "3",
-    "sparse_infill_pattern": "gyroid",
+    "sparse_infill_pattern": "crosshatch",
     "sparse_infill_density": "15%",
     "top_shell_layers": "5",
     "bottom_shell_layers": "4",
