@@ -7907,7 +7907,10 @@ function mountLabel(heads,preset,telemetry) {
       parts.push('<b>' + telemetry.printSpeed + '</b> mm/s');
     }
     if (telemetry.flowRate !== null && telemetry.flowRate !== undefined) {
-      parts.push('Flow <b>' + Math.round(telemetry.flowRate) + '%</b>');
+      const flow = Math.round(telemetry.flowRate);
+      if (flow !== 100) {
+        parts.push('Flow <b>' + flow + '%</b>');
+      }
     }
   }
   return '<span class="pill mounted-label" style="' + point(preset.mounted) +

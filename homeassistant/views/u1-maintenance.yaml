@@ -15,7 +15,7 @@ sections:
             // A running HA client may have loaded its resource list before the Showcase was registered.
             if (!customElements.get("u1-fusion-showcase-hero-v18") ||
                 !customElements.get("u1-fusion-showcase-ironoxx")) {
-              this._u1ShowcaseModule ??= import("/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js?v=559-18").catch(error => {
+              this._u1ShowcaseModule ??= import("/local/media/snapmaker-u1/showcase/u1-fusion-showcase.u1.js?v=559-19").catch(error => {
                 console.error("U1 Fusion Showcase resource failed to load", error);
               });
             }
