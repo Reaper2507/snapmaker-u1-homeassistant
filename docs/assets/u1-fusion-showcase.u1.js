@@ -7723,11 +7723,15 @@ const temperatures = ({current,target}) => temperature(current) + " / " + temper
 const rgb = color => [1,3,5].map(offset => parseInt(color.slice(offset,offset+2),16)/255);
 
 function toolForeground(color) {
+  if (!color || typeof color !== "string" || !color.startsWith("#") || color.length < 7) return "#ffd0a6";
   const [r,g,b] = rgb(color);
-  return .2126*r+.7152*g+.0722*b > .57 ? "#191615" : "#fff";
+  return .2126*r+.7152*g+.0722*b > .52 ? "#141416" : "#ffffff";
 }
 function toolColorStyle(color) {
-  return color ? ' style="--tool-color:' + color + ';--tool-foreground:' + toolForeground(color) + '"' : "";
+  if (!color) return "";
+  const fg = toolForeground(color);
+  const border = fg === "#141416" ? "rgba(0,0,0,0.28)" : "rgba(255,255,255,0.22)";
+  return ' style="--tool-color:' + color + ';--tool-foreground:' + fg + ';--tool-border:' + border + '"';
 }
 
 function getTelemetry(states) {
@@ -7835,7 +7839,7 @@ const markup = `
   .pill{background:#161414e8;border:1px solid #fff4;border-radius:5px;white-space:nowrap}
   .pill{padding:2px 4px;font-size:clamp(9px,2.35vw,11px);line-height:1.15}
   .pill b{color:#ffd0a6}
-  .tool-id{padding:0 3px;border-radius:3px;background:var(--tool-color,transparent);color:var(--tool-foreground,#ffd0a6)}
+  .pill b.tool-id,.tool-id{padding:0 3px;border-radius:3px;background:var(--tool-color,transparent);color:var(--tool-foreground,#ffd0a6)!important;box-shadow:0 0 0 1px var(--tool-border,transparent);font-weight:750}
   .reading.selected{border-color:#76bcf0}
   .selection-caption{position:absolute;left:50%;top:calc(100% + 1px);transform:translateX(-50%);
     padding:1px 3px;border-radius:3px;background:#14232fef;color:#a6d7ff;font-size:9px;line-height:1.05}
