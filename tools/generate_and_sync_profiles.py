@@ -436,11 +436,19 @@ def deploy_machines():
         with open(mpath, "r", encoding="utf-8") as jf:
             data = json.load(jf)
         fname = mpath.name
-        content = json.dumps(data, indent=4, ensure_ascii=False)
+
         for target_dir in [PUBLIC_MACH, GIT_3D_MACH, APP_MACH]:
+            target_data = dict(data)
+            # Public repo must be sanitized for GitHub; local active slicer and internal backup need real LAN IP
+            if target_dir == PUBLIC_MACH:
+                target_data["print_host"] = "http://192.168.x.x:7125"
+            else:
+                target_data["print_host"] = "192.168.178.182"
+
             out_file = target_dir / fname
             with open(out_file, "w", encoding="utf-8") as out:
-                out.write(content)
+                json.dump(target_data, out, indent=4, ensure_ascii=False)
+                out.write("\n")
         print(f"  + Synced Machine Profile: {fname}")
 
 
