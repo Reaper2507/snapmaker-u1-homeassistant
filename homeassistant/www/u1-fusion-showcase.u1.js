@@ -4664,7 +4664,7 @@ ${tr("Der Drucker antwortet nicht. Trotzdem ausschalten?")}`)) {
   .arch-head ha-icon { --mdc-icon-size: 18px; color: var(--u1-on-variant); }
 
   /* ── Layer view ──────────────────────────────────────────────────────── */
-  .lv { position: relative; aspect-ratio: 1 / 1; max-height: 360px; min-height: 180px; width: 100%; border-radius: var(--u1-r-m);
+  .lv { position: relative; aspect-ratio: 1 / 1; max-height: 420px; min-height: 200px; width: 100%; border-radius: var(--u1-r-m);
     /* Mid grey: black and white filaments stay visible in light and dark themes */
     background: color-mix(in srgb, #7a7d86 70%, var(--u1-panel)); overflow: hidden; display: flex; align-items: center; justify-content: center; }
   .lv svg { width: 100%; height: 100%; display: block; }
@@ -4706,7 +4706,7 @@ ${tr("Der Drucker antwortet nicht. Trotzdem ausschalten?")}`)) {
   .lv-objects:empty { display: none; }
   .lv-objects .chip-row {
     display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-start;
-    max-height: 120px; overflow-y: auto; overflow-x: hidden;
+    max-height: 180px; overflow-y: auto; overflow-x: hidden;
     scrollbar-width: thin; padding-right: 2px;
   }
   .obj-chip { cursor: pointer; height: 28px; padding: 0 10px; font-size: 12px; max-width: 180px; }

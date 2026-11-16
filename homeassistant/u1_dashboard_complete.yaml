@@ -3295,11 +3295,11 @@ views:
                 ha-card { border-radius: 14px; box-shadow: none; }
                 .head { display: none !important; }
                 @container style(--column-span: 3) {
-                  :host { display: block; height: 100%; min-height: 260px; max-height: 440px; }
+                  :host { display: block; height: 100%; min-height: 260px; }
                   ha-card { box-sizing: border-box; height: 100%; }
                   .layout { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); }
-                  .lv-panel { min-height: 0; }
-                  .lv { flex: 1 1 0; min-height: 180px; aspect-ratio: auto; }
+                  .lv-panel { min-height: 0; height: 100%; display: flex; flex-direction: column; }
+                  .lv { flex: 1 1 auto; min-height: 200px; aspect-ratio: auto; }
                 }
                 .panel > .panel-head .panel-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--primary-text-color); }
             grid_options:
@@ -3878,11 +3878,11 @@ views:
                 ha-card { border-radius: 14px; box-shadow: none; }
                 .head { display: none !important; }
                 @container style(--column-span: 3) {
-                  :host { display: block; height: 100%; min-height: 260px; max-height: 440px; }
+                  :host { display: block; height: 100%; min-height: 260px; }
                   ha-card { box-sizing: border-box; height: 100%; }
                   .layout { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); }
-                  .lv-panel { min-height: 0; }
-                  .lv { flex: 1 1 0; min-height: 180px; aspect-ratio: auto; }
+                  .lv-panel { min-height: 0; height: 100%; display: flex; flex-direction: column; }
+                  .lv { flex: 1 1 auto; min-height: 200px; aspect-ratio: auto; }
                 }
                 .panel > .panel-head .panel-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--primary-text-color); }
             grid_options:
