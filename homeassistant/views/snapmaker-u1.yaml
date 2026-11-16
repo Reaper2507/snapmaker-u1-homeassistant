@@ -1096,6 +1096,9 @@ sections:
                   max: 100
                   step: 5
                   hide_state: false
+                - entity: input_boolean.snapmaker_u1_auto_remove_with_basket
+                  name: Waste bin to release objects
+                  icon: mdi:tray-remove
                 card_mod:
                   style: 'ha-card { box-shadow: none; --ha-card-border-width: 0px; background: transparent; } .card-content { padding: 2px 12px 6px 12px; }'
               - type: custom:button-card
