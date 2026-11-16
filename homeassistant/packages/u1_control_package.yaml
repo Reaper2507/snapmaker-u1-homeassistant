@@ -898,7 +898,7 @@
                             {
                               "action": "snapmaker_u1_card.send_gcode",
                               "data": {
-                                "script": "G90\nG0 Z210 F1500\nG4 P500\nG0 Z227 F1500\nG4 P2500\nG0 Z210 F1500\nG4 P1000\nG0 Z227 F1500\nG4 P2500\nG0 Z210 F1500\nG4 P1000\nG0 Z227 F1500\nG4 P2500\nG0 Z210 F1500\nG4 P1000\nG0 Z200 F2000\nM400\nM84"
+                                "script": "SET_KINEMATIC_POSITION Z=200\nG90\nG0 Z210 F1500\nG4 P500\nG0 Z227 F1500\nG4 P2500\nG0 Z210 F1500\nG4 P1000\nG0 Z227 F1500\nG4 P2500\nG0 Z210 F1500\nG4 P1000\nG0 Z227 F1500\nG4 P2500\nG0 Z210 F1500\nG4 P1000\nG0 Z200 F2000\nM400\nM84"
                               }
                             }
                           ]
