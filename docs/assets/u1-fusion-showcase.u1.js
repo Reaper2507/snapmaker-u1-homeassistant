@@ -472,6 +472,9 @@ SOFTWARE.
     "Fortschrittsbalken und Countdown in der Benachrichtigungsleiste. Heute {n} von {b} Updates.": "Progress bar and countdown in the notification shade. Today {n} of {b} updates.",
     "Kein Android-Handy unter den Benachrichtigungszielen der Integration.": "No Android phone among the integration's notification targets.",
     "Objekte – antippen zum Ausschließen": "Objects – tap to exclude",
+    "Objekte ({n})": "Objects ({n})",
+    "Weniger": "Less",
+    "Ausschließen ({n})": "Exclude ({n})",
     "Ausgeschlossen": "Excluded",
     "Letztes Objekt": "Last object",
     "Ausschließen": "Exclude",
@@ -3149,7 +3152,7 @@ ${tr("Der Drucker antwortet nicht. Trotzdem ausschalten?")}`)) {
           <span class="t-label" style="margin-left:auto" data-su1="lvhead">${esc(head)}</span>
           <button type="button" class="icon ghost lv-mode" data-lvmode aria-pressed="${this._lvMode() === "bed"}"
             title="${this._lvMode() === "bed" ? tr("Teil vergrößern") : tr("Ganzes Druckbett")}">
-            <ha-icon icon="${this._lvMode() === "bed" ? "mdi:magnify-plus-outline" : "mdi:grid"}"></ha-icon></button>
+            <ha-icon icon="${this._lvMode() === "bed" ? "mdi:magnify-plus-outline" : "mdi:fit-to-screen-outline"}"></ha-icon></button>
         </div>
         <div class="lv" data-lv data-mode="${this._lvMode()}">${this._layerSvg()}</div>
         <div class="lv-legend" data-su1="lvlegend">${this._layerLegend()}</div>
@@ -3240,7 +3243,7 @@ ${tr("Der Drucker antwortet nicht. Trotzdem ausschalten?")}`)) {
         const bed = this._lvView === "bed";
         btn.setAttribute("aria-pressed", String(bed));
         btn.title = bed ? tr("Teil vergrößern") : tr("Ganzes Druckbett");
-        btn.innerHTML = `<ha-icon icon="${bed ? "mdi:magnify-plus-outline" : "mdi:grid"}"></ha-icon>`;
+        btn.innerHTML = `<ha-icon icon="${bed ? "mdi:magnify-plus-outline" : "mdi:fit-to-screen-outline"}"></ha-icon>`;
       }
       const box = r && r.querySelector("[data-lv]");
       if (box) box.dataset.mode = this._lvView;
@@ -3383,14 +3386,46 @@ ${tr("Der Drucker antwortet nicht. Trotzdem ausschalten?")}`)) {
       if (ex.objects.length < 2) return "";
       const excluded = new Set(ex.excluded);
       const left = ex.objects.filter((o) => !excluded.has(o.name)).length;
-      return `<div class="t-label">${tr("Objekte – antippen zum Ausschließen")}</div><div class="chip-row">${ex.objects.map((o) => {
+      const count = ex.objects.length;
+      const isMany = count > 3;
+      const expanded = this._objectsExpanded === true;
+
+      const cleanName = (o) => {
+        if (o.label) return o.label;
+        const name = o.name || "";
+        const parts = name.split(".");
+        return parts.length > 1 ? parts.slice(1).join(".") : name;
+      };
+
+      const renderChip = (o) => {
         const off = excluded.has(o.name);
         const cur = !off && o.name === ex.current;
         const last = !off && left <= 1;
+        const label = cleanName(o);
         return `<button type="button" class="chip obj-chip${off ? " off" : ""}${cur ? " cur" : ""}" data-obj="${esc(o.name)}"
-        ${off || last ? "disabled" : ""} title="${esc(off ? tr("Ausgeschlossen") : last ? tr("Letztes Objekt") : tr("Ausschließen"))}">
-        <ha-icon icon="${off ? "mdi:cancel" : cur ? "mdi:printer-3d-nozzle" : "mdi:cube-outline"}"></ha-icon>${esc(o.label || o.name)}</button>`;
-      }).join("")}</div>`;
+        ${off || last ? "disabled" : ""} title="${esc((off ? tr("Ausgeschlossen") : last ? tr("Letztes Objekt") : tr("Ausschließen")) + ": " + o.name)}">
+        <ha-icon icon="${off ? "mdi:cancel" : cur ? "mdi:printer-3d-nozzle" : "mdi:cube-outline"}"></ha-icon><span>${esc(label)}</span></button>`;
+      };
+
+      if (!isMany) {
+        return `<div class="t-label">${tr("Objekte – antippen zum Ausschließen")}</div><div class="chip-row">${ex.objects.map(renderChip).join("")}</div>`;
+      }
+
+      const curObj = ex.current ? ex.objects.find((o) => o.name === ex.current) : null;
+      const curLabel = curObj ? cleanName(curObj) : null;
+
+      let html = `<div class="lv-obj-bar">
+        <span class="t-label">${tr("Objekte ({n})", { n: count })}${curLabel && !expanded ? ` · Druckt: <b style="color:var(--u1-primary)">${esc(curLabel)}</b>` : ""}</span>
+        <button type="button" class="lv-obj-toggle" data-toggle-objects>
+          <ha-icon icon="${expanded ? "mdi:chevron-up" : "mdi:chevron-down"}"></ha-icon>
+          <span>${expanded ? tr("Weniger") : tr("Ausschließen ({n})", { n: count })}</span>
+        </button>
+      </div>`;
+
+      if (expanded) {
+        html += `<div class="chip-row">${ex.objects.map(renderChip).join("")}</div>`;
+      }
+      return html;
     }
     async _excludeObject(name) {
       const ex = this._exclude();
@@ -3417,6 +3452,12 @@ ${tr("Der Drucker antwortet nicht. Trotzdem ausschalten?")}`)) {
       root.addEventListener("click", (e) => {
         if (e.target && e.target.closest && e.target.closest("[data-lvmode]")) {
           this._toggleLvMode();
+          return;
+        }
+        if (e.target && e.target.closest && e.target.closest("[data-toggle-objects]")) {
+          this._objectsExpanded = !this._objectsExpanded;
+          const objs = root.querySelector('[data-su1="lvobjects"]');
+          if (objs) objs.innerHTML = this._objectsHtml();
           return;
         }
         const el = e.target && e.target.closest ? e.target.closest("[data-obj]") : null;
@@ -4623,7 +4664,7 @@ ${tr("Der Drucker antwortet nicht. Trotzdem ausschalten?")}`)) {
   .arch-head ha-icon { --mdc-icon-size: 18px; color: var(--u1-on-variant); }
 
   /* ── Layer view ──────────────────────────────────────────────────────── */
-  .lv { position: relative; aspect-ratio: 1 / 1; max-height: 360px; width: 100%; border-radius: var(--u1-r-m);
+  .lv { position: relative; aspect-ratio: 1 / 1; max-height: 360px; min-height: 180px; width: 100%; border-radius: var(--u1-r-m);
     /* Mid grey: black and white filaments stay visible in light and dark themes */
     background: color-mix(in srgb, #7a7d86 70%, var(--u1-panel)); overflow: hidden; display: flex; align-items: center; justify-content: center; }
   .lv svg { width: 100%; height: 100%; display: block; }
@@ -4661,13 +4702,27 @@ ${tr("Der Drucker antwortet nicht. Trotzdem ausschalten?")}`)) {
   .lv-objs polygon.pick:hover { fill: color-mix(in srgb, var(--u1-error) 12%, transparent); stroke: var(--u1-error); opacity: 1; }
   .lv-objs polygon.cur { stroke: var(--u1-primary); stroke-dasharray: none; opacity: 1; }
   .lv-objs polygon.excl { fill: color-mix(in srgb, var(--u1-error) 14%, transparent); stroke: var(--u1-error); opacity: .8; }
-  .lv-objects { display: flex; flex-direction: column; gap: 6px; }
+  .lv-objects { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
   .lv-objects:empty { display: none; }
-  .lv-objects .chip-row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-start; }
-  .obj-chip { cursor: pointer; }
-  .obj-chip ha-icon { --mdc-icon-size: 16px; }
+  .lv-objects .chip-row {
+    display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-start;
+    max-height: 120px; overflow-y: auto; overflow-x: hidden;
+    scrollbar-width: thin; padding-right: 2px;
+  }
+  .obj-chip { cursor: pointer; height: 28px; padding: 0 10px; font-size: 12px; max-width: 180px; }
+  .obj-chip span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .obj-chip ha-icon { --mdc-icon-size: 15px; flex-shrink: 0; }
   .obj-chip.cur { border-color: var(--u1-primary); color: var(--u1-primary); }
-  .obj-chip.off { text-decoration: line-through; opacity: .6; }
+  .obj-chip.off { text-decoration: line-through; opacity: .5; }
+  .lv-obj-bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--u1-on-variant); }
+  .lv-obj-bar .t-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .lv-obj-toggle {
+    all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; font-weight: 600; color: var(--u1-primary); flex-shrink: 0;
+    padding: 3px 8px; border-radius: 99px; background: color-mix(in srgb, var(--u1-primary) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--u1-primary) 30%, transparent);
+  }
+  .lv-obj-toggle:hover { background: color-mix(in srgb, var(--u1-primary) 22%, transparent); }
 
   /* ── Mini card ────────────────────────────────────────────────────────── */
   .mini-wrap { display: flex; flex-direction: column; gap: 12px; cursor: pointer; }
