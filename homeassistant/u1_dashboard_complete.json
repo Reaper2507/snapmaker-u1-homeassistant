@@ -1600,11 +1600,6 @@
                             "max": 100,
                             "step": 5,
                             "hide_state": false
-                          },
-                          {
-                            "entity": "input_boolean.snapmaker_u1_auto_remove_with_basket",
-                            "name": "Waste bin to release objects",
-                            "icon": "mdi:tray-remove"
                           }
                         ],
                         "card_mod": {

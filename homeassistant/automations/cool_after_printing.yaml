@@ -1,9 +1,7 @@
 alias: "Snapmaker U1 – Cool After Printing"
 description: >-
   Runs the Snapmaker U1 side auxiliary fan (cavity_fan) after print completion
-  to cool the print bed for easier part removal. When the bed has cooled down,
-  optionally executes the automatic 3-cycle PEI bed flex pop-off against the
-  waste bin if enabled via 'Auto Remove with Basket'. Stops on timeout, bed <=
+  to cool the print bed for easier part removal. Stops on timeout, bed <=
   36 °C, toggle off, or a new print.
 mode: restart
 triggers:
@@ -76,36 +74,6 @@ actions:
                 entity_id: binary_sensor.snapmaker_u1_card_live_verbindung
                 state: "on"
             then:
-              - choose:
-                  - conditions:
-                      - condition: state
-                        entity_id: input_boolean.snapmaker_u1_auto_remove_with_basket
-                        state: "on"
-                      - condition: template
-                        value_template: >-
-                          {{ ((state_attr('sensor.snapmaker_u1_card_druckerwerte', 'values') | default({})).get('toolhead_position_z', 200) | float(200)) <= 205 }}
-                    sequence:
-                      - action: snapmaker_u1_card.send_gcode
-                        data:
-                          script: |
-                            G90
-                            G0 Z210 F1500
-                            G4 P500
-                            G0 Z227 F1500
-                            G4 P2500
-                            G0 Z210 F1500
-                            G4 P1000
-                            G0 Z227 F1500
-                            G4 P2500
-                            G0 Z210 F1500
-                            G4 P1000
-                            G0 Z227 F1500
-                            G4 P2500
-                            G0 Z210 F1500
-                            G4 P1000
-                            G0 Z200 F2000
-                            M400
-                            M84
               - action: snapmaker_u1_card.send_gcode
                 data:
                   script: "SET_FAN_SPEED FAN=cavity_fan SPEED=0"

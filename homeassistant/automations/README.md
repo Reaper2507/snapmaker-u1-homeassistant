@@ -30,12 +30,7 @@ Use [cool_after_printing.yaml](cool_after_printing.yaml) if you want the Snapmak
 | :--- | :--- | :--- |
 | `input_boolean.snapmaker_u1_cool_after_printing` | Toggle | Enable/disable post-print cooldown |
 | `input_boolean.snapmaker_u1_cool_after_printing_panel` | Toggle | Shows/hides the slider settings panel below the row |
-| `input_boolean.snapmaker_u1_auto_remove_with_basket` | Toggle | Enable/disable automatic 3-cycle PEI bed flex pop-off (requires [Waste Bin & Bed Releaser](../../hardware/waste-bin-bed-releaser/README.md)) |
 | `input_number.snapmaker_u1_cool_after_printing_minutes` | Number (Slider) | Min `1`, Max `15`, Step `1`, Unit `min` (default `5`) |
 | `input_number.snapmaker_u1_cool_after_printing_speed` | Number (Slider) | Min `40`, Max `100`, Step `5`, Unit `%` (default `70`) |
-
-### Auto Remove with Basket (Pop-Off Feature)
-Once cooldown reaches $\le 36.5\text{ °C}$, the automation can automatically flex the PEI spring steel sheet 3 times against the [Snapmaker U1 Abfalleimer & Automatischer Bettauslöser](https://makerworld.com/de/models/3620006-snapmaker-u1-waste-bin-automatic-bed-releaser) (14 mm deflection at Z=227 mm, 2.5s hold, relax at Z=210 mm) to pop prints cleanly off the bed before steppers are turned off (`M84`).
-> **Prerequisite:** This feature requires the 3D-printed waste bin installed inside the printer! Toggle `input_boolean.snapmaker_u1_auto_remove_with_basket` off if you do not have the basket mounted. Prints $> 195\text{ mm}$ height automatically skip this flex for safety.
 
 Then create an automation using **Edit in YAML**, paste [cool_after_printing.yaml](cool_after_printing.yaml), and make sure your integration's `snapmaker_u1_card.send_gcode` action is available.

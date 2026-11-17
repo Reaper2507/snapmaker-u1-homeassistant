@@ -725,11 +725,6 @@
       "name": "Snapmaker U1 Cool After Printing Panel",
       "initial": false,
       "icon": "mdi:tune"
-    },
-    "snapmaker_u1_auto_remove_with_basket": {
-      "name": "Snapmaker U1 Auto Remove with Basket",
-      "initial": true,
-      "icon": "mdi:tray-remove"
     }
   },
   "input_number": {
@@ -758,7 +753,7 @@
     {
       "id": "snapmaker_u1_cool_after_printing",
       "alias": "Snapmaker U1 – Cool After Printing",
-      "description": "Runs the Snapmaker U1 side auxiliary fan (cavity_fan) after print completion to cool the print bed for easier part removal. When the bed has cooled down, optionally executes the automatic 3-cycle PEI bed flex pop-off against the waste bin if enabled via Auto Remove with Basket. Stops on timeout, bed <= 36 °C, toggle off, or a new print.",
+      "description": "Runs the Snapmaker U1 side auxiliary fan (cavity_fan) after print completion to cool the print bed for easier part removal. Stops on timeout, bed <= 36 °C, toggle off, or a new print.",
       "mode": "restart",
       "triggers": [
         {
@@ -880,31 +875,6 @@
                     }
                   ],
                   "then": [
-                    {
-                      "choose": [
-                        {
-                          "conditions": [
-                            {
-                              "condition": "state",
-                              "entity_id": "input_boolean.snapmaker_u1_auto_remove_with_basket",
-                              "state": "on"
-                            },
-                            {
-                              "condition": "template",
-                              "value_template": "{{ ((state_attr('sensor.snapmaker_u1_card_druckerwerte', 'values') | default({})).get('toolhead_position_z', 200) | float(200)) <= 205 }}"
-                            }
-                          ],
-                          "sequence": [
-                            {
-                              "action": "snapmaker_u1_card.send_gcode",
-                              "data": {
-                                "script": "SET_KINEMATIC_POSITION Z=200\nG90\nG0 Z210 F1500\nG4 P500\nG0 Z227 F1500\nG4 P2500\nG0 Z210 F1500\nG4 P1000\nG0 Z227 F1500\nG4 P2500\nG0 Z210 F1500\nG4 P1000\nG0 Z227 F1500\nG4 P2500\nG0 Z210 F1500\nG4 P1000\nG0 Z200 F2000\nM400\nM84"
-                              }
-                            }
-                          ]
-                        }
-                      ]
-                    },
                     {
                       "action": "snapmaker_u1_card.send_gcode",
                       "data": {
