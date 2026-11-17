@@ -99,3 +99,8 @@ You can install these presets either manually into your OrcaSlicer user director
 1. Open OrcaSlicer.
 2. In the top menu, navigate to **File** → **Import** → **Import Configs...** (or press `Ctrl + I`).
 3. Select the desired `.json` preset files from the cloned repository.
+
+---
+
+<sub>*Note: Process and filament presets in this repository were AI-assisted and benchmarked for the Snapmaker U1.*</sub>
+

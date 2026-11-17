@@ -1,0 +1,87 @@
+{
+    "inherits": "Snapmaker PLA @U1",
+    "compatible_printers": [
+        "Snapmaker U1 (0.4 nozzle)",
+        "Snapmaker U1 (0.4 nozzle) - Carbon-Platte (PLA) LAN",
+        "Snapmaker U1 (0.4 nozzle) - Edelstahl LAN",
+        "Snapmaker U1 (0.6 nozzle)",
+        "Snapmaker U1 (0.6 nozzle) - Carbon-Platte (PLA) LAN",
+        "Snapmaker U1 (0.6 nozzle) - Edelstahl LAN"
+    ],
+    "name": "Snapmaker Carbon-Platte PLA (Original)",
+    "from": "User",
+    "version": "2.5.0.0",
+    "description": "Original Snapmaker U1 Carbon-Fiber Textured Plate (PLA). Snapmaker/Community-Werte: Erstschicht 60°C für Haftung & Carbon-Mustertransfer, Folgeschichten 55°C (Platten-Limit <80°C), 220°C/215°C Düse, 30% AUX, Z-Offset -0.07 mm. KEIN Kleber!",
+    "additional_cooling_fan_speed": [
+        "30",
+        "30"
+    ],
+    "dont_slow_down_outer_wall": [
+        "1"
+    ],
+    "filament_max_volumetric_speed": [
+        "20",
+        "32"
+    ],
+    "nozzle_temperature": [
+        "215",
+        "215"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "220",
+        "220"
+    ],
+    "hot_plate_temp": [
+        "55"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "60"
+    ],
+    "textured_plate_temp": [
+        "55"
+    ],
+    "textured_plate_temp_initial_layer": [
+        "60"
+    ],
+    "cool_plate_temp": [
+        "55"
+    ],
+    "cool_plate_temp_initial_layer": [
+        "60"
+    ],
+    "eng_plate_temp": [
+        "55"
+    ],
+    "eng_plate_temp_initial_layer": [
+        "60"
+    ],
+    "nozzle_temperature_range_low": [
+        "190"
+    ],
+    "nozzle_temperature_range_high": [
+        "235"
+    ],
+    "filament_type": [
+        "PLA"
+    ],
+    "filament_flow_ratio": [
+        "0.98"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.020"
+    ],
+    "fan_min_speed": [
+        "100",
+        "100"
+    ],
+    "fan_max_speed": [
+        "100",
+        "100"
+    ],
+    "filament_density": [
+        "1.24"
+    ]
+}
