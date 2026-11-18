@@ -44,7 +44,7 @@ Maintenance intervals, temperature history, an 11 × 11 bed mesh, the G-code con
 What this dashboard and package add on top of Ironoxx’s integration:
 
 - **Interactive Studio & Cutaway printer graphics.** Live filament colors at all four spool positions (T0–T3), mounted toolhead indicator with live print/travel speed (`mm/s`) and flow rate (`%`) during printing, live XYZ coordinates, and current/target nozzle and bed temperatures. Tap the printer illustration to jump straight into **Controls** or **Filament & heat**.
-- **Automotive-style Odometer (Print hours & jobs).** Compact digital badge in the bottom-left corner of the printer illustration tracking lifetime print hours and total print jobs (stacked vertically, e.g. `120H` / `63 JOBS`), styled like a car instrument cluster and counting up automatically with every completed print.
+- **Print hours & job count.** Small badge in the bottom-left corner showing cumulative print hours and completed jobs (`120H` / `63 JOBS`).
 - **Complete print controls & presets.** Adjust **Print speed** (`85 / 100 / 115 %` presets + slider), **Flow rate** (`95 / 100 / 105 %` presets + slider), **Part cooling fan** (`0–100 %`), and **Print actions** (Pause, Resume, Cancel, and **Emergency stop**).
 - **Automatic post-print cooling (`Cool After Printing`).** A compact toggle and expandable **duration (`1–15 min`, default `5 min`)** & **speed (`40–100 %`, default `70 %`)** sliders directly below **Part cooling fan** run the side auxiliary fan (`cavity_fan`) after print completion to cool the bed and chamber for easier part removal — automatically stopping on timer expiry, `<= 36.5 °C` bed temp, toggle off, or a new print.
 - **Hardware mods:**
