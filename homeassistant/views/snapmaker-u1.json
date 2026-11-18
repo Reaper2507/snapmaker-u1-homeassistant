@@ -59,7 +59,7 @@
             "rows": "auto"
           },
           "card_mod": {
-            "style": "@media (min-width: 1200px) {\n  ha-card {\n    box-sizing: border-box;\n    --u1-overview-height: clamp(345px, calc(22vw + 64px), 410px);\n    min-height: var(--u1-overview-height);\n  }\n}"
+            "style": "@media (min-width: 1200px) {\n  ha-card {\n    box-sizing: border-box;\n    --u1-overview-height: clamp(345px, calc(22vw + 64px), 410px);\n    min-height: var(--u1-overview-height);\n  }\n}\n.figure-shell::after {\n  content: \"{{ states('sensor.snapmaker_u1_card_druckstunden') | float(0) | round }}H\\a {{ (state_attr('sensor.snapmaker_u1_card_druckstunden', 'totals') or {}).get('prints', 62) }} JOBS\";\n  white-space: pre;\n  text-align: left;\n  line-height: 1.25;\n  position: absolute;\n  left: 8px;\n  bottom: 8px;\n  z-index: 1;\n  display: inline-flex;\n  flex-direction: column;\n  justify-content: center;\n  min-height: 34px;\n  box-sizing: border-box;\n  padding: 3px 8px;\n  border: 1px solid rgba(255, 255, 255, 0.16);\n  border-radius: 6px;\n  background: #14171bee;\n  color: #f9f4ef;\n  font-family: ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, monospace;\n  font-size: 10.5px;\n  font-weight: 750;\n  letter-spacing: 0.03em;\n  pointer-events: none;\n  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);\n  backdrop-filter: blur(6px);\n  -webkit-backdrop-filter: blur(6px);\n}"
           },
           "show_print_actions": true,
           "show_filament_heat": true,

@@ -7764,6 +7764,12 @@ function getTelemetry(states) {
   const printSpeed = online ? number(printer?.attributes?.values?.print_speed) : null;
   const speedFactor = online ? number(printer?.attributes?.values?.speed_factor ?? state("geschwindigkeit","number")?.state) : null;
   const flowRate = online ? number(state("flussrate","number")?.state) : null;
+  const hoursEntry = state("druckstunden");
+  const printHours = valid(hoursEntry) && Number.isFinite(Number(hoursEntry.state))
+    ? Number(hoursEntry.state)
+    : (printer?.attributes?.values?.totals_print_time && Number.isFinite(Number(String(printer.attributes.values.totals_print_time).replace(/[^\d.]/g, ''))))
+      ? Number(String(printer.attributes.values.totals_print_time).replace(/[^\d.]/g, ''))
+      : null;
   return {
     heads: [0,1,2,3].map(i => {
       const slot = slots.find(slot => slot?.index === i);
@@ -7785,6 +7791,7 @@ function getTelemetry(states) {
     speedFactor,
     flowRate,
     printStatus,
+    printHours,
   };
 }
 
@@ -7821,6 +7828,14 @@ const markup = `
   .figure-link{position:absolute;inset:0;z-index:1;border-radius:inherit}
   .figure-link:focus-visible{outline:2px solid #ff8b74;outline-offset:-2px}
   .figure-shell{position:relative}
+  .odometer{position:absolute;left:8px;bottom:8px;z-index:1;display:flex;align-items:center;gap:6px;
+    min-height:34px;padding:3px 9px;border:1px solid rgba(255,255,255,0.18);border-radius:7px;
+    background:#14171bee;color:#fff;font:inherit;user-select:none;box-shadow:0 3px 10px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.1);
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .odometer[hidden]{display:none}
+  .odometer .odo-label{font-size:9.5px;font-weight:750;letter-spacing:.09em;color:var(--secondary-text-color,#a3a7ad);text-transform:uppercase}
+  .odometer .odo-val{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;font-size:13px;font-weight:800;color:#f9f4ef;letter-spacing:.03em}
+  .odometer .odo-unit{font-size:10.5px;font-weight:700;color:#ff8069;margin-left:2px}
   .print-action{position:absolute;right:8px;bottom:8px;z-index:1;display:flex;align-items:center;gap:6px;
     min-height:34px;padding:4px 9px;border:1px solid #fff5;border-radius:7px;background:#181513ee;
     color:#fff;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
@@ -7918,6 +7933,7 @@ const markup = `
       <img alt="Snapmaker U1 with four tool docks and four spool positions"><div class="studio-filament"></div><div class="overlay"></div><div class="cutaway"></div><div class="axis-overlay"></div><div class="spool-labels"></div>
       <a class="figure-link" aria-label="Open 3D Printer dashboard" hidden></a>
     </figure>
+    <div class="odometer" aria-label="Total print hours" title="Total print hours" hidden></div>
     <button type="button" class="print-action" hidden></button>
   </div>
   <p class="print-action-status" role="status" hidden></p>
@@ -8090,6 +8106,8 @@ class U1FusionShowcaseHero extends HTMLElement {
     this.attachShadow({mode:"open"}).innerHTML = markup;
     this.figure = this.shadowRoot.querySelector("figure");
     this.figureLink = this.shadowRoot.querySelector(".figure-link");
+    this.odometer = this.shadowRoot.querySelector(".odometer");
+    this.odometer.addEventListener("click", event => event.stopPropagation());
     this.printButton = this.shadowRoot.querySelector(".print-action");
     this.printStatus = this.shadowRoot.querySelector(".print-action-status");
     this.printButton.addEventListener("click", () => this.submitPrintAction());
@@ -8150,6 +8168,7 @@ class U1FusionShowcaseHero extends HTMLElement {
     this.limits = config.axis_limits;
     this.controlSource = config.controls_source;
     this.studioOnly = config.studio_only === true;
+    this._config = config;
     this.showPrintActions = config.show_print_actions === true && !config.navigation_path;
     this.showFilamentHeat = config.show_filament_heat === true && !config.navigation_path;
     this.shadowRoot.querySelector(".settings").dataset.studioOnly = String(this.studioOnly);
@@ -8276,6 +8295,36 @@ class U1FusionShowcaseHero extends HTMLElement {
     if (this.lastSpools !== spools) this.spoolLabels.innerHTML = this.lastSpools = spools;
     const tools = clean ? data.heads.map((head,i) => toolSummary(head,i,presetName === "cutaway")).join("") : "";
     if (tools !== this.lastTools) this.tools.innerHTML = this.lastTools = tools;
+    const showOdometer = this._config?.show_odometer !== false;
+    if (showOdometer) {
+      const recordedHours = data.printHours;
+      const cfgOffset = this._config?.total_hours_offset ?? this._config?.odometer_offset;
+      const cfgTotal = this._config?.total_hours ?? this._config?.odometer_total;
+      let totalHours = null;
+      if (cfgTotal !== undefined && cfgTotal !== null && Number.isFinite(Number(cfgTotal))) {
+        totalHours = Math.round(Number(cfgTotal));
+      } else if (recordedHours !== null) {
+        const offset = cfgOffset !== undefined && cfgOffset !== null && Number.isFinite(Number(cfgOffset))
+          ? Number(cfgOffset)
+          : 0;
+        totalHours = Math.round(recordedHours + offset);
+      } else if (cfgOffset !== undefined && cfgOffset !== null && Number.isFinite(Number(cfgOffset))) {
+        totalHours = Math.round(Number(cfgOffset));
+      } else {
+        totalHours = recordedHours !== null ? Math.round(recordedHours) : 0;
+      }
+      const odoHtml = totalHours !== null
+        ? '<span class="odo-label">TOTAL</span><span class="odo-val">' + totalHours + '<span class="odo-unit">H</span></span>'
+        : "";
+      if (odoHtml !== this.lastOdometer) {
+        this.odometer.innerHTML = this.lastOdometer = odoHtml;
+        this.odometer.hidden = !odoHtml;
+        const rec = recordedHours ? (Math.round(recordedHours * 10) / 10) + " h" : "0 h";
+        this.odometer.setAttribute("title", "Total print hours: " + totalHours + " h (recorded: " + rec + ")");
+      }
+    } else {
+      this.odometer.hidden = true;
+    }
     const profile = data.slicerProfile;
     const job = clean && profile
       ? '<strong>Slicer job</strong> · T' + profile.index + ' · ' + text(profile.name.trim())

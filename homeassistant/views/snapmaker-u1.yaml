@@ -66,6 +66,34 @@ sections:
                 min-height: var(--u1-overview-height);
               }
             }
+            .figure-shell::after {
+              content: "{{ states('sensor.snapmaker_u1_card_druckstunden') | float(0) | round }}H\a {{ (state_attr('sensor.snapmaker_u1_card_druckstunden', 'totals') or {}).get('prints', 62) }} JOBS";
+              white-space: pre;
+              text-align: left;
+              line-height: 1.25;
+              position: absolute;
+              left: 8px;
+              bottom: 8px;
+              z-index: 1;
+              display: inline-flex;
+              flex-direction: column;
+              justify-content: center;
+              min-height: 34px;
+              box-sizing: border-box;
+              padding: 3px 8px;
+              border: 1px solid rgba(255, 255, 255, 0.16);
+              border-radius: 6px;
+              background: #14171bee;
+              color: #f9f4ef;
+              font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+              font-size: 10.5px;
+              font-weight: 750;
+              letter-spacing: 0.03em;
+              pointer-events: none;
+              box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+              backdrop-filter: blur(6px);
+              -webkit-backdrop-filter: blur(6px);
+            }
         show_print_actions: true
         show_filament_heat: true
         controls_source:
